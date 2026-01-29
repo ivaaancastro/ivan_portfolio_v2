@@ -1,0 +1,14 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+  /* Definimos tus colores personalizados */
+  --color-bg: #0e0f12;
+  --color-bg-soft: #15181e;
+  --color-primary: #6cf0c2; /* Tu verde menta */
+  --color-card: #13151a;
+  --color-muted: #9aa3b2;
+
+  /* Definimos tu fuente */
+  --font-sans: "Inter", system-ui, sans-serif;
+}
