@@ -6,7 +6,7 @@ const projects = [
   {
     id: 0,
     title: "AI Training Dashboard",
-    status: "dev", // Marcador para saber que está en desarrollo
+    status: "dev",
     shortDesc: "Plataforma de alto rendimiento con integración de Strava y Coach IA.",
     fullDesc: (
       <>
@@ -180,12 +180,25 @@ export default function Projects() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-0 md:p-4"
               >
                 <motion.div
                   layoutId={`card-${selectedProject.id}`}
-                  className="bg-[#1a1d24] w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative max-h-[90vh] overflow-y-auto"
+                  // CLASES ADAPTATIVAS:
+                  // Mobile: fixed bottom-0 (pegado abajo), rounded-t-3xl (borde redondo solo arriba)
+                  // Desktop (md): relative (flotante), rounded-3xl (borde redondo completo)
+                  className="bg-[#1a1d24] w-full max-w-2xl overflow-hidden shadow-2xl border-t border-x border-white/10 
+                             fixed bottom-0 left-0 right-0 rounded-t-3xl max-h-[85vh] 
+                             md:relative md:rounded-3xl md:border md:max-h-[90vh] md:bottom-auto overflow-y-auto"
                   onClick={(e) => e.stopPropagation()}
+                  
+                  // ANIMACIÓN DE ENTRADA:
+                  // Mobile: Sube desde abajo (y: 100%)
+                  // Desktop: Se encarga el layoutId
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "100%", opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 >
                   <button 
                     onClick={() => setSelectedProject(null)}
