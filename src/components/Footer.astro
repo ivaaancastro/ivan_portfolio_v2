@@ -1,0 +1,44 @@
+---
+import { Github, Linkedin, Mail } from 'lucide-react';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-12 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+  <div class="max-w-[1100px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    
+    <div class="text-center md:text-left">
+      <span class="text-xl font-bold text-white">Iván<span class="text-primary">.</span></span>
+      <p class="text-sm text-gray-500 mt-2">
+        &copy; {currentYear} Iván Castro Roel. <br class="md:hidden"/> Casi todos los derechos reservados.
+      </p>
+    </div>
+
+    <div class="flex gap-6">
+      <a 
+        href="https://github.com/ivaaancastro" 
+        target="_blank" 
+        class="text-gray-400 hover:text-white hover:scale-110 transition-all"
+        aria-label="GitHub"
+      >
+        <Github size={24} />
+      </a>
+      <a 
+        href="https://www.linkedin.com/in/ivancastroroel" 
+        target="_blank" 
+        class="text-gray-400 hover:text-[#0077b5] hover:scale-110 transition-all"
+        aria-label="LinkedIn"
+      >
+        <Linkedin size={24} />
+      </a>
+      <a 
+        href="mailto:icastror02@gmail.com" 
+        class="text-gray-400 hover:text-primary hover:scale-110 transition-all"
+        aria-label="Email"
+      >
+        <Mail size={24} />
+      </a>
+    </div>
+
+  </div>
+</footer>

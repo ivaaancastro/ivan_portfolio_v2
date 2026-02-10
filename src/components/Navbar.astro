@@ -1,29 +1,43 @@
 ---
 // Navbar.astro
+import { User, Code, Briefcase, Mail, Heart } from 'lucide-react'; // Importamos iconos si quieres
+
 const navItems = [
-  { name: "Sobre mí", label: "about" },
-  { name: "Proyectos", label: "projects" },
-  { name: "Experiencia", label: "experience" }, // ¡Añadimos la nueva sección!
-  { name: "Contacto", label: "contact" },
+  { name: "Sobre mí", label: "/#about" },
+  { name: "Experiencia", label: "/#experience" },
+  { name: "Proyectos", label: "/#projects" },
+  { name: "Contacto", label: "/#contact" },
 ];
 ---
 
 <header class="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-bg/50 border-b border-white/10">
   <div class="max-w-[1100px] mx-auto flex items-center justify-between h-20 px-6">
     
-    <a href="#" class="text-xl font-bold tracking-tight hover:text-primary transition-colors">
+    <a href="/" class="text-xl font-bold tracking-tight hover:text-primary transition-colors">
       Iván<span class="text-primary">.</span>
     </a>
 
-    <nav class="hidden md:flex gap-8">
+    <nav class="hidden md:flex gap-8 items-center">
       {navItems.map((item) => (
         <a 
-          href={`#${item.label}`} 
+          href={item.label} 
           class="text-sm font-medium text-gray-300 hover:text-primary transition-colors"
         >
           {item.name}
         </a>
       ))}
+      
+      {/* Separador vertical */}
+      <div class="h-4 w-[1px] bg-white/20 mx-2"></div>
+
+      {/* ENLACE A LA ZONA PERSONAL */}
+      <a 
+        href="/personal" 
+        class="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-pink-400 transition-colors group"
+      >
+        <Heart size={16} class="group-hover:fill-pink-400 transition-colors" /> 
+        Lifestyle
+      </a>
     </nav>
 
     <a 
@@ -31,7 +45,7 @@ const navItems = [
       target="_blank"
       class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-black bg-primary rounded-full hover:bg-emerald-400 transition-transform hover:-translate-y-1 shadow-lg shadow-primary/20"
     >
-      Descargar CV
+      CV
     </a>
   </div>
 </header>

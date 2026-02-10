@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { Trophy, Users, Bike, Heart } from 'lucide-react';
+---
+
+<Layout title="Iván Castro | Lifestyle">
+  <Navbar />
+  
+  <main class="pt-32 pb-20 px-6">
+    <div class="max-w-[1100px] mx-auto">
+      
+      <div class="text-center mb-16">
+        <span class="text-pink-400 font-bold tracking-wide uppercase text-sm mb-2 block">Lifestyle</span>
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          Más allá del <span class="text-primary">Código</span>.
+        </h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+          Equilibrio entre la vida profesional y personal. Lo que me mueve fuera de la terminal.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[300px] gap-4 md:gap-6">
+        
+        <div class="sm:col-span-2 sm:row-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
+            <div class="absolute inset-0 bg-gray-800">
+                <img 
+                  src="/img/ivan-running.jpeg" 
+                  alt="Corriendo" 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-40" 
+                  onerror="this.style.display='none'" 
+                />
+            </div>
+            <div class="absolute bottom-0 left-0 p-8 z-10 pointer-events-none">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white shadow-lg shadow-orange-500/20">
+                    <Trophy size={24} />
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Running & Constancia</h3>
+                <p class="text-gray-200 text-sm md:text-base leading-relaxed">
+                   La preparación de una <strong>Media Maratón</strong> me enseñó que los resultados llegan con disciplina diaria, no con sprints puntuales.
+                </p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10 p-6 flex flex-col justify-between hover:border-pink-500/50 transition-colors">
+            <div class="absolute -top-4 -right-4 text-white/5 pointer-events-none">
+                <Users size={140} />
+            </div>
+            <div class="relative z-10">
+                <Users class="text-pink-400 mb-4" size={32} />
+                <h3 class="text-xl font-bold text-white mb-2">Mi Equipo</h3>
+                <p class="text-gray-400 text-sm">Tengo la suerte de contar con una gran familia y de un grupo de amigos que me aportan un entorno íncreíble.</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10">
+            <div class="absolute inset-0 bg-gray-800">
+                <img 
+                  src="/img/ivan-running-friends.jpeg" 
+                  alt="Amigos" 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" 
+                  onerror="this.style.display='none'" 
+                />
+            </div>
+        </div>
+
+        <div class="sm:col-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
+            <div class="absolute inset-0 bg-gray-800">
+                <img 
+                  src="/img/ivan-family.png" 
+                  alt="Familia" 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-50" 
+                  onerror="this.style.display='none'" 
+                />
+            </div>
+            <div class="absolute bottom-0 left-0 p-8 z-10">
+                <div class="flex items-center gap-3 mb-2">
+                    <Heart class="text-red-400 fill-red-400" size={24} />
+                    <h3 class="text-2xl font-bold text-white">Familia</h3>
+                </div>
+                <p class="text-gray-200 text-sm">
+                   Desconexión y buenos momentos en los lugares de siempre.
+                </p>
+            </div>
+        </div>
+
+        <div class="sm:col-span-4 relative group overflow-hidden rounded-3xl bg-[#15181e] border border-white/10 h-[300px] sm:h-[350px]">
+            <div class="absolute inset-0 bg-gray-900">
+                <img 
+                    src="/img/ivan-bike.jpeg" 
+                    alt="Ciclismo" 
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 group-hover:opacity-40"
+                    style="object-position: center 60%;" 
+                    onerror="this.style.display='none'" 
+                />
+            </div>
+            
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent p-8 md:p-12 flex flex-col justify-center items-start">
+                <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mb-6 text-primary border border-primary/20 backdrop-blur-md">
+                    <Bike size={32} />
+                </div>
+                
+                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">
+                    Sobre dos ruedas
+                </h3>
+                <p class="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed">
+                    La bici es la forma de retarme a mí mismo, explorar nuevas rutas y limpiar la mente. Kilómetros, desnivel y libertad.
+                </p>
+            </div>
+        </div>
+
+      </div>
+      
+      <div class="mt-16 text-center">
+        <a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors px-6 py-3 rounded-full border border-white/10 hover:bg-white/5">
+            ← Volver al inicio
+        </a>
+      </div>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
