@@ -171,66 +171,70 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* MODAL CON DETALLES */}
+        {/* MODAL COMPLETO MEJORADO */}
         <AnimatePresence>
           {selectedProject && (
             <>
+              {/* BACKDROP: z-[60] para tapar la BottomNav */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-0 md:p-4"
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-end md:items-center justify-center p-0 md:p-4"
               >
                 <motion.div
                   layoutId={`card-${selectedProject.id}`}
-                  // CLASES ADAPTATIVAS:
-                  // Mobile: fixed bottom-0 (pegado abajo), rounded-t-3xl (borde redondo solo arriba)
-                  // Desktop (md): relative (flotante), rounded-3xl (borde redondo completo)
+                  // ESTRUCTURA FLEXBOX: Header fijo + Body scrollable + Footer fijo
                   className="bg-[#1a1d24] w-full max-w-2xl overflow-hidden shadow-2xl border-t border-x border-white/10 
-                             fixed bottom-0 left-0 right-0 rounded-t-3xl max-h-[85vh] 
-                             md:relative md:rounded-3xl md:border md:max-h-[90vh] md:bottom-auto overflow-y-auto"
+                             fixed bottom-0 left-0 right-0 rounded-t-3xl h-[85vh] max-h-[85vh]
+                             md:relative md:rounded-3xl md:border md:h-auto md:max-h-[90vh] md:bottom-auto flex flex-col"
                   onClick={(e) => e.stopPropagation()}
                   
-                  // ANIMACIÓN DE ENTRADA:
-                  // Mobile: Sube desde abajo (y: 100%)
-                  // Desktop: Se encarga el layoutId
                   initial={{ y: "100%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "100%", opacity: 0 }}
                   transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 >
+                  {/* BARRA SUPERIOR (Solo móvil) - Handle visual */}
+                  <div className="md:hidden w-full flex justify-center pt-3 pb-1 absolute top-0 z-50 pointer-events-none">
+                    <div className="w-12 h-1.5 bg-white/20 rounded-full"></div>
+                  </div>
+
+                  {/* BOTÓN CERRAR */}
                   <button 
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 z-30 p-2 bg-black/50 text-white rounded-full hover:bg-primary hover:text-black transition-colors"
+                    className="absolute top-4 right-4 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-primary hover:text-black transition-colors backdrop-blur-sm"
                   >
                     <X size={20} />
                   </button>
 
-                  <div className="relative h-64 md:h-80 shrink-0">
+                  {/* --- 1. HEADER (Imagen) - Fijo, no hace scroll --- */}
+                  <div className="relative h-56 md:h-80 shrink-0">
                     <motion.img 
                       layoutId={`img-${selectedProject.id}`}
                       src={selectedProject.image} 
                       className="w-full h-full object-cover"
+                      onerror="this.style.display='none'" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
                     
-                    <div className="absolute bottom-6 left-6 right-6">
+                    <div className="absolute bottom-4 left-6 right-6">
                       <div className="flex items-center gap-3 mb-2">
                         <motion.h3 
                             layoutId={`title-${selectedProject.id}`}
-                            className="text-3xl md:text-4xl font-bold text-white"
+                            className="text-2xl md:text-4xl font-bold text-white shadow-black drop-shadow-lg"
                         >
                             {selectedProject.title}
                         </motion.h3>
                         {selectedProject.status === "dev" && (
-                            <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-md">WIP</span>
+                            <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-md shadow-lg">WIP</span>
                         )}
                       </div>
                       
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.tags.map((tag, i) => (
-                          <span key={i} className="px-3 py-1 bg-primary text-black font-semibold text-xs rounded-full shadow-lg shadow-primary/20">
+                          <span key={i} className="px-2 py-1 bg-primary/90 text-black font-semibold text-[10px] md:text-xs rounded-full shadow-lg backdrop-blur-md">
                             {tag}
                           </span>
                         ))}
@@ -238,25 +242,27 @@ export default function Projects() {
                     </div>
                   </div>
 
+                  {/* --- 2. BODY (Texto) - Única parte que hace scroll --- */}
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="p-6 md:p-8 text-gray-300 space-y-4 text-base md:text-lg leading-relaxed"
+                    className="flex-1 overflow-y-auto p-6 md:p-8 text-gray-300 space-y-4 text-base md:text-lg leading-relaxed scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
                   >
                     {selectedProject.fullDesc}
+                  </motion.div>
 
-                    <div className="pt-6 mt-4 border-t border-white/10 flex justify-end">
+                  {/* --- 3. FOOTER (Botón) - Siempre visible abajo --- */}
+                  <div className="p-6 border-t border-white/10 bg-[#1a1d24] shrink-0 z-20 pb-safe md:pb-6">
                       <a 
                         href={selectedProject.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold hover:bg-primary transition-colors shadow-lg"
+                        className="flex items-center justify-center gap-2 w-full bg-white text-black px-6 py-4 rounded-xl font-bold hover:bg-primary transition-colors shadow-lg active:scale-95 transform"
                       >
                         <Github size={20} /> Ver Código en GitHub
                       </a>
-                    </div>
-                  </motion.div>
+                  </div>
 
                 </motion.div>
               </motion.div>

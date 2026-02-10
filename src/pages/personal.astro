@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { Trophy, Users, Bike, Heart } from 'lucide-react';
+import { Trophy, Users, Bike, Activity, ExternalLink } from 'lucide-react'; // <--- Añadido ExternalLink
 ---
 
 <Layout title="Iván Castro | Lifestyle">
   <Navbar />
   
-  <main class="pt-32 pb-20 px-6">
+  <main class="pt-32 pb-40 px-6">
     <div class="max-w-[1100px] mx-auto">
       
       <div class="text-center mb-16">
@@ -17,14 +17,14 @@ import { Trophy, Users, Bike, Heart } from 'lucide-react';
           Más allá del <span class="text-primary">Código</span>.
         </h1>
         <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-          Equilibrio entre la vida profesional y personal. Lo que me mueve fuera de la terminal.
+          Ingeniería es disciplina. El deporte también. Así encuentro mi equilibrio.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[300px] gap-4 md:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[280px] gap-4 md:gap-6">
         
         <div class="sm:col-span-2 sm:row-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
-            <div class="absolute inset-0 bg-gray-800">
+            <div class="absolute inset-0 bg-gray-900">
                 <img 
                   src="/img/ivan-running.jpeg" 
                   alt="Corriendo" 
@@ -32,25 +32,33 @@ import { Trophy, Users, Bike, Heart } from 'lucide-react';
                   onerror="this.style.display='none'" 
                 />
             </div>
-            <div class="absolute bottom-0 left-0 p-8 z-10 pointer-events-none">
-                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white shadow-lg shadow-orange-500/20">
+            
+            <div class="absolute top-6 right-6 bg-black/40 backdrop-blur-md border border-white/10 p-3 rounded-xl flex flex-col gap-1 items-end transform translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                <div class="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider">
+                    <Activity size={14} /> Ritmo Medio
+                </div>
+                <span class="text-white font-mono text-xl font-bold">4:15 /km</span>
+            </div>
+
+            <div class="absolute bottom-0 left-0 p-8 z-10 w-full bg-gradient-to-t from-black/80 to-transparent">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
                     <Trophy size={24} />
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Running & Constancia</h3>
-                <p class="text-gray-200 text-sm md:text-base leading-relaxed">
-                   La preparación de una <strong>Media Maratón</strong> me enseñó que los resultados llegan con disciplina diaria, no con sprints puntuales.
+                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">Running & Disciplina</h3>
+                <p class="text-gray-200 text-sm md:text-base leading-relaxed max-w-md">
+                   Preparar una <strong>Media Maratón</strong> me enseñó que los resultados llegan con constancia diaria. 
                 </p>
             </div>
         </div>
 
-        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10 p-6 flex flex-col justify-between hover:border-pink-500/50 transition-colors">
-            <div class="absolute -top-4 -right-4 text-white/5 pointer-events-none">
+        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10 p-6 flex flex-col justify-between hover:border-pink-500/50 transition-all hover:-translate-y-1">
+            <div class="absolute -top-4 -right-4 text-white/5 pointer-events-none group-hover:text-pink-500/10 transition-colors">
                 <Users size={140} />
             </div>
             <div class="relative z-10">
                 <Users class="text-pink-400 mb-4" size={32} />
-                <h3 class="text-xl font-bold text-white mb-2">Mi Equipo</h3>
-                <p class="text-gray-400 text-sm">Tengo la suerte de contar con una gran familia y de un grupo de amigos que me aportan un entorno íncreíble.</p>
+                <h3 class="text-xl font-bold text-white mb-2">Social Battery</h3>
+                <p class="text-gray-400 text-sm">Tengo la suerte de contar con una gran familia que me da seguridad y un grupo de amigos muy afín a mi.</p>
             </div>
         </div>
 
@@ -63,6 +71,7 @@ import { Trophy, Users, Bike, Heart } from 'lucide-react';
                   onerror="this.style.display='none'" 
                 />
             </div>
+            <div class="absolute inset-0 bg-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity mix-blend-overlay"></div>
         </div>
 
         <div class="sm:col-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
@@ -74,48 +83,52 @@ import { Trophy, Users, Bike, Heart } from 'lucide-react';
                   onerror="this.style.display='none'" 
                 />
             </div>
-            <div class="absolute bottom-0 left-0 p-8 z-10">
-                <div class="flex items-center gap-3 mb-2">
-                    <Heart class="text-red-400 fill-red-400" size={24} />
-                    <h3 class="text-2xl font-bold text-white">Familia</h3>
-                </div>
-                <p class="text-gray-200 text-sm">
-                   Desconexión y buenos momentos en los lugares de siempre.
-                </p>
-            </div>
         </div>
 
-        <div class="sm:col-span-4 relative group overflow-hidden rounded-3xl bg-[#15181e] border border-white/10 h-[300px] sm:h-[350px]">
+        <div class="sm:col-span-4 relative group overflow-hidden rounded-3xl bg-[#15181e] border border-white/10 h-[320px] sm:h-[400px]">
             <div class="absolute inset-0 bg-gray-900">
                 <img 
                     src="/img/ivan-bike.jpeg" 
                     alt="Ciclismo" 
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 group-hover:opacity-40"
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 group-hover:opacity-30"
                     style="object-position: center 60%;" 
                     onerror="this.style.display='none'" 
                 />
             </div>
+
+            <svg class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" class="text-primary" d="M20,150 C50,100 80,180 120,120 S180,50 180,20" stroke-dasharray="10 5" />
+                <circle cx="180" cy="20" r="4" class="fill-primary" />
+                <circle cx="20" cy="150" r="4" class="fill-white" />
+            </svg>
             
-            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent p-8 md:p-12 flex flex-col justify-center items-start">
-                <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mb-6 text-primary border border-primary/20 backdrop-blur-md">
-                    <Bike size={32} />
+            <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent p-8 md:p-12 flex flex-col justify-center items-start">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-[#FC4C02]/20 rounded-full flex items-center justify-center text-[#FC4C02] border border-[#FC4C02]/20 backdrop-blur-md">
+                        <Bike size={24} />
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#FC4C02] text-xs font-bold uppercase tracking-widest">En ruta</span>
+                        <span class="text-white/60 text-xs">Strava Connected</span>
+                    </div>
                 </div>
                 
-                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">
-                    Sobre dos ruedas
+                <h3 class="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                    Sígueme en <br/>Strava
                 </h3>
-                <p class="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed">
-                    La bici es la forma de retarme a mí mismo, explorar nuevas rutas y limpiar la mente. Kilómetros, desnivel y libertad.
-                </p>
+                
+                <a 
+                    href="https://www.strava.com/athletes/102757003" 
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                    class="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-primary transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(108,240,194,0.4)] hover:scale-105 transform"
+                >
+                    Ver Perfil <ExternalLink size={20} />
+                </a>
+
             </div>
         </div>
 
-      </div>
-      
-      <div class="mt-16 text-center">
-        <a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors px-6 py-3 rounded-full border border-white/10 hover:bg-white/5">
-            ← Volver al inicio
-        </a>
       </div>
 
     </div>
