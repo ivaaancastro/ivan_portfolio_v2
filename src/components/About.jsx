@@ -37,7 +37,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Columna Skills (Diseño tipo Tarjeta) */}
+          {/* Columna Skills */}
           <div className="bg-bg-soft/50 p-8 rounded-2xl border border-white/5 backdrop-blur-sm">
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
               <span className="text-primary">⚡</span> Herramientas que domino

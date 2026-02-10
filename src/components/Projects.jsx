@@ -4,7 +4,7 @@ import { Github, X, Code2, Layers, Terminal, Activity, Brain, Database, Cpu } fr
 
 const projects = [
   {
-    id: 0, // ID nuevo
+    id: 0,
     title: "AI Training Dashboard",
     status: "dev", // Marcador para saber que está en desarrollo
     shortDesc: "Plataforma de alto rendimiento con integración de Strava y Coach IA.",
@@ -23,9 +23,9 @@ const projects = [
       </>
     ),
     tags: ["React", "Vite", "Supabase", "OpenAI API", "Strava API", "Tailwind"],
-    image: "/img/dashboard-ai.png", // ¡Acuérdate de poner la foto!
+    image: "/img/dashboard-ai.png",
     link: "https://github.com/ivaaancastro/calculadora-ivan",
-    icon: <Brain className="w-6 h-6" /> // Icono de cerebro para la IA
+    icon: <Brain className="w-6 h-6" />
   },
   {
     id: 1,

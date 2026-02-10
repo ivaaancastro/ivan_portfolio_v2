@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Definimos tus colores personalizados */
+  /* Colores personalizados */
   --color-bg: #0e0f12;
   --color-bg-soft: #15181e;
-  --color-primary: #6cf0c2; /* Tu verde menta */
+  --color-primary: #6cf0c2; /* Verde menta */
   --color-card: #13151a;
   --color-muted: #9aa3b2;
 
