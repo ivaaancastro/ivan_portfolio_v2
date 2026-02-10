@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20 relative overflow-hidden">
       
-      {/* Fondo con efecto de luz (opcional, para reforzar el layout) */}
+      {/* Fondo con efecto de luz */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 pointer-events-none">
         <div className="absolute top-20 left-1/2 w-96 h-96 bg-primary/30 rounded-full blur-3xl -translate-x-1/2"></div>
       </div>
