@@ -2,127 +2,171 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { Trophy, Users, Bike, Activity, ExternalLink } from 'lucide-react'; // <--- Añadido ExternalLink
+import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react'; 
 ---
 
 <Layout title="Iván Castro | Lifestyle">
   <Navbar />
   
-  <main class="pt-32 pb-40 px-6">
-    <div class="max-w-[1100px] mx-auto">
+  <main class="pt-32 pb-40 px-6 overflow-hidden">
+    <div class="max-w-[1100px] mx-auto space-y-32">
       
-      <div class="text-center mb-16">
-        <span class="text-pink-400 font-bold tracking-wide uppercase text-sm mb-2 block">Lifestyle</span>
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          Más allá del <span class="text-primary">Código</span>.
+      {/* 1. Hero Section */}
+      <section class="text-center relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-pink-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+        <span class="text-pink-400 font-bold tracking-wide uppercase text-sm mb-4 block">Lifestyle</span>
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+          Más allá del <span class="text-primary drop-shadow-[0_0_15px_rgba(108,240,194,0.3)]">Código</span>.
         </h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-          Ingeniería es disciplina. El deporte también. Así encuentro mi equilibrio.
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          Ingeniería es disciplina. El deporte también. Así encuentro mi equilibrio entre la pantalla y el mundo real.
         </p>
-      </div>
+      </section>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[280px] gap-4 md:gap-6">
+      {/* 2. Deporte & Disciplina Section (Running + Cycling combined) */}
+      <section class="relative">
+        <div class="absolute -top-10 -left-10 text-orange-500/5 pointer-events-none -z-10">
+          <Activity size={200} />
+        </div>
         
-        <div class="sm:col-span-2 sm:row-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
-            <div class="absolute inset-0 bg-gray-900">
-                <img 
-                  src="/img/ivan-running.jpeg" 
-                  alt="Corriendo" 
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-40" 
-                  onerror="this.style.display='none'" 
-                />
+        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div class="max-w-2xl">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="p-3 bg-orange-500/10 text-orange-500 rounded-2xl border border-orange-500/20 shadow-[0_0_20px_rgba(249,115,22,0.1)]">
+                <Activity size={28} />
+              </span>
+              <h2 class="text-3xl md:text-4xl font-bold text-white">Deporte & Disciplina</h2>
             </div>
-
-            <div class="absolute bottom-0 left-0 p-8 z-10 w-full bg-gradient-to-t from-black/80 to-transparent">
-                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
-                    <Trophy size={24} />
+            <p class="text-gray-300 text-lg leading-relaxed mb-4">
+              El equilibrio perfecto entre el esfuerzo continuo y la libertad de explorar. Preparar <strong>Medias Maratones</strong>, correr todo tipo de carreras y acumular kilómetros en bici me han enseñado que los grandes objetivos se logran con constancia diaria.
+            </p>
+            <p class="text-gray-400 text-md leading-relaxed md:hidden">
+              Esa misma resiliencia es la que aplico a la hora de resolver problemas complejos en mi día a día profesional.
+            </p>
+          </div>
+          
+          <a 
+            href="https://www.strava.com/athletes/102757003" 
+            target="_blank"
+            rel="noopener noreferrer" 
+            class="group w-[fit-content] md:w-auto inline-flex items-center justify-center gap-3 bg-[#FC4C02]/10 text-[#FC4C02] border border-[#FC4C02]/30 px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-[#FC4C02] hover:text-white transition-all shadow-[0_0_20px_rgba(252,76,2,0.1)] hover:shadow-[0_0_30px_rgba(252,76,2,0.4)] hover:-translate-y-1"
+          >
+            <Bike size={20} class="group-hover:animate-bounce" />
+            Sígueme en Strava <ExternalLink size={18} class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Running Card */}
+          <div class="relative group rounded-[2.5rem] overflow-hidden h-[450px] md:h-[500px] border border-white/10 shadow-xl bg-card">
+              <img 
+                src="/img/ivan-running.jpeg" 
+                alt="Corriendo" 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-60" 
+                onerror="this.style.display='none'" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+              
+              <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
+                <div class="w-14 h-14 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 border border-orange-500/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                   <Trophy size={28} />
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">Running & Disciplina</h3>
-                <p class="text-gray-200 text-sm md:text-base leading-relaxed max-w-md">
-                   Preparar una <strong>Media Maratón</strong> me enseñó que los resultados llegan con constancia diaria. 
-                </p>
-            </div>
+                <h3 class="text-3xl font-bold text-white mb-2">Running</h3>
+                <p class="text-gray-300 text-lg">Resiliencia kilómetro a kilómetro.</p>
+              </div>
+          </div>
+
+          {/* Cycling Card */}
+          <div class="relative group rounded-[2.5rem] overflow-hidden h-[450px] md:h-[500px] border border-white/10 shadow-xl bg-card">
+              <img 
+                src="/img/ivan-bike.jpeg" 
+                alt="Ciclismo" 
+                style="object-position: center 60%;" 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-60" 
+                onerror="this.style.display='none'" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+              
+               <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
+                <div class="w-14 h-14 bg-[#FC4C02]/20 rounded-2xl flex items-center justify-center text-[#FC4C02] border border-[#FC4C02]/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(252,76,2,0.2)]">
+                   <Bike size={28} />
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">Ciclismo</h3>
+                <p class="text-gray-300 text-lg">Libertad, velocidad y desconexión.</p>
+              </div>
+          </div>
         </div>
+      </section>
 
-        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10 p-6 flex flex-col justify-between hover:border-pink-500/50 transition-all hover:-translate-y-1">
-            <div class="absolute -top-4 -right-4 text-white/5 pointer-events-none group-hover:text-pink-500/10 transition-colors">
-                <Users size={140} />
-            </div>
-            <div class="relative z-10">
-                <Users class="text-pink-400 mb-4" size={32} />
-                <h3 class="text-xl font-bold text-white mb-2">Social Battery</h3>
-                <p class="text-gray-400 text-sm">Tengo la suerte de contar con una gran familia que me da seguridad y un grupo de amigos muy afín a mi.</p>
-            </div>
+      {/* 3. Entorno Social & Familia */}
+      <section class="relative pt-10">
+         <div class="absolute top-0 left-1/2 -translate-x-1/2 text-pink-500/5 pointer-events-none -z-10">
+          <Users size={400} />
         </div>
-
-        <div class="relative group overflow-hidden rounded-3xl bg-card border border-white/10">
-            <div class="absolute inset-0 bg-gray-800">
-                <img 
-                  src="/img/ivan-running-friends.jpeg" 
-                  alt="Amigos" 
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" 
-                  onerror="this.style.display='none'" 
-                />
-            </div>
-            <div class="absolute inset-0 bg-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity mix-blend-overlay"></div>
+        
+        <div class="mb-12 flex flex-col items-center text-center">
+          <span class="p-3 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20 shadow-[0_0_20px_rgba(236,72,153,0.1)] mb-6 inline-block">
+             <Users size={28} />
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">El Motor: Social & Familia</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-lg">La base de mi motivación y estabilidad.</p>
         </div>
-
-        <div class="sm:col-span-2 relative group overflow-hidden rounded-3xl bg-card border border-white/10">
-            <div class="absolute inset-0 bg-gray-800">
-                <img 
-                  src="/img/ivan-family.png" 
-                  alt="Familia" 
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-50" 
-                  onerror="this.style.display='none'" 
-                />
+        
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 h-auto min-h-[500px]">
+          
+          <div class="md:col-span-2 bg-gradient-to-br from-card to-gray-900 border border-white/10 rounded-[3rem] p-10 flex flex-col justify-center relative overflow-hidden group shadow-lg">
+            <div class="relative z-10 h-full flex flex-col justify-center">
+              <h3 class="text-3xl font-bold text-white mb-8 group-hover:text-pink-400 transition-colors">Mi <br/>"Social Battery"</h3>
+              <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                El deporte me da fuerza, pero mi entorno me da estabilidad. Tengo la inmensa suerte de contar con una familia increíble que me aporta seguridad y valores inquebrantables.
+              </p>
+              <p class="text-gray-400 leading-relaxed text-lg">
+                A eso se suma un grupo de amigos muy afín a mí, con los que comparto risas, viajes, experiencias y por supuesto, <span class="text-white">¡kilómetros!</span>
+              </p>
             </div>
-        </div>
-
-        <div class="sm:col-span-4 relative group overflow-hidden rounded-3xl bg-[#15181e] border border-white/10 h-[320px] sm:h-[400px]">
-            <div class="absolute inset-0 bg-gray-900">
-                <img 
-                    src="/img/ivan-bike.jpeg" 
-                    alt="Ciclismo" 
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 group-hover:opacity-30"
-                    style="object-position: center 60%;" 
-                    onerror="this.style.display='none'" 
-                />
+            <div class="absolute bottom-[-10%] right-[-10%] p-6 opacity-[0.03] group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                <Users size={300} class="text-pink-500" />
             </div>
+            <div class="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mix-blend-overlay"></div>
+          </div>
 
-            <svg class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="none" stroke="currentColor" stroke-width="2" class="text-primary" d="M20,150 C50,100 80,180 120,120 S180,50 180,20" stroke-dasharray="10 5" />
-                <circle cx="180" cy="20" r="4" class="fill-primary" />
-                <circle cx="20" cy="150" r="4" class="fill-white" />
-            </svg>
+          <div class="md:col-span-3 grid grid-rows-2 gap-6">
+            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 group shadow-lg">
+              <img 
+                src="/img/ivan-family.png" 
+                alt="Familia" 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                onerror="this.style.display='none'" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+              <div class="absolute bottom-8 left-8 flex items-center gap-3">
+                <span class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
+                    <Heart size={20} class="fill-current" />
+                </span>
+                <span class="font-bold text-white text-2xl tracking-wide">Familia</span>
+              </div>
+            </div>
             
-            <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent p-8 md:p-12 flex flex-col justify-center items-start">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 bg-[#FC4C02]/20 rounded-full flex items-center justify-center text-[#FC4C02] border border-[#FC4C02]/20 backdrop-blur-md">
-                        <Bike size={24} />
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-[#FC4C02] text-xs font-bold uppercase tracking-widest">En ruta</span>
-                        <span class="text-white/60 text-xs">Strava Connected</span>
-                    </div>
-                </div>
-                
-                <h3 class="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
-                    Sígueme en <br/>Strava
-                </h3>
-                
-                <a 
-                    href="https://www.strava.com/athletes/102757003" 
-                    target="_blank"
-                    rel="noopener noreferrer" 
-                    class="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-primary transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(108,240,194,0.4)] hover:scale-105 transform"
-                >
-                    Ver Perfil <ExternalLink size={20} />
-                </a>
-
+            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 group shadow-lg">
+              <img 
+                src="/img/ivan-running-friends.jpeg" 
+                alt="Amigos" 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                style="object-position: center 30%;"
+                onerror="this.style.display='none'" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+              <div class="absolute bottom-8 left-8 flex items-center gap-3">
+                <span class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
+                    <Users size={20} />
+                </span>
+                <span class="font-bold text-white text-2xl tracking-wide">Amigos de ruta</span>
+              </div>
             </div>
-        </div>
+          </div>
 
-      </div>
+        </div>
+      </section>
 
     </div>
   </main>
