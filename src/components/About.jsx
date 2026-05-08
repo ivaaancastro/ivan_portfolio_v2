@@ -24,13 +24,14 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
               <p>
-                Tengo 23 años y soy estudiante de <strong className="text-white">Ingeniería Informática</strong> en la UDC. 
+                Tengo 23 años y soy estudiante de <strong className="text-white">cuarto curso</strong> en
+                <strong className="text-white"> Ingeniería Informática</strong> en la <strong className="text-white">UDC</strong>.
                 Me considero una persona tranquila, organizada y reflexiva, con buenas habilidades 
                 de comunicación y trabajo en equipo.
               </p>
               <p>
-                Antes de la carrera completé un ciclo superior en <strong className="text-white">DAM</strong> y trabajé 
-                1 año y 1 mes en <strong>Indra</strong>, lo que me dio experiencia en proyectos reales.
+                Antes de la carrera completé un ciclo superior en <strong className="text-white">DAM</strong> y <strong className="text-white">trabajé 
+                1 año y 1 mes en <strong>Indra</strong></strong> , lo que me dio experiencia en proyectos reales.
                 Actualmente me especializo en <strong className="text-primary">Ingeniería del Software</strong> pues me gusta
                 la programación full stack y el trabajo en equipo mediante diferentes metodologías.
               </p>

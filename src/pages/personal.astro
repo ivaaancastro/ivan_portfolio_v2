@@ -3,22 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react'; 
+import StravaStats from '../components/StravaStats';
+import { getStravaStats } from '../utils/strava';
+
+const stats = await getStravaStats();
+const runDistance = stats?.ytd_run_totals?.distance || 0;
+const rideDistance = stats?.ytd_ride_totals?.distance || 0;
 ---
 
 <Layout title="Iván Castro | Lifestyle">
   <Navbar />
   
   <main class="pt-32 pb-40 px-6 overflow-hidden">
-    <div class="max-w-[1100px] mx-auto space-y-32">
+    <div class="max-w-[900px] mx-auto space-y-20">
       
       {/* 1. Hero Section */}
       <section class="text-center relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-pink-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
         <span class="text-pink-400 font-bold tracking-wide uppercase text-sm mb-4 block">Lifestyle</span>
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
           Más allá del <span class="text-primary drop-shadow-[0_0_15px_rgba(108,240,194,0.3)]">Código</span>.
         </h1>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
           Ingeniería es disciplina. El deporte también. Así encuentro mi equilibrio entre la pantalla y el mundo real.
         </p>
       </section>
@@ -26,18 +32,18 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
       {/* 2. Deporte & Disciplina Section (Running + Cycling combined) */}
       <section class="relative">
         <div class="absolute -top-10 -left-10 text-orange-500/5 pointer-events-none -z-10">
-          <Activity size={200} />
+          <Activity size={100} />
         </div>
         
         <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div class="max-w-2xl">
             <div class="flex items-center gap-4 mb-6">
               <span class="p-3 bg-orange-500/10 text-orange-500 rounded-2xl border border-orange-500/20 shadow-[0_0_20px_rgba(249,115,22,0.1)]">
-                <Activity size={28} />
+                <Activity size={24} />
               </span>
-              <h2 class="text-3xl md:text-4xl font-bold text-white">Deporte & Disciplina</h2>
+              <h2 class="text-2xl md:text-3xl font-bold text-white">Deporte & Disciplina</h2>
             </div>
-            <p class="text-gray-300 text-lg leading-relaxed mb-4">
+            <p class="text-gray-300 text-base leading-relaxed mb-4">
               El equilibrio perfecto entre el esfuerzo continuo y la libertad de explorar. Preparar <strong>Medias Maratones</strong>, correr todo tipo de carreras y acumular kilómetros en bici me han enseñado que los grandes objetivos se logran con constancia diaria.
             </p>
             <p class="text-gray-400 text-md leading-relaxed md:hidden">
@@ -56,9 +62,11 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
           </a>
         </div>
         
+        <StravaStats client:load runDistance={runDistance} rideDistance={rideDistance} />
+        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Running Card */}
-          <div class="relative group rounded-[2.5rem] overflow-hidden h-[350px] md:h-[400px] border border-white/10 shadow-xl bg-card">
+          <div class="relative group rounded-3xl overflow-hidden h-[250px] md:h-[280px] border border-white/10 shadow-xl bg-card">
               <img 
                 src="/img/ivan-running.jpeg" 
                 alt="Corriendo" 
@@ -68,16 +76,16 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
               <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
               
               <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
-                <div class="w-14 h-14 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 border border-orange-500/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-                   <Trophy size={28} />
+                <div class="w-12 h-12 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 border border-orange-500/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                   <Trophy size={24} />
                 </div>
-                <h3 class="text-3xl font-bold text-white mb-2">Running</h3>
-                <p class="text-gray-300 text-lg">Resiliencia kilómetro a kilómetro.</p>
+                <h3 class="text-2xl font-bold text-white mb-2">Running</h3>
+                <p class="text-gray-300 text-base">Resiliencia kilómetro a kilómetro.</p>
               </div>
           </div>
 
           {/* Cycling Card */}
-          <div class="relative group rounded-[2.5rem] overflow-hidden h-[350px] md:h-[400px] border border-white/10 shadow-xl bg-card">
+          <div class="relative group rounded-3xl overflow-hidden h-[250px] md:h-[280px] border border-white/10 shadow-xl bg-card">
               <img 
                 src="/img/ivan-bike.jpeg" 
                 alt="Ciclismo" 
@@ -88,11 +96,11 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
               <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
               
                <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
-                <div class="w-14 h-14 bg-[#FC4C02]/20 rounded-2xl flex items-center justify-center text-[#FC4C02] border border-[#FC4C02]/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(252,76,2,0.2)]">
-                   <Bike size={28} />
+                <div class="w-12 h-12 bg-[#FC4C02]/20 rounded-2xl flex items-center justify-center text-[#FC4C02] border border-[#FC4C02]/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(252,76,2,0.2)]">
+                   <Bike size={24} />
                 </div>
-                <h3 class="text-3xl font-bold text-white mb-2">Ciclismo</h3>
-                <p class="text-gray-300 text-lg">Libertad, velocidad y desconexión.</p>
+                <h3 class="text-2xl font-bold text-white mb-2">Ciclismo</h3>
+                <p class="text-gray-300 text-base">Libertad, velocidad y desconexión.</p>
               </div>
           </div>
         </div>
@@ -101,37 +109,37 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
       {/* 3. Entorno Social & Familia */}
       <section class="relative pt-10">
          <div class="absolute top-0 left-1/2 -translate-x-1/2 text-pink-500/5 pointer-events-none -z-10">
-          <Users size={400} />
+          <Users size={200} />
         </div>
         
         <div class="mb-12 flex flex-col items-center text-center">
           <span class="p-3 bg-pink-500/10 text-pink-400 rounded-2xl border border-pink-500/20 shadow-[0_0_20px_rgba(236,72,153,0.1)] mb-6 inline-block">
-             <Users size={28} />
+             <Users size={24} />
           </span>
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">El Motor: Social & Familia</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto text-lg">La base de mi motivación y estabilidad.</p>
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-4"> Social & Familia</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-base">La base de mi motivación y estabilidad.</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 h-auto min-h-[500px]">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 h-auto min-h-[400px]">
           
-          <div class="md:col-span-2 bg-gradient-to-br from-card to-gray-900 border border-white/10 rounded-[3rem] p-10 flex flex-col justify-center relative overflow-hidden group shadow-lg">
+          <div class="md:col-span-2 bg-gradient-to-br from-card to-gray-900 border border-white/10 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden group shadow-lg">
             <div class="relative z-10 h-full flex flex-col justify-center">
-              <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 group-hover:text-pink-400 transition-colors text-balance">Mi "Social Battery"</h3>
-              <p class="text-gray-300 text-lg leading-relaxed mb-6 text-balance">
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-pink-400 transition-colors text-balance">Mi "Social Battery"</h3>
+              <p class="text-gray-300 text-base leading-relaxed mb-4 text-balance">
                 El deporte me da fuerza, pero mi entorno me da estabilidad. Tengo la inmensa suerte de contar con una familia increíble que me aporta seguridad y valores inquebrantables.
               </p>
-              <p class="text-gray-400 leading-relaxed text-lg text-balance">
+              <p class="text-gray-400 leading-relaxed text-base text-balance">
                 A eso se suma un grupo de amigos muy afín a mí, con los que comparto risas, viajes, experiencias y por supuesto, <span class="text-white">¡kilómetros!</span>
               </p>
             </div>
             <div class="absolute bottom-[-10%] right-[-10%] p-6 opacity-[0.03] group-hover:scale-110 transition-transform duration-700 pointer-events-none">
-                <Users size={300} class="text-pink-500" />
+                <Users size={200} class="text-pink-500" />
             </div>
             <div class="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mix-blend-overlay"></div>
           </div>
 
           <div class="md:col-span-3 grid grid-rows-2 gap-6">
-            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 group shadow-lg">
+            <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg">
               <img 
                 src="/img/ivan-family.png" 
                 alt="Familia" 
@@ -139,15 +147,15 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
                 onerror="this.style.display='none'" 
               />
               <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-              <div class="absolute bottom-8 left-8 flex items-center gap-3">
-                <span class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
-                    <Heart size={20} class="fill-current" />
+              <div class="absolute bottom-6 left-6 flex items-center gap-3">
+                <span class="w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
+                    <Heart size={16} class="fill-current" />
                 </span>
-                <span class="font-bold text-white text-2xl tracking-wide">Familia</span>
+                <span class="font-bold text-white text-xl tracking-wide">Familia</span>
               </div>
             </div>
             
-            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 group shadow-lg">
+            <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg">
               <img 
                 src="/img/ivan-running-friends.jpeg" 
                 alt="Amigos" 
@@ -156,11 +164,11 @@ import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from 'lucide-react
                 onerror="this.style.display='none'" 
               />
               <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-              <div class="absolute bottom-8 left-8 flex items-center gap-3">
-                <span class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
-                    <Users size={20} />
+              <div class="absolute bottom-6 left-6 flex items-center gap-3">
+                <span class="w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
+                    <Users size={16} />
                 </span>
-                <span class="font-bold text-white text-2xl tracking-wide">Amigos de ruta</span>
+                <span class="font-bold text-white text-xl tracking-wide">Amigos</span>
               </div>
             </div>
           </div>
