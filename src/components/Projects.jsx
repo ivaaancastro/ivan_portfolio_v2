@@ -1,17 +1,50 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, X, Code2, Layers, Terminal, Activity, Brain, Database, Cpu } from "lucide-react";
+import { Github, X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
 
 const projects = [
   {
     id: 0,
-    title: "AI Training Dashboard",
-    status: "dev",
+    title: "Nexus Commerce Core",
+    featured: true,
+    shortDesc: "Backend transaccional de alto rendimiento para retail global, con vitrina editorial en Next.js.",
+    fullDesc: (
+      <>
+        <p className="mb-4">
+          Proyecto full-stack personal construido con estándares de ingeniería de producción: un backend
+          transaccional para retail multimercado con Spring Boot y una vitrina editorial en Next.js.
+          Todo el desarrollo sigue Spec-Driven Development, con specs, ADRs y changelog versionados.
+        </p>
+        <h4 className="text-white font-bold mb-2">Motores de negocio:</h4>
+        <ul className="list-disc pl-5 space-y-1 mb-4">
+          <li><strong>Catálogo:</strong> productos con variantes físicas (SKU) organizados por familia, con consultas optimizadas sin N+1.</li>
+          <li><strong>Precios multimercado:</strong> tarificación multidivisa (ES/US/UK/CH) con desglose impositivo, toda la aritmética financiera en BigDecimal.</li>
+          <li><strong>Inventario omnicanal:</strong> cálculo ATS y bloqueo pesimista (<code className="text-primary">SELECT ... FOR UPDATE</code>) para impedir el over-selling.</li>
+          <li><strong>Checkout transaccional:</strong> idempotencia por cabecera, snapshot financiero inmutable y devoluciones con ventana de 30 días.</li>
+          <li><strong>Búsqueda híbrida con IA:</strong> embeddings con pgvector (HNSW) vía Spring AI, con fallback a texto cuando no hay API key.</li>
+          <li><strong>Panel de administración:</strong> roles ADMIN/USER con JWT y gestión de catálogo, stock y precios.</li>
+        </ul>
+        <h4 className="text-white font-bold mb-2">Calidad y proceso:</h4>
+        <ul className="list-disc pl-5 space-y-1 mb-4">
+          <li><strong>608 tests</strong> (249 backend con &gt;90% de cobertura, 359 frontend) y E2E con Playwright en 3 navegadores.</li>
+          <li><strong>Auditorías en CI:</strong> accesibilidad con axe sobre 14 rutas y Core Web Vitals con Lighthouse, ambas en verde.</li>
+          <li>Arquitectura en capas con DTOs inmutables, errores semánticos RFC 7807 y documentación OpenAPI/Swagger.</li>
+        </ul>
+      </>
+    ),
+    tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "pgvector", "Spring AI"],
+    image: "/img/nexus-catalog.png",
+    link: "https://github.com/ivaaancastro/nexus-commerce-core",
+    icon: <Store className="w-6 h-6" />
+  },
+  {
+    id: 1,
+    title: "Forma",
     shortDesc: "Plataforma de alto rendimiento con integración de Strava y Coach IA.",
     fullDesc: (
       <>
         <p className="mb-4">
-          Proyecto personal en desarrollo (Work in Progress) enfocado en el análisis de datos deportivos. El objetivo es centralizar métricas de entrenamiento y usar Inteligencia Artificial para generar planes personalizados.
+          Proyecto personal enfocado en el análisis de datos deportivos. El objetivo es centralizar métricas de entrenamiento y usar Inteligencia Artificial para generar planes personalizados.
         </p>
         <h4 className="text-white font-bold mb-2">Características Clave:</h4>
         <ul className="list-disc pl-5 space-y-1 mb-4">
@@ -28,7 +61,7 @@ const projects = [
     icon: <Brain className="w-6 h-6" />
   },
   {
-    id: 1,
+    id: 2,
     title: "FicFit",
     shortDesc: "Plataforma Integral de Gestión Fitness (Fullstack & DevOps).",
     fullDesc: (
@@ -50,7 +83,7 @@ const projects = [
     icon: <Layers className="w-6 h-6" />
   },
   {
-    id: 2,
+    id: 3,
     title: "Gestor de Cursos",
     shortDesc: "Sistema distribuido para la gestión eficiente de cursos y estudiantes.",
     fullDesc: (
@@ -72,7 +105,7 @@ const projects = [
     icon: <Code2 className="w-6 h-6" />
   },
   {
-    id: 3,
+    id: 4,
     title: "Gestor de Repositorios",
     shortDesc: "Sistema CLI para gestión de repositorios y control de versiones.",
     fullDesc: (
@@ -124,26 +157,28 @@ export default function Projects() {
               key={project.id}
               layoutId={`card-${project.id}`}
               onClick={() => setSelectedProject(project)}
-              className="group bg-card border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] relative flex flex-col h-full"
+              className={`group bg-card border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] relative flex flex-col h-full ${
+                project.featured ? "md:col-span-2 lg:col-span-2" : ""
+              }`}
             >
               {/* Imagen */}
-              <div className="relative h-48 overflow-hidden shrink-0">
+              <div className={`relative overflow-hidden shrink-0 ${project.featured ? "h-64 lg:h-72" : "h-48"}`}>
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent z-10 opacity-80" />
                 <motion.img 
                   layoutId={`img-${project.id}`}
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  onerror="this.style.display='none'" 
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                 />
                 <div className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md p-2 rounded-full text-white border border-white/10">
                   {project.icon}
                 </div>
                 
-                {/* Badge de "En Desarrollo" */}
-                {project.status === "dev" && (
-                   <div className="absolute top-4 left-4 z-20 bg-yellow-500/90 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1">
-                     <Cpu size={12} /> En Desarrollo
+                {/* Badge de "Destacado" */}
+                {project.featured && (
+                   <div className="absolute top-4 left-4 z-20 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1">
+                     <Star size={12} className="fill-current" /> Destacado
                    </div>
                 )}
               </div>
@@ -215,7 +250,7 @@ export default function Projects() {
                       layoutId={`img-${selectedProject.id}`}
                       src={selectedProject.image} 
                       className="w-full h-full object-cover"
-                      onerror="this.style.display='none'" 
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
                     
@@ -227,8 +262,10 @@ export default function Projects() {
                         >
                             {selectedProject.title}
                         </motion.h3>
-                        {selectedProject.status === "dev" && (
-                            <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-md shadow-lg">WIP</span>
+                        {selectedProject.featured && (
+                            <span className="bg-primary text-black text-xs font-bold px-2 py-1 rounded-md shadow-lg flex items-center gap-1">
+                              <Star size={12} className="fill-current" /> Destacado
+                            </span>
                         )}
                       </div>
                       
