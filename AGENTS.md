@@ -7,7 +7,8 @@ Este archivo define cómo trabaja cualquier agente (Claude u otro) en este repos
 Portfolio personal de Iván Castro Roel. Astro + React (solo islas) + Tailwind CSS 4, salida estática, desplegado en Vercel desde `main`.
 
 - Seguimiento del trabajo: [ROADMAP.md](ROADMAP.md)
-- Comandos: `npm run dev` · `npm run build` · `npm run preview` (y `lint`, `check`, `format` cuando existan tras F0)
+- Comandos: `npm run dev` · `npm run build` · `npm run preview` · `npm run format` / `format:check` · `npm run lint` · `npm run check`
+- Node 24 (`.nvmrc`). El CI (`ci`) ejecuta `format:check`, `lint`, `check` y `build`, y es obligatorio para fusionar en `main`.
 
 ## 1. Antes de empezar cualquier tarea
 
@@ -30,7 +31,7 @@ Portfolio personal de Iván Castro Roel. Astro + React (solo islas) + Tailwind C
 ## 3. Verificación obligatoria antes de abrir un PR
 
 - [ ] `npm run build` sin errores ni warnings nuevos
-- [ ] `npm run check` y `npm run lint` en verde (desde F0)
+- [ ] `npm run format:check`, `npm run lint` y `npm run check` en verde
 - [ ] Cambios de UI revisados en navegador a **375 px** y **1280 px**, sin scroll horizontal
 - [ ] Sin errores en la consola del navegador
 - [ ] Teclado: todo lo interactivo es accesible con Tab/Enter/Esc
@@ -43,9 +44,9 @@ Si algo no se ha podido verificar, se dice explícitamente en el PR y al informa
 Al terminar una tarea, **en el mismo PR**:
 
 1. Marcar la casilla `[x]` y añadir el enlace al PR.
-2. Añadir una línea al *Registro de avances* (`AAAA-MM-DD · ID · resumen · PR`).
-3. Actualizar *Estado general*, *Fase actual* y *Próxima tarea*.
-4. Registrar en *Decisiones* cualquier decisión tomada, con fecha y motivo.
+2. Añadir una línea al _Registro de avances_ (`AAAA-MM-DD · ID · resumen · PR`).
+3. Actualizar _Estado general_, _Fase actual_ y _Próxima tarea_.
+4. Registrar en _Decisiones_ cualquier decisión tomada, con fecha y motivo.
 5. Si aparecen problemas o ideas nuevas, añadirlos a la fase o al backlog.
 
 ## 5. Normas de código

@@ -1,10 +1,10 @@
 ---
 // Layout.astro
-import '../styles/global.css';
-import BottomNav from '../components/BottomNav.jsx';
+import "../styles/global.css";
+import BottomNav from "../components/BottomNav.jsx";
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -12,33 +12,38 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Portfolio de Iván. Ingeniería de Software y Desarrollo Web." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
-		
-		<title>{title}</title>
-	</head>
-	<body class="bg-bg text-gray-100 font-sans antialiased selection:bg-primary selection:text-black">
-		
-		<div class="fixed top-0 left-0 z-[-10] h-full w-full bg-bg">
-			<div class="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(108,240,194,0.15),rgba(255,255,255,0))]"></div>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfolio de Iván. Ingeniería de Software y Desarrollo Web."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<slot />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
 
-    	<BottomNav client:visible />
-	</body>
+    <title>{title}</title>
+  </head>
+  <body class="bg-bg text-gray-100 font-sans antialiased selection:bg-primary selection:text-black">
+    <div class="fixed top-0 left-0 z-[-10] h-full w-full bg-bg">
+      <div class="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(108,240,194,0.15),rgba(255,255,255,0))]"></div>
+    </div>
+
+    <slot />
+
+    <BottomNav client:visible />
+  </body>
 </html>
 
 <style is:global>
-	/* Estilos globales */
-	html {
-		scroll-behavior: smooth;
-	}
+  /* Estilos globales */
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
