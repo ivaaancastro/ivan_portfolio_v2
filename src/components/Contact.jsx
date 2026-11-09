@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Github, Linkedin } from "lucide-react";
+import { motion } from "motion/react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin } from "./icons/brand";
 
 export default function Contact() {
   return (
