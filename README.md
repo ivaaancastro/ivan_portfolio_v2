@@ -1,46 +1,70 @@
-# Astro Starter Kit: Basics
+# Portfolio de Iván Castro Roel
+
+Portfolio personal: quién soy, experiencia, proyectos y una sección _Lifestyle_ con mis estadísticas de Strava.
+
+**Web:** https://ivan-portfolio-v2.vercel.app
+
+## Stack
+
+- [Astro 7](https://astro.build): sitio estático; React solo en las partes interactivas (islas)
+- [React 19](https://react.dev) + [Motion](https://motion.dev) para animaciones
+- [Tailwind CSS 4](https://tailwindcss.com) con tokens de diseño en `src/styles/global.css`
+- [Lucide](https://lucide.dev) para iconos
+- API de [Strava](https://developers.strava.com) para los kilómetros del año (se consultan al compilar)
+- Despliegue en [Vercel](https://vercel.com) desde `main`
+
+## Requisitos
+
+- **Node 24** (ver `.nvmrc`; con nvm: `nvm use`)
+- npm 10 o superior
+
+## Puesta en marcha
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+cp .env.example .env   # y rellena los valores (opcional, ver abajo)
+npm run dev            # http://localhost:4321
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Variables de entorno
 
-## 🚀 Project Structure
+Solo hacen falta para mostrar los kilómetros reales de Strava. Sin ellas la web compila igual y muestra «...» en las estadísticas.
 
-Inside of your Astro project, you'll see the following folders and files:
+| Variable               | Descripción                                     |
+| :--------------------- | :---------------------------------------------- |
+| `STRAVA_CLIENT_ID`     | ID de la aplicación de Strava                   |
+| `STRAVA_CLIENT_SECRET` | Secreto de la aplicación de Strava              |
+| `STRAVA_REFRESH_TOKEN` | Refresh token con permiso de lectura del atleta |
+| `STRAVA_ATHLETE_ID`    | ID del atleta (por defecto, el de Iván)         |
+
+En producción están configuradas en las variables de entorno del proyecto de Vercel. **Nunca se suben al repositorio.**
+
+## Scripts
+
+| Comando                | Qué hace                                         |
+| :--------------------- | :----------------------------------------------- |
+| `npm run dev`          | Servidor de desarrollo                           |
+| `npm run build`        | Compila el sitio en `dist/`                      |
+| `npm run preview`      | Sirve la compilación en local                    |
+| `npm run format`       | Formatea con Prettier                            |
+| `npm run format:check` | Comprueba el formato                             |
+| `npm run lint`         | ESLint (TypeScript, Astro, accesibilidad, hooks) |
+| `npm run check`        | Comprobación de tipos con `astro check`          |
+
+## Estructura
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/   Secciones de la web (.astro y .jsx/.tsx) e iconos de marca
+├── layouts/      Layout base (head, fondo, navegación móvil)
+├── pages/        Rutas: / y /personal
+├── styles/       global.css con los tokens de Tailwind
+└── utils/        Cliente de la API de Strava
+public/           Archivos servidos tal cual (CV en PDF, imágenes, favicon)
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Cómo se trabaja
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Todo cambio entra en `main` mediante **PR** con el CI en verde (`format:check`, `lint`, `check`, `build`).
+- Normas completas: [AGENTS.md](AGENTS.md).
+- Plan de mejora y estado actual: [ROADMAP.md](ROADMAP.md).

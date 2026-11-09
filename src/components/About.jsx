@@ -65,10 +65,8 @@ export default function About() {
               <p>
                 Antes de la carrera completé un ciclo superior en{" "}
                 <strong className="text-white">DAM</strong> y{" "}
-                <strong className="text-white">
-                  trabajé 1 año y 1 mes en <strong>Indra</strong>
-                </strong>{" "}
-                , lo que me dio experiencia en proyectos reales. Actualmente me especializo en{" "}
+                <strong className="text-white">trabajé 1 año y 1 mes en Indra</strong> , lo que me
+                dio experiencia en proyectos reales. Actualmente me especializo en{" "}
                 <strong className="text-primary">Ingeniería del Software</strong> pues me gusta la
                 programación full stack y el trabajo en equipo mediante diferentes metodologías.
               </p>
