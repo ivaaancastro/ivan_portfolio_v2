@@ -1,0 +1,27 @@
+---
+title: Nexus Commerce Core
+shortDesc: High-performance transactional backend for global retail, with an editorial storefront in Next.js.
+tags: [Java, Spring Boot, Next.js, PostgreSQL, pgvector, Spring AI]
+cover: ../../../assets/img/nexus-catalog.png
+link: https://github.com/ivaaancastro/nexus-commerce-core
+icon: store
+featured: true
+order: 1
+---
+
+A personal full-stack project built to production engineering standards: a transactional backend for multi-market retail with Spring Boot and an editorial storefront in Next.js. All development follows Spec-Driven Development, with versioned specs, ADRs and changelog.
+
+#### Business engines:
+
+- **Catalog:** products with physical variants (SKUs) grouped by family, with optimized queries and no N+1.
+- **Multi-market pricing:** multi-currency pricing (ES/US/UK/CH) with tax breakdown, with all financial arithmetic in BigDecimal.
+- **Omnichannel inventory:** ATS calculation and pessimistic locking (`SELECT ... FOR UPDATE`) to prevent overselling.
+- **Transactional checkout:** header-based idempotency, an immutable financial snapshot and returns within a 30-day window.
+- **AI hybrid search:** pgvector (HNSW) embeddings via Spring AI, falling back to text search when there is no API key.
+- **Admin panel:** ADMIN/USER roles with JWT and management of catalog, stock and prices.
+
+#### Quality and process:
+
+- **608 tests** (249 backend with >90% coverage, 359 frontend) and E2E tests with Playwright on 3 browsers.
+- **CI audits:** accessibility with axe on 14 routes and Core Web Vitals with Lighthouse, both green.
+- Layered architecture with immutable DTOs, RFC 7807 semantic errors and OpenAPI/Swagger documentation.

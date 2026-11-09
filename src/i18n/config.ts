@@ -17,11 +17,10 @@ export const switchLabels: Record<Lang, string> = {
 export const ogLocales: Record<Lang, string> = { es: "es_ES", en: "en_US" };
 
 /**
- * Languages ready to be shown to visitors and search engines.
- * English is left out until its translation is reviewed by Iván (F2.5b): until then /en pages
- * are built but marked noindex, left out of the sitemap and hreflang, and the selector is hidden.
+ * Languages shown to visitors and search engines. A language left out of this list is still
+ * built, but its pages are noindex, out of the sitemap and hreflang, and not in the selector.
  */
-export const publishedLangs: readonly Lang[] = ["es"];
+export const publishedLangs: readonly Lang[] = ["es", "en"];
 
 export function isPublished(lang: Lang): boolean {
   return publishedLangs.includes(lang);

@@ -4,8 +4,8 @@ import { z } from "astro/zod";
 import { iconNames } from "./utils/icons";
 
 /**
- * Text in both site languages. `en` stays optional until the English
- * translation lands (F2.5b); until then the Spanish text is used as fallback.
+ * Text in both site languages. `en` is optional so a new entry can be added before its
+ * translation; until then the Spanish text is used as fallback.
  */
 const localized = z.object({ es: z.string(), en: z.string().optional() });
 
