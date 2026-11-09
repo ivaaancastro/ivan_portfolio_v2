@@ -1,8 +1,9 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-
-export type Lang = "es" | "en";
+import { defaultLang, type Lang } from "../i18n/config";
 
 /** Text of a localized field, falling back to Spanish while a translation is missing. */
+export type { Lang };
+
 export function localize(value: { es: string; en?: string }, lang: Lang): string {
   return (lang === "en" && value.en) || value.es;
 }
@@ -10,10 +11,18 @@ export function localize(value: { es: string; en?: string }, lang: Lang): string
 const byOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
   a.data.order - b.data.order;
 
-/** Projects of one language (entries live in src/content/projects/<lang>/), sorted by `order`. */
+/**
+ * Projects of one language (entries live in src/content/projects/<lang>/), sorted by `order`.
+ * A project without a translation falls back to its Spanish entry.
+ */
 export async function getProjects(lang: Lang): Promise<CollectionEntry<"projects">[]> {
-  const entries = await getCollection("projects", ({ id }) => id.startsWith(`${lang}/`));
-  return entries.sort(byOrder);
+  const all = await getCollection("projects");
+  const ofLang = (l: Lang) => all.filter(({ id }) => id.startsWith(`${l}/`));
+  const translated = new Map(ofLang(lang).map((entry) => [projectSlug(entry), entry]));
+  const projects = ofLang(defaultLang).map(
+    (fallback) => translated.get(projectSlug(fallback)) ?? fallback,
+  );
+  return projects.sort(byOrder);
 }
 
 /** Slug of a project entry without the language folder ("es/ficfit" → "ficfit"). */

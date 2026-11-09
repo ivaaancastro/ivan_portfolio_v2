@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import { isPublished, langFromPath } from "./src/i18n/config.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,7 +17,22 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [react(), sitemap(), mdx()],
+  // Spanish at the root, English under /en (see src/i18n/).
+  i18n: {
+    locales: ["es", "en"],
+    defaultLocale: "es",
+    routing: { prefixDefaultLocale: false },
+  },
+
+  integrations: [
+    react(),
+    sitemap({
+      // Languages that are not published yet (English until F2.5b) stay out of the sitemap.
+      filter: (page) => isPublished(langFromPath(new URL(page).pathname)),
+      i18n: { defaultLocale: "es", locales: { es: "es-ES", en: "en-US" } },
+    }),
+    mdx(),
+  ],
 
   // Self-hosted Inter (downloaded from Fontsource at build time, served from our domain).
   fonts: [

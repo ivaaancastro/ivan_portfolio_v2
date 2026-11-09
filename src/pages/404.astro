@@ -3,9 +3,38 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ArrowLeft, Heart } from "lucide-react";
+import type { Lang } from "../i18n/config";
+import { pathFor, useTranslations } from "../i18n/utils";
+
+/*
+ * A static host serves this single 404.html for every unknown URL, so the page carries
+ * both languages: Spanish by default, English when the missing URL is under /en
+ * (switched by the inline script below; without JS it stays in Spanish).
+ */
+const langs: Lang[] = ["es", "en"];
+const texts = langs.map((lang) => {
+  const t = useTranslations(lang);
+  return {
+    lang,
+    title: t("notFound.title"),
+    metaTitle: t("notFound.metaTitle"),
+    text: t("notFound.text"),
+    home: t("notFound.home"),
+    lifestyle: t("notFound.lifestyle"),
+  };
+});
+const en = texts[1];
+const es = useTranslations("es");
 ---
 
-<Layout title="Página no encontrada | Iván Castro" description="Esta página no existe." noindex>
+<Layout title={es("notFound.metaTitle")} description={es("notFound.metaDescription")} noindex>
+  <script is:inline define:vars={{ enTitle: en.metaTitle }}>
+    if (/^\/en(\/|$)/.test(location.pathname)) {
+      document.documentElement.lang = "en";
+      document.title = enTitle;
+    }
+  </script>
+
   <Navbar />
 
   <main class="flex min-h-[80vh] items-center justify-center px-6 pt-32 pb-28">
@@ -13,29 +42,40 @@ import { ArrowLeft, Heart } from "lucide-react";
       <div class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]"></div>
 
       <p class="mb-4 font-mono text-7xl font-bold text-white/10 select-none md:text-9xl">404</p>
-      <h1 class="mb-4 text-3xl font-bold text-white md:text-5xl">
-        Página no encontrada<span class="text-primary">.</span>
-      </h1>
-      <p class="mx-auto mb-10 max-w-md text-lg text-muted">
-        La página que buscas no existe o se ha movido.
-      </p>
 
-      <div class="flex flex-wrap justify-center gap-4">
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-black transition-colors duration-300 hover:bg-primary"
-        >
-          <ArrowLeft size={18} aria-hidden="true" /> Volver al inicio
-        </a>
-        <a
-          href="/personal"
-          class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 font-medium text-white transition-colors duration-300 hover:bg-white/10"
-        >
-          <Heart size={18} aria-hidden="true" /> Ver Lifestyle
-        </a>
-      </div>
+      {texts.map((item) => (
+        <div data-lang={item.lang}>
+          <h1 class="mb-4 text-3xl font-bold text-white md:text-5xl">
+            {item.title}
+            <span class="text-primary">.</span>
+          </h1>
+          <p class="mx-auto mb-10 max-w-md text-lg text-muted">{item.text}</p>
+
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href={pathFor(item.lang)}
+              class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-black transition-colors duration-300 hover:bg-primary"
+            >
+              <ArrowLeft size={18} aria-hidden="true" /> {item.home}
+            </a>
+            <a
+              href={pathFor(item.lang, "personal")}
+              class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 font-medium text-white transition-colors duration-300 hover:bg-white/10"
+            >
+              <Heart size={18} aria-hidden="true" /> {item.lifestyle}
+            </a>
+          </div>
+        </div>
+      ))}
     </section>
   </main>
 
   <Footer />
 </Layout>
+
+<style is:global>
+  html:not([lang="en"]) [data-lang="en"],
+  html[lang="en"] [data-lang="es"] {
+    display: none;
+  }
+</style>

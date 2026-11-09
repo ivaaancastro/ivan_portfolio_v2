@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.5
+**Próxima tarea:** F2.5b
 
 ---
 
@@ -97,13 +97,15 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas — [#27](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/27):
   - `projects`: una carpeta por idioma (`es/`, `en/`), en MDX, porque el cuerpo será el caso de estudio.
   - `experience` y `stack`: datos con campos `es` y `en`.
-- [ ] **F2.5** i18n ES/EN (D1)
+- [x] **F2.5** i18n ES/EN (D1) — [#28](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/28)
   - Routing i18n de Astro: español sin prefijo (`/`, `/personal`) e inglés en `/en/…`.
   - Diccionario de textos de interfaz (`src/i18n/`).
-  - Selector de idioma en Navbar y BottomNav.
+  - Selector de idioma en la cabecera (visible también en móvil; no se añade a la BottomNav para no apretar sus 5 iconos).
   - `hreflang` alternos, `og:locale` por idioma y sitemap con alternates.
   - Página 404 en los dos idiomas.
 - [ ] **F2.5b** Traducción al inglés de todos los textos. **Borrador de Claude y revisión obligatoria de Iván**, porque son textos personales (biografía, experiencia, Lifestyle).
+  - Falta: textos `en` en `src/i18n/ui.ts`, campos `en` de `experience.json`/`stack.json` y `src/content/projects/en/*.mdx`.
+  - Al terminar, añadir `"en"` a `publishedLangs` (`src/i18n/config.ts`): activa el selector, `hreflang`, sitemap e indexación de `/en`.
 - [ ] **F2.3** Páginas de caso de estudio (D2): `/proyectos/[slug]` y `/en/projects/[slug]`.
   - Contexto, problema, solución, decisiones técnicas, stack, capturas y enlaces (repo / demo).
   - La tarjeta enlaza a la página. La modal se mantiene como vista rápida o desaparece, según se decida en F3.
@@ -184,3 +186,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.1 · Componentes React migrados a TypeScript · [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
 - 2026-11-09 · F2.4 · Secciones a `.astro`, animaciones CSS y `<dialog>` nativo; JS de ~129 KB a ~0,6 KB · [#26](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/26)
 - 2026-11-09 · F2.2 · Proyectos (MDX por idioma), experiencia y stack en Content Collections; texto renderizado idéntico · [#27](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/27)
+- 2026-11-09 · F2.5 · Routing ES/EN, diccionario, selector, hreflang, sitemap y 404 bilingüe; inglés sin publicar hasta F2.5b · [#28](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/28)

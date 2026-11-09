@@ -5,10 +5,14 @@ import { X, Activity, Star } from "lucide-react";
 import { Github } from "./icons/brand";
 import { icons } from "../utils/icons";
 import { getProjects, projectSlug } from "../utils/content";
+import { getLang, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 // Content lives in src/content/projects/es/*.mdx (the MDX body is the dialog text).
 const projects = await Promise.all(
-  (await getProjects("es")).map(async (entry) => ({
+  (await getProjects(lang)).map(async (entry) => ({
     ...entry.data,
     id: projectSlug(entry),
     Icon: icons[entry.data.icon],
@@ -27,11 +31,9 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
     <!-- Encabezado de Sección -->
     <div data-reveal class="mb-16">
       <h2 class="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-        <Activity className="text-primary" aria-hidden="true" /> Proyectos Destacados
+        <Activity className="text-primary" aria-hidden="true" /> {t("projects.title")}
       </h2>
-      <p class="max-w-2xl text-lg text-muted">
-        Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.
-      </p>
+      <p class="max-w-2xl text-lg text-muted">{t("projects.intro")}</p>
     </div>
 
     <!-- Grid de Tarjetas -->
@@ -66,7 +68,8 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
 
               {project.featured && (
                 <div class="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
-                  <Star size={12} className="fill-current" aria-hidden="true" /> Destacado
+                  <Star size={12} className="fill-current" aria-hidden="true" />{" "}
+                  {t("projects.featured")}
                 </div>
               )}
             </div>
@@ -119,7 +122,7 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
           <button
             type="submit"
             autofocus
-            aria-label="Cerrar"
+            aria-label={t("projects.close")}
             class="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
           >
             <X size={20} aria-hidden="true" />
@@ -148,7 +151,8 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
               </h3>
               {project.featured && (
                 <span class="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
-                  <Star size={12} className="fill-current" aria-hidden="true" /> Destacado
+                  <Star size={12} className="fill-current" aria-hidden="true" />{" "}
+                  {t("projects.featured")}
                 </span>
               )}
             </div>
@@ -176,7 +180,7 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
             rel="noopener noreferrer"
             class="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
           >
-            <Github size={20} aria-hidden="true" /> Ver Código en GitHub
+            <Github size={20} aria-hidden="true" /> {t("projects.viewCode")}
           </a>
         </div>
       </dialog>

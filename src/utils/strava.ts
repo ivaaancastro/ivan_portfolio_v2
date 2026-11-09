@@ -86,7 +86,7 @@ function isActivityTotal(value: unknown): value is StravaActivityTotal {
   );
 }
 
-export async function getStravaStats(): Promise<StravaStats | null> {
+async function loadStravaStats(): Promise<StravaStats | null> {
   const clientId = import.meta.env.STRAVA_CLIENT_ID;
   const clientSecret = import.meta.env.STRAVA_CLIENT_SECRET;
   const refreshToken = import.meta.env.STRAVA_REFRESH_TOKEN;
@@ -115,4 +115,15 @@ export async function getStravaStats(): Promise<StravaStats | null> {
     console.error(`${LOG_PREFIX} could not load stats, showing a placeholder. ${message}`);
     return null;
   }
+}
+
+let cached: Promise<StravaStats | null> | undefined;
+
+/**
+ * Year-to-date Strava stats, or null if they cannot be loaded. Never throws.
+ * Memoised so every page and language in a build shares a single API round-trip.
+ */
+export function getStravaStats(): Promise<StravaStats | null> {
+  cached ??= loadStravaStats();
+  return cached;
 }
