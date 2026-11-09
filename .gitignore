@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # local agent tooling
 .claude/launch.json
+
+# iCloud Drive conflict copies (e.g. "file 2.js")
+* 2
+* 2.*
