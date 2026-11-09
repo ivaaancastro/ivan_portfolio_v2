@@ -21,7 +21,10 @@ const otherLangs = (Object.keys(languages) as Lang[]).filter(
 const pathname = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 z-50 w-full border-b border-white/10 bg-bg/50 backdrop-blur-md transition-all duration-300">
+<header
+  style="view-transition-name: site-header"
+  class="fixed top-0 z-50 w-full border-b border-white/10 bg-bg/50 backdrop-blur-md transition-all duration-300"
+>
   <div class="mx-auto flex h-20 max-w-[1100px] items-center justify-between px-6">
     <a
       href={pathFor(lang)}

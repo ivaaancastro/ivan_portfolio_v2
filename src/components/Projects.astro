@@ -11,6 +11,7 @@ const t = useTranslations(lang);
 // Content lives in src/content/projects/<lang>/*.mdx; the MDX body is the case study page.
 const projects = (await getProjects(lang)).map((entry) => ({
   ...entry.data,
+  slug: projectSlug(entry),
   href: projectPath(lang, projectSlug(entry)),
   Icon: icons[entry.data.icon],
 }));
@@ -54,6 +55,7 @@ const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
                 sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
                 format="webp"
                 alt={project.title}
+                style={`view-transition-name: project-${project.slug}; view-transition-class: project-cover`}
                 class="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div class="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
