@@ -7,8 +7,8 @@ import StravaStats from "../components/StravaStats";
 import { getStravaStats } from "../utils/strava";
 
 const stats = await getStravaStats();
-const runDistance = stats?.ytd_run_totals?.distance || 0;
-const rideDistance = stats?.ytd_ride_totals?.distance || 0;
+const runDistance = stats?.ytd_run_totals.distance ?? 0;
+const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
 ---
 
 <Layout title="Iván Castro | Lifestyle">

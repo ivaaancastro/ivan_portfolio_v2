@@ -1,60 +1,118 @@
-const STRAVA_CLIENT_ID = import.meta.env.STRAVA_CLIENT_ID;
-const STRAVA_CLIENT_SECRET = import.meta.env.STRAVA_CLIENT_SECRET;
-const STRAVA_REFRESH_TOKEN = import.meta.env.STRAVA_REFRESH_TOKEN;
-const STRAVA_ATHLETE_ID = import.meta.env.STRAVA_ATHLETE_ID || "102757003";
+/**
+ * Strava API client used at build time (the site is static).
+ *
+ * The stats are fetched once per build, so the numbers refresh whenever the site is
+ * rebuilt (see the daily rebuild workflow in .github/workflows/strava-refresh.yml).
+ *
+ * It never throws: if credentials are missing or Strava fails, it logs why and
+ * returns null so the build still succeeds and the page shows a placeholder.
+ */
 
 const TOKEN_ENDPOINT = "https://www.strava.com/api/v3/oauth/token";
-const STATS_ENDPOINT = `https://www.strava.com/api/v3/athletes/${STRAVA_ATHLETE_ID}/stats`;
+const API_BASE = "https://www.strava.com/api/v3";
+const DEFAULT_ATHLETE_ID = "102757003";
+const REQUEST_TIMEOUT_MS = 10_000;
 
-async function getAccessToken() {
-  const params = new URLSearchParams({
-    client_id: STRAVA_CLIENT_ID,
-    client_secret: STRAVA_CLIENT_SECRET,
-    refresh_token: STRAVA_REFRESH_TOKEN,
-    grant_type: "refresh_token",
-  });
+/** Subset of Strava's ActivityTotal we use. Distances are in metres. */
+export interface StravaActivityTotal {
+  count: number;
+  distance: number;
+  moving_time: number;
+  elapsed_time: number;
+  elevation_gain: number;
+}
 
-  const response = await fetch(TOKEN_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+/** Subset of Strava's ActivityStats response. */
+export interface StravaStats {
+  ytd_run_totals: StravaActivityTotal;
+  ytd_ride_totals: StravaActivityTotal;
+  ytd_swim_totals: StravaActivityTotal;
+  all_run_totals: StravaActivityTotal;
+  all_ride_totals: StravaActivityTotal;
+}
+
+interface TokenResponse {
+  access_token: string;
+}
+
+const LOG_PREFIX = "[strava]";
+
+class StravaError extends Error {}
+
+async function fetchJson<T>(url: string, init: RequestInit, step: string): Promise<T> {
+  let response: Response;
+  try {
+    response = await fetch(url, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+  } catch (error) {
+    throw new StravaError(`${step}: network error (${(error as Error).message})`);
+  }
+
+  if (!response.ok) {
+    // Strava error bodies contain no secrets; include a short excerpt to ease debugging.
+    const body = (await response.text().catch(() => "")).slice(0, 200);
+    throw new StravaError(`${step}: HTTP ${response.status} ${response.statusText} ${body}`.trim());
+  }
+
+  return (await response.json()) as T;
+}
+
+async function getAccessToken(clientId: string, clientSecret: string, refreshToken: string) {
+  const data = await fetchJson<TokenResponse>(
+    TOKEN_ENDPOINT,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        refresh_token: refreshToken,
+        grant_type: "refresh_token",
+      }).toString(),
     },
-    body: params.toString(),
-  });
+    "token refresh",
+  );
 
-  const data = await response.json();
+  if (!data.access_token) {
+    throw new StravaError("token refresh: response has no access_token");
+  }
   return data.access_token;
 }
 
-export async function getStravaStats() {
-  if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET || !STRAVA_REFRESH_TOKEN) {
-    console.warn("Strava credentials are not fully set in .env. Returning dummy data.");
-    return {
-      ytd_run_totals: { distance: 0 },
-      ytd_ride_totals: { distance: 0 },
-      ytd_swim_totals: { distance: 0 },
-      all_run_totals: { distance: 0 },
-      all_ride_totals: { distance: 0 },
-    };
+function isActivityTotal(value: unknown): value is StravaActivityTotal {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof (value as StravaActivityTotal).distance === "number"
+  );
+}
+
+export async function getStravaStats(): Promise<StravaStats | null> {
+  const clientId = import.meta.env.STRAVA_CLIENT_ID;
+  const clientSecret = import.meta.env.STRAVA_CLIENT_SECRET;
+  const refreshToken = import.meta.env.STRAVA_REFRESH_TOKEN;
+  const athleteId = import.meta.env.STRAVA_ATHLETE_ID || DEFAULT_ATHLETE_ID;
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    console.warn(`${LOG_PREFIX} credentials not set; stats will show a placeholder.`);
+    return null;
   }
 
   try {
-    const accessToken = await getAccessToken();
+    const accessToken = await getAccessToken(clientId, clientSecret, refreshToken);
+    const stats = await fetchJson<StravaStats>(
+      `${API_BASE}/athletes/${athleteId}/stats`,
+      { headers: { Authorization: `Bearer ${accessToken}` } },
+      "athlete stats",
+    );
 
-    const response = await fetch(STATS_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error fetching Strava stats: ${response.statusText}`);
+    if (!isActivityTotal(stats.ytd_run_totals) || !isActivityTotal(stats.ytd_ride_totals)) {
+      throw new StravaError("athlete stats: unexpected response shape");
     }
 
-    const data = await response.json();
-    return data;
+    return stats;
   } catch (error) {
-    console.error("Failed to fetch Strava stats:", error);
+    const message = error instanceof StravaError ? error.message : String(error);
+    console.error(`${LOG_PREFIX} could not load stats, showing a placeholder. ${message}`);
     return null;
   }
 }
