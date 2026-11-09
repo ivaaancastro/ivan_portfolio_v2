@@ -1,7 +1,11 @@
 import { motion, MotionConfig } from "motion/react";
+import type { ResponsiveImage } from "../utils/images";
 
-/** @param {{ photo: import("../utils/images").ResponsiveImage }} props */
-export default function Hero({ photo }) {
+interface Props {
+  photo: ResponsiveImage;
+}
+
+export default function Hero({ photo }: Props) {
   return (
     <MotionConfig reducedMotion="user">
       <section

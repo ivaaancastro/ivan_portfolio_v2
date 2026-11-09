@@ -1,9 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
 import { Github } from "./icons/brand";
+import type { ResponsiveImage } from "../utils/images";
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  featured?: boolean;
+  shortDesc: string;
+  fullDesc: ReactNode;
+  tags: string[];
+  /** File name (without extension) of the image in src/assets/img. */
+  image: string;
+  link: string;
+  icon: ReactNode;
+}
+
+const projects: Project[] = [
   {
     id: 0,
     title: "Nexus Commerce Core",
@@ -192,14 +206,17 @@ const CARD_SIZES = "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw";
 const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
 const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
 
-/** @param {{ images: Record<string, import("../utils/images").ResponsiveImage> }} props */
-export default function Projects({ images }) {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const dialogRef = useRef(null);
-  const closeButtonRef = useRef(null);
-  const triggerRef = useRef(null);
+interface Props {
+  images: Record<string, ResponsiveImage>;
+}
 
-  const openProject = (project, trigger) => {
+export default function Projects({ images }: Props) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  const openProject = (project: Project, trigger: HTMLElement) => {
     triggerRef.current = trigger;
     setSelectedProject(project);
   };
@@ -213,7 +230,7 @@ export default function Projects({ images }) {
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
-    const onKeyDown = (event) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
         closeProject();
@@ -221,7 +238,7 @@ export default function Projects({ images }) {
       }
       if (event.key !== "Tab" || !dialogRef.current) return;
 
-      const focusable = dialogRef.current.querySelectorAll(
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       );
       if (focusable.length === 0) return;
