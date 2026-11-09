@@ -13,14 +13,14 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 | :--- | :-------------------------------------------------------------------- | :----------- |
 | F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho     |
 | F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho     |
-| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ⏳ Pendiente |
+| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | 🚧 En curso  |
 | F3   | Rediseño visual                                                       | ⏳ Pendiente |
 | F4   | Pulido y medición                                                     | ⏳ Pendiente |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.1
+**Próxima tarea:** F2.4
 
 ---
 
@@ -92,7 +92,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Orden de trabajo:** F2.1 → F2.4 → F2.2 → F2.5 → F2.3 → F2.6. La web ya será bilingüe antes de crear las páginas de proyecto, así que esas páginas nacen en los dos idiomas.
 
-- [ ] **F2.1** Todo a TypeScript (`.jsx` → `.tsx` / `.astro`)
+- [x] **F2.1** Componentes React a TypeScript (`.jsx` → `.tsx`), con props, estado y refs tipados — [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
 - [ ] **F2.4** Componentes `.astro` por defecto; React solo en islas interactivas (modal de proyectos, stats de Strava, animaciones imprescindibles). Objetivo: bajar de ~120 KB de JS gzip por página
 - [ ] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas:
   - `projects`: una carpeta por idioma (`es/`, `en/`), en MDX, porque el cuerpo será el caso de estudio.
@@ -180,3 +180,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.14–F1.17 · Accesibilidad: diálogo, tarjetas con teclado, reducir movimiento, `noopener` · [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
 - 2026-11-09 · F1.18–F1.22 · SEO (sitemap, canonical, OG), 404, safe-area. **Fase 1 completada** · [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
 - 2026-11-09 · D1, D2, D9 · Decisiones tomadas: web bilingüe, casos de estudio y textos de SEO aprobados; tareas de F2 detalladas
+- 2026-11-09 · F2.1 · Componentes React migrados a TypeScript · [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
