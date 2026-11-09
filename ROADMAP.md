@@ -29,12 +29,12 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F0.1** Añadir `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` al repo
 - [x] **F0.2** Retirar la rama `master` (sin commits que no estuvieran en `main`; borrada en local y remoto)
 - [x] **F0.9** Protección de rama en `main`: PR obligatorio (0 aprobaciones), también para admins, sin force push ni borrado, conversaciones resueltas
-- [x] **F0.3** Prettier (+ `prettier-plugin-astro`, `prettier-plugin-tailwindcss`), scripts `format` y `format:check`; código formateado (HTML compilado equivalente) — PR_REF
-- [x] **F0.4** ESLint 9 (`typescript-eslint`, `eslint-plugin-astro`, `jsx-a11y`, `react-hooks` v5) y script `lint` — PR_REF
-- [x] **F0.5** `@astrojs/check` + TypeScript 6 y script `check`; corregidos 4 iconos lucide en `.astro` que recibían `class` en vez de `className` (sus clases se perdían) — PR_REF
-- [x] **F0.6** GitHub Actions (`ci`): `format:check` + `lint` + `check` + `build` en cada PR y en `main`; check `ci` obligatorio en la protección de `main` — PR_REF
-- [x] **F0.7** Dependabot (npm + GitHub Actions, semanal, agrupado) — PR_REF
-- [x] **F0.8** Node 24 (`.nvmrc` + `engines: 24.x`), igual que Vercel — PR_REF
+- [x] **F0.3** Prettier (+ `prettier-plugin-astro`, `prettier-plugin-tailwindcss`), scripts `format` y `format:check`; código formateado (HTML compilado equivalente) — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- [x] **F0.4** ESLint 9 (`typescript-eslint`, `eslint-plugin-astro`, `jsx-a11y`, `react-hooks` v5) y script `lint` — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- [x] **F0.5** `@astrojs/check` + TypeScript 6 y script `check`; corregidos 4 iconos lucide en `.astro` que recibían `class` en vez de `className` (sus clases se perdían) — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- [x] **F0.6** GitHub Actions (`ci`): `format:check` + `lint` + `check` + `build` en cada PR y en `main`; check `ci` obligatorio en la protección de `main` — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- [x] **F0.7** Dependabot (npm + GitHub Actions, semanal, agrupado) — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- [x] **F0.8** Node 24 (`.nvmrc` + `engines: 24.x`), igual que Vercel — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
 
 > **Acción local para Iván:** instalar Node 24 (ahora hay 22.20). Con Node 22 todo funciona, pero `npm install` avisará por `engines`.
 >
@@ -150,4 +150,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F0.2 · Rama `master` eliminada (local y remoto)
 - 2026-11-09 · F0.9 · Protección de rama activada en `main`
 - 2026-11-09 · F0.1 · `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` añadidos
-- 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · PR_REF
+- 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
