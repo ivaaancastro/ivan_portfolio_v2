@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.10
+**Próxima tarea:** F1.14
 
 ---
 
@@ -68,10 +68,10 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Rendimiento**
 
-- [ ] **F1.10** Mover imágenes a `src/assets` y servirlas con `<Image>/<Picture>` (AVIF/WebP, `srcset`)
-- [ ] **F1.11** Imagen LCP del Hero con `loading="eager"` + `fetchpriority="high"`
-- [ ] **F1.12** Fuente Inter autoalojada (Astro Fonts / Fontsource) en vez de Google Fonts
-- [ ] **F1.13** Medir JS cliente por página (línea base antes de F3)
+- [x] **F1.10** Imágenes en `src/assets/img`, WebP responsive con `astro:assets` (`<Image>` en `.astro`, `src/utils/images.ts` para islas React). Home: 7,6 MB → 0,38 MB — [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
+- [x] **F1.11** Foto del Hero recortada en cuadrado al compilar y con `fetchpriority="high"` — [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
+- [x] **F1.12** Inter autoalojada con la API de fuentes de Astro (Fontsource, 400–700, fallbacks ajustados, preload 400/700) — [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
+- [x] **F1.13** Línea base de JS: ~129 KB gzip en home y ~116 KB en /personal (React + Motion). Objetivo: reducir en F2.4/F3 — [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
 
 **Accesibilidad**
 
@@ -159,3 +159,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.4–F1.7 · Limpieza de plantilla y archivos sin uso, README y `.env.example` · [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
 - 2026-11-09 · F1.8, F1.9 · Cliente de Strava robusto y workflow de refresco diario · [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
 - 2026-11-09 · F1.9 · Deploy Hook y secreto configurados; ejecución manual del workflow verificada en producción
+- 2026-11-09 · F1.10–F1.13 · Imágenes optimizadas (home 7,6 MB → 0,38 MB), Inter autoalojada, línea base de JS · [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)

@@ -5,6 +5,15 @@ import Footer from "../components/Footer.astro";
 import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from "lucide-react";
 import StravaStats from "../components/StravaStats";
 import { getStravaStats } from "../utils/strava";
+import { Image } from "astro:assets";
+import runningImg from "../assets/img/ivan-running.jpeg";
+import bikeImg from "../assets/img/ivan-bike.jpeg";
+import familyImg from "../assets/img/ivan-family.jpg";
+import friendsImg from "../assets/img/ivan-running-friends.jpeg";
+
+// Sport photos fill half of a 1100px row; social photos a third.
+const halfSizes = "(min-width: 768px) 530px, 100vw";
+const thirdSizes = "(min-width: 768px) 350px, 100vw";
 
 const stats = await getStravaStats();
 const runDistance = stats?.ytd_run_totals.distance ?? 0;
@@ -77,11 +86,13 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
         <div class="grid md:grid-cols-2 gap-6 md:gap-8">
           {/* Running */}
           <div class="relative group rounded-3xl overflow-hidden h-[300px] md:h-[400px] border border-white/10 shadow-xl bg-card">
-            <img
-              src="/img/ivan-running.jpeg"
+            <Image
+              src={runningImg}
+              widths={[530, 800, 1060]}
+              sizes={halfSizes}
+              format="webp"
               alt="Corriendo"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-60"
-              onerror="this.style.display='none'"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 
@@ -96,12 +107,14 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
 
           {/* Ciclismo */}
           <div class="relative group rounded-3xl overflow-hidden h-[300px] md:h-[400px] border border-white/10 shadow-xl bg-card">
-            <img
-              src="/img/ivan-bike.jpeg"
+            <Image
+              src={bikeImg}
+              widths={[530, 800, 1024]}
+              sizes={halfSizes}
+              format="webp"
               alt="Ciclismo"
               style="object-position: center 60%;"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-60"
-              onerror="this.style.display='none'"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 
@@ -152,11 +165,13 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
 
           {/* Familia */}
           <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg h-[380px]">
-            <img
-              src="/img/ivan-family.jpg"
+            <Image
+              src={familyImg}
+              widths={[400, 700, 1000]}
+              sizes={thirdSizes}
+              format="webp"
               alt="Familia"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              onerror="this.style.display='none'"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
             <div class="absolute bottom-6 left-6 flex items-center gap-3">
@@ -169,12 +184,14 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
 
           {/* Amigos */}
           <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg h-[380px]">
-            <img
-              src="/img/ivan-running-friends.jpeg"
+            <Image
+              src={friendsImg}
+              widths={[400, 700, 1000]}
+              sizes={thirdSizes}
+              format="webp"
               alt="Amigos"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               style="object-position: center 30%;"
-              onerror="this.style.display='none'"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
             <div class="absolute bottom-6 left-6 flex items-center gap-3">

@@ -64,7 +64,7 @@ const projects = [
       </>
     ),
     tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "pgvector", "Spring AI"],
-    image: "/img/nexus-catalog.png",
+    image: "nexus-catalog",
     link: "https://github.com/ivaaancastro/nexus-commerce-core",
     icon: <Store className="h-6 w-6" />,
   },
@@ -101,7 +101,7 @@ const projects = [
       </>
     ),
     tags: ["React", "Vite", "Supabase", "OpenAI API", "Strava API", "Tailwind"],
-    image: "/img/dashboard-ai.png",
+    image: "dashboard-ai",
     link: "https://github.com/ivaaancastro/calculadora-ivan",
     icon: <Brain className="h-6 w-6" />,
   },
@@ -133,7 +133,7 @@ const projects = [
       </>
     ),
     tags: ["Java", "React", "Docker", "Kubernetes", "Maven"],
-    image: "/img/ficfit.png",
+    image: "ficfit",
     link: "https://github.com/ivaaancastro/ficfit",
     icon: <Layers className="h-6 w-6" />,
   },
@@ -159,7 +159,7 @@ const projects = [
       </>
     ),
     tags: ["Java", "Thrift", "Sistemas Distribuidos"],
-    image: "/img/gestor_cursos.png",
+    image: "gestor_cursos",
     link: "https://github.com/ivaaancastro/gestor_cursos",
     icon: <Code2 className="h-6 w-6" />,
   },
@@ -182,13 +182,18 @@ const projects = [
       </>
     ),
     tags: ["Elixir", "Git", "Terminal", "CLI"],
-    image: "/img/gestor_repositorios.png",
+    image: "gestor_repositorios",
     link: "https://github.com/ivaaancastro/gestor_repositorios",
     icon: <Terminal className="h-6 w-6" />,
   },
 ];
 
-export default function Projects() {
+const CARD_SIZES = "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw";
+const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
+const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
+
+/** @param {{ images: Record<string, import("../utils/images").ResponsiveImage> }} props */
+export default function Projects({ images }) {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
@@ -227,12 +232,15 @@ export default function Projects() {
                 <div className="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
                 <motion.img
                   layoutId={`img-${project.id}`}
-                  src={project.image}
+                  src={images[project.image].src}
+                  srcSet={images[project.image].srcSet}
+                  sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
+                  width={images[project.image].width}
+                  height={images[project.image].height}
+                  loading="lazy"
+                  decoding="async"
                   alt={project.title}
                   className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
                 />
                 <div className="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
                   {project.icon}
@@ -315,11 +323,13 @@ export default function Projects() {
                   <div className="relative h-56 shrink-0 md:h-80">
                     <motion.img
                       layoutId={`img-${selectedProject.id}`}
-                      src={selectedProject.image}
+                      src={images[selectedProject.image].src}
+                      srcSet={images[selectedProject.image].srcSet}
+                      sizes={MODAL_SIZES}
+                      width={images[selectedProject.image].width}
+                      height={images[selectedProject.image].height}
+                      alt={selectedProject.title}
                       className="h-full w-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
 
