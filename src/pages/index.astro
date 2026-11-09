@@ -1,45 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import Experience from "../components/Experience";
-import Projects from "../components/Projects";
-import Contact from "../components/Contact";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
-import { responsiveImage } from "../utils/images";
-
-const heroPhoto = await responsiveImage("ivan-foto", {
-  widths: [256, 320, 512, 640],
-  aspectRatio: 1,
-});
-
-const projectImageNames = [
-  "nexus-catalog",
-  "dashboard-ai",
-  "ficfit",
-  "gestor_cursos",
-  "gestor_repositorios",
-];
-const projectImages = Object.fromEntries(
-  await Promise.all(
-    projectImageNames.map(
-      async (name) =>
-        [name, await responsiveImage(name, { widths: [400, 700, 1000, 1400] })] as const,
-    ),
-  ),
-);
 ---
 
 <Layout title="Portfolio de Iván - Ingeniero de Software">
   <Navbar />
 
   <main>
-    <Hero client:load photo={heroPhoto} />
-    <About client:visible />
-    <Experience client:visible />
-    <Projects client:visible images={projectImages} />
-    <Contact client:visible />
+    <Hero />
+    <About />
+    <Experience />
+    <Projects />
+    <Contact />
   </main>
 
   <Footer />

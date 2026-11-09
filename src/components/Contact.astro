@@ -1,0 +1,79 @@
+---
+import { Mail, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin } from "./icons/brand";
+
+const cardClass =
+  "group flex flex-col items-center rounded-2xl border border-white/10 bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10";
+const iconClass =
+  "mb-4 rounded-full bg-white/5 p-4 text-primary transition-colors group-hover:bg-primary group-hover:text-black";
+---
+
+<section id="contact" class="relative overflow-hidden py-24">
+  <!-- Fondo decorativo sutil -->
+  <div class="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]"></div>
+
+  <div class="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
+    <!-- Encabezado -->
+    <div data-reveal class="mb-16">
+      <h2 class="mb-6 text-4xl font-bold text-white md:text-5xl">
+        Hablemos<span class="text-primary">.</span>
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">
+        Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para ser
+        parte de tus visiones.
+      </p>
+    </div>
+
+    <!-- Grid de Contacto (Tarjetas) -->
+    <div class="mb-16 grid gap-6 md:grid-cols-3">
+      <a
+        href="mailto:icastror02@gmail.com"
+        data-reveal
+        style="--reveal-delay: 100ms"
+        class={cardClass}
+      >
+        <div class={iconClass}>
+          <Mail size={32} aria-hidden="true" />
+        </div>
+        <h3 class="mb-2 text-xl font-bold text-white">Email</h3>
+        <p class="text-gray-400 transition-colors group-hover:text-primary">icastror02@gmail.com</p>
+      </a>
+
+      <a href="tel:+34684208768" data-reveal style="--reveal-delay: 200ms" class={cardClass}>
+        <div class={iconClass}>
+          <Phone size={32} aria-hidden="true" />
+        </div>
+        <h3 class="mb-2 text-xl font-bold text-white">Teléfono</h3>
+        <p class="text-gray-400 transition-colors group-hover:text-primary">+34 684 20 87 68</p>
+      </a>
+
+      <div data-reveal style="--reveal-delay: 300ms" class:list={[cardClass, "cursor-default"]}>
+        <div class={iconClass}>
+          <MapPin size={32} aria-hidden="true" />
+        </div>
+        <h3 class="mb-2 text-xl font-bold text-white">Ubicación</h3>
+        <p class="text-gray-400">Arteixo, A Coruña</p>
+      </div>
+    </div>
+
+    <!-- Botones Redes Sociales Grandes -->
+    <div data-reveal style="--reveal-delay: 400ms" class="flex justify-center gap-6">
+      <a
+        href="https://www.linkedin.com/in/ivancastroroel"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 rounded-full border border-linkedin/20 bg-linkedin/10 px-8 py-4 text-lg font-bold text-linkedin transition-all hover:scale-105 hover:bg-linkedin hover:text-white"
+      >
+        <Linkedin size={24} aria-hidden="true" /> LinkedIn
+      </a>
+      <a
+        href="https://github.com/ivaaancastro"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-lg font-bold text-white transition-all hover:scale-105 hover:bg-white hover:text-black"
+      >
+        <Github size={24} aria-hidden="true" /> GitHub
+      </a>
+    </div>
+  </div>
+</section>

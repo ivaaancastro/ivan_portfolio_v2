@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import photo from "../assets/img/ivan-foto.jpg";
+---
+
+<section
+  id="home"
+  class="relative flex min-h-screen items-center justify-center overflow-hidden pt-32 pb-20"
+>
+  <!-- Fondo con efecto de luz -->
+  <div class="pointer-events-none absolute top-0 left-1/2 h-full w-full max-w-4xl -translate-x-1/2 opacity-20">
+    <div class="absolute top-20 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/30 blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 grid w-full max-w-[1100px] items-center gap-12 px-6 md:grid-cols-[1.2fr_0.8fr]">
+    <!-- Columna de Texto -->
+    <div>
+      <div class="animate-fade-up">
+        <span class="mb-2 block text-sm font-bold tracking-wide text-primary uppercase">
+          Diseño · Desarrollo · Soporte
+        </span>
+        <h1 class="mb-6 text-5xl leading-tight font-bold text-white md:text-7xl">
+          Hola, soy <span class="inline-block text-primary">Iván</span>.
+          <br />
+          <span class="text-4xl text-gray-400 md:text-6xl">Ingeniero Informático</span>
+        </h1>
+        <p class="mb-8 max-w-lg text-lg leading-relaxed text-muted md:text-xl">
+          Especialista en Ingeniería del Software. Me apasiona crear productos útiles, accesibles y
+          rápidos.
+        </p>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex animate-fade-up flex-wrap gap-4 [animation-delay:0.2s]">
+        <a
+          href="/ivanCv.pdf"
+          download="Ivan_CV.pdf"
+          class="transform rounded-xl bg-white px-8 py-3.5 font-bold text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-[0_0_25px_rgba(108,240,194,0.4)]"
+        >
+          Descargar CV
+        </a>
+        <a
+          href="/#projects"
+          class="rounded-xl border border-white/20 px-8 py-3.5 font-medium text-white transition-all duration-300 hover:bg-white/10"
+        >
+          Ver proyectos
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna de Imagen -->
+    <div class="relative flex animate-pop-in justify-center md:justify-end">
+      <!-- Círculo decorativo detrás de la foto -->
+      <div class="absolute inset-0 scale-110 transform rounded-full bg-gradient-to-tr from-primary/20 to-transparent blur-3xl"></div>
+
+      <Image
+        src={photo}
+        widths={[256, 320, 512, 640]}
+        width={640}
+        height={640}
+        fit="cover"
+        sizes="(min-width: 768px) 320px, 256px"
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+        alt="Foto de Iván"
+        class="relative z-10 aspect-square w-64 rotate-3 rounded-3xl border-2 border-white/10 bg-bg-soft object-cover shadow-2xl transition-transform duration-500 hover:rotate-0 md:w-80"
+      />
+    </div>
+  </div>
+</section>
