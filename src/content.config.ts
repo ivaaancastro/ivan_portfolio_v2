@@ -11,7 +11,7 @@ const localized = z.object({ es: z.string(), en: z.string().optional() });
 
 /** One MDX file per project and language: src/content/projects/<lang>/<slug>.mdx */
 const projects = defineCollection({
-  loader: glob({ base: "./src/content/projects", pattern: "**/[^_]*.{md,mdx}" }),
+  loader: glob({ base: "./src/content/projects", pattern: ["**/[^_]*.{md,mdx}", "!**/* 2.*"] }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),

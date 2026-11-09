@@ -1,4 +1,4 @@
-import { defaultLang, languages, type Lang } from "./config";
+import { defaultLang, languages, routeSegments, type Lang } from "./config";
 import { ui, type UIKey } from "./ui";
 
 /** Language of the page being rendered, from Astro.currentLocale. */
@@ -22,8 +22,21 @@ export function pathFor(lang: Lang, path = ""): string {
   return `${base}/${path.replace(/^\/+/, "")}`;
 }
 
-/** The same page in another language ("/en/personal", "es" → "/personal"). */
+/** Case study page of a project: projectPath("en", "forma") → "/en/projects/forma". */
+export function projectPath(lang: Lang, slug: string): string {
+  return pathFor(lang, `${routeSegments.projects[lang]}/${slug}`);
+}
+
+/**
+ * The same page in another language ("/en/personal", "es" → "/personal").
+ * Translated segments are swapped too ("/proyectos/forma", "en" → "/en/projects/forma").
+ */
 export function switchLangPath(pathname: string, target: Lang): string {
   const route = pathname.replace(/^\/(es|en)(?=\/|$)/, "").replace(/^\/+|\/+$/g, "");
-  return pathFor(target, route);
+  const [first = "", ...rest] = route.split("/");
+  const segments = Object.values(routeSegments).find((bySegment) =>
+    (Object.values(bySegment) as string[]).includes(first),
+  );
+  const translated = segments ? [segments[target], ...rest].join("/") : route;
+  return pathFor(target, translated);
 }

@@ -61,8 +61,14 @@ const es = {
   "projects.intro":
     "Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.",
   "projects.featured": "Destacado",
-  "projects.close": "Cerrar",
   "projects.viewCode": "Ver Código en GitHub",
+  "projects.metaTitle": "{title} | Proyecto de Iván Castro",
+  "projects.back": "Volver a proyectos",
+  "projects.stack": "Stack",
+  "projects.links": "Enlaces",
+  "projects.more": "Más proyectos",
+  "projects.prev": "Anterior",
+  "projects.next": "Siguiente",
 
   // Contact
   "contact.title": "Hablemos",
@@ -178,8 +184,14 @@ const en: Record<UIKey, string> = {
   "projects.title": "Featured Projects",
   "projects.intro": "A selection of work where I apply architecture patterns and good practices.",
   "projects.featured": "Featured",
-  "projects.close": "Close",
   "projects.viewCode": "View code on GitHub",
+  "projects.metaTitle": "{title} | Project by Iván Castro",
+  "projects.back": "Back to projects",
+  "projects.stack": "Stack",
+  "projects.links": "Links",
+  "projects.more": "More projects",
+  "projects.prev": "Previous",
+  "projects.next": "Next",
 
   // Contact
   "contact.title": "Let's talk",
