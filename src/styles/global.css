@@ -69,6 +69,34 @@
   transform: none;
 }
 
+/*
+ * Page transitions: native cross-document View Transitions, CSS only (no client router).
+ * Browsers without support just navigate as usual. Off when the user prefers reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* Header and bottom bar stay in place instead of cross-fading with the page. */
+::view-transition-group(site-header),
+::view-transition-group(bottom-nav) {
+  animation: none;
+}
+
+/* Project cover morphs from the card to the case study page (names set inline per project). */
+::view-transition-group(.project-cover) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+::view-transition-old(.project-cover),
+::view-transition-new(.project-cover) {
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Respect the OS "reduce motion" setting: no movement, transitions and keyframes become instant. */
 @media (prefers-reduced-motion: reduce) {
   html {

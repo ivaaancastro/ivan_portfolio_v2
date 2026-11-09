@@ -83,6 +83,7 @@ const title = t("projects.metaTitle").replace("{title}", project.title);
         alt={project.title}
         loading="eager"
         fetchpriority="high"
+        style={`view-transition-name: project-${slug}; view-transition-class: project-cover`}
         class="mb-12 aspect-video w-full rounded-2xl border border-white/10 object-cover"
       />
 

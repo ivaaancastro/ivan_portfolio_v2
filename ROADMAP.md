@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.6 (y F2.3b cuando Iván tenga los textos)
+**Próxima tarea:** F3.1 (decisión D3, dirección visual). F2.3b queda abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -110,7 +110,10 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   - La tarjeta enlaza a la página. **Se elimina la modal**; si en F3 se quiere una vista rápida, se recupera del historial.
   - Segmentos de ruta traducidos (`routeSegments`): el selector de idioma, hreflang y sitemap enlazan `proyectos` ↔ `projects`.
 - [ ] **F2.3b** Ampliar los textos de cada caso de estudio: contexto, problema, solución, decisiones técnicas, capturas y demo si la hay. Contenido de partida: el texto actual y el README de cada repo. **Lo escribe o revisa Iván**, en los dos idiomas.
-- [ ] **F2.6** View Transitions entre páginas (respetando `prefers-reduced-motion`)
+- [x] **F2.6** View Transitions entre páginas (respetando `prefers-reduced-motion`) — [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
+  - View Transitions nativas entre documentos (`@view-transition`), solo CSS: 0 KB de JS. No se usa `<ClientRouter />` de Astro, porque añade JS y obliga a reejecutar los scripts en cada navegación.
+  - La portada del proyecto se transforma de la tarjeta a la página; la cabecera y la barra inferior quedan fijas.
+  - Desactivadas con «reducir movimiento». En navegadores sin soporte (Firefox, por ahora) se navega sin animación.
 
 ## F3 · Rediseño
 
@@ -189,3 +192,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.5 · Routing ES/EN, diccionario, selector, hreflang, sitemap y 404 bilingüe; inglés sin publicar hasta F2.5b · [#28](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/28)
 - 2026-11-09 · F2.5b · Traducción al inglés (borrador revisado por Iván) y publicación de `/en` · [#29](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/29)
 - 2026-11-09 · F2.3 · Páginas de caso de estudio en ES/EN; las tarjetas enlazan a ellas y se retira la modal · [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
+- 2026-11-09 · F2.6 · Transiciones entre páginas con View Transitions nativas (solo CSS). **F2 completada salvo F2.3b** (textos de Iván) · [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
