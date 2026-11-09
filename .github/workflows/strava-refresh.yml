@@ -1,0 +1,26 @@
+name: Strava refresh
+
+# The site is static and fetches Strava stats at build time.
+# This triggers a Vercel production rebuild once a day so the kilometres stay current.
+on:
+  schedule:
+    - cron: "0 5 * * *" # every day at 05:00 UTC
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    name: Trigger Vercel deploy hook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call deploy hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "::warning::VERCEL_DEPLOY_HOOK_URL secret is not set; skipping rebuild."
+            exit 0
+          fi
+          curl --fail --silent --show-error --max-time 30 -X POST "$DEPLOY_HOOK_URL" > /dev/null
+          echo "Rebuild triggered."

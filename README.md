@@ -39,6 +39,8 @@ Solo hacen falta para mostrar los kilómetros reales de Strava. Sin ellas la web
 
 En producción están configuradas en las variables de entorno del proyecto de Vercel. **Nunca se suben al repositorio.**
 
+Los kilómetros se consultan al compilar. Para que estén al día, el workflow [`strava-refresh.yml`](.github/workflows/strava-refresh.yml) relanza el despliegue de producción cada día a las 05:00 UTC mediante un _Deploy Hook_ de Vercel, guardado en el secreto `VERCEL_DEPLOY_HOOK_URL` de GitHub. También se puede lanzar a mano desde la pestaña _Actions_.
+
 ## Scripts
 
 | Comando                | Qué hace                                         |

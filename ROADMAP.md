@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.8
+**Próxima tarea:** F1.10
 
 ---
 
@@ -63,8 +63,8 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Strava**
 
-- [ ] **F1.8** `strava.ts`: comprobar `response.ok` en token, tipar respuesta, log claro si falla
-- [ ] **F1.9** Refresco automático de km: Deploy Hook de Vercel + cron diario (GitHub Action o Vercel Cron)
+- [x] **F1.8** `strava.ts`: tipos, `response.ok` en token y stats, timeouts, validación y logs `[strava]`; nunca rompe el build — [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
+- [ ] **F1.9** Refresco diario: workflow `strava-refresh.yml` (05:00 UTC) que llama al Deploy Hook de Vercel — [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19) · ⏸️ _pendiente de Iván: crear el Deploy Hook en Vercel y el secreto `VERCEL_DEPLOY_HOOK_URL` en GitHub_
 
 **Rendimiento**
 
@@ -157,3 +157,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.1, F1.3 · Astro 7.4, React 19.3, Tailwind 4.3; npm audit a 0 · [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
 - 2026-11-09 · F1.2 · `motion` 14, lucide 1.70 e iconos de marca propios · [#17](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/17)
 - 2026-11-09 · F1.4–F1.7 · Limpieza de plantilla y archivos sin uso, README y `.env.example` · [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
+- 2026-11-09 · F1.8, F1.9 · Cliente de Strava robusto y workflow de refresco diario · [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
