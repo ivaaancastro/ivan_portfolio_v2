@@ -1,22 +1,14 @@
 ---
-import {
-  Coffee,
-  Atom,
-  Bot,
-  Database,
-  Container,
-  MapPin,
-  GraduationCap,
-  Briefcase,
-} from "lucide-react";
+import { MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { icons } from "../utils/icons";
+import { getStack, localize } from "../utils/content";
 
-const coreStack = [
-  { name: "Java", desc: "Backend y APIs REST con Spring Boot", Icon: Coffee },
-  { name: "React", desc: "Frontend con React, Next.js y Astro", Icon: Atom },
-  { name: "Agentes IA", desc: "OpenAI, Spring AI y búsqueda semántica", Icon: Bot },
-  { name: "PostgreSQL", desc: "Diseño relacional, migraciones y pgvector", Icon: Database },
-  { name: "Git / Docker", desc: "Control de versiones, CI y contenedores", Icon: Container },
-];
+const lang = "es";
+const coreStack = (await getStack()).map(({ data }) => ({
+  name: localize(data.name, lang),
+  desc: localize(data.desc, lang),
+  Icon: icons[data.icon],
+}));
 
 const facts = [
   { Icon: MapPin, text: "Arteixo, A Coruña" },

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "java",
+    "name": { "es": "Java" },
+    "desc": { "es": "Backend y APIs REST con Spring Boot" },
+    "icon": "coffee",
+    "order": 1
+  },
+  {
+    "id": "react",
+    "name": { "es": "React" },
+    "desc": { "es": "Frontend con React, Next.js y Astro" },
+    "icon": "atom",
+    "order": 2
+  },
+  {
+    "id": "ai-agents",
+    "name": { "es": "Agentes IA" },
+    "desc": { "es": "OpenAI, Spring AI y búsqueda semántica" },
+    "icon": "bot",
+    "order": 3
+  },
+  {
+    "id": "postgresql",
+    "name": { "es": "PostgreSQL" },
+    "desc": { "es": "Diseño relacional, migraciones y pgvector" },
+    "icon": "database",
+    "order": 4
+  },
+  {
+    "id": "git-docker",
+    "name": { "es": "Git / Docker" },
+    "desc": { "es": "Control de versiones, CI y contenedores" },
+    "icon": "container",
+    "order": 5
+  }
+]

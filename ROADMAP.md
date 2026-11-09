@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.2
+**Próxima tarea:** F2.5
 
 ---
 
@@ -94,7 +94,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 - [x] **F2.1** Componentes React a TypeScript (`.jsx` → `.tsx`), con props, estado y refs tipados — [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
 - [x] **F2.4** Componentes `.astro` por defecto. Todas las secciones son estáticas, las animaciones están en CSS y la modal es un `<dialog>` nativo. JS por página: de ~129 KB gzip a ~0,6 KB inline; se elimina `motion` — [#26](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/26)
-- [ ] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas:
+- [x] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas — [#27](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/27):
   - `projects`: una carpeta por idioma (`es/`, `en/`), en MDX, porque el cuerpo será el caso de estudio.
   - `experience` y `stack`: datos con campos `es` y `en`.
 - [ ] **F2.5** i18n ES/EN (D1)
@@ -183,3 +183,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · D1, D2, D9 · Decisiones tomadas: web bilingüe, casos de estudio y textos de SEO aprobados; tareas de F2 detalladas
 - 2026-11-09 · F2.1 · Componentes React migrados a TypeScript · [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
 - 2026-11-09 · F2.4 · Secciones a `.astro`, animaciones CSS y `<dialog>` nativo; JS de ~129 KB a ~0,6 KB · [#26](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/26)
+- 2026-11-09 · F2.2 · Proyectos (MDX por idioma), experiencia y stack en Content Collections; texto renderizado idéntico · [#27](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/27)

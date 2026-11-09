@@ -1,22 +1,15 @@
 ---
 import { Briefcase, Calendar } from "lucide-react";
+import { getExperience, localize } from "../utils/content";
 
-const experience = [
-  {
-    company: "INDRA",
-    role: "Técnico de Software",
-    period: "Jun 2022 - Mar 2023",
-    desc: "Soporte en Bases de Datos y SLOs. Administración de entornos Linux y desarrollo de scripts de automatización.",
-    tags: ["Java", "Python", "Linux", "SQL"],
-  },
-  {
-    company: "INDRA",
-    role: "Estudiante en Prácticas",
-    period: "Mar 2022 - Jun 2022",
-    desc: "Formación intensiva en desarrollo Java y tecnologías web. Participación en metodologías ágiles y trabajo en equipo.",
-    tags: ["Java", "HTML/CSS", "JavaScript"],
-  },
-];
+const lang = "es";
+const experience = (await getExperience()).map(({ data }) => ({
+  company: data.company,
+  role: localize(data.role, lang),
+  period: localize(data.period, lang),
+  desc: localize(data.desc, lang),
+  tags: data.tags,
+}));
 ---
 
 <section id="experience" class="relative py-24">
