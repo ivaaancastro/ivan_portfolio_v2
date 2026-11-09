@@ -1,0 +1,363 @@
+---
+import { Image } from "astro:assets";
+import { X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
+import { Github } from "./icons/brand";
+import { imageByName } from "../utils/images";
+
+interface Project {
+  id: string;
+  title: string;
+  featured?: boolean;
+  shortDesc: string;
+  /** Static HTML written in this file (moves to Content Collections in F2.2). */
+  fullDesc: string;
+  tags: string[];
+  /** File name (without extension) of the image in src/assets/img. */
+  image: string;
+  link: string;
+  icon: typeof Store;
+}
+
+const projects: Project[] = [
+  {
+    id: "nexus-commerce-core",
+    title: "Nexus Commerce Core",
+    featured: true,
+    shortDesc:
+      "Backend transaccional de alto rendimiento para retail global, con vitrina editorial en Next.js.",
+    fullDesc: `
+      <p class="mb-4">
+        Proyecto full-stack personal construido con estándares de ingeniería de producción: un
+        backend transaccional para retail multimercado con Spring Boot y una vitrina editorial en
+        Next.js. Todo el desarrollo sigue Spec-Driven Development, con specs, ADRs y changelog
+        versionados.
+      </p>
+      <h4 class="mb-2 font-bold text-white">Motores de negocio:</h4>
+      <ul class="mb-4 list-disc space-y-1 pl-5">
+        <li>
+          <strong>Catálogo:</strong> productos con variantes físicas (SKU) organizados por
+          familia, con consultas optimizadas sin N+1.
+        </li>
+        <li>
+          <strong>Precios multimercado:</strong> tarificación multidivisa (ES/US/UK/CH) con
+          desglose impositivo, toda la aritmética financiera en BigDecimal.
+        </li>
+        <li>
+          <strong>Inventario omnicanal:</strong> cálculo ATS y bloqueo pesimista
+          (<code class="text-primary">SELECT ... FOR UPDATE</code>) para impedir el
+          over-selling.
+        </li>
+        <li>
+          <strong>Checkout transaccional:</strong> idempotencia por cabecera, snapshot financiero
+          inmutable y devoluciones con ventana de 30 días.
+        </li>
+        <li>
+          <strong>Búsqueda híbrida con IA:</strong> embeddings con pgvector (HNSW) vía Spring AI,
+          con fallback a texto cuando no hay API key.
+        </li>
+        <li>
+          <strong>Panel de administración:</strong> roles ADMIN/USER con JWT y gestión de
+          catálogo, stock y precios.
+        </li>
+      </ul>
+      <h4 class="mb-2 font-bold text-white">Calidad y proceso:</h4>
+      <ul class="mb-4 list-disc space-y-1 pl-5">
+        <li>
+          <strong>608 tests</strong> (249 backend con &gt;90% de cobertura, 359 frontend) y E2E
+          con Playwright en 3 navegadores.
+        </li>
+        <li>
+          <strong>Auditorías en CI:</strong> accesibilidad con axe sobre 14 rutas y Core Web
+          Vitals con Lighthouse, ambas en verde.
+        </li>
+        <li>
+          Arquitectura en capas con DTOs inmutables, errores semánticos RFC 7807 y documentación
+          OpenAPI/Swagger.
+        </li>
+      </ul>`,
+    tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "pgvector", "Spring AI"],
+    image: "nexus-catalog",
+    link: "https://github.com/ivaaancastro/nexus-commerce-core",
+    icon: Store,
+  },
+  {
+    id: "forma",
+    title: "Forma",
+    shortDesc: "Plataforma de alto rendimiento con integración de Strava y Coach IA.",
+    fullDesc: `
+      <p class="mb-4">
+        Proyecto personal enfocado en el análisis de datos deportivos. El objetivo es centralizar
+        métricas de entrenamiento y usar Inteligencia Artificial para generar planes
+        personalizados.
+      </p>
+      <h4 class="mb-2 font-bold text-white">Características Clave:</h4>
+      <ul class="mb-4 list-disc space-y-1 pl-5">
+        <li>
+          <strong>Integración Strava:</strong> Conexión OAuth para importar y analizar actividades
+          automáticamente.
+        </li>
+        <li>
+          <strong>Smart Coach (IA):</strong> Módulo que utiliza IA generativa para interpretar el
+          estado de forma y sugerir sesiones.
+        </li>
+        <li>
+          <strong>Backend Moderno:</strong> Persistencia de datos y autenticación gestionada con
+          <strong>Supabase</strong>.
+        </li>
+        <li>
+          <strong>Dashboard Interactivo:</strong> Gráficos de evolución y distribución de carga
+          con Recharts.
+        </li>
+      </ul>`,
+    tags: ["React", "Vite", "Supabase", "OpenAI API", "Strava API", "Tailwind"],
+    image: "dashboard-ai",
+    link: "https://github.com/ivaaancastro/calculadora-ivan",
+    icon: Brain,
+  },
+  {
+    id: "ficfit",
+    title: "FicFit",
+    shortDesc: "Plataforma Integral de Gestión Fitness (Fullstack & DevOps).",
+    fullDesc: `
+      <p class="mb-4">
+        Este proyecto nace con el objetivo de gestionar un ecosistema de gimnasio moderno, uniendo
+        alto rendimiento deportivo con ingeniería de software de calidad.
+      </p>
+      <h4 class="mb-2 font-bold text-white">Aspectos Técnicos:</h4>
+      <ul class="mb-4 list-disc space-y-1 pl-5">
+        <li>
+          <strong>Arquitectura:</strong> Separación clara entre núcleo de negocio (Java) e
+          interfaz reactiva (React).
+        </li>
+        <li>
+          <strong>Infraestructura:</strong> Despliegue en microservicios con Kubernetes para alta
+          disponibilidad.
+        </li>
+        <li>
+          <strong>Calidad:</strong> Integración Continua con Jenkins y análisis de código con
+          SonarQube.
+        </li>
+      </ul>`,
+    tags: ["Java", "React", "Docker", "Kubernetes", "Maven"],
+    image: "ficfit",
+    link: "https://github.com/ivaaancastro/ficfit",
+    icon: Layers,
+  },
+  {
+    id: "gestor-cursos",
+    title: "Gestor de Cursos",
+    shortDesc: "Sistema distribuido para la gestión eficiente de cursos y estudiantes.",
+    fullDesc: `
+      <p class="mb-4">
+        Aplicación distribuida diseñada para manejar registros, consultas y administración de
+        datos en un entorno cliente-servidor.
+      </p>
+      <h4 class="mb-2 font-bold text-white">Lo destacado:</h4>
+      <ul class="list-disc space-y-1 pl-5">
+        <li>
+          Uso de <strong>Apache Thrift</strong> para la definición de servicios y comunicación
+          eficiente entre lenguajes.
+        </li>
+        <li>Enfoque modular y escalable.</li>
+        <li>Persistencia de datos optimizada.</li>
+      </ul>`,
+    tags: ["Java", "Thrift", "Sistemas Distribuidos"],
+    image: "gestor_cursos",
+    link: "https://github.com/ivaaancastro/gestor_cursos",
+    icon: Code2,
+  },
+  {
+    id: "gestor-repositorios",
+    title: "Gestor de Repositorios",
+    shortDesc: "Sistema CLI para gestión de repositorios y control de versiones.",
+    fullDesc: `
+      <p class="mb-4">
+        Sistema de gestión personal de repositorios desarrollado en Elixir. Diseñado para operar
+        desde la terminal con máxima eficiencia.
+      </p>
+      <h4 class="mb-2 font-bold text-white">Funcionalidades:</h4>
+      <ul class="list-disc space-y-1 pl-5">
+        <li>Creación, modificación y eliminación de repositorios.</li>
+        <li>Gestión del historial de cambios y commits.</li>
+        <li>Control de permisos de acceso de usuarios simulado.</li>
+      </ul>`,
+    tags: ["Elixir", "Git", "Terminal", "CLI"],
+    image: "gestor_repositorios",
+    link: "https://github.com/ivaaancastro/gestor_repositorios",
+    icon: Terminal,
+  },
+];
+
+const IMAGE_WIDTHS = [400, 700, 1000, 1400];
+const CARD_SIZES = "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw";
+const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
+const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
+---
+
+<section id="projects" class="relative bg-black/20 py-24">
+  <div class="mx-auto max-w-[1100px] px-6">
+    <!-- Encabezado de Sección -->
+    <div data-reveal class="mb-16">
+      <h2 class="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
+        <Activity className="text-primary" aria-hidden="true" /> Proyectos Destacados
+      </h2>
+      <p class="max-w-2xl text-lg text-muted">
+        Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.
+      </p>
+    </div>
+
+    <!-- Grid de Tarjetas -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project) => {
+        const Icon = project.icon;
+        return (
+          <article
+            class:list={[
+              "group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] has-[:focus-visible]:border-primary has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary",
+              { "md:col-span-2 lg:col-span-2": project.featured },
+            ]}
+          >
+            <!-- Imagen -->
+            <div
+              class:list={[
+                "relative shrink-0 overflow-hidden",
+                project.featured ? "h-64 lg:h-72" : "h-48",
+              ]}
+            >
+              <div class="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
+              <Image
+                src={imageByName(project.image)}
+                widths={IMAGE_WIDTHS}
+                sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
+                format="webp"
+                alt={project.title}
+                class="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
+                <Icon className="h-6 w-6" aria-hidden="true" />
+              </div>
+
+              {project.featured && (
+                <div class="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
+                  <Star size={12} className="fill-current" aria-hidden="true" /> Destacado
+                </div>
+              )}
+            </div>
+
+            <!-- Contenido Resumido -->
+            <div class="flex grow flex-col p-6">
+              <h3 class="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary">
+                <!-- The button covers the whole card (after:inset-0) so the card is clickable and keyboard accessible. -->
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  data-dialog-open={`project-${project.id}`}
+                  class="text-left outline-none after:absolute after:inset-0 after:z-30 after:content-['']"
+                >
+                  {project.title}
+                </button>
+              </h3>
+              <p class="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
+              <div class="mt-auto flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span class="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                    {tag}
+                  </span>
+                ))}
+                {project.tags.length > 3 && (
+                  <span class="px-2 py-1 text-xs font-medium text-gray-500">
+                    +{project.tags.length - 3}
+                  </span>
+                )}
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Modales: un <dialog> nativo por proyecto (Esc, foco y backdrop los gestiona el navegador) -->
+    {projects.map((project) => (
+      <dialog
+        id={`project-${project.id}`}
+        aria-labelledby={`project-${project.id}-title`}
+        class="project-dialog fixed inset-x-0 top-auto bottom-0 m-0 h-[85vh] max-h-[85vh] w-full max-w-none flex-col overflow-hidden rounded-t-3xl border-x border-t border-white/10 bg-surface p-0 text-gray-300 shadow-2xl open:flex md:inset-0 md:m-auto md:h-fit md:max-h-[90vh] md:max-w-2xl md:rounded-3xl md:border"
+      >
+        <!-- Handle visual (solo móvil) -->
+        <div class="pointer-events-none absolute top-0 z-50 flex w-full justify-center pt-3 pb-1 md:hidden">
+          <div class="h-1.5 w-12 rounded-full bg-white/20" />
+        </div>
+
+        <form method="dialog" class="contents">
+          <button
+            type="submit"
+            autofocus
+            aria-label="Cerrar"
+            class="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
+          >
+            <X size={20} aria-hidden="true" />
+          </button>
+        </form>
+
+        <!-- 1. Header (imagen), fijo -->
+        <div class="relative h-56 shrink-0 md:h-80">
+          <Image
+            src={imageByName(project.image)}
+            widths={IMAGE_WIDTHS}
+            sizes={MODAL_SIZES}
+            format="webp"
+            alt={project.title}
+            class="h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
+
+          <div class="absolute right-6 bottom-4 left-6">
+            <div class="mb-2 flex items-center gap-3">
+              <h3
+                id={`project-${project.id}-title`}
+                class="text-2xl font-bold text-white shadow-black drop-shadow-lg md:text-4xl"
+              >
+                {project.title}
+              </h3>
+              {project.featured && (
+                <span class="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
+                  <Star size={12} className="fill-current" aria-hidden="true" /> Destacado
+                </span>
+              )}
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="rounded-full bg-primary/90 px-2 py-1 text-[10px] font-semibold text-black shadow-lg backdrop-blur-md md:text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Body (texto), única parte con scroll -->
+        <div
+          class="flex-1 space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
+          set:html={project.fullDesc}
+        />
+
+        <!-- 3. Footer (botón), siempre visible -->
+        <div class="z-20 shrink-0 border-t border-white/10 bg-surface p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:pb-6">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
+          >
+            <Github size={20} aria-hidden="true" /> Ver Código en GitHub
+          </a>
+        </div>
+      </dialog>
+    ))}
+  </div>
+</section>
+
+<script>
+  import "../scripts/project-dialogs";
+</script>

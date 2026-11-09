@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from "lucide-react";
-import StravaStats from "../components/StravaStats";
+import StravaStats from "../components/StravaStats.astro";
 import { getStravaStats } from "../utils/strava";
 import { Image } from "astro:assets";
 import runningImg from "../assets/img/ivan-running.jpeg";
@@ -82,7 +82,7 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
             </a>
           </div>
 
-          <StravaStats client:load runDistance={runDistance} rideDistance={rideDistance} />
+          <StravaStats runDistance={runDistance} rideDistance={rideDistance} />
         </div>
 
         {/* Fotos alineadas, sin escalones */}
