@@ -355,7 +355,7 @@ export default function Projects() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex-1 space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
+                    className="flex-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
                   >
                     {selectedProject.fullDesc}
                   </motion.div>
