@@ -11,7 +11,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 | Fase | Objetivo                                                              | Estado       |
 | :--- | :-------------------------------------------------------------------- | :----------- |
-| F0   | Preparación: tooling, CI, flujo de ramas                              | 🚧 En curso  |
+| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho     |
 | F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ⏳ Pendiente |
 | F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ⏳ Pendiente |
 | F3   | Rediseño visual                                                       | ⏳ Pendiente |
@@ -19,8 +19,8 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
-**Fase actual:** F0
-**Próxima tarea:** F0.3
+**Fase actual:** F1
+**Próxima tarea:** F1.1
 
 ---
 
@@ -29,12 +29,20 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F0.1** Añadir `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` al repo
 - [x] **F0.2** Retirar la rama `master` (sin commits que no estuvieran en `main`; borrada en local y remoto)
 - [x] **F0.9** Protección de rama en `main`: PR obligatorio (0 aprobaciones), también para admins, sin force push ni borrado, conversaciones resueltas
-- [ ] **F0.3** Prettier (+ `prettier-plugin-astro`, `prettier-plugin-tailwindcss`) y script `format`
-- [ ] **F0.4** ESLint (`eslint-plugin-astro`, `jsx-a11y`) y script `lint`
-- [ ] **F0.5** `@astrojs/check` + `typescript` y script `check`
-- [ ] **F0.6** GitHub Actions: `lint` + `check` + `build` en cada PR, y añadir ese check como obligatorio en la protección de `main`
-- [ ] **F0.7** Dependabot (npm + GitHub Actions, agrupado semanal)
-- [ ] **F0.8** Fijar versión de Node (`.nvmrc` / `engines`) igual a la de Vercel (Vercel usa **24.x**; en local hay 22.20)
+- [x] **F0.3** Prettier (+ `prettier-plugin-astro`, `prettier-plugin-tailwindcss`), scripts `format` y `format:check`; código formateado (HTML compilado equivalente) — PR_REF
+- [x] **F0.4** ESLint 9 (`typescript-eslint`, `eslint-plugin-astro`, `jsx-a11y`, `react-hooks` v5) y script `lint` — PR_REF
+- [x] **F0.5** `@astrojs/check` + TypeScript 6 y script `check`; corregidos 4 iconos lucide en `.astro` que recibían `class` en vez de `className` (sus clases se perdían) — PR_REF
+- [x] **F0.6** GitHub Actions (`ci`): `format:check` + `lint` + `check` + `build` en cada PR y en `main`; check `ci` obligatorio en la protección de `main` — PR_REF
+- [x] **F0.7** Dependabot (npm + GitHub Actions, semanal, agrupado) — PR_REF
+- [x] **F0.8** Node 24 (`.nvmrc` + `engines: 24.x`), igual que Vercel — PR_REF
+
+> **Acción local para Iván:** instalar Node 24 (ahora hay 22.20). Con Node 22 todo funciona, pero `npm install` avisará por `engines`.
+>
+> **Notas de F0:**
+>
+> - `eslint-plugin-react-hooks` v7 se queda colgado al cargarse; se usa la v5 hasta revisarlo.
+> - `jsx-a11y` no analiza los elementos `motion.*` (p. ej. `motion.article` con `onClick`), así que esos casos se revisan a mano en F1.14–F1.16.
+> - `Github` y `Linkedin` de lucide están marcados como obsoletos (los iconos de marca desaparecen en lucide 1.x): sustituirlos por SVG propios en F1.2.
 
 ## F1 · Saneamiento (sin cambios visuales)
 
@@ -48,7 +56,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 - [ ] **F1.4** Borrar restos de plantilla: `Welcome.astro`, `src/assets/astro.svg`, `src/assets/background.svg`
 - [ ] **F1.5** Borrar assets sin uso: `public/img/19C23CDF-…jpeg`, `public/ivanCvHoriz.pdf` (aprobado por Iván el 2026-11-09)
-- [ ] **F1.6** Imports sin usar (Navbar), `<strong>` anidado (About), estilos duplicados en `Layout.astro`
+- [ ] **F1.6** ~~Imports sin usar (Navbar)~~ (hecho en F0.5), `<strong>` anidado (About), estilos duplicados en `Layout.astro`
 - [ ] **F1.7** README real del proyecto
 
 **Strava**
@@ -142,3 +150,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F0.2 · Rama `master` eliminada (local y remoto)
 - 2026-11-09 · F0.9 · Protección de rama activada en `main`
 - 2026-11-09 · F0.1 · `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` añadidos
+- 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · PR_REF
