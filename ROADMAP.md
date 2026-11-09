@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.4
+**Próxima tarea:** F2.2
 
 ---
 
@@ -93,7 +93,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 **Orden de trabajo:** F2.1 → F2.4 → F2.2 → F2.5 → F2.3 → F2.6. La web ya será bilingüe antes de crear las páginas de proyecto, así que esas páginas nacen en los dos idiomas.
 
 - [x] **F2.1** Componentes React a TypeScript (`.jsx` → `.tsx`), con props, estado y refs tipados — [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
-- [ ] **F2.4** Componentes `.astro` por defecto; React solo en islas interactivas (modal de proyectos, stats de Strava, animaciones imprescindibles). Objetivo: bajar de ~120 KB de JS gzip por página
+- [x] **F2.4** Componentes `.astro` por defecto. Todas las secciones son estáticas, las animaciones están en CSS y la modal es un `<dialog>` nativo. JS por página: de ~129 KB gzip a ~0,6 KB inline; se elimina `motion` — [#26](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/26)
 - [ ] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas:
   - `projects`: una carpeta por idioma (`es/`, `en/`), en MDX, porque el cuerpo será el caso de estudio.
   - `experience` y `stack`: datos con campos `es` y `en`.
@@ -126,6 +126,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [ ] **F4.2** axe sin errores en CI
 - [ ] **F4.3** Vercel Web Analytics + Speed Insights
 - [ ] **F4.4** Revisión final de textos y datos personales
+- [ ] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4)
 
 ---
 
@@ -181,3 +182,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.18–F1.22 · SEO (sitemap, canonical, OG), 404, safe-area. **Fase 1 completada** · [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
 - 2026-11-09 · D1, D2, D9 · Decisiones tomadas: web bilingüe, casos de estudio y textos de SEO aprobados; tareas de F2 detalladas
 - 2026-11-09 · F2.1 · Componentes React migrados a TypeScript · [#25](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/25)
+- 2026-11-09 · F2.4 · Secciones a `.astro`, animaciones CSS y `<dialog>` nativo; JS de ~129 KB a ~0,6 KB · [#26](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/26)
