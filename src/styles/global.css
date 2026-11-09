@@ -1,6 +1,116 @@
 /* src/styles/global.css */
 @import "tailwindcss";
 
+/*
+ * F3 · Direction A, «Plano técnico» (decision D3).
+ * The site is drawn like an engineering drawing: a paper sheet, ink lines, a 24px drafting grid,
+ * cobalt dimension lines and a red revision mark used sparingly. One family (Archivo), whose
+ * width axis does the work: narrow and heavy for the title, normal width for reading.
+ *
+ * Light is the default. Dark follows the OS unless the visitor picks one, which sets
+ * data-theme on <html> (see the inline script in Layout.astro).
+ * Until every section is redesigned, these tokens live next to the old ones below.
+ */
+:root {
+  --paper: #f2f4f6; /* drawing sheet */
+  --paper-raised: #ffffff; /* title block and sheets laid on the grid */
+  --ink: #14213d; /* lines and text */
+  --ink-soft: #55637a; /* annotations, secondary text */
+  --grid: #dbe1ea; /* drafting grid */
+  --cobalt: #2348d8; /* dimension lines, links, focus */
+  --redline: #c8321f; /* revision marks */
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1a2c;
+    --paper-raised: #15233a;
+    --ink: #e4ebf6;
+    --ink-soft: #9aa9c3;
+    --grid: #1f2e47;
+    --cobalt: #86a5ff;
+    --redline: #ff8b73;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0f1a2c;
+  --paper-raised: #15233a;
+  --ink: #e4ebf6;
+  --ink-soft: #9aa9c3;
+  --grid: #1f2e47;
+  --cobalt: #86a5ff;
+  --redline: #ff8b73;
+  color-scheme: dark;
+}
+
+/* Tailwind utilities for the new tokens (bg-paper, text-ink, border-cobalt, font-display…). */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-grid: var(--grid);
+  --color-cobalt: var(--cobalt);
+  --color-redline: var(--redline);
+
+  --font-display: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+}
+
+@theme {
+  /* Type scale (classic 12·14·16·18·21·24·36·48·60·72). Display text is narrow Archivo. */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-lead: 1.3125rem;
+  --text-lead--line-height: 1.5;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.25;
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 1.1;
+  --text-h1: 3rem;
+  --text-h1--line-height: 1;
+  --text-title: clamp(3.75rem, 11vw, 9rem);
+  --text-title--line-height: 0.86;
+
+  /* The drafting grid is the spacing unit: p-grid, gap-grid, mt-grid… */
+  --spacing-grid: 24px;
+
+  /* Sheets and frames are drawn square; only small controls get a slight radius. */
+  --radius-sheet: 0px;
+  --radius-control: 2px;
+
+  /* Single orchestrated motion: dimension lines drawn in (see .animate-draw). */
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --animate-draw: draw 0.9s var(--ease-draw) 0.2s both;
+
+  @keyframes draw {
+    from {
+      transform: scaleX(0);
+    }
+  }
+}
+
+/* Paper with the 24px drafting grid. */
+@utility bg-drafting-grid {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: var(--spacing-grid) var(--spacing-grid);
+  background-position: -1px -1px;
+}
+
+/* Frame line of sheets and the title block (thicker than a hairline, like a drawing border). */
+@utility border-frame {
+  border: 1.5px solid var(--ink);
+}
+
 @theme {
   /* Colores personalizados */
   --color-bg: #0e0f12;
