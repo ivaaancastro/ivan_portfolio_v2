@@ -60,5 +60,20 @@ export default defineConfig({
       subsets: ["latin", "latin-ext"],
       fallbacks: ["system-ui", "sans-serif"],
     },
+    // F3 (D3 «Plano técnico»): Archivo with its width axis, narrow for titles, normal for text.
+    {
+      provider: fontProviders.google(),
+      name: "Archivo",
+      cssVariable: "--font-archivo",
+      weights: ["400 800"],
+      styles: ["normal"],
+      subsets: ["latin", "latin-ext"],
+      fallbacks: ["sans-serif"],
+      options: {
+        experimental: {
+          variableAxis: { wdth: [["62", "100"]] },
+        },
+      },
+    },
   ],
 });

@@ -59,6 +59,13 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
     <!-- Lets CSS hide [data-reveal] elements only when JS can reveal them again. -->
     <script is:inline>
       document.documentElement.classList.add("js");
+      // Theme picked by the visitor (light/dark); without one, the OS setting applies.
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {
+        // Storage blocked (private mode): fall back to the OS setting.
+      }
     </script>
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -100,6 +107,9 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
         { weight: 700, subset: "latin" },
       ]}
     />
+
+    <!-- Archivo (redesign, F3): not preloaded until sections use it. -->
+    <Font cssVariable="--font-archivo" />
 
     <title>{title}</title>
   </head>
