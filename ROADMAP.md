@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.1 (antes, decidir D1 y D2)
+**Próxima tarea:** F2.1
 
 ---
 
@@ -90,12 +90,25 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ## F2 · Reestructura
 
+**Orden de trabajo:** F2.1 → F2.4 → F2.2 → F2.5 → F2.3 → F2.6. La web ya será bilingüe antes de crear las páginas de proyecto, así que esas páginas nacen en los dos idiomas.
+
 - [ ] **F2.1** Todo a TypeScript (`.jsx` → `.tsx` / `.astro`)
-- [ ] **F2.2** Content Collections: `projects`, `experience`, `stack` (con esquema Zod)
-- [ ] **F2.3** Páginas de caso de estudio `/proyectos/[slug]` — _según decisión D2_
-- [ ] **F2.4** Componentes `.astro` por defecto; React solo en islas interactivas
-- [ ] **F2.5** i18n ES/EN — _según decisión D1_
-- [ ] **F2.6** View Transitions entre páginas
+- [ ] **F2.4** Componentes `.astro` por defecto; React solo en islas interactivas (modal de proyectos, stats de Strava, animaciones imprescindibles). Objetivo: bajar de ~120 KB de JS gzip por página
+- [ ] **F2.2** Content Collections con esquema Zod, preparadas para dos idiomas:
+  - `projects`: una carpeta por idioma (`es/`, `en/`), en MDX, porque el cuerpo será el caso de estudio.
+  - `experience` y `stack`: datos con campos `es` y `en`.
+- [ ] **F2.5** i18n ES/EN (D1)
+  - Routing i18n de Astro: español sin prefijo (`/`, `/personal`) e inglés en `/en/…`.
+  - Diccionario de textos de interfaz (`src/i18n/`).
+  - Selector de idioma en Navbar y BottomNav.
+  - `hreflang` alternos, `og:locale` por idioma y sitemap con alternates.
+  - Página 404 en los dos idiomas.
+- [ ] **F2.5b** Traducción al inglés de todos los textos. **Borrador de Claude y revisión obligatoria de Iván**, porque son textos personales (biografía, experiencia, Lifestyle).
+- [ ] **F2.3** Páginas de caso de estudio (D2): `/proyectos/[slug]` y `/en/projects/[slug]`.
+  - Contexto, problema, solución, decisiones técnicas, stack, capturas y enlaces (repo / demo).
+  - La tarjeta enlaza a la página. La modal se mantiene como vista rápida o desaparece, según se decida en F3.
+  - Contenido de partida: el texto actual de cada proyecto y el README de su repo. Iván lo revisa.
+- [ ] **F2.6** View Transitions entre páginas (respetando `prefers-reduced-motion`)
 
 ## F3 · Rediseño
 
@@ -120,12 +133,15 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Tomadas
 
-| ID  | Fecha      | Decisión                                                                | Motivo                                                                                        |
-| :-- | :--------- | :---------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                    | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
-| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main` | `master` ya no aportaba nada y estaba desfasada                                               |
-| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                   | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
-| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                   | No se usan en la web                                                                          |
+| ID  | Fecha      | Decisión                                                                                                          | Motivo                                                                                        |
+| :-- | :--------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                                                              | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
+| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main`                                           | `master` ya no aportaba nada y estaba desfasada                                               |
+| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                                                             | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
+| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                                                             | No se usan en la web                                                                          |
+| D1  | 2026-11-09 | Web bilingüe: español (por defecto, sin prefijo) e inglés (`/en`)                                                 | Decidido por Iván                                                                             |
+| D2  | 2026-11-09 | Página de caso de estudio por proyecto                                                                            | Enseña mejor el trabajo que una modal y mejora el SEO                                         |
+| D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23) | Revisados por Iván                                                                            |
 
 **Repo fuera de iCloud (2026-11-09):** iCloud Drive generaba miles de copias « 2» (en src, .git y node_modules). La carpeta real es ahora `~/Documents/proyects/ivan_portfolio_v2.nosync`, que iCloud no sincroniza, y `ivan_portfolio_v2` es un enlace simbólico a ella. `.gitignore` ignora `* 2` y `* 2.*`.
 
@@ -133,14 +149,11 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Pendientes
 
-| ID  | Pregunta                                                                                                                                      | Necesaria antes de |
-| :-- | :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
-| D1  | ¿Web bilingüe ES/EN?                                                                                                                          | F2.5               |
-| D2  | ¿Páginas de caso de estudio por proyecto?                                                                                                     | F2.3               |
-| D3  | Referencias de estilo / dirección visual                                                                                                      | F3.2               |
-| D4  | ¿Mantener el teléfono público en la web?                                                                                                      | F4.4               |
-| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)?                                                                | F4.4               |
-| D9  | Aprobar los textos nuevos de SEO: descripciones de las páginas e imagen OG ([#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)) | F4.4               |
+| ID  | Pregunta                                                                       | Necesaria antes de |
+| :-- | :----------------------------------------------------------------------------- | :----------------- |
+| D3  | Referencias de estilo / dirección visual                                       | F3.2               |
+| D4  | ¿Mantener el teléfono público en la web?                                       | F4.4               |
+| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
 
 ## Backlog / ideas
 
@@ -166,3 +179,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · — · Proyecto excluido de iCloud (`.nosync` + enlace simbólico), copias « 2» eliminadas y `node_modules` reinstalado
 - 2026-11-09 · F1.14–F1.17 · Accesibilidad: diálogo, tarjetas con teclado, reducir movimiento, `noopener` · [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
 - 2026-11-09 · F1.18–F1.22 · SEO (sitemap, canonical, OG), 404, safe-area. **Fase 1 completada** · [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
+- 2026-11-09 · D1, D2, D9 · Decisiones tomadas: web bilingüe, casos de estudio y textos de SEO aprobados; tareas de F2 detalladas
