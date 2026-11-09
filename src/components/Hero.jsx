@@ -50,7 +50,7 @@ export default function Hero({ photo }) {
                 Descargar CV
               </a>
               <a
-                href="#projects"
+                href="/#projects"
                 className="rounded-xl border border-white/20 px-8 py-3.5 font-medium text-white transition-all duration-300 hover:bg-white/10"
               >
                 Ver proyectos

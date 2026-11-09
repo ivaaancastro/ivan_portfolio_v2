@@ -6,21 +6,55 @@ import BottomNav from "../components/BottomNav.jsx";
 
 interface Props {
   title: string;
+  description?: string;
+  /** Absolute or root-relative URL of the share image (1200x630). */
+  image?: string;
+  /** Hide the page from search engines (e.g. 404). */
+  noindex?: boolean;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Portfolio de Iván Castro Roel, ingeniero informático: experiencia, proyectos de software (Java, Spring Boot, React, IA) y contacto.",
+  image = "/og.png",
+  noindex = false,
+} = Astro.props;
+
+const canonicalPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const canonicalUrl = new URL(canonicalPath, Astro.site);
+const imageUrl = new URL(image, Astro.site);
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Portfolio de Iván. Ingeniería de Software y Desarrollo Web."
-    />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e0f12" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <link rel="canonical" href={canonicalUrl} />
+    )}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Iván Castro Roel" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Iván Castro, ingeniero informático" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
 
     <Font
       cssVariable="--font-inter"

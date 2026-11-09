@@ -13,6 +13,11 @@
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
+/* Extra bottom padding for the iPhone home indicator (needs viewport-fit=cover). */
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* Respect the OS "reduce motion" setting for CSS transitions, keyframes and smooth scroll.
    Motion (JS) animations are handled with <MotionConfig reducedMotion="user"> in each island. */
 @media (prefers-reduced-motion: reduce) {
