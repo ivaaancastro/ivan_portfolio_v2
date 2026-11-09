@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.1
+**Próxima tarea:** F1.2
 
 ---
 
@@ -36,7 +36,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F0.7** Dependabot (npm + GitHub Actions, semanal, agrupado) — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
 - [x] **F0.8** Node 24 (`.nvmrc` + `engines: 24.x`), igual que Vercel — [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
 
-> **Acción local para Iván:** instalar Node 24 (ahora hay 22.20). Con Node 22 todo funciona, pero `npm install` avisará por `engines`.
+> **Node local:** Node 24 instalado con nvm y fijado como versión por defecto (2026-11-09). Astro 7.4 ya no arranca con Node < 22.23.4.
 >
 > **Notas de F0:**
 >
@@ -48,9 +48,9 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Dependencias y seguridad**
 
-- [ ] **F1.1** Subir Astro 6 → 7 y `@astrojs/react` (seguir guía oficial de migración)
-- [ ] **F1.2** Actualizar React, Tailwind, framer-motion → `motion`, lucide-react 1.x
-- [ ] **F1.3** `npm audit` a 0 vulnerabilidades (había 19, 1 crítica en `astro`)
+- [x] **F1.1** Astro 6.1 → 7.4 (Vite 8) y `@astrojs/react` 7.1; sin cambios de código según la guía de v7 — [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
+- [ ] **F1.2** Actualizar React, Tailwind, framer-motion → `motion`, lucide-react 1.x _(React 19.3 y Tailwind 4.3 ya hechos en [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16); faltan `motion` y lucide 1.x con SVG propios para GitHub/LinkedIn)_
+- [x] **F1.3** `npm audit` a 0 vulnerabilidades (había 19, 1 crítica en `astro`); `overrides` de `minimatch` para `typescript-estree` — [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
 
 **Limpieza**
 
@@ -151,3 +151,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F0.9 · Protección de rama activada en `main`
 - 2026-11-09 · F0.1 · `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` añadidos
 - 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
+- 2026-11-09 · F1.1, F1.3 · Astro 7.4, React 19.3, Tailwind 4.3; npm audit a 0 · [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
