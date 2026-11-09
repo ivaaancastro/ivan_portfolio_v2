@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.14
+**Próxima tarea:** F1.18
 
 ---
 
@@ -41,7 +41,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 > **Notas de F0:**
 >
 > - `eslint-plugin-react-hooks` v7 se queda colgado al cargarse; se usa la v5 hasta revisarlo.
-> - `jsx-a11y` no analiza los elementos `motion.*` (p. ej. `motion.article` con `onClick`), así que esos casos se revisan a mano en F1.14–F1.16.
+> - `jsx-a11y` no analiza los elementos `motion.*`; los casos de F1.14–F1.16 se revisaron a mano con el teclado.
 > - ~~Iconos de marca obsoletos en lucide~~ → resuelto en F1.2.
 > - Dependabot ignora las versiones mayores de ESLint y sus plugins hasta que `jsx-a11y` soporte ESLint 10 (revisar periódicamente).
 > - npm 11 avisa de que `fsevents` (opcional, solo macOS) tiene scripts de instalación sin aprobar; no afecta al build.
@@ -75,10 +75,10 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Accesibilidad**
 
-- [ ] **F1.14** Modal de proyectos: `role="dialog"`, `aria-modal`, cierre con Esc, foco atrapado y devuelto, bloquear scroll
-- [ ] **F1.15** Tarjetas de proyecto accesibles por teclado (`<button>` o enlace)
-- [ ] **F1.16** `alt` en todas las imágenes, `aria-label` en botones de icono, `prefers-reduced-motion`
-- [ ] **F1.17** `rel="noopener noreferrer"` en todos los `target="_blank"`
+- [x] **F1.14** Modal de proyectos: `role="dialog"`, `aria-modal`, `aria-labelledby`, Esc, foco atrapado y devuelto, scroll bloqueado — [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
+- [x] **F1.15** Tarjetas de proyecto: `<button>` que cubre toda la tarjeta, `aria-haspopup`, anillo de foco — [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
+- [x] **F1.16** `alt` en todas las imágenes, `aria-label` en «Cerrar», `prefers-reduced-motion` (MotionConfig + CSS global) — [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
+- [x] **F1.17** `rel="noopener noreferrer"` en todos los `target="_blank"` — [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
 
 **SEO y móvil**
 
@@ -127,6 +127,8 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 | D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                   | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
 | D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                   | No se usan en la web                                                                          |
 
+**Repo fuera de iCloud (2026-11-09):** iCloud Drive generaba miles de copias « 2» (en src, .git y node_modules). La carpeta real es ahora `~/Documents/proyects/ivan_portfolio_v2.nosync`, que iCloud no sincroniza, y `ivan_portfolio_v2` es un enlace simbólico a ella. `.gitignore` ignora `* 2` y `* 2.*`.
+
 **Entorno verificado (2026-11-09):** las variables `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`, `STRAVA_ATHLETE_ID` y `STRAVA_REDIRECT_URI` existen en Vercel para producción y preview. Las previews de Vercel tienen protección SSO (hay que iniciar sesión en Vercel para verlas).
 
 ### Pendientes
@@ -160,3 +162,5 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.8, F1.9 · Cliente de Strava robusto y workflow de refresco diario · [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
 - 2026-11-09 · F1.9 · Deploy Hook y secreto configurados; ejecución manual del workflow verificada en producción
 - 2026-11-09 · F1.10–F1.13 · Imágenes optimizadas (home 7,6 MB → 0,38 MB), Inter autoalojada, línea base de JS · [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
+- 2026-11-09 · — · Proyecto excluido de iCloud (`.nosync` + enlace simbólico), copias « 2» eliminadas y `node_modules` reinstalado
+- 2026-11-09 · F1.14–F1.17 · Accesibilidad: diálogo, tarjetas con teclado, reducir movimiento, `noopener` · [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
