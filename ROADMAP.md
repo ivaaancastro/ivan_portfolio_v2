@@ -9,18 +9,18 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 ## Estado general
 
-| Fase | Objetivo                                                              | Estado       |
-| :--- | :-------------------------------------------------------------------- | :----------- |
-| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho     |
-| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho     |
-| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | 🚧 En curso  |
-| F3   | Rediseño visual                                                       | ⏳ Pendiente |
-| F4   | Pulido y medición                                                     | ⏳ Pendiente |
+| Fase | Objetivo                                                              | Estado                                 |
+| :--- | :-------------------------------------------------------------------- | :------------------------------------- |
+| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho                               |
+| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho                               |
+| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho (salvo F2.3b, textos de Iván) |
+| F3   | Rediseño visual                                                       | 🚧 En curso                            |
+| F4   | Pulido y medición                                                     | ⏳ Pendiente                           |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
-**Fase actual:** F2
-**Próxima tarea:** F3.1 (decisión D3, dirección visual). F2.3b queda abierta hasta que Iván tenga los textos.
+**Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
+**Próxima tarea:** F3.4 (arquitectura de la home). F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -117,9 +117,12 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ## F3 · Rediseño
 
-- [ ] **F3.1** Recoger referencias y objetivos (decisión D3)
-- [ ] **F3.2** 2–3 propuestas de dirección visual para elegir
-- [ ] **F3.3** Tokens de diseño (color, tipografía, espaciado, radios, movimiento) en `global.css`
+- [x] **F3.1** Recoger referencias y objetivos (decisión D3). Iván no tenía referencias y prefería ver ejemplos.
+- [x] **F3.2** Tres propuestas (A «Plano técnico», B «Pista», C «Atlántico») en una página de maquetas; Iván elige la **A**.
+- [x] **F3.3** Tokens de diseño (color, tipografía, espaciado, radios, movimiento) en `global.css` — [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
+  - Colores claro/oscuro (`paper`, `ink`, `ink-soft`, `grid`, `cobalt`, `redline`), Archivo con eje de anchura, escala 12–72, cuadrícula de 24 px, hojas sin radio, animación única `draw`.
+  - Tema: sigue al sistema; `data-theme` en `<html>` si el visitante elige (el botón llega con la cabecera).
+  - Los tokens antiguos (`bg`, `primary`, Inter…) se retiran cuando la última sección deje de usarlos.
 - [ ] **F3.4** Nueva arquitectura de la home (orden y contenido de secciones)
 - [ ] **F3.5** Implementación por secciones (un PR por sección)
 - [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
@@ -139,15 +142,17 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Tomadas
 
-| ID  | Fecha      | Decisión                                                                                                          | Motivo                                                                                        |
-| :-- | :--------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                                                              | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
-| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main`                                           | `master` ya no aportaba nada y estaba desfasada                                               |
-| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                                                             | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
-| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                                                             | No se usan en la web                                                                          |
-| D1  | 2026-11-09 | Web bilingüe: español (por defecto, sin prefijo) e inglés (`/en`)                                                 | Decidido por Iván                                                                             |
-| D2  | 2026-11-09 | Página de caso de estudio por proyecto                                                                            | Enseña mejor el trabajo que una modal y mejora el SEO                                         |
-| D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23) | Revisados por Iván                                                                            |
+| ID  | Fecha      | Decisión                                                                                                                                    | Motivo                                                                                        |
+| :-- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------- |
+| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                                                                                        | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
+| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main`                                                                     | `master` ya no aportaba nada y estaba desfasada                                               |
+| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                                                                                       | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
+| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                                                                                       | No se usan en la web                                                                          |
+| D1  | 2026-11-09 | Web bilingüe: español (por defecto, sin prefijo) e inglés (`/en`)                                                                           | Decidido por Iván                                                                             |
+| D2  | 2026-11-09 | Página de caso de estudio por proyecto                                                                                                      | Enseña mejor el trabajo que una modal y mejora el SEO                                         |
+| D3  | 2026-11-09 | Dirección visual A, «Plano técnico»: la web como un plano de ingeniería (papel, tinta, cuadrícula, cotas, cajetín), Archivo, claro y oscuro | Elegida por Iván entre tres propuestas; empezar de cero, sin conservar nada del diseño actual |
+| D10 | 2026-11-09 | El rediseño se integra en la rama `redesign`; cada sección es un PR contra ella y al final un PR `redesign` → `main`                        | Que la web publicada no muestre un diseño a medias                                            |
+| D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)                           | Revisados por Iván                                                                            |
 
 **Repo fuera de iCloud (2026-11-09):** iCloud Drive generaba miles de copias « 2» (en src, .git y node_modules). La carpeta real es ahora `~/Documents/proyects/ivan_portfolio_v2.nosync`, que iCloud no sincroniza, y `ivan_portfolio_v2` es un enlace simbólico a ella. `.gitignore` ignora `* 2` y `* 2.*`.
 
@@ -157,7 +162,6 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 | ID  | Pregunta                                                                       | Necesaria antes de |
 | :-- | :----------------------------------------------------------------------------- | :----------------- |
-| D3  | Referencias de estilo / dirección visual                                       | F3.2               |
 | D4  | ¿Mantener el teléfono público en la web?                                       | F4.4               |
 | D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
 
@@ -193,3 +197,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.5b · Traducción al inglés (borrador revisado por Iván) y publicación de `/en` · [#29](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/29)
 - 2026-11-09 · F2.3 · Páginas de caso de estudio en ES/EN; las tarjetas enlazan a ellas y se retira la modal · [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
 - 2026-11-09 · F2.6 · Transiciones entre páginas con View Transitions nativas (solo CSS). **F2 completada salvo F2.3b** (textos de Iván) · [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
+- 2026-11-09 · F3.1–F3.3 · D3 (dirección «Plano técnico»), rama `redesign` y tokens de diseño · [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
