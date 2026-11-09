@@ -6,7 +6,7 @@ export function getLang(currentLocale: string | undefined): Lang {
   return currentLocale && currentLocale in languages ? (currentLocale as Lang) : defaultLang;
 }
 
-/** Translator for one language; missing English strings fall back to Spanish (until F2.5b). */
+/** Translator for one language; missing strings fall back to Spanish. */
 export function useTranslations(lang: Lang) {
   return (key: UIKey): string => ui[lang][key] ?? ui.es[key];
 }

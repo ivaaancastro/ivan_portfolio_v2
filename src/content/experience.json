@@ -2,10 +2,17 @@
   {
     "id": "indra-software-technician",
     "company": "INDRA",
-    "role": { "es": "Técnico de Software" },
-    "period": { "es": "Jun 2022 - Mar 2023" },
+    "role": {
+      "es": "Técnico de Software",
+      "en": "Software Technician"
+    },
+    "period": {
+      "es": "Jun 2022 - Mar 2023",
+      "en": "Jun 2022 - Mar 2023"
+    },
     "desc": {
-      "es": "Soporte en Bases de Datos y SLOs. Administración de entornos Linux y desarrollo de scripts de automatización."
+      "es": "Soporte en Bases de Datos y SLOs. Administración de entornos Linux y desarrollo de scripts de automatización.",
+      "en": "Database and SLO support. Linux environment administration and development of automation scripts."
     },
     "tags": ["Java", "Python", "Linux", "SQL"],
     "order": 1
@@ -13,10 +20,17 @@
   {
     "id": "indra-intern",
     "company": "INDRA",
-    "role": { "es": "Estudiante en Prácticas" },
-    "period": { "es": "Mar 2022 - Jun 2022" },
+    "role": {
+      "es": "Estudiante en Prácticas",
+      "en": "Intern"
+    },
+    "period": {
+      "es": "Mar 2022 - Jun 2022",
+      "en": "Mar 2022 - Jun 2022"
+    },
     "desc": {
-      "es": "Formación intensiva en desarrollo Java y tecnologías web. Participación en metodologías ágiles y trabajo en equipo."
+      "es": "Formación intensiva en desarrollo Java y tecnologías web. Participación en metodologías ágiles y trabajo en equipo.",
+      "en": "Intensive training in Java development and web technologies. Took part in agile methodologies and teamwork."
     },
     "tags": ["Java", "HTML/CSS", "JavaScript"],
     "order": 2

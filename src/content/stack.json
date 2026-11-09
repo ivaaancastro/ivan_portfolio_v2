@@ -1,36 +1,66 @@
 [
   {
     "id": "java",
-    "name": { "es": "Java" },
-    "desc": { "es": "Backend y APIs REST con Spring Boot" },
+    "name": {
+      "es": "Java",
+      "en": "Java"
+    },
+    "desc": {
+      "es": "Backend y APIs REST con Spring Boot",
+      "en": "Backend and REST APIs with Spring Boot"
+    },
     "icon": "coffee",
     "order": 1
   },
   {
     "id": "react",
-    "name": { "es": "React" },
-    "desc": { "es": "Frontend con React, Next.js y Astro" },
+    "name": {
+      "es": "React",
+      "en": "React"
+    },
+    "desc": {
+      "es": "Frontend con React, Next.js y Astro",
+      "en": "Frontend with React, Next.js and Astro"
+    },
     "icon": "atom",
     "order": 2
   },
   {
     "id": "ai-agents",
-    "name": { "es": "Agentes IA" },
-    "desc": { "es": "OpenAI, Spring AI y búsqueda semántica" },
+    "name": {
+      "es": "Agentes IA",
+      "en": "AI Agents"
+    },
+    "desc": {
+      "es": "OpenAI, Spring AI y búsqueda semántica",
+      "en": "OpenAI, Spring AI and semantic search"
+    },
     "icon": "bot",
     "order": 3
   },
   {
     "id": "postgresql",
-    "name": { "es": "PostgreSQL" },
-    "desc": { "es": "Diseño relacional, migraciones y pgvector" },
+    "name": {
+      "es": "PostgreSQL",
+      "en": "PostgreSQL"
+    },
+    "desc": {
+      "es": "Diseño relacional, migraciones y pgvector",
+      "en": "Relational design, migrations and pgvector"
+    },
     "icon": "database",
     "order": 4
   },
   {
     "id": "git-docker",
-    "name": { "es": "Git / Docker" },
-    "desc": { "es": "Control de versiones, CI y contenedores" },
+    "name": {
+      "es": "Git / Docker",
+      "en": "Git / Docker"
+    },
+    "desc": {
+      "es": "Control de versiones, CI y contenedores",
+      "en": "Version control, CI and containers"
+    },
     "icon": "container",
     "order": 5
   }

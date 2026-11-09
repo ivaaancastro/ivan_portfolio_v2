@@ -2,8 +2,8 @@ import type { Lang } from "./config";
 
 /**
  * Interface strings. Spanish is the source of truth and must define every key.
- * English is partial for now: short interface labels only. Personal texts (bio, intros,
- * Lifestyle) are translated in F2.5b and reviewed by Iván; until then they fall back to Spanish.
+ * English must define every key too (checked by the types); `useTranslations` still falls back
+ * to Spanish so a key added later without translation cannot break a page.
  *
  * Values marked "HTML" are rendered with set:html; they are written here, never user input.
  */
@@ -124,37 +124,113 @@ const es = {
 
 export type UIKey = keyof typeof es;
 
-/** Interface labels only; personal texts come in F2.5b (reviewed by Iván). */
-const en: Partial<Record<UIKey, string>> = {
+/** English (drafted by Claude in F2.5b, reviewed by Iván). Must define every key. */
+const en: Record<UIKey, string> = {
+  // Meta
+  "meta.description":
+    "Portfolio of Iván Castro Roel, computer engineer: experience, software projects (Java, Spring Boot, React, AI) and contact.",
+  "meta.ogImageAlt": "Iván Castro, computer engineer",
   "home.title": "Iván's Portfolio - Software Engineer",
+
+  // Navigation
   "nav.main": "Main navigation",
   "nav.about": "About",
   "nav.experience": "Experience",
   "nav.projects": "Projects",
   "nav.contact": "Contact",
+  "nav.lifestyle": "Lifestyle",
+  "nav.cv": "CV",
   "bottom.home": "Home",
   "bottom.about": "Me",
+  "bottom.experience": "Exp",
   "bottom.projects": "Work",
+  "bottom.life": "Life",
+
+  // Hero
+  "hero.kicker": "Design · Development · Support",
+  "hero.greeting": "Hi, I'm",
+  "hero.role": "Computer Engineer",
+  "hero.intro":
+    "Specialized in Software Engineering. I love building products that are useful, accessible and fast.",
   "hero.downloadCv": "Download CV",
   "hero.viewProjects": "View projects",
   "hero.photoAlt": "Photo of Iván",
+
+  // About
   "about.titleA": "About",
   "about.titleB": "Me",
+  /** HTML */
+  "about.bio1":
+    'I\'m 23 and a <strong class="text-white">fourth-year</strong> <strong class="text-white">Computer Engineering</strong> student at the <strong class="text-white">UDC</strong> (University of A Coruña). I see myself as a calm, organized and thoughtful person, with good communication and teamwork skills.',
+  /** HTML */
+  "about.bio2":
+    'Before university I completed a higher vocational degree in <strong class="text-white">Multiplatform App Development (DAM)</strong> and <strong class="text-white">worked for 1 year and 1 month at Indra</strong>, which gave me experience on real projects. I am currently specializing in <strong class="text-primary">Software Engineering</strong>, because I enjoy full-stack development and working in teams with different methodologies.',
+  "about.factLocation": "Arteixo, A Coruña (Spain)",
+  "about.factStudies": "UDC · 4th year",
+  "about.factWork": "Indra · 1 year and 1 month",
+  "about.stackTitle": "Tools I master",
+  "about.stackNote": "The stack I use every day, in depth.",
+
+  // Experience
   "experience.title": "Work Experience",
+
+  // Projects
   "projects.title": "Featured Projects",
+  "projects.intro": "A selection of work where I apply architecture patterns and good practices.",
   "projects.featured": "Featured",
   "projects.close": "Close",
   "projects.viewCode": "View code on GitHub",
+
+  // Contact
   "contact.title": "Let's talk",
+  "contact.intro":
+    "I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.",
+  "contact.email": "Email",
   "contact.phone": "Phone",
   "contact.location": "Location",
+  "contact.locationValue": "Arteixo, A Coruña (Spain)",
+
+  // Footer
+  "footer.rights": "Almost all rights reserved.",
+
+  // Lifestyle page
+  "life.title": "Iván Castro | Lifestyle",
+  "life.description":
+    "Beyond code: running, cycling, family and friends. My kilometers of the year on Strava.",
+  "life.kicker": "Lifestyle",
+  "life.headingA": "Beyond the",
+  "life.headingB": "Code",
+  "life.intro":
+    "Engineering is discipline. So is sport. That's how I find my balance between the screen and the real world.",
+  "life.sportTitle": "Sport & Discipline",
+  /** HTML */
+  "life.sportText":
+    'The perfect balance between steady effort and the freedom to explore. Training for <strong class="text-white">half marathons</strong>, running all kinds of races and racking up kilometers on the bike have taught me that big goals are reached through daily consistency.',
   "life.followStrava": "Follow me on Strava",
+  "life.runningAlt": "Running",
+  "life.runningTitle": "Running",
+  "life.runningText": "Resilience, kilometer after kilometer.",
+  "life.cyclingAlt": "Cycling",
   "life.cyclingTitle": "Cycling",
+  "life.cyclingText": "Freedom, speed and switching off.",
+  "life.socialTitle": "Social & Family",
+  "life.batteryTitle": 'My "Social Battery"',
+  "life.batteryText1":
+    "Sport gives me strength, but the people around me give me stability. I'm incredibly lucky to have an amazing family that gives me security and unshakable values.",
+  /** HTML */
+  "life.batteryText2":
+    'On top of that, I have a group of friends very much like me, with whom I share laughs, trips, experiences and, of course, <span class="text-white">kilometers!</span>',
   "life.family": "Family",
   "life.friends": "Friends",
+
+  // Strava card
   "strava.summary": "Summary",
   "strava.total": "Total distance",
+  "strava.running": "Running",
   "strava.cycling": "Cycling",
+  "strava.runRide": "Run + Ride",
+
+  // 404
   "notFound.title": "Page not found",
   "notFound.metaTitle": "Page not found | Iván Castro",
   "notFound.metaDescription": "This page does not exist.",

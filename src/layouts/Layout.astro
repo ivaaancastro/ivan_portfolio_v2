@@ -25,7 +25,7 @@ const {
   noindex: noindexProp = false,
 } = Astro.props;
 
-// Pages in a language that is not published yet (English until F2.5b) stay out of search engines.
+// Pages in a language that is not published yet stay out of search engines.
 const noindex = noindexProp || !isPublished(lang);
 
 const canonicalPath = Astro.url.pathname.replace(/\/+$/, "") || "/";

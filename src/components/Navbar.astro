@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 // Language selector: links to this same page in the other language(s).
-// Unpublished languages (English until F2.5b) are not offered, but you can always get back from one.
+// Unpublished languages are not offered, but you can always get back from one.
 const otherLangs = (Object.keys(languages) as Lang[]).filter(
   (other) => other !== lang && (isPublished(other) || !isPublished(lang)),
 );

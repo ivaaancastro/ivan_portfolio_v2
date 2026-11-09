@@ -27,7 +27,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Languages that are not published yet (English until F2.5b) stay out of the sitemap.
+      // Languages that are not published yet stay out of the sitemap.
       filter: (page) => isPublished(langFromPath(new URL(page).pathname)),
       i18n: { defaultLocale: "es", locales: { es: "es-ES", en: "en-US" } },
     }),
