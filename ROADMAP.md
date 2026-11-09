@@ -64,7 +64,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 **Strava**
 
 - [x] **F1.8** `strava.ts`: tipos, `response.ok` en token y stats, timeouts, validación y logs `[strava]`; nunca rompe el build — [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
-- [ ] **F1.9** Refresco diario: workflow `strava-refresh.yml` (05:00 UTC) que llama al Deploy Hook de Vercel — [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19) · ⏸️ _pendiente de Iván: crear el Deploy Hook en Vercel y el secreto `VERCEL_DEPLOY_HOOK_URL` en GitHub_
+- [x] **F1.9** Refresco diario: workflow `strava-refresh.yml` (05:00 UTC y manual) que llama al Deploy Hook `strava-daily` de Vercel (secreto `VERCEL_DEPLOY_HOOK_URL`). Probado el 2026-11-09: despliegue de producción READY y km reales en la web — [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
 
 **Rendimiento**
 
@@ -158,3 +158,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.2 · `motion` 14, lucide 1.70 e iconos de marca propios · [#17](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/17)
 - 2026-11-09 · F1.4–F1.7 · Limpieza de plantilla y archivos sin uso, README y `.env.example` · [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
 - 2026-11-09 · F1.8, F1.9 · Cliente de Strava robusto y workflow de refresco diario · [#19](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/19)
+- 2026-11-09 · F1.9 · Deploy Hook y secreto configurados; ejecución manual del workflow verificada en producción
