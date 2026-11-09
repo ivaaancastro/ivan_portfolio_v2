@@ -6,6 +6,18 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    ignore:
+      # ESLint 10 is not supported yet by eslint-plugin-jsx-a11y; eslint-plugin-astro 3 requires it.
+      # Revisit when the a11y plugin supports ESLint 10.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint-plugin-astro"
+        update-types: ["version-update:semver-major"]
+      # v7 hangs on import; pinned to v5 (see ROADMAP F0 notes).
+      - dependency-name: "eslint-plugin-react-hooks"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types: [minor, patch]

@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.2
+**Próxima tarea:** F1.4
 
 ---
 
@@ -42,14 +42,16 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 >
 > - `eslint-plugin-react-hooks` v7 se queda colgado al cargarse; se usa la v5 hasta revisarlo.
 > - `jsx-a11y` no analiza los elementos `motion.*` (p. ej. `motion.article` con `onClick`), así que esos casos se revisan a mano en F1.14–F1.16.
-> - `Github` y `Linkedin` de lucide están marcados como obsoletos (los iconos de marca desaparecen en lucide 1.x): sustituirlos por SVG propios en F1.2.
+> - ~~Iconos de marca obsoletos en lucide~~ → resuelto en F1.2.
+> - Dependabot ignora las versiones mayores de ESLint y sus plugins hasta que `jsx-a11y` soporte ESLint 10 (revisar periódicamente).
+> - npm 11 avisa de que `fsevents` (opcional, solo macOS) tiene scripts de instalación sin aprobar; no afecta al build.
 
 ## F1 · Saneamiento (sin cambios visuales)
 
 **Dependencias y seguridad**
 
 - [x] **F1.1** Astro 6.1 → 7.4 (Vite 8) y `@astrojs/react` 7.1; sin cambios de código según la guía de v7 — [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
-- [ ] **F1.2** Actualizar React, Tailwind, framer-motion → `motion`, lucide-react 1.x _(React 19.3 y Tailwind 4.3 ya hechos en [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16); faltan `motion` y lucide 1.x con SVG propios para GitHub/LinkedIn)_
+- [x] **F1.2** React 19.3 y Tailwind 4.3 (en [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)); framer-motion → `motion` 14 y lucide-react 1.70, con GitHub/LinkedIn en `src/components/icons/brand.tsx` — [#17](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/17)
 - [x] **F1.3** `npm audit` a 0 vulnerabilidades (había 19, 1 crítica en `astro`); `overrides` de `minimatch` para `typescript-estree` — [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
 
 **Limpieza**
@@ -152,3 +154,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F0.1 · `ROADMAP.md`, `AGENTS.md` y `CLAUDE.md` añadidos
 - 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
 - 2026-11-09 · F1.1, F1.3 · Astro 7.4, React 19.3, Tailwind 4.3; npm audit a 0 · [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
+- 2026-11-09 · F1.2 · `motion` 14, lucide 1.70 e iconos de marca propios · [#17](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/17)

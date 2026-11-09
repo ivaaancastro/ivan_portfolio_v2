@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Github, X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
+import { Github } from "./icons/brand";
 
 const projects = [
   {
