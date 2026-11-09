@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F1
-**Próxima tarea:** F1.4
+**Próxima tarea:** F1.8
 
 ---
 
@@ -56,10 +56,10 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **Limpieza**
 
-- [ ] **F1.4** Borrar restos de plantilla: `Welcome.astro`, `src/assets/astro.svg`, `src/assets/background.svg`
-- [ ] **F1.5** Borrar assets sin uso: `public/img/19C23CDF-…jpeg`, `public/ivanCvHoriz.pdf` (aprobado por Iván el 2026-11-09)
-- [ ] **F1.6** ~~Imports sin usar (Navbar)~~ (hecho en F0.5), `<strong>` anidado (About), estilos duplicados en `Layout.astro`
-- [ ] **F1.7** README real del proyecto
+- [x] **F1.4** Borrados restos de plantilla: `Welcome.astro`, `src/assets/astro.svg`, `src/assets/background.svg` — [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
+- [x] **F1.5** Borrados `public/img/19C23CDF-…jpeg` y `public/ivanCvHoriz.pdf` (D7) — [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
+- [x] **F1.6** Imports sin usar (F0.5), `<strong>` anidado en About, estilo global duplicado en `Layout.astro`, `@types/*` a `devDependencies` — [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
+- [x] **F1.7** README real del proyecto + `.env.example` — [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
 
 **Strava**
 
@@ -131,12 +131,13 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Pendientes
 
-| ID  | Pregunta                                  | Necesaria antes de |
-| :-- | :---------------------------------------- | :----------------- |
-| D1  | ¿Web bilingüe ES/EN?                      | F2.5               |
-| D2  | ¿Páginas de caso de estudio por proyecto? | F2.3               |
-| D3  | Referencias de estilo / dirección visual  | F3.2               |
-| D4  | ¿Mantener el teléfono público en la web?  | F4.4               |
+| ID  | Pregunta                                                                       | Necesaria antes de |
+| :-- | :----------------------------------------------------------------------------- | :----------------- |
+| D1  | ¿Web bilingüe ES/EN?                                                           | F2.5               |
+| D2  | ¿Páginas de caso de estudio por proyecto?                                      | F2.3               |
+| D3  | Referencias de estilo / dirección visual                                       | F3.2               |
+| D4  | ¿Mantener el teléfono público en la web?                                       | F4.4               |
+| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
 
 ## Backlog / ideas
 
@@ -155,3 +156,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F0.3–F0.8 · Prettier, ESLint, astro check, CI, Dependabot y Node 24 · [#10](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/10)
 - 2026-11-09 · F1.1, F1.3 · Astro 7.4, React 19.3, Tailwind 4.3; npm audit a 0 · [#16](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/16)
 - 2026-11-09 · F1.2 · `motion` 14, lucide 1.70 e iconos de marca propios · [#17](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/17)
+- 2026-11-09 · F1.4–F1.7 · Limpieza de plantilla y archivos sin uso, README y `.env.example` · [#18](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/18)
