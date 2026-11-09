@@ -439,7 +439,7 @@ export default function Projects({ images }) {
                     </motion.div>
 
                     {/* --- 3. FOOTER (Botón) - Siempre visible abajo --- */}
-                    <div className="pb-safe z-20 shrink-0 border-t border-white/10 bg-[#1a1d24] p-6 md:pb-6">
+                    <div className="z-20 shrink-0 border-t border-white/10 bg-[#1a1d24] p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:pb-6">
                       <a
                         href={selectedProject.link}
                         target="_blank"

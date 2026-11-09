@@ -3,14 +3,19 @@ import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://ivan-portfolio-v2.vercel.app",
+  // Internal links use /personal (no trailing slash); keep canonical URLs and sitemap consistent.
+  trailingSlash: "never",
+
   vite: {
     plugins: [tailwindcss()],
   },
 
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 
   // Self-hosted Inter (downloaded from Fontsource at build time, served from our domain).
   fonts: [

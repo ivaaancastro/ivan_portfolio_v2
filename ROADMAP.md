@@ -12,15 +12,15 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 | Fase | Objetivo                                                              | Estado       |
 | :--- | :-------------------------------------------------------------------- | :----------- |
 | F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho     |
-| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ⏳ Pendiente |
+| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho     |
 | F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ⏳ Pendiente |
 | F3   | Rediseño visual                                                       | ⏳ Pendiente |
 | F4   | Pulido y medición                                                     | ⏳ Pendiente |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
-**Fase actual:** F1
-**Próxima tarea:** F1.18
+**Fase actual:** F2
+**Próxima tarea:** F2.1 (antes, decidir D1 y D2)
 
 ---
 
@@ -82,11 +82,11 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 **SEO y móvil**
 
-- [ ] **F1.18** `site` en `astro.config`, `@astrojs/sitemap`, `robots.txt`, canonical
-- [ ] **F1.19** Open Graph + Twitter card + imagen OG, `description` por página
-- [ ] **F1.20** `viewport` con `initial-scale=1`, `viewport-fit=cover`; definir utilidad `pb-safe` (safe-area)
-- [ ] **F1.21** Página 404
-- [ ] **F1.22** Enlace "Ver proyectos" del Hero a `/#projects`
+- [x] **F1.18** `site`, `trailingSlash: "never"`, `@astrojs/sitemap`, `robots.txt`, canonical sin barra final — [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
+- [x] **F1.19** Open Graph + Twitter card, `description` por página, imagen OG 1200×630 (`npm run og`) — [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
+- [x] **F1.20** `viewport` con `initial-scale=1` y `viewport-fit=cover`, `theme-color`, utilidad `pb-safe` — [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
+- [x] **F1.21** Página 404 (`noindex`) — [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
+- [x] **F1.22** Enlace "Ver proyectos" del Hero a `/#projects` — [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)
 
 ## F2 · Reestructura
 
@@ -133,13 +133,14 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Pendientes
 
-| ID  | Pregunta                                                                       | Necesaria antes de |
-| :-- | :----------------------------------------------------------------------------- | :----------------- |
-| D1  | ¿Web bilingüe ES/EN?                                                           | F2.5               |
-| D2  | ¿Páginas de caso de estudio por proyecto?                                      | F2.3               |
-| D3  | Referencias de estilo / dirección visual                                       | F3.2               |
-| D4  | ¿Mantener el teléfono público en la web?                                       | F4.4               |
-| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
+| ID  | Pregunta                                                                                                                                      | Necesaria antes de |
+| :-- | :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+| D1  | ¿Web bilingüe ES/EN?                                                                                                                          | F2.5               |
+| D2  | ¿Páginas de caso de estudio por proyecto?                                                                                                     | F2.3               |
+| D3  | Referencias de estilo / dirección visual                                                                                                      | F3.2               |
+| D4  | ¿Mantener el teléfono público en la web?                                                                                                      | F4.4               |
+| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)?                                                                | F4.4               |
+| D9  | Aprobar los textos nuevos de SEO: descripciones de las páginas e imagen OG ([#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)) | F4.4               |
 
 ## Backlog / ideas
 
@@ -164,3 +165,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F1.10–F1.13 · Imágenes optimizadas (home 7,6 MB → 0,38 MB), Inter autoalojada, línea base de JS · [#21](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/21)
 - 2026-11-09 · — · Proyecto excluido de iCloud (`.nosync` + enlace simbólico), copias « 2» eliminadas y `node_modules` reinstalado
 - 2026-11-09 · F1.14–F1.17 · Accesibilidad: diálogo, tarjetas con teclado, reducir movimiento, `noopener` · [#22](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/22)
+- 2026-11-09 · F1.18–F1.22 · SEO (sitemap, canonical, OG), 404, safe-area. **Fase 1 completada** · [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)

@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { ArrowLeft, Heart } from "lucide-react";
+---
+
+<Layout title="Página no encontrada | Iván Castro" description="Esta página no existe." noindex>
+  <Navbar />
+
+  <main class="flex min-h-[80vh] items-center justify-center px-6 pt-32 pb-28">
+    <section class="relative text-center">
+      <div class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]"></div>
+
+      <p class="mb-4 font-mono text-7xl font-bold text-white/10 select-none md:text-9xl">404</p>
+      <h1 class="mb-4 text-3xl font-bold text-white md:text-5xl">
+        Página no encontrada<span class="text-primary">.</span>
+      </h1>
+      <p class="mx-auto mb-10 max-w-md text-lg text-muted">
+        La página que buscas no existe o se ha movido.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-black transition-colors duration-300 hover:bg-primary"
+        >
+          <ArrowLeft size={18} aria-hidden="true" /> Volver al inicio
+        </a>
+        <a
+          href="/personal"
+          class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 font-medium text-white transition-colors duration-300 hover:bg-white/10"
+        >
+          <Heart size={18} aria-hidden="true" /> Ver Lifestyle
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -10,7 +10,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="pb-safe fixed bottom-0 left-0 z-50 w-full md:hidden">
+    <div className="fixed bottom-0 left-0 z-50 w-full pb-safe md:hidden">
       {/* Fondo con blur potente */}
       <nav className="border-t border-white/10 bg-[#0e0f12]/90 px-6 py-4 pb-6 backdrop-blur-lg">
         <ul className="flex items-center justify-between">

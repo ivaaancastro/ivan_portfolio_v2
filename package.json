@@ -10,10 +10,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "check": "astro check"
+    "check": "astro check",
+    "og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.5",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.5",
     "astro": "^7.4.8",
     "lucide-react": "^1.70.0",
