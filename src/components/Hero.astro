@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import photo from "../assets/img/ivan-foto.jpg";
+import { getLang, pathFor, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -17,17 +21,14 @@ import photo from "../assets/img/ivan-foto.jpg";
     <div>
       <div class="animate-fade-up">
         <span class="mb-2 block text-sm font-bold tracking-wide text-primary uppercase">
-          Diseño · Desarrollo · Soporte
+          {t("hero.kicker")}
         </span>
         <h1 class="mb-6 text-5xl leading-tight font-bold text-white md:text-7xl">
-          Hola, soy <span class="inline-block text-primary">Iván</span>.
+          {t("hero.greeting")} <span class="inline-block text-primary">Iván</span>.
           <br />
-          <span class="text-4xl text-gray-400 md:text-6xl">Ingeniero Informático</span>
+          <span class="text-4xl text-gray-400 md:text-6xl">{t("hero.role")}</span>
         </h1>
-        <p class="mb-8 max-w-lg text-lg leading-relaxed text-muted md:text-xl">
-          Especialista en Ingeniería del Software. Me apasiona crear productos útiles, accesibles y
-          rápidos.
-        </p>
+        <p class="mb-8 max-w-lg text-lg leading-relaxed text-muted md:text-xl">{t("hero.intro")}</p>
       </div>
 
       <!-- Botones -->
@@ -37,13 +38,13 @@ import photo from "../assets/img/ivan-foto.jpg";
           download="Ivan_CV.pdf"
           class="transform rounded-xl bg-white px-8 py-3.5 font-bold text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-[0_0_25px_rgba(108,240,194,0.4)]"
         >
-          Descargar CV
+          {t("hero.downloadCv")}
         </a>
         <a
-          href="/#projects"
+          href={pathFor(lang, "#projects")}
           class="rounded-xl border border-white/20 px-8 py-3.5 font-medium text-white transition-all duration-300 hover:bg-white/10"
         >
-          Ver proyectos
+          {t("hero.viewProjects")}
         </a>
       </div>
     </div>
@@ -63,7 +64,7 @@ import photo from "../assets/img/ivan-foto.jpg";
         format="webp"
         loading="eager"
         fetchpriority="high"
-        alt="Foto de Iván"
+        alt={t("hero.photoAlt")}
         class="relative z-10 aspect-square w-64 rotate-3 rounded-3xl border-2 border-white/10 bg-bg-soft object-cover shadow-2xl transition-transform duration-500 hover:rotate-0 md:w-80"
       />
     </div>

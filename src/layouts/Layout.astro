@@ -3,6 +3,8 @@
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import BottomNav from "../components/BottomNav.astro";
+import { defaultLang, isPublished, ogLocales, publishedLangs, type Lang } from "../i18n/config";
+import { getLang, switchLangPath, useTranslations } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -13,20 +15,42 @@ interface Props {
   noindex?: boolean;
 }
 
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
 const {
   title,
-  description = "Portfolio de Iván Castro Roel, ingeniero informático: experiencia, proyectos de software (Java, Spring Boot, React, IA) y contacto.",
+  description = t("meta.description"),
   image = "/og.png",
-  noindex = false,
+  noindex: noindexProp = false,
 } = Astro.props;
+
+// Pages in a language that is not published yet (English until F2.5b) stay out of search engines.
+const noindex = noindexProp || !isPublished(lang);
 
 const canonicalPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const canonicalUrl = new URL(canonicalPath, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+
+// hreflang alternates: only between published languages, plus x-default (Spanish).
+const alternates: { hreflang: string; href: URL }[] =
+  noindex || publishedLangs.length < 2
+    ? []
+    : [
+        ...publishedLangs.map((alt: Lang) => ({
+          hreflang: alt,
+          href: new URL(switchLangPath(canonicalPath, alt), Astro.site),
+        })),
+        {
+          hreflang: "x-default",
+          href: new URL(switchLangPath(canonicalPath, defaultLang), Astro.site),
+        },
+      ];
+const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) => ogLocales[alt]);
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <!-- Lets CSS hide [data-reveal] elements only when JS can reveal them again. -->
@@ -42,11 +66,17 @@ const imageUrl = new URL(image, Astro.site);
     ) : (
       <link rel="canonical" href={canonicalUrl} />
     )}
+    {alternates.map(({ hreflang, href }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={ogLocales[lang]} />
+    {otherOgLocales.map((locale) => (
+      <meta property="og:locale:alternate" content={locale} />
+    ))}
     <meta property="og:site_name" content="Iván Castro Roel" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -54,7 +84,7 @@ const imageUrl = new URL(image, Astro.site);
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Iván Castro, ingeniero informático" />
+    <meta property="og:image:alt" content={t("meta.ogImageAlt")} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { getLang, useTranslations } from "../i18n/utils";
+
+const t = useTranslations(getLang(Astro.currentLocale));
+---
+
+<Layout title={t("home.title")}>
+  <Navbar />
+
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Projects />
+    <Contact />
+  </main>
+
+  <Footer />
+</Layout>

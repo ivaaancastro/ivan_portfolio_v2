@@ -1,28 +1,32 @@
 ---
 import { Home, User, Briefcase, Code2, Heart } from "lucide-react";
+import { getLang, pathFor, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 const navItems = [
-  { Icon: Home, label: "Inicio", href: "/#home" },
-  { Icon: User, label: "Mí", href: "/#about" },
-  { Icon: Briefcase, label: "Exp", href: "/#experience" },
-  { Icon: Code2, label: "Proy", href: "/#projects" },
-  { Icon: Heart, label: "Life", href: "/personal" },
+  { Icon: Home, label: t("bottom.home"), href: pathFor(lang, "#home") },
+  { Icon: User, label: t("bottom.about"), href: pathFor(lang, "#about") },
+  { Icon: Briefcase, label: t("bottom.experience"), href: pathFor(lang, "#experience") },
+  { Icon: Code2, label: t("bottom.projects"), href: pathFor(lang, "#projects") },
+  { Icon: Heart, label: t("bottom.life"), href: pathFor(lang, "personal"), accent: true },
 ];
 ---
 
 <div class="fixed bottom-0 left-0 z-50 w-full pb-safe md:hidden">
   <nav
-    aria-label="Navegación principal"
+    aria-label={t("nav.main")}
     class="border-t border-white/10 bg-bg/90 px-6 py-4 pb-6 backdrop-blur-lg"
   >
     <ul class="flex items-center justify-between">
-      {navItems.map(({ Icon, label, href }) => (
+      {navItems.map(({ Icon, label, href, accent }) => (
         <li>
           <a
             href={href}
             class="flex flex-col items-center gap-1 text-gray-400 transition-colors duration-200 hover:text-primary active:scale-90"
           >
-            <span class={label === "Life" ? "text-pink-400" : ""}>
+            <span class={accent ? "text-pink-400" : ""}>
               <Icon size={20} aria-hidden="true" />
             </span>
             <span class="text-[10px] font-medium tracking-wide">{label}</span>

@@ -1,8 +1,10 @@
 ---
 import { Briefcase, Calendar } from "lucide-react";
 import { getExperience, localize } from "../utils/content";
+import { getLang, useTranslations } from "../i18n/utils";
 
-const lang = "es";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 const experience = (await getExperience()).map(({ data }) => ({
   company: data.company,
   role: localize(data.role, lang),
@@ -16,7 +18,7 @@ const experience = (await getExperience()).map(({ data }) => ({
   <div class="mx-auto max-w-[1100px] px-6">
     <h2 data-reveal class="mb-16 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
       <Briefcase className="h-8 w-8 text-primary" aria-hidden="true" />
-      Experiencia Laboral
+      {t("experience.title")}
     </h2>
 
     <div class="relative ml-3 space-y-12 border-l-2 border-white/10 md:ml-6">

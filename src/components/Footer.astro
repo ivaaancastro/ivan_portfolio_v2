@@ -2,6 +2,9 @@
 import { Mail } from "lucide-react";
 import { Github, Linkedin } from "./icons/brand";
 
+import { getLang, useTranslations } from "../i18n/utils";
+
+const t = useTranslations(getLang(Astro.currentLocale));
 const currentYear = new Date().getFullYear();
 ---
 
@@ -12,8 +15,7 @@ const currentYear = new Date().getFullYear();
         Iván<span class="text-primary">.</span>
       </span>
       <p class="text-sm text-gray-500 mt-2">
-        &copy; {currentYear} Iván Castro Roel. <br class="md:hidden" /> Casi todos los derechos
-        reservados.
+        &copy; {currentYear} Iván Castro Roel. <br class="md:hidden" /> {t("footer.rights")}
       </p>
     </div>
 
@@ -31,7 +33,7 @@ const currentYear = new Date().getFullYear();
         href="https://www.linkedin.com/in/ivancastroroel"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-400 hover:text-[#0077b5] hover:scale-110 transition-all"
+        class="text-gray-400 hover:text-linkedin hover:scale-110 transition-all"
         aria-label="LinkedIn"
       >
         <Linkedin size={24} />

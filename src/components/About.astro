@@ -2,8 +2,10 @@
 import { MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { icons } from "../utils/icons";
 import { getStack, localize } from "../utils/content";
+import { getLang, useTranslations } from "../i18n/utils";
 
-const lang = "es";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 const coreStack = (await getStack()).map(({ data }) => ({
   name: localize(data.name, lang),
   desc: localize(data.desc, lang),
@@ -11,9 +13,9 @@ const coreStack = (await getStack()).map(({ data }) => ({
 }));
 
 const facts = [
-  { Icon: MapPin, text: "Arteixo, A Coruña" },
-  { Icon: GraduationCap, text: "UDC · 4º curso" },
-  { Icon: Briefcase, text: "Indra · 1 año y 1 mes" },
+  { Icon: MapPin, text: t("about.factLocation") },
+  { Icon: GraduationCap, text: t("about.factStudies") },
+  { Icon: Briefcase, text: t("about.factWork") },
 ];
 ---
 
@@ -23,23 +25,11 @@ const facts = [
       <!-- Columna Texto -->
       <div>
         <h2 class="mb-6 text-3xl font-bold text-white md:text-4xl">
-          Sobre <span class="text-primary">Mí</span>
+          {t("about.titleA")} <span class="text-primary">{t("about.titleB")}</span>
         </h2>
         <div class="space-y-4 text-lg leading-relaxed text-gray-400">
-          <p>
-            Tengo 23 años y soy estudiante de <strong class="text-white">cuarto curso</strong> en
-            <strong class="text-white"> Ingeniería Informática</strong> en la{" "}
-            <strong class="text-white">UDC</strong>. Me considero una persona tranquila, organizada
-            y reflexiva, con buenas habilidades de comunicación y trabajo en equipo.
-          </p>
-          <p>
-            Antes de la carrera completé un ciclo superior en{" "}
-            <strong class="text-white">DAM</strong> y{" "}
-            <strong class="text-white">trabajé 1 año y 1 mes en Indra</strong> , lo que me dio
-            experiencia en proyectos reales. Actualmente me especializo en{" "}
-            <strong class="text-primary">Ingeniería del Software</strong> pues me gusta la
-            programación full stack y el trabajo en equipo mediante diferentes metodologías.
-          </p>
+          <p set:html={t("about.bio1")} />
+          <p set:html={t("about.bio2")} />
         </div>
 
         <!-- Tira de datos personales -->
@@ -65,7 +55,7 @@ const facts = [
           <span class="text-primary" aria-hidden="true">
             ⚡
           </span>{" "}
-          Herramientas que domino
+          {t("about.stackTitle")}
         </h3>
 
         <div class="grid grid-cols-2 gap-4">
@@ -98,7 +88,7 @@ const facts = [
         </div>
 
         <p data-reveal style="--reveal-delay: 500ms" class="mt-6 text-center text-sm text-gray-500">
-          El stack que uso día a día, a fondo.
+          {t("about.stackNote")}
         </p>
       </div>
     </div>

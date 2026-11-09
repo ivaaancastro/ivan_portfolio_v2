@@ -1,51 +1,79 @@
 ---
-// Navbar.astro
 import { Heart } from "lucide-react";
+import { isPublished, languages, switchLabels, type Lang } from "../i18n/config";
+import { getLang, pathFor, switchLangPath, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 const navItems = [
-  { name: "Sobre mí", label: "/#about" },
-  { name: "Experiencia", label: "/#experience" },
-  { name: "Proyectos", label: "/#projects" },
-  { name: "Contacto", label: "/#contact" },
+  { name: t("nav.about"), href: pathFor(lang, "#about") },
+  { name: t("nav.experience"), href: pathFor(lang, "#experience") },
+  { name: t("nav.projects"), href: pathFor(lang, "#projects") },
+  { name: t("nav.contact"), href: pathFor(lang, "#contact") },
 ];
+
+// Language selector: links to this same page in the other language(s).
+// Unpublished languages (English until F2.5b) are not offered, but you can always get back from one.
+const otherLangs = (Object.keys(languages) as Lang[]).filter(
+  (other) => other !== lang && (isPublished(other) || !isPublished(lang)),
+);
+const pathname = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-bg/50 border-b border-white/10">
-  <div class="max-w-[1100px] mx-auto flex items-center justify-between h-20 px-6">
-    <a href="/" class="text-xl font-bold tracking-tight hover:text-primary transition-colors">
+<header class="fixed top-0 z-50 w-full border-b border-white/10 bg-bg/50 backdrop-blur-md transition-all duration-300">
+  <div class="mx-auto flex h-20 max-w-[1100px] items-center justify-between px-6">
+    <a
+      href={pathFor(lang)}
+      class="text-xl font-bold tracking-tight transition-colors hover:text-primary"
+    >
       Iván<span class="text-primary">.</span>
     </a>
 
-    <nav class="hidden md:flex gap-8 items-center">
+    <nav aria-label={t("nav.main")} class="hidden items-center gap-8 md:flex">
       {navItems.map((item) => (
         <a
-          href={item.label}
-          class="text-sm font-medium text-gray-300 hover:text-primary transition-colors"
+          href={item.href}
+          class="text-sm font-medium text-gray-300 transition-colors hover:text-primary"
         >
           {item.name}
         </a>
       ))}
 
-      {/* Separador vertical */}
-      <div class="h-4 w-[1px] bg-white/20 mx-2"></div>
+      <!-- Separador vertical -->
+      <div class="mx-2 h-4 w-[1px] bg-white/20"></div>
 
-      {/* ENLACE A LA ZONA PERSONAL */}
+      <!-- Enlace a la zona personal -->
       <a
-        href="/personal"
-        class="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-pink-400 transition-colors group"
+        href={pathFor(lang, "personal")}
+        class="group flex items-center gap-2 text-sm font-medium text-gray-300 transition-colors hover:text-pink-400"
       >
-        <Heart size={16} className="group-hover:fill-pink-400 transition-colors" />
-        Lifestyle
+        <Heart size={16} className="transition-colors group-hover:fill-pink-400" />
+        {t("nav.lifestyle")}
       </a>
     </nav>
 
-    <a
-      href="/ivanCv.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-black bg-primary rounded-full hover:bg-emerald-400 transition-transform hover:-translate-y-1 shadow-lg shadow-primary/20"
-    >
-      CV
-    </a>
+    <div class="flex items-center gap-3">
+      {otherLangs.map((other) => (
+        <a
+          href={switchLangPath(pathname, other)}
+          hreflang={other}
+          lang={other}
+          aria-label={switchLabels[other]}
+          title={switchLabels[other]}
+          class="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-300 uppercase transition-colors hover:border-primary hover:text-primary"
+        >
+          {other}
+        </a>
+      ))}
+      <a
+        href="/ivanCv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-black shadow-lg shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-emerald-400 md:inline-flex"
+      >
+        {t("nav.cv")}
+      </a>
+    </div>
   </div>
 </header>
