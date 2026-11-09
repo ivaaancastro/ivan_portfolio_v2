@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 
-export default function Hero() {
+/** @param {{ photo: import("../utils/images").ResponsiveImage }} props */
+export default function Hero({ photo }) {
   return (
     <section
       id="home"
@@ -67,7 +68,13 @@ export default function Hero() {
           <div className="absolute inset-0 scale-110 transform rounded-full bg-gradient-to-tr from-primary/20 to-transparent blur-3xl" />
 
           <img
-            src="/img/ivan-foto.jpg"
+            src={photo.src}
+            srcSet={photo.srcSet}
+            sizes="(min-width: 768px) 320px, 256px"
+            width={photo.width}
+            height={photo.height}
+            fetchPriority="high"
+            decoding="async"
             alt="Foto de Iván"
             className="relative z-10 aspect-square w-64 rotate-3 rounded-3xl border-2 border-white/10 bg-bg-soft object-cover shadow-2xl transition-transform duration-500 hover:rotate-0 md:w-80"
           />
