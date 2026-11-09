@@ -24,7 +24,7 @@ Portfolio personal de Iván Castro Roel. Astro + React (solo islas) + Tailwind C
 - Commits pequeños y con un único propósito. Varias tareas relacionadas pueden compartir PR si se citan todas.
 - El PR incluye: IDs del roadmap, qué cambia, cómo se ha verificado y capturas (móvil y escritorio) si hay cambios visuales.
 - Usar la preview de Vercel del PR para revisar.
-- **El merge a `main` lo aprueba Iván.** Nada de auto-merge salvo que lo pida.
+- **Preguntar SIEMPRE a Iván antes de fusionar cualquier PR**, aunque esté todo en verde. Cada aprobación sirve solo para el PR concreto que se ha preguntado: no se reutiliza para otros PRs ni para cambios posteriores en el mismo PR. Nada de auto-merge.
 - Prohibido: `push --force` sobre `main`, reescribir historial publicado, borrar ramas remotas sin confirmación.
 
 ## 3. Verificación obligatoria antes de abrir un PR
