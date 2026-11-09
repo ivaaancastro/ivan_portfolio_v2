@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F2
-**Próxima tarea:** F2.3
+**Próxima tarea:** F2.6 (y F2.3b cuando Iván tenga los textos)
 
 ---
 
@@ -105,10 +105,11 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   - Página 404 en los dos idiomas.
 - [x] **F2.5b** Traducción al inglés de todos los textos — [#29](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/29). **Borrador de Claude y revisión obligatoria de Iván**, porque son textos personales (biografía, experiencia, Lifestyle).
   - Inglés publicado (`publishedLangs = ["es", "en"]`). Textos nuevos: añadir siempre las dos versiones.
-- [ ] **F2.3** Páginas de caso de estudio (D2): `/proyectos/[slug]` y `/en/projects/[slug]`.
-  - Contexto, problema, solución, decisiones técnicas, stack, capturas y enlaces (repo / demo).
-  - La tarjeta enlaza a la página. La modal se mantiene como vista rápida o desaparece, según se decida en F3.
-  - Contenido de partida: el texto actual de cada proyecto y el README de su repo. Iván lo revisa.
+- [x] **F2.3** Páginas de caso de estudio (D2): `/proyectos/[slug]` y `/en/projects/[slug]` — [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
+  - Estructura: cabecera, portada, cuerpo del MDX, ficha (stack y repo) y navegación anterior/siguiente. Imagen OG por proyecto (portada a 1200×630).
+  - La tarjeta enlaza a la página. **Se elimina la modal**; si en F3 se quiere una vista rápida, se recupera del historial.
+  - Segmentos de ruta traducidos (`routeSegments`): el selector de idioma, hreflang y sitemap enlazan `proyectos` ↔ `projects`.
+- [ ] **F2.3b** Ampliar los textos de cada caso de estudio: contexto, problema, solución, decisiones técnicas, capturas y demo si la hay. Contenido de partida: el texto actual y el README de cada repo. **Lo escribe o revisa Iván**, en los dos idiomas.
 - [ ] **F2.6** View Transitions entre páginas (respetando `prefers-reduced-motion`)
 
 ## F3 · Rediseño
@@ -187,3 +188,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.2 · Proyectos (MDX por idioma), experiencia y stack en Content Collections; texto renderizado idéntico · [#27](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/27)
 - 2026-11-09 · F2.5 · Routing ES/EN, diccionario, selector, hreflang, sitemap y 404 bilingüe; inglés sin publicar hasta F2.5b · [#28](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/28)
 - 2026-11-09 · F2.5b · Traducción al inglés (borrador revisado por Iván) y publicación de `/en` · [#29](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/29)
+- 2026-11-09 · F2.3 · Páginas de caso de estudio en ES/EN; las tarjetas enlazan a ellas y se retira la modal · [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
