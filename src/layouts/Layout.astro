@@ -11,6 +11,8 @@ interface Props {
   description?: string;
   /** Absolute or root-relative URL of the share image (1200x630). */
   image?: string;
+  /** Alt text of the share image; defaults to the photo of Iván. */
+  imageAlt?: string;
   /** Hide the page from search engines (e.g. 404). */
   noindex?: boolean;
 }
@@ -22,6 +24,7 @@ const {
   title,
   description = t("meta.description"),
   image = "/og.png",
+  imageAlt = t("meta.ogImageAlt"),
   noindex: noindexProp = false,
 } = Astro.props;
 
@@ -84,7 +87,7 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={t("meta.ogImageAlt")} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

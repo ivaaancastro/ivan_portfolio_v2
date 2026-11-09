@@ -1,29 +1,23 @@
 ---
 import { Image } from "astro:assets";
-import { render } from "astro:content";
-import { X, Activity, Star } from "lucide-react";
-import { Github } from "./icons/brand";
+import { Activity, Star } from "lucide-react";
 import { icons } from "../utils/icons";
 import { getProjects, projectSlug } from "../utils/content";
-import { getLang, useTranslations } from "../i18n/utils";
+import { getLang, projectPath, useTranslations } from "../i18n/utils";
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 
-// Content lives in src/content/projects/es/*.mdx (the MDX body is the dialog text).
-const projects = await Promise.all(
-  (await getProjects(lang)).map(async (entry) => ({
-    ...entry.data,
-    id: projectSlug(entry),
-    Icon: icons[entry.data.icon],
-    Content: (await render(entry)).Content,
-  })),
-);
+// Content lives in src/content/projects/<lang>/*.mdx; the MDX body is the case study page.
+const projects = (await getProjects(lang)).map((entry) => ({
+  ...entry.data,
+  href: projectPath(lang, projectSlug(entry)),
+  Icon: icons[entry.data.icon],
+}));
 
 const IMAGE_WIDTHS = [400, 700, 1000, 1400];
 const CARD_SIZES = "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw";
 const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
-const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
 ---
 
 <section id="projects" class="relative bg-black/20 py-24">
@@ -77,15 +71,13 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
             <!-- Contenido Resumido -->
             <div class="flex grow flex-col p-6">
               <h3 class="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary">
-                <!-- The button covers the whole card (after:inset-0) so the card is clickable and keyboard accessible. -->
-                <button
-                  type="button"
-                  aria-haspopup="dialog"
-                  data-dialog-open={`project-${project.id}`}
-                  class="text-left outline-none after:absolute after:inset-0 after:z-30 after:content-['']"
+                <!-- The link covers the whole card (after:inset-0) so the card is clickable and keyboard accessible. -->
+                <a
+                  href={project.href}
+                  class="outline-none after:absolute after:inset-0 after:z-30 after:content-['']"
                 >
                   {project.title}
-                </button>
+                </a>
               </h3>
               <p class="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
               <div class="mt-auto flex flex-wrap gap-2">
@@ -105,89 +97,5 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
         );
       })}
     </div>
-
-    <!-- Modales: un <dialog> nativo por proyecto (Esc, foco y backdrop los gestiona el navegador) -->
-    {projects.map((project) => (
-      <dialog
-        id={`project-${project.id}`}
-        aria-labelledby={`project-${project.id}-title`}
-        class="project-dialog fixed inset-x-0 top-auto bottom-0 m-0 h-[85vh] max-h-[85vh] w-full max-w-none flex-col overflow-hidden rounded-t-3xl border-x border-t border-white/10 bg-surface p-0 text-gray-300 shadow-2xl open:flex md:inset-0 md:m-auto md:h-fit md:max-h-[90vh] md:max-w-2xl md:rounded-3xl md:border"
-      >
-        <!-- Handle visual (solo móvil) -->
-        <div class="pointer-events-none absolute top-0 z-50 flex w-full justify-center pt-3 pb-1 md:hidden">
-          <div class="h-1.5 w-12 rounded-full bg-white/20" />
-        </div>
-
-        <form method="dialog" class="contents">
-          <button
-            type="submit"
-            autofocus
-            aria-label={t("projects.close")}
-            class="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
-          >
-            <X size={20} aria-hidden="true" />
-          </button>
-        </form>
-
-        <!-- 1. Header (imagen), fijo -->
-        <div class="relative h-56 shrink-0 md:h-80">
-          <Image
-            src={project.cover}
-            widths={IMAGE_WIDTHS}
-            sizes={MODAL_SIZES}
-            format="webp"
-            alt={project.title}
-            class="h-full w-full object-cover"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-
-          <div class="absolute right-6 bottom-4 left-6">
-            <div class="mb-2 flex items-center gap-3">
-              <h3
-                id={`project-${project.id}-title`}
-                class="text-2xl font-bold text-white shadow-black drop-shadow-lg md:text-4xl"
-              >
-                {project.title}
-              </h3>
-              {project.featured && (
-                <span class="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
-                  <Star size={12} className="fill-current" aria-hidden="true" />{" "}
-                  {t("projects.featured")}
-                </span>
-              )}
-            </div>
-
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span class="rounded-full bg-primary/90 px-2 py-1 text-[10px] font-semibold text-black shadow-lg backdrop-blur-md md:text-xs">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Body (texto), única parte con scroll -->
-        <div class="flex-1 space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg [&_code]:text-primary [&_h4]:font-bold [&_h4]:text-white [&_li+li]:mt-1 [&_ul]:list-disc [&_ul]:pl-5">
-          <project.Content />
-        </div>
-
-        <!-- 3. Footer (botón), siempre visible -->
-        <div class="z-20 shrink-0 border-t border-white/10 bg-surface p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:pb-6">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
-          >
-            <Github size={20} aria-hidden="true" /> {t("projects.viewCode")}
-          </a>
-        </div>
-      </dialog>
-    ))}
   </div>
 </section>
-
-<script>
-  import "../scripts/project-dialogs";
-</script>

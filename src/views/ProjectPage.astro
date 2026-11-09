@@ -1,0 +1,157 @@
+---
+import { getImage, Image } from "astro:assets";
+import { render, type CollectionEntry } from "astro:content";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { Github } from "../components/icons/brand";
+import { icons } from "../utils/icons";
+import { getProjects, projectSlug } from "../utils/content";
+import { getLang, pathFor, projectPath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
+
+const { entry } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const project = entry.data;
+const slug = projectSlug(entry);
+const Icon = icons[project.icon];
+const { Content } = await render(entry);
+
+// Previous / next project, in the same order as the home grid (wraps around).
+const all = await getProjects(lang);
+const index = all.findIndex((other) => projectSlug(other) === slug);
+const prev = all[(index - 1 + all.length) % all.length];
+const next = all[(index + 1) % all.length];
+const neighbours = [
+  { entry: prev, label: t("projects.prev"), dir: "prev" },
+  { entry: next, label: t("projects.next"), dir: "next" },
+] as const;
+
+// Share image: the cover cropped to 1200x630.
+const ogImage = await getImage({
+  src: project.cover,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  format: "jpg",
+});
+
+const title = t("projects.metaTitle").replace("{title}", project.title);
+---
+
+<Layout title={title} description={project.shortDesc} image={ogImage.src} imageAlt={project.title}>
+  <Navbar />
+
+  <main class="px-6 pt-32 pb-28">
+    <article class="mx-auto max-w-[900px]">
+      <a
+        href={pathFor(lang, "#projects")}
+        class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} aria-hidden="true" />
+        {t("projects.back")}
+      </a>
+
+      <!-- Cabecera -->
+      <header class="mb-10 animate-fade-up">
+        <div class="mb-4 flex flex-wrap items-center gap-3">
+          <span class="rounded-full border border-white/10 bg-white/5 p-2 text-primary">
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </span>
+          {project.featured && (
+            <span class="flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black">
+              <Star size={12} className="fill-current" aria-hidden="true" />
+              {t("projects.featured")}
+            </span>
+          )}
+        </div>
+        <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
+        <p class="max-w-2xl text-lg text-muted md:text-xl">{project.shortDesc}</p>
+      </header>
+
+      <Image
+        src={project.cover}
+        widths={[400, 700, 1000, 1400, 1800]}
+        sizes="(min-width: 948px) 900px, 100vw"
+        format="webp"
+        alt={project.title}
+        loading="eager"
+        fetchpriority="high"
+        class="mb-12 aspect-video w-full rounded-2xl border border-white/10 object-cover"
+      />
+
+      <div class="grid gap-12 md:grid-cols-[1fr_240px]">
+        <!-- Texto del caso de estudio (cuerpo del MDX) -->
+        <div class="space-y-4 text-base leading-relaxed text-gray-300 md:text-lg [&_code]:text-primary [&_h2]:pt-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_li+li]:mt-1 [&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5">
+          <Content />
+        </div>
+
+        <!-- Ficha: stack y enlaces -->
+        <aside class="space-y-8 md:sticky md:top-28 md:self-start">
+          <section>
+            <h2 class="mb-3 text-sm font-bold tracking-wider text-white uppercase">
+              {t("projects.stack")}
+            </h2>
+            <ul class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li class="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h2 class="mb-3 text-sm font-bold tracking-wider text-white uppercase">
+              {t("projects.links")}
+            </h2>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-black transition-colors hover:bg-primary"
+            >
+              <Github size={18} aria-hidden="true" />
+              {t("projects.viewCode")}
+            </a>
+          </section>
+        </aside>
+      </div>
+
+      <!-- Navegación entre proyectos -->
+      {all.length > 1 && (
+        <nav aria-label={t("projects.more")} class="mt-20 border-t border-white/10 pt-10">
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {neighbours.map(({ entry: other, label, dir }) => (
+              <li class={dir === "next" ? "sm:text-right" : ""}>
+                <a
+                  href={projectPath(lang, projectSlug(other))}
+                  class:list={[
+                    "group flex h-full flex-col gap-1 rounded-2xl border border-white/10 bg-card p-5 transition-colors hover:border-primary/50",
+                    { "sm:items-end": dir === "next" },
+                  ]}
+                >
+                  <span class="flex items-center gap-1 text-xs font-medium text-muted">
+                    {dir === "prev" && <ArrowLeft size={14} aria-hidden="true" />}
+                    {label}
+                    {dir === "next" && <ArrowRight size={14} aria-hidden="true" />}
+                  </span>
+                  <span class="font-bold text-white transition-colors group-hover:text-primary">
+                    {other.data.title}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

@@ -11,7 +11,7 @@ order: 1
 
 Proyecto full-stack personal construido con estándares de ingeniería de producción: un backend transaccional para retail multimercado con Spring Boot y una vitrina editorial en Next.js. Todo el desarrollo sigue Spec-Driven Development, con specs, ADRs y changelog versionados.
 
-#### Motores de negocio:
+## Motores de negocio:
 
 - **Catálogo:** productos con variantes físicas (SKU) organizados por familia, con consultas optimizadas sin N+1.
 - **Precios multimercado:** tarificación multidivisa (ES/US/UK/CH) con desglose impositivo, toda la aritmética financiera en BigDecimal.
@@ -20,7 +20,7 @@ Proyecto full-stack personal construido con estándares de ingeniería de produc
 - **Búsqueda híbrida con IA:** embeddings con pgvector (HNSW) vía Spring AI, con fallback a texto cuando no hay API key.
 - **Panel de administración:** roles ADMIN/USER con JWT y gestión de catálogo, stock y precios.
 
-#### Calidad y proceso:
+## Calidad y proceso:
 
 - **608 tests** (249 backend con >90% de cobertura, 359 frontend) y E2E con Playwright en 3 navegadores.
 - **Auditorías en CI:** accesibilidad con axe sobre 14 rutas y Core Web Vitals con Lighthouse, ambas en verde.

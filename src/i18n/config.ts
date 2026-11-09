@@ -14,6 +14,14 @@ export const switchLabels: Record<Lang, string> = {
   en: "Read this page in English",
 };
 
+/**
+ * Route segments that are translated in the URL ("/proyectos/forma" ↔ "/en/projects/forma").
+ * Segments not listed here are the same in every language ("personal").
+ */
+export const routeSegments = {
+  projects: { es: "proyectos", en: "projects" },
+} as const satisfies Record<string, Record<Lang, string>>;
+
 export const ogLocales: Record<Lang, string> = { es: "es_ES", en: "en_US" };
 
 /**
