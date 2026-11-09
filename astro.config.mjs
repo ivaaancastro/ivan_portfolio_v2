@@ -4,6 +4,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap(), mdx()],
 
   // Self-hosted Inter (downloaded from Fontsource at build time, served from our domain).
   fonts: [

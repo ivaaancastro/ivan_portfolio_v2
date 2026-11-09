@@ -1,0 +1,24 @@
+[
+  {
+    "id": "indra-software-technician",
+    "company": "INDRA",
+    "role": { "es": "Técnico de Software" },
+    "period": { "es": "Jun 2022 - Mar 2023" },
+    "desc": {
+      "es": "Soporte en Bases de Datos y SLOs. Administración de entornos Linux y desarrollo de scripts de automatización."
+    },
+    "tags": ["Java", "Python", "Linux", "SQL"],
+    "order": 1
+  },
+  {
+    "id": "indra-intern",
+    "company": "INDRA",
+    "role": { "es": "Estudiante en Prácticas" },
+    "period": { "es": "Mar 2022 - Jun 2022" },
+    "desc": {
+      "es": "Formación intensiva en desarrollo Java y tecnologías web. Participación en metodologías ágiles y trabajo en equipo."
+    },
+    "tags": ["Java", "HTML/CSS", "JavaScript"],
+    "order": 2
+  }
+]
