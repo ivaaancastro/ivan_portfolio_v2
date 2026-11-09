@@ -9,13 +9,13 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 ## Estado general
 
-| Fase | Objetivo | Estado |
-| :--- | :--- | :--- |
-| F0 | Preparación: tooling, CI, flujo de ramas | 🚧 En curso |
-| F1 | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ⏳ Pendiente |
-| F2 | Reestructura: contenido tipado, páginas de proyecto, i18n | ⏳ Pendiente |
-| F3 | Rediseño visual | ⏳ Pendiente |
-| F4 | Pulido y medición | ⏳ Pendiente |
+| Fase | Objetivo                                                              | Estado       |
+| :--- | :-------------------------------------------------------------------- | :----------- |
+| F0   | Preparación: tooling, CI, flujo de ramas                              | 🚧 En curso  |
+| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ⏳ Pendiente |
+| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ⏳ Pendiente |
+| F3   | Rediseño visual                                                       | ⏳ Pendiente |
+| F4   | Pulido y medición                                                     | ⏳ Pendiente |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
@@ -39,33 +39,39 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 ## F1 · Saneamiento (sin cambios visuales)
 
 **Dependencias y seguridad**
+
 - [ ] **F1.1** Subir Astro 6 → 7 y `@astrojs/react` (seguir guía oficial de migración)
 - [ ] **F1.2** Actualizar React, Tailwind, framer-motion → `motion`, lucide-react 1.x
 - [ ] **F1.3** `npm audit` a 0 vulnerabilidades (había 19, 1 crítica en `astro`)
 
 **Limpieza**
+
 - [ ] **F1.4** Borrar restos de plantilla: `Welcome.astro`, `src/assets/astro.svg`, `src/assets/background.svg`
 - [ ] **F1.5** Borrar assets sin uso: `public/img/19C23CDF-…jpeg`, `public/ivanCvHoriz.pdf` (aprobado por Iván el 2026-11-09)
 - [ ] **F1.6** Imports sin usar (Navbar), `<strong>` anidado (About), estilos duplicados en `Layout.astro`
 - [ ] **F1.7** README real del proyecto
 
 **Strava**
+
 - [ ] **F1.8** `strava.ts`: comprobar `response.ok` en token, tipar respuesta, log claro si falla
 - [ ] **F1.9** Refresco automático de km: Deploy Hook de Vercel + cron diario (GitHub Action o Vercel Cron)
 
 **Rendimiento**
+
 - [ ] **F1.10** Mover imágenes a `src/assets` y servirlas con `<Image>/<Picture>` (AVIF/WebP, `srcset`)
 - [ ] **F1.11** Imagen LCP del Hero con `loading="eager"` + `fetchpriority="high"`
 - [ ] **F1.12** Fuente Inter autoalojada (Astro Fonts / Fontsource) en vez de Google Fonts
 - [ ] **F1.13** Medir JS cliente por página (línea base antes de F3)
 
 **Accesibilidad**
+
 - [ ] **F1.14** Modal de proyectos: `role="dialog"`, `aria-modal`, cierre con Esc, foco atrapado y devuelto, bloquear scroll
 - [ ] **F1.15** Tarjetas de proyecto accesibles por teclado (`<button>` o enlace)
 - [ ] **F1.16** `alt` en todas las imágenes, `aria-label` en botones de icono, `prefers-reduced-motion`
 - [ ] **F1.17** `rel="noopener noreferrer"` en todos los `target="_blank"`
 
 **SEO y móvil**
+
 - [ ] **F1.18** `site` en `astro.config`, `@astrojs/sitemap`, `robots.txt`, canonical
 - [ ] **F1.19** Open Graph + Twitter card + imagen OG, `description` por página
 - [ ] **F1.20** `viewport` con `initial-scale=1`, `viewport-fit=cover`; definir utilidad `pb-safe` (safe-area)
@@ -76,9 +82,9 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 - [ ] **F2.1** Todo a TypeScript (`.jsx` → `.tsx` / `.astro`)
 - [ ] **F2.2** Content Collections: `projects`, `experience`, `stack` (con esquema Zod)
-- [ ] **F2.3** Páginas de caso de estudio `/proyectos/[slug]` — *según decisión D2*
+- [ ] **F2.3** Páginas de caso de estudio `/proyectos/[slug]` — _según decisión D2_
 - [ ] **F2.4** Componentes `.astro` por defecto; React solo en islas interactivas
-- [ ] **F2.5** i18n ES/EN — *según decisión D1*
+- [ ] **F2.5** i18n ES/EN — _según decisión D1_
 - [ ] **F2.6** View Transitions entre páginas
 
 ## F3 · Rediseño
@@ -104,23 +110,23 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Tomadas
 
-| ID | Fecha | Decisión | Motivo |
-| :--- | :--- | :--- | :--- |
-| D0 | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
-| D5 | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main` | `master` ya no aportaba nada y estaba desfasada |
-| D6 | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins) | Garantizar que todo pasa por PR, preview de Vercel y CI |
-| D7 | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5) | No se usan en la web |
+| ID  | Fecha      | Decisión                                                                | Motivo                                                                                        |
+| :-- | :--------- | :---------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                    | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
+| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main` | `master` ya no aportaba nada y estaba desfasada                                               |
+| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                   | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
+| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                   | No se usan en la web                                                                          |
 
 **Entorno verificado (2026-11-09):** las variables `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`, `STRAVA_ATHLETE_ID` y `STRAVA_REDIRECT_URI` existen en Vercel para producción y preview. Las previews de Vercel tienen protección SSO (hay que iniciar sesión en Vercel para verlas).
 
 ### Pendientes
 
-| ID | Pregunta | Necesaria antes de |
-| :--- | :--- | :--- |
-| D1 | ¿Web bilingüe ES/EN? | F2.5 |
-| D2 | ¿Páginas de caso de estudio por proyecto? | F2.3 |
-| D3 | Referencias de estilo / dirección visual | F3.2 |
-| D4 | ¿Mantener el teléfono público en la web? | F4.4 |
+| ID  | Pregunta                                  | Necesaria antes de |
+| :-- | :---------------------------------------- | :----------------- |
+| D1  | ¿Web bilingüe ES/EN?                      | F2.5               |
+| D2  | ¿Páginas de caso de estudio por proyecto? | F2.3               |
+| D3  | Referencias de estilo / dirección visual  | F3.2               |
+| D4  | ¿Mantener el teléfono público en la web?  | F4.4               |
 
 ## Backlog / ideas
 

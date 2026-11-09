@@ -7,35 +7,65 @@ const projects = [
     id: 0,
     title: "Nexus Commerce Core",
     featured: true,
-    shortDesc: "Backend transaccional de alto rendimiento para retail global, con vitrina editorial en Next.js.",
+    shortDesc:
+      "Backend transaccional de alto rendimiento para retail global, con vitrina editorial en Next.js.",
     fullDesc: (
       <>
         <p className="mb-4">
-          Proyecto full-stack personal construido con estándares de ingeniería de producción: un backend
-          transaccional para retail multimercado con Spring Boot y una vitrina editorial en Next.js.
-          Todo el desarrollo sigue Spec-Driven Development, con specs, ADRs y changelog versionados.
+          Proyecto full-stack personal construido con estándares de ingeniería de producción: un
+          backend transaccional para retail multimercado con Spring Boot y una vitrina editorial en
+          Next.js. Todo el desarrollo sigue Spec-Driven Development, con specs, ADRs y changelog
+          versionados.
         </p>
-        <h4 className="text-white font-bold mb-2">Motores de negocio:</h4>
-        <ul className="list-disc pl-5 space-y-1 mb-4">
-          <li><strong>Catálogo:</strong> productos con variantes físicas (SKU) organizados por familia, con consultas optimizadas sin N+1.</li>
-          <li><strong>Precios multimercado:</strong> tarificación multidivisa (ES/US/UK/CH) con desglose impositivo, toda la aritmética financiera en BigDecimal.</li>
-          <li><strong>Inventario omnicanal:</strong> cálculo ATS y bloqueo pesimista (<code className="text-primary">SELECT ... FOR UPDATE</code>) para impedir el over-selling.</li>
-          <li><strong>Checkout transaccional:</strong> idempotencia por cabecera, snapshot financiero inmutable y devoluciones con ventana de 30 días.</li>
-          <li><strong>Búsqueda híbrida con IA:</strong> embeddings con pgvector (HNSW) vía Spring AI, con fallback a texto cuando no hay API key.</li>
-          <li><strong>Panel de administración:</strong> roles ADMIN/USER con JWT y gestión de catálogo, stock y precios.</li>
+        <h4 className="mb-2 font-bold text-white">Motores de negocio:</h4>
+        <ul className="mb-4 list-disc space-y-1 pl-5">
+          <li>
+            <strong>Catálogo:</strong> productos con variantes físicas (SKU) organizados por
+            familia, con consultas optimizadas sin N+1.
+          </li>
+          <li>
+            <strong>Precios multimercado:</strong> tarificación multidivisa (ES/US/UK/CH) con
+            desglose impositivo, toda la aritmética financiera en BigDecimal.
+          </li>
+          <li>
+            <strong>Inventario omnicanal:</strong> cálculo ATS y bloqueo pesimista (
+            <code className="text-primary">SELECT ... FOR UPDATE</code>) para impedir el
+            over-selling.
+          </li>
+          <li>
+            <strong>Checkout transaccional:</strong> idempotencia por cabecera, snapshot financiero
+            inmutable y devoluciones con ventana de 30 días.
+          </li>
+          <li>
+            <strong>Búsqueda híbrida con IA:</strong> embeddings con pgvector (HNSW) vía Spring AI,
+            con fallback a texto cuando no hay API key.
+          </li>
+          <li>
+            <strong>Panel de administración:</strong> roles ADMIN/USER con JWT y gestión de
+            catálogo, stock y precios.
+          </li>
         </ul>
-        <h4 className="text-white font-bold mb-2">Calidad y proceso:</h4>
-        <ul className="list-disc pl-5 space-y-1 mb-4">
-          <li><strong>608 tests</strong> (249 backend con &gt;90% de cobertura, 359 frontend) y E2E con Playwright en 3 navegadores.</li>
-          <li><strong>Auditorías en CI:</strong> accesibilidad con axe sobre 14 rutas y Core Web Vitals con Lighthouse, ambas en verde.</li>
-          <li>Arquitectura en capas con DTOs inmutables, errores semánticos RFC 7807 y documentación OpenAPI/Swagger.</li>
+        <h4 className="mb-2 font-bold text-white">Calidad y proceso:</h4>
+        <ul className="mb-4 list-disc space-y-1 pl-5">
+          <li>
+            <strong>608 tests</strong> (249 backend con &gt;90% de cobertura, 359 frontend) y E2E
+            con Playwright en 3 navegadores.
+          </li>
+          <li>
+            <strong>Auditorías en CI:</strong> accesibilidad con axe sobre 14 rutas y Core Web
+            Vitals con Lighthouse, ambas en verde.
+          </li>
+          <li>
+            Arquitectura en capas con DTOs inmutables, errores semánticos RFC 7807 y documentación
+            OpenAPI/Swagger.
+          </li>
         </ul>
       </>
     ),
     tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "pgvector", "Spring AI"],
     image: "/img/nexus-catalog.png",
     link: "https://github.com/ivaaancastro/nexus-commerce-core",
-    icon: <Store className="w-6 h-6" />
+    icon: <Store className="h-6 w-6" />,
   },
   {
     id: 1,
@@ -44,21 +74,35 @@ const projects = [
     fullDesc: (
       <>
         <p className="mb-4">
-          Proyecto personal enfocado en el análisis de datos deportivos. El objetivo es centralizar métricas de entrenamiento y usar Inteligencia Artificial para generar planes personalizados.
+          Proyecto personal enfocado en el análisis de datos deportivos. El objetivo es centralizar
+          métricas de entrenamiento y usar Inteligencia Artificial para generar planes
+          personalizados.
         </p>
-        <h4 className="text-white font-bold mb-2">Características Clave:</h4>
-        <ul className="list-disc pl-5 space-y-1 mb-4">
-          <li><strong>Integración Strava:</strong> Conexión OAuth para importar y analizar actividades automáticamente.</li>
-          <li><strong>Smart Coach (IA):</strong> Módulo que utiliza IA generativa para interpretar el estado de forma y sugerir sesiones.</li>
-          <li><strong>Backend Moderno:</strong> Persistencia de datos y autenticación gestionada con <strong>Supabase</strong>.</li>
-          <li><strong>Dashboard Interactivo:</strong> Gráficos de evolución y distribución de carga con Recharts.</li>
+        <h4 className="mb-2 font-bold text-white">Características Clave:</h4>
+        <ul className="mb-4 list-disc space-y-1 pl-5">
+          <li>
+            <strong>Integración Strava:</strong> Conexión OAuth para importar y analizar actividades
+            automáticamente.
+          </li>
+          <li>
+            <strong>Smart Coach (IA):</strong> Módulo que utiliza IA generativa para interpretar el
+            estado de forma y sugerir sesiones.
+          </li>
+          <li>
+            <strong>Backend Moderno:</strong> Persistencia de datos y autenticación gestionada con{" "}
+            <strong>Supabase</strong>.
+          </li>
+          <li>
+            <strong>Dashboard Interactivo:</strong> Gráficos de evolución y distribución de carga
+            con Recharts.
+          </li>
         </ul>
       </>
     ),
     tags: ["React", "Vite", "Supabase", "OpenAI API", "Strava API", "Tailwind"],
     image: "/img/dashboard-ai.png",
     link: "https://github.com/ivaaancastro/calculadora-ivan",
-    icon: <Brain className="w-6 h-6" />
+    icon: <Brain className="h-6 w-6" />,
   },
   {
     id: 2,
@@ -67,20 +111,30 @@ const projects = [
     fullDesc: (
       <>
         <p className="mb-4">
-          Este proyecto nace con el objetivo de gestionar un ecosistema de gimnasio moderno, uniendo alto rendimiento deportivo con ingeniería de software de calidad.
+          Este proyecto nace con el objetivo de gestionar un ecosistema de gimnasio moderno, uniendo
+          alto rendimiento deportivo con ingeniería de software de calidad.
         </p>
-        <h4 className="text-white font-bold mb-2">Aspectos Técnicos:</h4>
-        <ul className="list-disc pl-5 space-y-1 mb-4">
-          <li><strong>Arquitectura:</strong> Separación clara entre núcleo de negocio (Java) e interfaz reactiva (React).</li>
-          <li><strong>Infraestructura:</strong> Despliegue en microservicios con Kubernetes para alta disponibilidad.</li>
-          <li><strong>Calidad:</strong> Integración Continua con Jenkins y análisis de código con SonarQube.</li>
+        <h4 className="mb-2 font-bold text-white">Aspectos Técnicos:</h4>
+        <ul className="mb-4 list-disc space-y-1 pl-5">
+          <li>
+            <strong>Arquitectura:</strong> Separación clara entre núcleo de negocio (Java) e
+            interfaz reactiva (React).
+          </li>
+          <li>
+            <strong>Infraestructura:</strong> Despliegue en microservicios con Kubernetes para alta
+            disponibilidad.
+          </li>
+          <li>
+            <strong>Calidad:</strong> Integración Continua con Jenkins y análisis de código con
+            SonarQube.
+          </li>
         </ul>
       </>
     ),
     tags: ["Java", "React", "Docker", "Kubernetes", "Maven"],
     image: "/img/ficfit.png",
     link: "https://github.com/ivaaancastro/ficfit",
-    icon: <Layers className="w-6 h-6" />
+    icon: <Layers className="h-6 w-6" />,
   },
   {
     id: 3,
@@ -89,11 +143,15 @@ const projects = [
     fullDesc: (
       <>
         <p className="mb-4">
-          Aplicación distribuida diseñada para manejar registros, consultas y administración de datos en un entorno cliente-servidor.
+          Aplicación distribuida diseñada para manejar registros, consultas y administración de
+          datos en un entorno cliente-servidor.
         </p>
-        <h4 className="text-white font-bold mb-2">Lo destacado:</h4>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Uso de <strong>Apache Thrift</strong> para la definición de servicios y comunicación eficiente entre lenguajes.</li>
+        <h4 className="mb-2 font-bold text-white">Lo destacado:</h4>
+        <ul className="list-disc space-y-1 pl-5">
+          <li>
+            Uso de <strong>Apache Thrift</strong> para la definición de servicios y comunicación
+            eficiente entre lenguajes.
+          </li>
           <li>Enfoque modular y escalable.</li>
           <li>Persistencia de datos optimizada.</li>
         </ul>
@@ -102,7 +160,7 @@ const projects = [
     tags: ["Java", "Thrift", "Sistemas Distribuidos"],
     image: "/img/gestor_cursos.png",
     link: "https://github.com/ivaaancastro/gestor_cursos",
-    icon: <Code2 className="w-6 h-6" />
+    icon: <Code2 className="h-6 w-6" />,
   },
   {
     id: 4,
@@ -111,10 +169,11 @@ const projects = [
     fullDesc: (
       <>
         <p className="mb-4">
-          Sistema de gestión personal de repositorios desarrollado en Elixir. Diseñado para operar desde la terminal con máxima eficiencia.
+          Sistema de gestión personal de repositorios desarrollado en Elixir. Diseñado para operar
+          desde la terminal con máxima eficiencia.
         </p>
-        <h4 className="text-white font-bold mb-2">Funcionalidades:</h4>
-        <ul className="list-disc pl-5 space-y-1">
+        <h4 className="mb-2 font-bold text-white">Funcionalidades:</h4>
+        <ul className="list-disc space-y-1 pl-5">
           <li>Creación, modificación y eliminación de repositorios.</li>
           <li>Gestión del historial de cambios y commits.</li>
           <li>Control de permisos de acceso de usuarios simulado.</li>
@@ -124,81 +183,90 @@ const projects = [
     tags: ["Elixir", "Git", "Terminal", "CLI"],
     image: "/img/gestor_repositorios.png",
     link: "https://github.com/ivaaancastro/gestor_repositorios",
-    icon: <Terminal className="w-6 h-6" />
-  }
+    icon: <Terminal className="h-6 w-6" />,
+  },
 ];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="py-24 bg-black/20 relative">
-      <div className="max-w-[1100px] mx-auto px-6">
-        
+    <section id="projects" className="relative bg-black/20 py-24">
+      <div className="mx-auto max-w-[1100px] px-6">
         {/* Encabezado de Sección */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white flex items-center gap-3">
+          <h2 className="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
             <Activity className="text-primary" /> Proyectos Destacados
           </h2>
-          <p className="text-muted text-lg max-w-2xl">
+          <p className="max-w-2xl text-lg text-muted">
             Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.
           </p>
         </motion.div>
 
         {/* Grid de Tarjetas */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <motion.article 
+            <motion.article
               key={project.id}
               layoutId={`card-${project.id}`}
               onClick={() => setSelectedProject(project)}
-              className={`group bg-card border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] relative flex flex-col h-full ${
+              className={`group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] ${
                 project.featured ? "md:col-span-2 lg:col-span-2" : ""
               }`}
             >
               {/* Imagen */}
-              <div className={`relative overflow-hidden shrink-0 ${project.featured ? "h-64 lg:h-72" : "h-48"}`}>
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent z-10 opacity-80" />
-                <motion.img 
+              <div
+                className={`relative shrink-0 overflow-hidden ${project.featured ? "h-64 lg:h-72" : "h-48"}`}
+              >
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
+                <motion.img
                   layoutId={`img-${project.id}`}
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                 />
-                <div className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md p-2 rounded-full text-white border border-white/10">
+                <div className="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
                   {project.icon}
                 </div>
-                
+
                 {/* Badge de "Destacado" */}
                 {project.featured && (
-                   <div className="absolute top-4 left-4 z-20 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1">
-                     <Star size={12} className="fill-current" /> Destacado
-                   </div>
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
+                    <Star size={12} className="fill-current" /> Destacado
+                  </div>
                 )}
               </div>
 
               {/* Contenido Resumido */}
-              <div className="p-6 flex flex-col grow">
-                <motion.h3 layoutId={`title-${project.id}`} className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+              <div className="flex grow flex-col p-6">
+                <motion.h3
+                  layoutId={`title-${project.id}`}
+                  className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary"
+                >
                   {project.title}
                 </motion.h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-                  {project.shortDesc}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
+                <p className="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
+                <div className="mt-auto flex flex-wrap gap-2">
                   {project.tags.slice(0, 3).map((tag, i) => (
-                    <span key={i} className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                    <span
+                      key={i}
+                      className="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                    >
                       {tag}
                     </span>
                   ))}
                   {project.tags.length > 3 && (
-                    <span className="text-xs font-medium text-gray-500 px-2 py-1">+{project.tags.length - 3}</span>
+                    <span className="px-2 py-1 text-xs font-medium text-gray-500">
+                      +{project.tags.length - 3}
+                    </span>
                   )}
                 </div>
               </div>
@@ -216,62 +284,65 @@ export default function Projects() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-end md:items-center justify-center p-0 md:p-4"
+                className="fixed inset-0 z-[60] flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm md:items-center md:p-4"
               >
                 <motion.div
                   layoutId={`card-${selectedProject.id}`}
                   // ESTRUCTURA FLEXBOX: Header fijo + Body scrollable + Footer fijo
-                  className="bg-[#1a1d24] w-full max-w-2xl overflow-hidden shadow-2xl border-t border-x border-white/10 
-                             fixed bottom-0 left-0 right-0 rounded-t-3xl h-[85vh] max-h-[85vh]
-                             md:relative md:rounded-3xl md:border md:h-auto md:max-h-[90vh] md:bottom-auto flex flex-col"
+                  className="fixed right-0 bottom-0 left-0 flex h-[85vh] max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border-x border-t border-white/10 bg-[#1a1d24] shadow-2xl md:relative md:bottom-auto md:h-auto md:max-h-[90vh] md:rounded-3xl md:border"
                   onClick={(e) => e.stopPropagation()}
-                  
+
                   initial={{ y: "100%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "100%", opacity: 0 }}
                   transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 >
                   {/* BARRA SUPERIOR (Solo móvil) - Handle visual */}
-                  <div className="md:hidden w-full flex justify-center pt-3 pb-1 absolute top-0 z-50 pointer-events-none">
-                    <div className="w-12 h-1.5 bg-white/20 rounded-full"></div>
+                  <div className="pointer-events-none absolute top-0 z-50 flex w-full justify-center pt-3 pb-1 md:hidden">
+                    <div className="h-1.5 w-12 rounded-full bg-white/20"></div>
                   </div>
 
                   {/* BOTÓN CERRAR */}
-                  <button 
+                  <button
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-primary hover:text-black transition-colors backdrop-blur-sm"
+                    className="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
                   >
                     <X size={20} />
                   </button>
 
                   {/* --- 1. HEADER (Imagen) - Fijo, no hace scroll --- */}
-                  <div className="relative h-56 md:h-80 shrink-0">
-                    <motion.img 
+                  <div className="relative h-56 shrink-0 md:h-80">
+                    <motion.img
                       layoutId={`img-${selectedProject.id}`}
-                      src={selectedProject.image} 
-                      className="w-full h-full object-cover"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                      src={selectedProject.image}
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
-                    
-                    <div className="absolute bottom-4 left-6 right-6">
-                      <div className="flex items-center gap-3 mb-2">
-                        <motion.h3 
-                            layoutId={`title-${selectedProject.id}`}
-                            className="text-2xl md:text-4xl font-bold text-white shadow-black drop-shadow-lg"
+
+                    <div className="absolute right-6 bottom-4 left-6">
+                      <div className="mb-2 flex items-center gap-3">
+                        <motion.h3
+                          layoutId={`title-${selectedProject.id}`}
+                          className="text-2xl font-bold text-white shadow-black drop-shadow-lg md:text-4xl"
                         >
-                            {selectedProject.title}
+                          {selectedProject.title}
                         </motion.h3>
                         {selectedProject.featured && (
-                            <span className="bg-primary text-black text-xs font-bold px-2 py-1 rounded-md shadow-lg flex items-center gap-1">
-                              <Star size={12} className="fill-current" /> Destacado
-                            </span>
+                          <span className="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
+                            <Star size={12} className="fill-current" /> Destacado
+                          </span>
                         )}
                       </div>
-                      
+
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.tags.map((tag, i) => (
-                          <span key={i} className="px-2 py-1 bg-primary/90 text-black font-semibold text-[10px] md:text-xs rounded-full shadow-lg backdrop-blur-md">
+                          <span
+                            key={i}
+                            className="rounded-full bg-primary/90 px-2 py-1 text-[10px] font-semibold text-black shadow-lg backdrop-blur-md md:text-xs"
+                          >
                             {tag}
                           </span>
                         ))}
@@ -280,33 +351,31 @@ export default function Projects() {
                   </div>
 
                   {/* --- 2. BODY (Texto) - Única parte que hace scroll --- */}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="flex-1 overflow-y-auto p-6 md:p-8 text-gray-300 space-y-4 text-base md:text-lg leading-relaxed scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
+                    className="scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex-1 space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
                   >
                     {selectedProject.fullDesc}
                   </motion.div>
 
                   {/* --- 3. FOOTER (Botón) - Siempre visible abajo --- */}
-                  <div className="p-6 border-t border-white/10 bg-[#1a1d24] shrink-0 z-20 pb-safe md:pb-6">
-                      <a 
-                        href={selectedProject.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full bg-white text-black px-6 py-4 rounded-xl font-bold hover:bg-primary transition-colors shadow-lg active:scale-95 transform"
-                      >
-                        <Github size={20} /> Ver Código en GitHub
-                      </a>
+                  <div className="pb-safe z-20 shrink-0 border-t border-white/10 bg-[#1a1d24] p-6 md:pb-6">
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
+                    >
+                      <Github size={20} /> Ver Código en GitHub
+                    </a>
                   </div>
-
                 </motion.div>
               </motion.div>
             </>
           )}
         </AnimatePresence>
-
       </div>
     </section>
   );

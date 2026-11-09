@@ -34,7 +34,7 @@ export async function getStravaStats() {
       ytd_ride_totals: { distance: 0 },
       ytd_swim_totals: { distance: 0 },
       all_run_totals: { distance: 0 },
-      all_ride_totals: { distance: 0 }
+      all_ride_totals: { distance: 0 },
     };
   }
 

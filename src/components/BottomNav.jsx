@@ -10,24 +10,20 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 md:hidden pb-safe">
+    <div className="pb-safe fixed bottom-0 left-0 z-50 w-full md:hidden">
       {/* Fondo con blur potente */}
-      <nav className="bg-[#0e0f12]/90 backdrop-blur-lg border-t border-white/10 px-6 py-4 pb-6">
-        <ul className="flex justify-between items-center">
+      <nav className="border-t border-white/10 bg-[#0e0f12]/90 px-6 py-4 pb-6 backdrop-blur-lg">
+        <ul className="flex items-center justify-between">
           {navItems.map((item, index) => (
             <li key={index}>
-              <a 
+              <a
                 href={item.href}
-                className="flex flex-col items-center gap-1 text-gray-400 hover:text-primary transition-colors active:scale-90 duration-200"
+                className="flex flex-col items-center gap-1 text-gray-400 transition-colors duration-200 hover:text-primary active:scale-90"
               >
                 {/* Icono */}
-                <div className={`${item.label === 'Life' ? 'text-pink-400' : ''}`}>
-                    {item.icon}
-                </div>
+                <div className={`${item.label === "Life" ? "text-pink-400" : ""}`}>{item.icon}</div>
                 {/* Etiqueta pequeña */}
-                <span className="text-[10px] font-medium tracking-wide">
-                    {item.label}
-                </span>
+                <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
               </a>
             </li>
           ))}

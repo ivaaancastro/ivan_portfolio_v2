@@ -43,9 +43,9 @@ Si algo no se ha podido verificar, se dice explícitamente en el PR y al informa
 Al terminar una tarea, **en el mismo PR**:
 
 1. Marcar la casilla `[x]` y añadir el enlace al PR.
-2. Añadir una línea al *Registro de avances* (`AAAA-MM-DD · ID · resumen · PR`).
-3. Actualizar *Estado general*, *Fase actual* y *Próxima tarea*.
-4. Registrar en *Decisiones* cualquier decisión tomada, con fecha y motivo.
+2. Añadir una línea al _Registro de avances_ (`AAAA-MM-DD · ID · resumen · PR`).
+3. Actualizar _Estado general_, _Fase actual_ y _Próxima tarea_.
+4. Registrar en _Decisiones_ cualquier decisión tomada, con fecha y motivo.
 5. Si aparecen problemas o ideas nuevas, añadirlos a la fase o al backlog.
 
 ## 5. Normas de código
