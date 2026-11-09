@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import { X, Code2, Layers, Terminal, Activity, Brain, Store, Star } from "lucide-react";
 import { Github } from "./icons/brand";
 
@@ -195,199 +195,267 @@ const MODAL_SIZES = "(min-width: 768px) 672px, 100vw";
 /** @param {{ images: Record<string, import("../utils/images").ResponsiveImage> }} props */
 export default function Projects({ images }) {
   const [selectedProject, setSelectedProject] = useState(null);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const triggerRef = useRef(null);
+
+  const openProject = (project, trigger) => {
+    triggerRef.current = trigger;
+    setSelectedProject(project);
+  };
+  const closeProject = () => setSelectedProject(null);
+
+  // Dialog behaviour: initial focus, Esc to close, focus trap, scroll lock, focus return.
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeProject();
+        return;
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!dialogRef.current.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      triggerRef.current?.focus();
+    };
+  }, [selectedProject]);
 
   return (
-    <section id="projects" className="relative bg-black/20 py-24">
-      <div className="mx-auto max-w-[1100px] px-6">
-        {/* Encabezado de Sección */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-            <Activity className="text-primary" /> Proyectos Destacados
-          </h2>
-          <p className="max-w-2xl text-lg text-muted">
-            Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.
-          </p>
-        </motion.div>
+    <MotionConfig reducedMotion="user">
+      <section id="projects" className="relative bg-black/20 py-24">
+        <div className="mx-auto max-w-[1100px] px-6">
+          {/* Encabezado de Sección */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
+              <Activity className="text-primary" /> Proyectos Destacados
+            </h2>
+            <p className="max-w-2xl text-lg text-muted">
+              Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.
+            </p>
+          </motion.div>
 
-        {/* Grid de Tarjetas */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <motion.article
-              key={project.id}
-              layoutId={`card-${project.id}`}
-              onClick={() => setSelectedProject(project)}
-              className={`group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] ${
-                project.featured ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
-            >
-              {/* Imagen */}
-              <div
-                className={`relative shrink-0 overflow-hidden ${project.featured ? "h-64 lg:h-72" : "h-48"}`}
+          {/* Grid de Tarjetas */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <motion.article
+                key={project.id}
+                layoutId={`card-${project.id}`}
+                className={`group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] has-[:focus-visible]:border-primary has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
+                  project.featured ? "md:col-span-2 lg:col-span-2" : ""
+                }`}
               >
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
-                <motion.img
-                  layoutId={`img-${project.id}`}
-                  src={images[project.image].src}
-                  srcSet={images[project.image].srcSet}
-                  sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
-                  width={images[project.image].width}
-                  height={images[project.image].height}
-                  loading="lazy"
-                  decoding="async"
-                  alt={project.title}
-                  className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
-                  {project.icon}
-                </div>
-
-                {/* Badge de "Destacado" */}
-                {project.featured && (
-                  <div className="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
-                    <Star size={12} className="fill-current" /> Destacado
-                  </div>
-                )}
-              </div>
-
-              {/* Contenido Resumido */}
-              <div className="flex grow flex-col p-6">
-                <motion.h3
-                  layoutId={`title-${project.id}`}
-                  className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary"
+                {/* Imagen */}
+                <div
+                  className={`relative shrink-0 overflow-hidden ${project.featured ? "h-64 lg:h-72" : "h-48"}`}
                 >
-                  {project.title}
-                </motion.h3>
-                <p className="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
-                <div className="mt-auto flex flex-wrap gap-2">
-                  {project.tags.slice(0, 3).map((tag, i) => (
-                    <span
-                      key={i}
-                      className="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="px-2 py-1 text-xs font-medium text-gray-500">
-                      +{project.tags.length - 3}
-                    </span>
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
+                  <motion.img
+                    layoutId={`img-${project.id}`}
+                    src={images[project.image].src}
+                    srcSet={images[project.image].srcSet}
+                    sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
+                    width={images[project.image].width}
+                    height={images[project.image].height}
+                    loading="lazy"
+                    decoding="async"
+                    alt={project.title}
+                    className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
+                    {project.icon}
+                  </div>
+
+                  {/* Badge de "Destacado" */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
+                      <Star size={12} className="fill-current" /> Destacado
+                    </div>
                   )}
                 </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
 
-        {/* MODAL COMPLETO MEJORADO */}
-        <AnimatePresence>
-          {selectedProject && (
-            <>
-              {/* BACKDROP: z-[60] para tapar la BottomNav */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedProject(null)}
-                className="fixed inset-0 z-[60] flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm md:items-center md:p-4"
-              >
-                <motion.div
-                  layoutId={`card-${selectedProject.id}`}
-                  // ESTRUCTURA FLEXBOX: Header fijo + Body scrollable + Footer fijo
-                  className="fixed right-0 bottom-0 left-0 flex h-[85vh] max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border-x border-t border-white/10 bg-[#1a1d24] shadow-2xl md:relative md:bottom-auto md:h-auto md:max-h-[90vh] md:rounded-3xl md:border"
-                  onClick={(e) => e.stopPropagation()}
-
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "100%", opacity: 0 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                >
-                  {/* BARRA SUPERIOR (Solo móvil) - Handle visual */}
-                  <div className="pointer-events-none absolute top-0 z-50 flex w-full justify-center pt-3 pb-1 md:hidden">
-                    <div className="h-1.5 w-12 rounded-full bg-white/20"></div>
-                  </div>
-
-                  {/* BOTÓN CERRAR */}
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
+                {/* Contenido Resumido */}
+                <div className="flex grow flex-col p-6">
+                  <motion.h3
+                    layoutId={`title-${project.id}`}
+                    className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary"
                   >
-                    <X size={20} />
-                  </button>
+                    {/* The button covers the whole card (after:inset-0) so the card is clickable and keyboard accessible. */}
+                    <button
+                      type="button"
+                      aria-haspopup="dialog"
+                      onClick={(event) => openProject(project, event.currentTarget)}
+                      className="text-left outline-none after:absolute after:inset-0 after:z-30 after:content-['']"
+                    >
+                      {project.title}
+                    </button>
+                  </motion.h3>
+                  <p className="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
+                  <div className="mt-auto flex flex-wrap gap-2">
+                    {project.tags.slice(0, 3).map((tag, i) => (
+                      <span
+                        key={i}
+                        className="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="px-2 py-1 text-xs font-medium text-gray-500">
+                        +{project.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
 
-                  {/* --- 1. HEADER (Imagen) - Fijo, no hace scroll --- */}
-                  <div className="relative h-56 shrink-0 md:h-80">
-                    <motion.img
-                      layoutId={`img-${selectedProject.id}`}
-                      src={images[selectedProject.image].src}
-                      srcSet={images[selectedProject.image].srcSet}
-                      sizes={MODAL_SIZES}
-                      width={images[selectedProject.image].width}
-                      height={images[selectedProject.image].height}
-                      alt={selectedProject.title}
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
+          {/* MODAL COMPLETO MEJORADO */}
+          <AnimatePresence>
+            {selectedProject && (
+              <>
+                {/* BACKDROP: z-[60] para tapar la BottomNav */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={closeProject}
+                  className="fixed inset-0 z-[60] flex items-end justify-center bg-black/80 p-0 backdrop-blur-sm md:items-center md:p-4"
+                >
+                  <motion.div
+                    ref={dialogRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="project-dialog-title"
+                    layoutId={`card-${selectedProject.id}`}
+                    // ESTRUCTURA FLEXBOX: Header fijo + Body scrollable + Footer fijo
+                    className="fixed right-0 bottom-0 left-0 flex h-[85vh] max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border-x border-t border-white/10 bg-[#1a1d24] shadow-2xl md:relative md:bottom-auto md:h-auto md:max-h-[90vh] md:rounded-3xl md:border"
+                    onClick={(e) => e.stopPropagation()}
 
-                    <div className="absolute right-6 bottom-4 left-6">
-                      <div className="mb-2 flex items-center gap-3">
-                        <motion.h3
-                          layoutId={`title-${selectedProject.id}`}
-                          className="text-2xl font-bold text-white shadow-black drop-shadow-lg md:text-4xl"
-                        >
-                          {selectedProject.title}
-                        </motion.h3>
-                        {selectedProject.featured && (
-                          <span className="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
-                            <Star size={12} className="fill-current" /> Destacado
-                          </span>
-                        )}
-                      </div>
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: "100%", opacity: 0 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  >
+                    {/* BARRA SUPERIOR (Solo móvil) - Handle visual */}
+                    <div className="pointer-events-none absolute top-0 z-50 flex w-full justify-center pt-3 pb-1 md:hidden">
+                      <div className="h-1.5 w-12 rounded-full bg-white/20"></div>
+                    </div>
 
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProject.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="rounded-full bg-primary/90 px-2 py-1 text-[10px] font-semibold text-black shadow-lg backdrop-blur-md md:text-xs"
+                    {/* BOTÓN CERRAR */}
+                    <button
+                      ref={closeButtonRef}
+                      type="button"
+                      onClick={closeProject}
+                      aria-label="Cerrar"
+                      className="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-colors hover:bg-primary hover:text-black"
+                    >
+                      <X size={20} />
+                    </button>
+
+                    {/* --- 1. HEADER (Imagen) - Fijo, no hace scroll --- */}
+                    <div className="relative h-56 shrink-0 md:h-80">
+                      <motion.img
+                        layoutId={`img-${selectedProject.id}`}
+                        src={images[selectedProject.image].src}
+                        srcSet={images[selectedProject.image].srcSet}
+                        sizes={MODAL_SIZES}
+                        width={images[selectedProject.image].width}
+                        height={images[selectedProject.image].height}
+                        alt={selectedProject.title}
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a1d24] via-transparent to-transparent" />
+
+                      <div className="absolute right-6 bottom-4 left-6">
+                        <div className="mb-2 flex items-center gap-3">
+                          <motion.h3
+                            id="project-dialog-title"
+                            layoutId={`title-${selectedProject.id}`}
+                            className="text-2xl font-bold text-white shadow-black drop-shadow-lg md:text-4xl"
                           >
-                            {tag}
-                          </span>
-                        ))}
+                            {selectedProject.title}
+                          </motion.h3>
+                          {selectedProject.featured && (
+                            <span className="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs font-bold text-black shadow-lg">
+                              <Star size={12} className="fill-current" /> Destacado
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="rounded-full bg-primary/90 px-2 py-1 text-[10px] font-semibold text-black shadow-lg backdrop-blur-md md:text-xs"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* --- 2. BODY (Texto) - Única parte que hace scroll --- */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="flex-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
-                  >
-                    {selectedProject.fullDesc}
-                  </motion.div>
-
-                  {/* --- 3. FOOTER (Botón) - Siempre visible abajo --- */}
-                  <div className="pb-safe z-20 shrink-0 border-t border-white/10 bg-[#1a1d24] p-6 md:pb-6">
-                    <a
-                      href={selectedProject.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
+                    {/* --- 2. BODY (Texto) - Única parte que hace scroll --- */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="flex-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent space-y-4 overflow-y-auto p-6 text-base leading-relaxed text-gray-300 md:p-8 md:text-lg"
                     >
-                      <Github size={20} /> Ver Código en GitHub
-                    </a>
-                  </div>
+                      {selectedProject.fullDesc}
+                    </motion.div>
+
+                    {/* --- 3. FOOTER (Botón) - Siempre visible abajo --- */}
+                    <div className="pb-safe z-20 shrink-0 border-t border-white/10 bg-[#1a1d24] p-6 md:pb-6">
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 font-bold text-black shadow-lg transition-colors hover:bg-primary active:scale-95"
+                      >
+                        <Github size={20} /> Ver Código en GitHub
+                      </a>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </div>
-    </section>
+              </>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+    </MotionConfig>
   );
 }
