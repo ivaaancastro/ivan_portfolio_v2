@@ -1,5 +1,5 @@
 // Contact: copies the email to the clipboard and announces it to screen readers.
-const status = document.querySelector<HTMLElement>("[data-copy-status]");
+const copyStatus = document.querySelector<HTMLElement>("[data-copy-status]");
 
 for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
   if (!navigator.clipboard) {
@@ -19,12 +19,12 @@ for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")
     const copied = button.dataset.copiedLabel ?? "";
     button.dataset.done = "";
     if (label) label.textContent = copied;
-    if (status) status.textContent = copied;
+    if (copyStatus) copyStatus.textContent = copied;
     window.clearTimeout(timer);
     timer = window.setTimeout(() => {
       delete button.dataset.done;
       if (label) label.textContent = original;
-      if (status) status.textContent = "";
+      if (copyStatus) copyStatus.textContent = "";
     }, 2000);
   });
 }
