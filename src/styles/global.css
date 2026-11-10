@@ -60,26 +60,37 @@
 }
 
 @theme {
-  /* Type scale (classic 12·14·16·18·21·24·36·48·60·72). Display text is narrow Archivo. */
+  /* Type scale. Small sizes are fixed; from the lead up every step is fluid (375 → 1280 px)
+     so headings grow together with the viewport instead of jumping at a breakpoint. The
+     ratio between steps stays ~1.25 on phones and ~1.33 on desktop. */
   --text-caption: 0.75rem;
   --text-caption--line-height: 1.4;
   --text-small: 0.875rem;
   --text-small--line-height: 1.5;
   --text-body: 1rem;
   --text-body--line-height: 1.6;
-  --text-lead: 1.3125rem;
+  --text-lead: clamp(1.125rem, 1.07rem + 0.25vw, 1.3125rem);
   --text-lead--line-height: 1.5;
-  --text-h3: 1.5rem;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
   --text-h3--line-height: 1.25;
-  --text-h2: 2.25rem;
-  --text-h2--line-height: 1.1;
-  --text-h1: 3rem;
-  --text-h1--line-height: 1;
-  --text-title: clamp(3.75rem, 9.5vw, 7.75rem);
-  --text-title--line-height: 0.86;
+  --text-h2: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --text-h2--line-height: 1.05;
+  --text-h1: clamp(2.5rem, 1.85rem + 2.8vw, 4rem);
+  --text-h1--line-height: 0.95;
+  --text-title: clamp(3.5rem, 2.1rem + 6vw, 7rem);
+  --text-title--line-height: 0.9;
+
+  /* Width axis of Archivo per role: the bigger the type, the narrower. */
+  --font-stretch-display: 66%;
+  --font-stretch-heading: 75%;
+  --font-stretch-subheading: 85%;
 
   /* The drafting grid is the spacing unit: p-grid, gap-grid, mt-grid… */
   --spacing-grid: 24px;
+  /* Rhythm between and inside sections, also fluid: py-section, gap-block, gap-head. */
+  --spacing-section: clamp(4rem, 3rem + 4vw, 6rem);
+  --spacing-block: clamp(2.5rem, 2.1rem + 1.6vw, 3.5rem);
+  --spacing-head: 0.75rem;
 
   /* Sheets and frames are drawn square; only small controls get a slight radius. */
   --radius-sheet: 0px;
@@ -97,6 +108,17 @@
 }
 
 /* Paper with the 24px drafting grid. */
+/* Archivo widths by role (see --font-stretch-* above). */
+@utility stretch-display {
+  font-stretch: var(--font-stretch-display);
+}
+@utility stretch-heading {
+  font-stretch: var(--font-stretch-heading);
+}
+@utility stretch-subheading {
+  font-stretch: var(--font-stretch-subheading);
+}
+
 @utility bg-drafting-grid {
   background-color: var(--paper);
   background-image:

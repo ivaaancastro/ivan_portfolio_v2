@@ -30,20 +30,18 @@ const channels = [
 
 <section
   id="contact"
-  class="scroll-mt-16 border-b-[1.5px] border-ink bg-drafting-grid py-20 font-display text-ink"
+  class="scroll-mt-16 border-b-[1.5px] border-ink bg-drafting-grid py-section font-display text-ink"
 >
-  <div class="mx-auto grid max-w-[1100px] gap-10 px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] md:gap-x-12">
-    <h2 class="text-title leading-[0.9] font-extrabold uppercase [font-stretch:66%] md:col-span-2">
-      {t("contact.title")}
-    </h2>
-    <div class="grid content-start gap-5">
+  <div class="mx-auto grid max-w-[1100px] gap-block px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+    <header class="grid content-start gap-head">
+      <h2 class="text-h2 font-extrabold stretch-heading">{t("contact.title")}</h2>
       <p class="max-w-[42ch] text-lead text-ink-soft">{t("contact.intro")}</p>
       <p class="flex items-center gap-2 text-small text-ink-soft">
         <MapPin className="size-4 text-redline" aria-hidden="true" />
         <span class="sr-only">{t("contact.location")}:</span>
         {t("contact.locationValue")}
       </p>
-    </div>
+    </header>
 
     <ul class="grid self-start border-frame bg-paper-raised">
       {channels.map(({ label, value, href, Icon, external }, index) => (

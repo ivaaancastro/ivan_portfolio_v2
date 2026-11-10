@@ -58,14 +58,14 @@ const items = stages.map((stage, index) => ({
 
 <section
   id="experience"
-  class="scroll-mt-16 overflow-x-clip border-b-[1.5px] border-ink bg-paper py-20 font-display text-ink"
+  class="scroll-mt-16 overflow-x-clip border-b-[1.5px] border-ink bg-paper py-section font-display text-ink"
 >
-  <div class="mx-auto grid max-w-[1100px] gap-14 px-6">
-    <h2 class="text-h2 font-extrabold [font-stretch:75%]">{t("experience.title")}</h2>
+  <div class="mx-auto grid max-w-[1100px] gap-block px-6">
+    <h2 class="text-h2 font-extrabold stretch-heading">{t("experience.title")}</h2>
 
     <!-- Vertical timeline, newest first. The line draws itself and the cards slide in while
          scrolling (CSS scroll-driven animations in global.css); without support it is static. -->
-    <ol class="timeline relative grid gap-12 md:gap-16">
+    <ol class="timeline relative grid gap-block">
       <span
         aria-hidden="true"
         class="absolute inset-y-0 left-3 w-[1.5px] -translate-x-1/2 bg-grid md:left-1/2"
@@ -90,7 +90,7 @@ const items = stages.map((stage, index) => ({
           <p
             aria-hidden="true"
             class:list={[
-              "timeline-year text-h2 leading-none font-extrabold text-ink-soft tabular-nums [font-stretch:70%] md:row-start-1",
+              "timeline-year text-h3 leading-none font-extrabold text-ink-soft tabular-nums stretch-heading md:row-start-1",
               item.side === "left"
                 ? "md:col-start-2 md:justify-self-start"
                 : "md:col-start-1 md:justify-self-end",
@@ -125,7 +125,7 @@ const items = stages.map((stage, index) => ({
                 </span>
               )}
             </div>
-            <h3 class="text-lead leading-tight font-bold">{item.title}</h3>
+            <h3 class="text-h3 font-bold stretch-subheading">{item.title}</h3>
             <p class="text-small text-ink-soft">
               {item.org}
               <span class="mx-2 text-grid" aria-hidden="true">
