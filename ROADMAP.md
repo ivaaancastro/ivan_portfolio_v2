@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
-**Próxima tarea:** F3.8 · Páginas de proyecto y 404 con el diseño nuevo, y limpieza final; después F3.7 (revisión responsive) y PR de `redesign` a `main`. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F3.7 · Revisión responsive completa (375 / 768 / 1280+) y PR de `redesign` a `main`. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -141,7 +141,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F3.6** Rediseño de `/personal` (Lifestyle) — [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44): textos reescritos más directos a petición de Iván (deporte con Strava, familia y amigos; sin frases hechas), sin titular grande (la página empieza directamente por «Deporte»; el `h1` «Lifestyle» queda solo para lectores de pantalla); Strava como cajetín cuyos kilómetros cuentan desde cero y cuyas barras crecen al aparecer en pantalla; fotos como láminas con pie que se «revelan» de abajo arriba la primera vez que aparecen (el pie llega después) y hacen zoom al pasar el ratón; sin numeración 01/02 (no es una secuencia). Ideas de animación tomadas de la skill taste (D13: una entrada al cargar, uno o dos momentos por página, nada animado solo por hacer scroll). La biografía vuelve a la home (D14), bajo la cota «Ingeniero Informático»; el menú enlaza la página como «Lifestyle».
 - [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
   - [x] Escala y ritmo unificados — [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44): tamaños fluidos (`clamp`) del `lead` al título para que crezcan con la pantalla sin saltos; un tamaño por rol (título solo para el `h1`, `h2` para todas las secciones —también «Hablemos»—, `h3` para títulos de tarjeta, fechas de la línea de tiempo y proyecto destacado); anchura de Archivo por rol (`stretch-display/heading/subheading`); espaciado común entre y dentro de secciones (`py-section`, `gap-block`, `gap-head`) y tarjetas con `p-5 md:p-6`. Párrafos largos en tamaño de texto normal; `lead` solo para entradillas.
-- [ ] **F3.8** Rediseño de las páginas de proyecto y la 404 (aún con `legacy`) y limpieza final: tokens antiguos, Inter, `pop-in`/`fade-up` y `reveal.ts` si ya no se usan
+- [x] **F3.8** Páginas de proyecto y 404 con el diseño nuevo, y limpieza final — [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45): cada caso de estudio es una hoja (cabecera sobre la cuadrícula con «Hoja n de 5», título, entradilla y portada enmarcada, que mantiene la transición desde la home), texto del MDX con estilos del plano y cajetín lateral fijo con stack y enlace a GitHub; anterior/siguiente como dos láminas. La 404 muestra «404» como cota acotada en rojo, en los dos idiomas. Limpieza: fuera la envoltura `legacy`, los colores y animaciones antiguos (`bg`, `primary`, `card`, `muted`, `fade-up`, `pop-in`), `reveal.ts` y la fuente Inter (solo queda Archivo).
 
 ## F4 · Pulido y medición
 
@@ -229,3 +229,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.6 · Lifestyle con el diseño nuevo y Strava como cajetín; la biografía vuelve a la portada (D14) · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
 - 2026-11-10 · F3.6 · Lifestyle con textos más directos, sin titular grande, contador de Strava y fotos que se revelan · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
 - 2026-11-10 · F3.7 · Escala tipográfica fluida y espaciado común en todas las secciones · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
+- 2026-11-10 · F3.8 · Páginas de proyecto y 404 rediseñadas; sin `legacy`, Inter ni estilos antiguos · [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45)

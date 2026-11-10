@@ -49,17 +49,8 @@ export default defineConfig({
     mdx(),
   ],
 
-  // Self-hosted Inter (downloaded from Fontsource at build time, served from our domain).
+  // Self-hosted fonts (downloaded at build time, served from our domain).
   fonts: [
-    {
-      provider: fontProviders.fontsource(),
-      name: "Inter",
-      cssVariable: "--font-inter",
-      weights: [400, 500, 600, 700],
-      styles: ["normal"],
-      subsets: ["latin", "latin-ext"],
-      fallbacks: ["system-ui", "sans-serif"],
-    },
     // F3 (D3 «Plano técnico»): Archivo with its width axis, narrow for titles, normal for text.
     {
       provider: fontProviders.google(),
