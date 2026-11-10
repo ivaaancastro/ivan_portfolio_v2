@@ -28,7 +28,7 @@ const sports = [
 ---
 
 <!-- Year-to-date kilometres, drawn as a title block. -->
-<div class="grid border-frame bg-paper-raised">
+<div data-strava class="strava grid border-frame bg-paper-raised">
   <div class="flex items-center justify-between border-b border-ink px-4 py-2 text-caption">
     <span class="font-semibold">
       {t("strava.summary")} {currentYear}
@@ -41,7 +41,11 @@ const sports = [
       {t("strava.total")} · {t("strava.runRide")}
     </span>
     <p class="flex items-baseline gap-2">
-      <span class="text-h2 leading-none font-extrabold tabular-nums stretch-heading">
+      <span
+        class="text-h2 leading-none font-extrabold tabular-nums stretch-heading"
+        data-count={totalKms || undefined}
+        data-locale={numberLocale}
+      >
         {fmt(totalKms)}
       </span>
       <span class="text-lead text-ink-soft">km</span>
@@ -58,15 +62,22 @@ const sports = [
       >
         <dt class="text-caption text-ink-soft">{label}</dt>
         <dd class="text-h3 font-bold tabular-nums">
-          {fmt(kms)} <span class="text-small font-normal text-ink-soft">km</span>
+          <span data-count={kms || undefined} data-locale={numberLocale}>
+            {fmt(kms)}
+          </span>
+          <span class="ml-1 text-small font-normal text-ink-soft">km</span>
         </dd>
         <dd class="h-1.5 bg-grid" aria-hidden="true">
           <div
             class:list={["strava-bar h-full origin-left", bar]}
-            style={`scale: ${share(kms)} 1`}
+            style={`--share: ${share(kms)}`}
           ></div>
         </dd>
       </div>
     ))}
   </dl>
 </div>
+
+<script>
+  import "../scripts/strava-count";
+</script>

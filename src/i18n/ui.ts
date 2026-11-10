@@ -97,29 +97,23 @@ const es = {
   "life.title": "Lifestyle | Iván Castro",
   "life.kicker": "Lifestyle",
   "life.description":
-    "Más allá del código: running, ciclismo, familia y amigos. Mis kilómetros del año en Strava.",
-  "life.headingA": "Más allá del",
-  "life.headingB": "Código",
-  "life.intro":
-    "Ingeniería es disciplina. El deporte también. Así encuentro mi equilibrio entre la pantalla y el mundo real.",
-  "life.sportTitle": "Deporte & Disciplina",
+    "Deporte, familia y amigos: lo que hago fuera del trabajo, con mis kilómetros del año en Strava.",
+  "life.heading": "Deporte, familia y amigos",
+  "life.intro": "Lo que hago cuando no estoy programando.",
+  "life.sportTitle": "Deporte",
   /** HTML */
   "life.sportText":
-    "El equilibrio perfecto entre el esfuerzo continuo y la libertad de explorar. Preparar <strong>Medias Maratones</strong>, correr todo tipo de carreras y acumular kilómetros en bici me han enseñado que los grandes objetivos se logran con constancia diaria.",
+    "Corro y monto en bici. Preparo <strong>medias maratones</strong> y corro carreras de todo tipo; todos los kilómetros quedan registrados en Strava.",
   "life.followStrava": "Sígueme en Strava",
   "life.runningAlt": "Corriendo",
   "life.runningTitle": "Running",
-  "life.runningText": "Resiliencia kilómetro a kilómetro.",
+  "life.runningText": "Medias maratones y carreras de todo tipo.",
   "life.cyclingAlt": "Ciclismo",
   "life.cyclingTitle": "Ciclismo",
-  "life.cyclingText": "Libertad, velocidad y desconexión.",
-  "life.socialTitle": "Social & Familia",
-  "life.batteryTitle": 'Mi "Social Battery"',
-  "life.batteryText1":
-    "El deporte me da fuerza, pero mi entorno me da estabilidad. Tengo la inmensa suerte de contar con una familia increíble que me aporta seguridad y valores inquebrantables.",
-  /** HTML */
-  "life.batteryText2":
-    "A eso se suma un grupo de amigos muy afín a mí, con los que comparto risas, viajes, experiencias y por supuesto, <strong>¡kilómetros!</strong>",
+  "life.cyclingText": "Salidas en bici.",
+  "life.socialTitle": "Familia y amigos",
+  "life.socialText1": "Paso buena parte de mi tiempo libre con mi familia y con mis amigos.",
+  "life.socialText2": "Con mis amigos comparto viajes y también kilómetros.",
   "life.family": "Familia",
   "life.friends": "Amigos",
 
@@ -231,29 +225,23 @@ const en: Record<UIKey, string> = {
   "life.title": "Lifestyle | Iván Castro",
   "life.kicker": "Lifestyle",
   "life.description":
-    "Beyond code: running, cycling, family and friends. My kilometers of the year on Strava.",
-  "life.headingA": "Beyond the",
-  "life.headingB": "Code",
-  "life.intro":
-    "Engineering is discipline. So is sport. That's how I find my balance between the screen and the real world.",
-  "life.sportTitle": "Sport & Discipline",
+    "Sport, family and friends: what I do outside work, with my kilometers of the year on Strava.",
+  "life.heading": "Sport, family and friends",
+  "life.intro": "What I do when I'm not coding.",
+  "life.sportTitle": "Sport",
   /** HTML */
   "life.sportText":
-    "The perfect balance between steady effort and the freedom to explore. Training for <strong>half marathons</strong>, running all kinds of races and racking up kilometers on the bike have taught me that big goals are reached through daily consistency.",
+    "I run and cycle. I train for <strong>half marathons</strong> and run all kinds of races; every kilometer is logged on Strava.",
   "life.followStrava": "Follow me on Strava",
   "life.runningAlt": "Running",
   "life.runningTitle": "Running",
-  "life.runningText": "Resilience, kilometer after kilometer.",
+  "life.runningText": "Half marathons and all kinds of races.",
   "life.cyclingAlt": "Cycling",
   "life.cyclingTitle": "Cycling",
-  "life.cyclingText": "Freedom, speed and switching off.",
-  "life.socialTitle": "Social & Family",
-  "life.batteryTitle": 'My "Social Battery"',
-  "life.batteryText1":
-    "Sport gives me strength, but the people around me give me stability. I'm incredibly lucky to have an amazing family that gives me security and unshakable values.",
-  /** HTML */
-  "life.batteryText2":
-    "On top of that, I have a group of friends very much like me, with whom I share laughs, trips, experiences and, of course, <strong>kilometers!</strong>",
+  "life.cyclingText": "Bike rides.",
+  "life.socialTitle": "Family and friends",
+  "life.socialText1": "I spend a good part of my free time with my family and my friends.",
+  "life.socialText2": "With my friends I share trips and kilometers too.",
   "life.family": "Family",
   "life.friends": "Friends",
 
