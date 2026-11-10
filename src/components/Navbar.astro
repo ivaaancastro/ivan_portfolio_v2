@@ -1,5 +1,5 @@
 ---
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "@lucide/astro";
 import { isPublished, languages, switchLabels, type Lang } from "../i18n/config";
 import { getLang, pathFor, switchLangPath, useTranslations } from "../i18n/utils";
 
@@ -75,8 +75,8 @@ const controlClass =
         title={t("nav.darkTheme")}
         class={controlClass}
       >
-        <Moon size={16} className="theme-icon-moon" aria-hidden="true" />
-        <Sun size={16} className="theme-icon-sun" aria-hidden="true" />
+        <Moon size={16} class="theme-icon-moon" aria-hidden="true" />
+        <Sun size={16} class="theme-icon-sun" aria-hidden="true" />
       </button>
 
       <a

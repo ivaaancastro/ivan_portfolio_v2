@@ -1,7 +1,7 @@
 ---
 import { getImage, Image } from "astro:assets";
 import { render, type CollectionEntry } from "astro:content";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "@lucide/astro";
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
@@ -64,7 +64,7 @@ const prose =
               class="group inline-flex min-h-8 w-fit items-center gap-2 text-small font-semibold text-ink hover:text-cobalt"
             >
               <ArrowLeft
-                className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                class="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
                 aria-hidden="true"
               />
               {t("projects.back")}
@@ -123,7 +123,7 @@ const prose =
                 {t("projects.viewCode")}
               </span>
               <ArrowUpRight
-                className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </a>
@@ -147,14 +147,14 @@ const prose =
                   <span class="inline-flex items-center gap-1.5 text-caption font-semibold text-ink">
                     {dir === "prev" && (
                       <ArrowLeft
-                        className="size-3.5 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                        class="size-3.5 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
                         aria-hidden="true"
                       />
                     )}
                     {label}
                     {dir === "next" && (
                       <ArrowRight
-                        className="size-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                        class="size-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
                         aria-hidden="true"
                       />
                     )}

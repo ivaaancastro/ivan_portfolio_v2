@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@lucide/astro";
 import StravaStats from "../components/StravaStats.astro";
 import { getStravaStats } from "../utils/strava";
 import { getLang, useTranslations } from "../i18n/utils";
@@ -78,7 +78,7 @@ const photoImg =
               <span class="size-2 rounded-full bg-strava" aria-hidden="true"></span>
               {t("life.followStrava")}
               <ArrowUpRight
-                className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </a>

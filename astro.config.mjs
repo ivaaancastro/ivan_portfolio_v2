@@ -2,7 +2,6 @@
 import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { isPublished, langFromPath, publishedLangs } from "./src/i18n/config.ts";
@@ -29,7 +28,6 @@ export default defineConfig({
   },
 
   integrations: [
-    react(),
     sitemap({
       // Languages that are not published yet stay out of the sitemap.
       filter: (page) => isPublished(langFromPath(new URL(page).pathname)),

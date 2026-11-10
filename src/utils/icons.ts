@@ -2,21 +2,21 @@ import {
   Atom,
   Bot,
   Brain,
-  Code2,
+  CodeXml,
   Coffee,
   Container,
   Database,
   Layers,
   Store,
   Terminal,
-} from "lucide-react";
+} from "@lucide/astro";
 
 /** Icons that content entries can reference by name (validated in content.config.ts). */
 export const icons = {
   atom: Atom,
   bot: Bot,
   brain: Brain,
-  code: Code2,
+  code: CodeXml,
   coffee: Coffee,
   container: Container,
   database: Database,
