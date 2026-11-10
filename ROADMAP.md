@@ -148,7 +148,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas. Medido con Lighthouse 12 sobre la build local en 11 rutas ES/EN: rendimiento 98–100, accesibilidad 100, buenas prácticas 96 y SEO 100, sin cambios de código. Excepciones esperadas: SEO de `/404` en 63 por el `noindex` intencionado, y buenas prácticas en 96 solo en local por los 404 de `/_vercel/*`, que en Vercel sí existen — [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51)
 - [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [x] **F4.3** Vercel Web Analytics + Speed Insights con los componentes oficiales `@vercel/analytics/astro` y `@vercel/speed-insights/astro` en `Layout.astro`; sin `vercel.json`. Hay que activar ambos en el panel del proyecto en Vercel — [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
-- [x] **F4.4** Revisión final de textos y datos personales (D16) — PR_LINK
+- [x] **F4.4** Revisión final de textos y datos personales (D16) — [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
 - [ ] **F4.6** Actualizar el CV en PDF (`public/ivanCv.pdf`): TFG en curso y proyectos nuevos. Pendiente de que Iván pase el archivo, a poder ser en su formato original
 - [ ] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4)
 
@@ -239,4 +239,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F4.3 · Vercel Web Analytics y Speed Insights con los componentes oficiales; se retira el `vercel.json` que rompía la build · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - 2026-11-10 · F4.2 · axe en CI estable: el script recorre la página con movimiento reducido antes de auditar (los pies de foto de Lifestyle se medían a mitad del fundido) y «reducir movimiento» anula también los retardos · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - 2026-11-10 · F4.1 · Lighthouse móvil ≥ 95 en todas las páginas (98–100 / 100 / 96 / 100), sin cambios de código · [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51)
-- 2026-11-10 · F4.4 · Revisión de textos ES/EN (D16): rol con TFG en curso, contacto, mayúsculas, pie y datos de proyectos comprobados en sus repos · PR_LINK
+- 2026-11-10 · F4.4 · Revisión de textos ES/EN (D16): rol con TFG en curso, contacto, mayúsculas, pie y datos de proyectos comprobados en sus repos · [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
