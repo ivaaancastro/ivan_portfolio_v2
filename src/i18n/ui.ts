@@ -27,14 +27,16 @@ const es = {
   "nav.darkTheme": "Tema oscuro",
 
   // Hero
-  "hero.kicker": "Diseño · Desarrollo · Soporte",
-  "hero.greeting": "Hola, soy",
   "hero.role": "Ingeniero Informático",
   "hero.intro":
     "Especialista en Ingeniería del Software. Me apasiona crear productos útiles, accesibles y rápidos.",
   "hero.downloadCv": "Descargar CV",
   "hero.viewProjects": "Ver proyectos",
   "hero.photoAlt": "Foto de Iván",
+  "hero.blockAuthor": "Autor",
+  "hero.blockLocation": "Lugar",
+  "hero.blockStudies": "Formación",
+  "hero.blockWork": "Experiencia",
 
   // About
   "about.titleA": "Sobre",
@@ -152,14 +154,16 @@ const en: Record<UIKey, string> = {
   "nav.darkTheme": "Dark theme",
 
   // Hero
-  "hero.kicker": "Design · Development · Support",
-  "hero.greeting": "Hi, I'm",
   "hero.role": "Computer Engineer",
   "hero.intro":
     "Specialized in Software Engineering. I love building products that are useful, accessible and fast.",
   "hero.downloadCv": "Download CV",
   "hero.viewProjects": "View projects",
   "hero.photoAlt": "Photo of Iván",
+  "hero.blockAuthor": "Author",
+  "hero.blockLocation": "Location",
+  "hero.blockStudies": "Education",
+  "hero.blockWork": "Experience",
 
   // About
   "about.titleA": "About",

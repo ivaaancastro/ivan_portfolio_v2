@@ -15,12 +15,15 @@ const t = useTranslations(getLang(Astro.currentLocale));
 <Layout title={t("home.title")}>
   <Navbar />
 
-  <main class="legacy bg-bg font-sans text-gray-100">
+  <main>
     <Hero />
-    <About />
-    <Experience />
-    <Projects />
-    <Contact />
+    <!-- Sections not redesigned yet keep their old dark look (F3.5). -->
+    <div class="legacy bg-bg font-sans text-gray-100">
+      <About />
+      <Experience />
+      <Projects />
+      <Contact />
+    </div>
   </main>
 
   <Footer />
