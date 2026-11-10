@@ -235,3 +235,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3 · Rediseño «Plano técnico» publicado: `redesign` → `main` · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
 - 2026-11-10 · F4.2 · axe sin errores en CI: contraste AA en modo claro en /personal (text-ink-soft → text-ink en PersonalPage.astro) · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - 2026-11-10 · F4.3 · Vercel Web Analytics y Speed Insights con los componentes oficiales; se retira el `vercel.json` que rompía la build · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
+- 2026-11-10 · F4.2 · axe en CI estable: el script recorre la página con movimiento reducido antes de auditar (los pies de foto de Lifestyle se medían a mitad del fundido) y «reducir movimiento» anula también los retardos · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
