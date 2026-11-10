@@ -99,6 +99,10 @@ async function main() {
         console.log(`   • ${v.id} (${v.impact}): ${v.description}`);
         console.log(`     ayuda: ${v.help}`);
         console.log(`     nodos: ${v.nodes.length}`);
+        for (const n of v.nodes) {
+          const html = (n.html ?? "").replace(/\s+/g, " ").slice(0, 220);
+          console.log(`     nodo: ${html}`);
+        }
       }
     }
   }
