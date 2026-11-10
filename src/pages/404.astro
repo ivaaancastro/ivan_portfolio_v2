@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@lucide/astro";
 import type { Lang } from "../i18n/config";
 import { pathFor, useTranslations } from "../i18n/utils";
 
@@ -60,7 +60,7 @@ const es = useTranslations("es");
               class="group inline-flex h-12 items-center gap-2 rounded-control bg-ink px-5 font-semibold text-paper hover:bg-cobalt"
             >
               <ArrowLeft
-                className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                class="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
                 aria-hidden="true"
               />
               {item.home}

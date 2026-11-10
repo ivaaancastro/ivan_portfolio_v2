@@ -15,12 +15,12 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 | F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho                               |
 | F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho (salvo F2.3b, textos de Iván) |
 | F3   | Rediseño visual                                                       | ✅ Hecho                               |
-| F4   | Pulido y medición                                                     | 🚧 En curso                            |
+| F4   | Pulido y medición                                                     | ✅ Hecho                               |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F4 (las PR vuelven a ir contra `main`)
-**Próxima tarea:** F4.5 · Valorar quitar React. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F4 completada. Quedan F2.3b (textos de Iván) y comprobar Lighthouse en producción cuando Vercel vuelva a desplegar.
 
 ---
 
@@ -149,7 +149,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [x] **F4.3** Vercel Web Analytics + Speed Insights con los componentes oficiales `@vercel/analytics/astro` y `@vercel/speed-insights/astro` en `Layout.astro`; sin `vercel.json`. Hay que activar ambos en el panel del proyecto en Vercel — [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - [x] **F4.4** Revisión final de textos y datos personales (D16) — [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
-- [ ] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4)
+- [x] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4). Hecho: React fuera, iconos con `@lucide/astro` — [#53](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/53)
 
 ---
 
@@ -239,3 +239,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F4.2 · axe en CI estable: el script recorre la página con movimiento reducido antes de auditar (los pies de foto de Lifestyle se medían a mitad del fundido) y «reducir movimiento» anula también los retardos · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - 2026-11-10 · F4.1 · Lighthouse móvil ≥ 95 en todas las páginas (98–100 / 100 / 96 / 100), sin cambios de código · [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51)
 - 2026-11-10 · F4.4 · Revisión de textos ES/EN (D16): rol con TFG en curso, contacto, mayúsculas, pie y datos de proyectos comprobados en sus repos · [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
+- 2026-11-10 · F4.5 · Sin React: iconos con `@lucide/astro`, 7 dependencias menos y jsx-a11y sobre los `.astro` · [#53](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/53)

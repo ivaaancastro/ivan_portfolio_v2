@@ -107,7 +107,7 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
             class="schematic-node schematic-from-left absolute left-0 flex w-[29%] [transform:translateY(-50%)] items-center gap-3 border-frame bg-paper-raised px-3 py-2"
             style={`${top(toolY.get(key) ?? 0)}; --i: ${index}`}
           >
-            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <Icon class="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="grid min-w-0">
               <span class="font-bold">{name}</span>
               <span class="hidden truncate text-caption text-ink lg:block">{desc}</span>
@@ -142,7 +142,7 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
       {tools.map(({ name, desc, Icon, projects: used }) => (
         <li class="schematic-card grid gap-3 border-frame bg-paper-raised p-4">
           <div class="flex items-center gap-3">
-            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <Icon class="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="font-bold">{name}</span>
           </div>
           <p class="text-small text-ink">{desc}</p>

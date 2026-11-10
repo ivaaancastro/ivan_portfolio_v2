@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight, Check, Copy, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin, Phone } from "@lucide/astro";
 import { Github, Linkedin } from "./icons/brand";
 import { getLang, useTranslations } from "../i18n/utils";
 
@@ -37,7 +37,7 @@ const channels = [
       <h2 class="text-h2 font-extrabold stretch-heading">{t("contact.title")}</h2>
       <p class="max-w-[42ch] text-lead text-ink">{t("contact.intro")}</p>
       <p class="flex items-center gap-2 text-small text-ink">
-        <MapPin className="size-4 text-redline" aria-hidden="true" />
+        <MapPin class="size-4 text-redline" aria-hidden="true" />
         <span class="sr-only">{t("contact.location")}:</span>
         {t("contact.locationValue")}
       </p>
@@ -58,7 +58,7 @@ const channels = [
             rel={external ? "noopener noreferrer" : undefined}
             class="flex min-w-0 flex-1 items-center gap-4 p-4 outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-cobalt md:p-5"
           >
-            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <Icon class="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="grid min-w-0">
               <span class="text-caption text-ink">{label}</span>
               <span class="contact-value relative w-fit max-w-full font-bold [overflow-wrap:anywhere] lg:text-lead group-hover:text-cobalt">
@@ -74,9 +74,9 @@ const channels = [
               aria-label={t("contact.copy")}
               class="group/copy relative z-10 mr-4 inline-flex size-9 shrink-0 items-center justify-center gap-1.5 rounded-control border-frame bg-paper text-caption font-semibold hover:bg-ink hover:text-paper sm:mr-0 sm:w-auto sm:px-2.5"
             >
-              <Copy className="size-3.5 group-data-done/copy:hidden" aria-hidden="true" />
+              <Copy class="size-3.5 group-data-done/copy:hidden" aria-hidden="true" />
               <Check
-                className="hidden size-3.5 text-cobalt group-hover/copy:text-paper group-data-done/copy:block"
+                class="hidden size-3.5 text-cobalt group-hover/copy:text-paper group-data-done/copy:block"
                 aria-hidden="true"
               />
               <span data-copy-label aria-hidden="true" class="hidden sm:inline">
@@ -85,7 +85,7 @@ const channels = [
             </button>
           )}
           <ArrowUpRight
-            className="mr-4 hidden size-5 shrink-0 text-ink transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cobalt motion-reduce:transition-none sm:block md:mr-5"
+            class="mr-4 hidden size-5 shrink-0 text-ink transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cobalt motion-reduce:transition-none sm:block md:mr-5"
             aria-hidden="true"
           />
         </li>
