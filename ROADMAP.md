@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
-**Próxima tarea:** F3.5 · Proyectos (sube al segundo puesto). F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F3.5 · Experiencia (regla de tiempo con formación y trabajo). F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -134,6 +134,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [ ] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
   - [x] Base — [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36): fondo papel y Archivo en todo el sitio; cabecera nueva (índice en el orden de la home, ES/EN, botón de tema claro/oscuro, CV y menú desplegable en móvil con `popover` nativo); pie como cajetín; se retira la barra inferior. Las secciones antiguas se muestran dentro de un `<main class="legacy …">` oscuro hasta que se rediseñen.
   - [x] Portada — [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37): nombre en Archivo estrecho, línea de cota animada con la profesión, foto (sin marco ni «Detalle A», a petición de Iván), cajetín con los datos rápidos y botones «Ver proyectos» / «Descargar CV». Se retiran el antetítulo «Diseño · Desarrollo · Soporte» y el «Hola, soy».
+  - [x] Proyectos — [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40): sube al segundo puesto; Nexus Commerce Core como hoja grande y el resto como hojas en dos columnas, con «Hoja n de 5», stack y portada. Cada hoja entera es un enlace a su caso de estudio (foco visible con teclado). Orden provisional del resto: Experiencia → Sobre mí → Contacto.
 - [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
 - [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
 
@@ -213,3 +214,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.5 · Base del rediseño: cabecera con menú y tema, pie como cajetín, sin barra inferior · [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36)
 - 2026-11-10 · F3.5 · Portada rediseñada (nombre, cota, foto como detalle y cajetín) · [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37)
 - 2026-11-10 · — · Duración en Indra corregida a 1 año (prácticas y contrato), en la biografía y el dato rápido (ES/EN), a petición de Iván
+- 2026-11-10 · F3.5 · Proyectos rediseñados como hojas del plano y movidos al segundo puesto · [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40)

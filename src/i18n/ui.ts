@@ -61,6 +61,7 @@ const es = {
   "projects.intro":
     "Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.",
   "projects.featured": "Destacado",
+  "projects.sheet": "Hoja {n} de {total}",
   "projects.viewCode": "Ver Código en GitHub",
   "projects.metaTitle": "{title} | Proyecto de Iván Castro",
   "projects.back": "Volver a proyectos",
@@ -187,6 +188,7 @@ const en: Record<UIKey, string> = {
   "projects.title": "Featured Projects",
   "projects.intro": "A selection of work where I apply architecture patterns and good practices.",
   "projects.featured": "Featured",
+  "projects.sheet": "Sheet {n} of {total}",
   "projects.viewCode": "View code on GitHub",
   "projects.metaTitle": "{title} | Project by Iván Castro",
   "projects.back": "Back to projects",
