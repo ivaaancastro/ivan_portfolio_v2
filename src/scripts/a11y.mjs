@@ -103,7 +103,7 @@ async function main() {
           const html = (n.html ?? "").replace(/\s+/g, " ").slice(0, 220);
           console.log(`     nodo: ${html}`);
           const target = Array.isArray(n.target) ? n.target[n.target.length - 1] : n.target;
-          /* eslint-disable no-undef — page.evaluate runs in the browser */
+          /* eslint-disable no-undef */
           const styles = await page.evaluate((sel) => {
             const el = document.querySelector(sel);
             if (!el) return null;
