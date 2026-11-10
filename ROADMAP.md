@@ -212,3 +212,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · — · Estudios actualizados en la biografía y el dato rápido (ES/EN): asignaturas aprobadas y TFG en curso, aprobado por Iván
 - 2026-11-10 · F3.5 · Base del rediseño: cabecera con menú y tema, pie como cajetín, sin barra inferior · [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36)
 - 2026-11-10 · F3.5 · Portada rediseñada (nombre, cota, foto como detalle y cajetín) · [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37)
+- 2026-11-10 · — · Duración en Indra corregida a 1 año (prácticas y contrato), en la biografía y el dato rápido (ES/EN), a petición de Iván

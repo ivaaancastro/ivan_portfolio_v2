@@ -46,10 +46,10 @@ const es = {
     'Tengo 23 años y soy estudiante de <strong class="text-white">Ingeniería Informática</strong> en la <strong class="text-white">UDC</strong>, con todas las asignaturas aprobadas y el TFG en curso. Me considero una persona tranquila, organizada y reflexiva, con buenas habilidades de comunicación y trabajo en equipo.',
   /** HTML */
   "about.bio2":
-    'Antes de la carrera completé un ciclo superior en <strong class="text-white">DAM</strong> y <strong class="text-white">trabajé 1 año y 1 mes en Indra</strong> , lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong class="text-primary">Ingeniería del Software</strong> pues me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.',
+    'Antes de la carrera completé un ciclo superior en <strong class="text-white">DAM</strong> y <strong class="text-white">trabajé 1 año en Indra</strong> , lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong class="text-primary">Ingeniería del Software</strong> pues me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.',
   "about.factLocation": "Arteixo, A Coruña",
   "about.factStudies": "UDC · TFG en curso",
-  "about.factWork": "Indra · 1 año y 1 mes",
+  "about.factWork": "Indra · 1 año",
   "about.stackTitle": "Herramientas que domino",
   "about.stackNote": "El stack que uso día a día, a fondo.",
 
@@ -173,10 +173,10 @@ const en: Record<UIKey, string> = {
     'I\'m 23 and a <strong class="text-white">Computer Engineering</strong> student at the <strong class="text-white">UDC</strong> (University of A Coruña), with all courses passed and my final-year project in progress. I see myself as a calm, organized and thoughtful person, with good communication and teamwork skills.',
   /** HTML */
   "about.bio2":
-    'Before university I completed a higher vocational degree in <strong class="text-white">Multiplatform App Development (DAM)</strong> and <strong class="text-white">worked for 1 year and 1 month at Indra</strong>, which gave me experience on real projects. I am currently specializing in <strong class="text-primary">Software Engineering</strong>, because I enjoy full-stack development and working in teams with different methodologies.',
+    'Before university I completed a higher vocational degree in <strong class="text-white">Multiplatform App Development (DAM)</strong> and <strong class="text-white">worked for 1 year at Indra</strong>, which gave me experience on real projects. I am currently specializing in <strong class="text-primary">Software Engineering</strong>, because I enjoy full-stack development and working in teams with different methodologies.',
   "about.factLocation": "Arteixo, A Coruña (Spain)",
   "about.factStudies": "UDC · Final-year project in progress",
-  "about.factWork": "Indra · 1 year and 1 month",
+  "about.factWork": "Indra · 1 year",
   "about.stackTitle": "Tools I master",
   "about.stackNote": "The stack I use every day, in depth.",
 
