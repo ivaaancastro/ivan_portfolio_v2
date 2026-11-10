@@ -34,6 +34,10 @@ export async function getExperience(): Promise<CollectionEntry<"experience">[]> 
   return (await getCollection("experience")).sort(byOrder);
 }
 
+export async function getEducation(): Promise<CollectionEntry<"education">[]> {
+  return (await getCollection("education")).sort(byOrder);
+}
+
 export async function getStack(): Promise<CollectionEntry<"stack">[]> {
   return (await getCollection("stack")).sort(byOrder);
 }

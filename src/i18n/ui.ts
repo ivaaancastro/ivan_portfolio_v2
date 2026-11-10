@@ -54,7 +54,11 @@ const es = {
   "about.stackNote": "El stack que uso día a día, a fondo.",
 
   // Experience
-  "experience.title": "Experiencia Laboral",
+  "experience.title": "Experiencia y formación",
+  "experience.education": "Formación",
+  "experience.work": "Trabajo",
+  "experience.present": "actualidad",
+  "experience.ongoing": "En curso",
 
   // Projects
   "projects.title": "Proyectos Destacados",
@@ -182,7 +186,11 @@ const en: Record<UIKey, string> = {
   "about.stackNote": "The stack I use every day, in depth.",
 
   // Experience
-  "experience.title": "Work Experience",
+  "experience.title": "Experience and education",
+  "experience.education": "Education",
+  "experience.work": "Work",
+  "experience.present": "present",
+  "experience.ongoing": "In progress",
 
   // Projects
   "projects.title": "Featured Projects",

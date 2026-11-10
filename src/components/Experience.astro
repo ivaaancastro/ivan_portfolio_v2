@@ -1,55 +1,149 @@
 ---
-import { Briefcase, Calendar } from "lucide-react";
-import { getExperience, localize } from "../utils/content";
+import { getEducation, getExperience, localize } from "../utils/content";
 import { getLang, useTranslations } from "../i18n/utils";
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
-const experience = (await getExperience()).map(({ data }) => ({
-  company: data.company,
-  role: localize(data.role, lang),
-  period: localize(data.period, lang),
-  desc: localize(data.desc, lang),
-  tags: data.tags,
+
+type Kind = "education" | "work";
+interface Stage {
+  kind: Kind;
+  title: string;
+  org: string;
+  start: string;
+  end?: string;
+  desc?: string;
+  tags?: string[];
+}
+
+const stages: Stage[] = [
+  ...(await getEducation()).map(({ data }) => ({
+    kind: "education" as const,
+    title: localize(data.title, lang),
+    org: data.school,
+    start: data.start,
+    end: data.end,
+    desc: data.desc && localize(data.desc, lang),
+  })),
+  ...(await getExperience()).map(({ data }) => ({
+    kind: "work" as const,
+    title: localize(data.role, lang),
+    org: data.company,
+    start: data.start,
+    end: data.end,
+    desc: localize(data.desc, lang),
+    tags: data.tags,
+  })),
+].sort((a, b) => b.start.localeCompare(a.start)); // newest first
+
+const monthFormat = new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-US", {
+  month: "short",
+  year: "numeric",
+});
+const formatMonth = (yearMonth: string) => {
+  const [year, m] = yearMonth.split("-").map(Number);
+  return monthFormat.format(new Date(year, m - 1, 1));
+};
+
+const items = stages.map((stage, index) => ({
+  ...stage,
+  startLabel: formatMonth(stage.start),
+  ongoing: !stage.end,
+  period: `${formatMonth(stage.start)} – ${stage.end ? formatMonth(stage.end) : t("experience.present")}`,
+  // Desktop: cards alternate sides of the central line.
+  side: index % 2 === 0 ? "left" : "right",
+  kindLabel: stage.kind === "work" ? t("experience.work") : t("experience.education"),
 }));
 ---
 
-<section id="experience" class="relative py-24">
-  <div class="mx-auto max-w-[1100px] px-6">
-    <h2 data-reveal class="mb-16 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-      <Briefcase className="h-8 w-8 text-primary" aria-hidden="true" />
-      {t("experience.title")}
-    </h2>
+<section
+  id="experience"
+  class="scroll-mt-16 overflow-x-clip border-b-[1.5px] border-ink bg-paper py-20 font-display text-ink"
+>
+  <div class="mx-auto grid max-w-[1100px] gap-14 px-6">
+    <h2 class="text-h2 font-extrabold [font-stretch:75%]">{t("experience.title")}</h2>
 
-    <div class="relative ml-3 space-y-12 border-l-2 border-white/10 md:ml-6">
-      {experience.map((item, index) => (
-        <div
-          data-reveal="left"
-          style={`--reveal-delay: ${index * 200}ms`}
-          class="relative pl-8 md:pl-12"
-        >
-          <!-- Punto de la línea de tiempo -->
-          <span class="absolute top-2 -left-[9px] h-4 w-4 rounded-full bg-primary shadow-[0_0_10px_rgba(108,240,194,0.5)]" />
+    <!-- Vertical timeline, newest first. The line draws itself and the cards slide in while
+         scrolling (CSS scroll-driven animations in global.css); without support it is static. -->
+    <ol class="timeline relative grid gap-12 md:gap-16">
+      <span
+        aria-hidden="true"
+        class="absolute inset-y-0 left-3 w-[1.5px] -translate-x-1/2 bg-grid md:left-1/2"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="timeline-progress absolute inset-y-0 left-3 w-[1.5px] origin-top -translate-x-1/2 bg-cobalt md:left-1/2"
+      ></span>
 
-          <div class="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h3 class="text-xl font-bold text-white">{item.role}</h3>
-            <span class="mt-1 flex items-center gap-1 text-sm font-medium text-primary sm:mt-0">
-              <Calendar className="h-4 w-4" aria-hidden="true" /> {item.period}
-            </span>
-          </div>
+      {items.map((item) => (
+        <li class="relative grid gap-3 pl-10 md:grid-cols-2 md:gap-x-20 md:pl-0">
+          <!-- Node on the line -->
+          <span
+            aria-hidden="true"
+            class:list={[
+              "timeline-node absolute top-2 left-3 size-5 -translate-x-1/2 rounded-full border-[1.5px] border-cobalt bg-paper md:left-1/2",
+              { "timeline-live": item.ongoing },
+            ]}
+          ></span>
 
-          <h4 class="mb-4 text-lg font-medium text-gray-400">{item.company}</h4>
-          <p class="mb-4 max-w-2xl leading-relaxed text-gray-300">{item.desc}</p>
+          <!-- Start month, large, on the other side of the line -->
+          <p
+            aria-hidden="true"
+            class:list={[
+              "timeline-year text-h2 leading-none font-extrabold text-ink-soft tabular-nums [font-stretch:70%] md:row-start-1",
+              item.side === "left"
+                ? "md:col-start-2 md:justify-self-start"
+                : "md:col-start-1 md:justify-self-end",
+            ]}
+          >
+            {item.startLabel}
+          </p>
 
-          <div class="flex flex-wrap gap-2">
-            {item.tags.map((tag) => (
-              <span class="rounded-full border border-white/5 bg-white/5 px-3 py-1 text-xs text-muted">
-                {tag}
+          <article
+            class:list={[
+              "timeline-card grid gap-2 border-frame bg-paper-raised p-5 md:row-start-1 md:p-6",
+              item.side === "left"
+                ? "timeline-from-left md:col-start-1"
+                : "timeline-from-right md:col-start-2",
+            ]}
+          >
+            <div class="flex flex-wrap items-center gap-2 text-caption font-semibold">
+              <span
+                class:list={[
+                  "border px-2 py-0.5",
+                  item.kind === "work"
+                    ? "border-cobalt text-cobalt"
+                    : "border-redline text-redline",
+                ]}
+              >
+                {item.kindLabel}
               </span>
-            ))}
-          </div>
-        </div>
+              {item.ongoing && (
+                <span class="inline-flex items-center gap-1.5 text-ink-soft">
+                  <span class="timeline-pulse size-2 rounded-full bg-cobalt"></span>
+                  {t("experience.ongoing")}
+                </span>
+              )}
+            </div>
+            <h3 class="text-lead leading-tight font-bold">{item.title}</h3>
+            <p class="text-small text-ink-soft">
+              {item.org}
+              <span class="mx-2 text-grid" aria-hidden="true">
+                |
+              </span>
+              <span class="tabular-nums">{item.period}</span>
+            </p>
+            {item.desc && <p class="mt-1">{item.desc}</p>}
+            {item.tags && (
+              <ul class="mt-2 flex flex-wrap gap-2 text-caption">
+                {item.tags.map((tag) => (
+                  <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
+                ))}
+              </ul>
+            )}
+          </article>
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
