@@ -23,13 +23,6 @@ const stats = await getStravaStats();
 const runDistance = stats?.ytd_run_totals.distance ?? 0;
 const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
 
-// Quick facts, drawn as a title block next to the bio (same data as the home hero).
-const facts = [
-  { label: t("hero.blockLocation"), value: t("about.factLocation") },
-  { label: t("hero.blockStudies"), value: t("about.factStudies") },
-  { label: t("hero.blockWork"), value: t("about.factWork") },
-];
-
 const sportPhotos = [
   {
     src: runningImg,
@@ -65,31 +58,16 @@ const photoImg =
   <Navbar />
 
   <main class="font-display text-ink">
-    <!-- Header + bio -->
+    <!-- Header -->
     <section class="border-b-[1.5px] border-ink bg-drafting-grid pt-16">
       <div class="mx-auto grid max-w-[1100px] gap-12 px-6 pt-16 pb-16 md:pt-24">
         <header class="grid gap-6">
-          <p class="text-caption font-semibold text-redline">{t("about.title")}</p>
+          <p class="text-caption font-semibold text-redline">{t("life.kicker")}</p>
           <h1 class="text-title leading-[0.9] font-extrabold uppercase [font-stretch:66%]">
             {`${t("life.headingA")} ${t("life.headingB")}`}
           </h1>
           <p class="max-w-[52ch] text-lead text-ink-soft">{t("life.intro")}</p>
         </header>
-
-        <div class="grid items-start gap-8 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-          <div class:list={["grid gap-4 text-lead text-ink-soft", richText]}>
-            <p set:html={t("about.bio1")} />
-            <p set:html={t("about.bio2")} />
-          </div>
-          <dl class="grid border-frame bg-paper-raised text-small">
-            {facts.map(({ label, value }, index) => (
-              <div class:list={["p-3", index > 0 && "border-t border-ink"]}>
-                <dt class="text-caption text-ink-soft">{label}</dt>
-                <dd class="font-semibold">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
       </div>
     </section>
 

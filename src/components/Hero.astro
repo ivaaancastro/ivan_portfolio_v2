@@ -93,5 +93,17 @@ const titleBlock = [
         </div>
       ))}
     </dl>
+
+    <!-- Short bio, kept compact: a label column and two paragraphs. -->
+    <div
+      id="about"
+      class="mt-6 grid scroll-mt-24 gap-3 md:grid-cols-[160px_minmax(0,1fr)] md:gap-8"
+    >
+      <h2 class="text-caption font-semibold text-redline">{t("about.title")}</h2>
+      <div class="grid max-w-[75ch] gap-3 text-ink-soft [&_strong]:font-semibold [&_strong]:text-ink">
+        <p set:html={t("about.bio1")} />
+        <p set:html={t("about.bio2")} />
+      </div>
+    </div>
   </div>
 </section>

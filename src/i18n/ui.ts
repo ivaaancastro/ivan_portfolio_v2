@@ -20,7 +20,7 @@ const es = {
   "nav.experience": "Experiencia",
   "nav.projects": "Proyectos",
   "nav.contact": "Contacto",
-  "nav.aboutMe": "Sobre mí",
+  "nav.lifestyle": "Lifestyle",
   "nav.cv": "CV",
   "nav.menu": "Menú",
   "nav.closeMenu": "Cerrar menú",
@@ -96,7 +96,8 @@ const es = {
   "footer.revision": "Revisión",
 
   // Lifestyle page
-  "life.title": "Sobre mí | Iván Castro",
+  "life.title": "Lifestyle | Iván Castro",
+  "life.kicker": "Lifestyle",
   "life.description":
     "Más allá del código: running, ciclismo, familia y amigos. Mis kilómetros del año en Strava.",
   "life.headingA": "Más allá del",
@@ -156,7 +157,7 @@ const en: Record<UIKey, string> = {
   "nav.experience": "Experience",
   "nav.projects": "Projects",
   "nav.contact": "Contact",
-  "nav.aboutMe": "About me",
+  "nav.lifestyle": "Lifestyle",
   "nav.cv": "CV",
   "nav.menu": "Menu",
   "nav.closeMenu": "Close menu",
@@ -231,7 +232,8 @@ const en: Record<UIKey, string> = {
   "footer.revision": "Revision",
 
   // Lifestyle page
-  "life.title": "About me | Iván Castro",
+  "life.title": "Lifestyle | Iván Castro",
+  "life.kicker": "Lifestyle",
   "life.description":
     "Beyond code: running, cycling, family and friends. My kilometers of the year on Strava.",
   "life.headingA": "Beyond the",
