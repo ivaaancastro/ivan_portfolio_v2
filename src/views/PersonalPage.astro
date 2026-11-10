@@ -68,10 +68,7 @@ const photoImg =
 
         <div class="grid items-start gap-block md:grid-cols-2">
           <div class="grid gap-6">
-            <p
-              class:list={["max-w-[60ch] text-ink-soft", richText]}
-              set:html={t("life.sportText")}
-            />
+            <p class:list={["max-w-[60ch] text-ink", richText]} set:html={t("life.sportText")} />
             <a
               href="https://www.strava.com/athletes/102757003"
               target="_blank"
@@ -106,7 +103,7 @@ const photoImg =
               </div>
               <figcaption class="grid border-x-[1.5px] border-b-[1.5px] border-ink bg-paper-raised px-4 py-3">
                 <span class="font-bold">{title}</span>
-                <span class="text-small text-ink-soft">{text}</span>
+                <span class="text-small text-ink">{text}</span>
               </figcaption>
             </figure>
           ))}
@@ -122,7 +119,7 @@ const photoImg =
         <div class="grid gap-grid md:grid-cols-3">
           <div class="grid content-center gap-3 border-frame bg-paper-raised p-5 text-lead md:p-6">
             <p>{t("life.socialText1")}</p>
-            <p class="text-ink-soft">{t("life.socialText2")}</p>
+            <p class="text-ink">{t("life.socialText2")}</p>
           </div>
 
           {socialPhotos.map(({ src, alt, position }, index) => (
