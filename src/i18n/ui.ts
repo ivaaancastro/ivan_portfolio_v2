@@ -58,6 +58,7 @@ const es = {
   "experience.education": "Formación",
   "experience.work": "Trabajo",
   "experience.present": "actualidad",
+  "experience.ongoing": "En curso",
 
   // Projects
   "projects.title": "Proyectos Destacados",
@@ -189,6 +190,7 @@ const en: Record<UIKey, string> = {
   "experience.education": "Education",
   "experience.work": "Work",
   "experience.present": "present",
+  "experience.ongoing": "In progress",
 
   // Projects
   "projects.title": "Featured Projects",
