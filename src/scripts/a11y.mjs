@@ -133,12 +133,12 @@ async function auditRoute(page, url) {
   // Recorrer la página para que los elementos que se revelan al entrar en pantalla
   // (fotos de Lifestyle, barras de Strava…) lleguen a su estado visible antes de auditar.
   await page.evaluate(async () => {
-    const step = window.innerHeight / 2;
+    const step = globalThis.innerHeight / 2;
     for (let y = 0; y <= document.documentElement.scrollHeight; y += step) {
-      window.scrollTo(0, y);
+      globalThis.scrollTo(0, y);
       await new Promise((r) => setTimeout(r, 50));
     }
-    window.scrollTo(0, 0);
+    globalThis.scrollTo(0, 0);
   });
   await page.waitForTimeout(300);
   // Inyectar axe-core y ejecutar auditoría (WCAG 2.1 A + AA).
