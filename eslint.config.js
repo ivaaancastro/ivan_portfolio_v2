@@ -25,7 +25,7 @@ export default defineConfig(
     rules: reactHooks.configs.recommended.rules,
   },
   {
-    files: ["*.config.{js,mjs,ts}", "scripts/**/*.{js,mjs}"],
+    files: ["*.config.{js,mjs,ts}", "scripts/**/*.{js,mjs}", "src/scripts/**/*.{js,mjs}"],
     languageOptions: { globals: { ...globals.node } },
   },
 );
