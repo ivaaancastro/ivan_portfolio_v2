@@ -98,8 +98,6 @@ const es = {
   "life.kicker": "Lifestyle",
   "life.description":
     "Deporte, familia y amigos: lo que hago fuera del trabajo, con mis kilómetros del año en Strava.",
-  "life.heading": "Deporte, familia y amigos",
-  "life.intro": "Lo que hago cuando no estoy programando.",
   "life.sportTitle": "Deporte",
   /** HTML */
   "life.sportText":
@@ -226,8 +224,6 @@ const en: Record<UIKey, string> = {
   "life.kicker": "Lifestyle",
   "life.description":
     "Sport, family and friends: what I do outside work, with my kilometers of the year on Strava.",
-  "life.heading": "Sport, family and friends",
-  "life.intro": "What I do when I'm not coding.",
   "life.sportTitle": "Sport",
   /** HTML */
   "life.sportText":

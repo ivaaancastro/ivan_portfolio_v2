@@ -47,22 +47,6 @@ const socialPhotos = [
   { src: friendsImg, alt: t("life.friends"), position: "center 30%" },
 ];
 
-// Route profile drawn under the heading (decorative): a race's elevation chart, one climb and back down.
-const elevation = [
-  52, 50, 44, 46, 38, 32, 34, 24, 14, 18, 6, 2, 10, 22, 30, 26, 40, 48, 44, 52, 56,
-];
-const step = 1000 / (elevation.length - 1);
-const points = elevation.map((y, i) => [i * step, y + 20] as const);
-const routePath = points
-  .map(([x, y], i) => {
-    if (i === 0) return `M ${x} ${y}`;
-    const [px, py] = points[i - 1];
-    const mx = (px + x) / 2;
-    return `C ${mx} ${py}, ${mx} ${y}, ${x} ${y}`;
-  })
-  .join(" ");
-const routeEnd = points[points.length - 1];
-
 // Emphasis inside the HTML texts uses the ink colour instead of the soft one.
 const richText = "[&_strong]:font-semibold [&_strong]:text-ink";
 const photoFrame = "overflow-hidden border-frame bg-paper-raised";
@@ -73,49 +57,9 @@ const photoImg =
 <Layout title={t("life.title")} description={t("life.description")}>
   <Navbar />
 
-  <main class="font-display text-ink">
-    <!-- Header -->
-    <section class="border-b-[1.5px] border-ink bg-drafting-grid pt-16">
-      <div class="mx-auto grid max-w-[1100px] gap-grid px-6 pt-section pb-block">
-        <header class="grid gap-5">
-          <p class="text-caption font-semibold text-redline">{t("life.kicker")}</p>
-          <!-- Enters once on load, word by word (global.css .enter-word). -->
-          <h1 class="text-title font-extrabold uppercase stretch-display">
-            {t("life.heading")
-              .split(" ")
-              .map((word, index) => (
-                <>
-                  <span class="enter-word inline-flex" style={`--i: ${index}`}>
-                    {word}
-                  </span>{" "}
-                </>
-              ))}
-          </h1>
-          <p class="max-w-[52ch] text-lead text-ink-soft">{t("life.intro")}</p>
-        </header>
-
-        <!-- Route profile: the line draws itself on load and a dot leads the stroke like a pen. -->
-        <svg viewBox="0 0 1000 100" class="route h-auto w-full overflow-visible" aria-hidden="true">
-          <line x1="0" y1="96" x2="1000" y2="96" class="route-base" />
-          <path id="route-line" d={routePath} pathLength="1" class="route-line" />
-          <circle cx="0" cy={points[0][1]} r="7" class="route-start" />
-          <circle cx={routeEnd[0]} cy={routeEnd[1]} r="7" class="route-end" />
-          <circle r="8" opacity="0" class="route-runner">
-            <set attributeName="opacity" to="1" begin="0.4s" fill="freeze" />
-            <animateMotion
-              dur="1.6s"
-              begin="0.4s"
-              fill="freeze"
-              calcMode="spline"
-              keySplines="0.65 0 0.35 1"
-              keyTimes="0;1"
-            >
-              <mpath href="#route-line" />
-            </animateMotion>
-          </circle>
-        </svg>
-      </div>
-    </section>
+  <main class="pt-16 font-display text-ink">
+    <!-- No big title: the page goes straight to its content. -->
+    <h1 class="sr-only">{t("life.kicker")}</h1>
 
     <!-- Sport -->
     <section class="border-b-[1.5px] border-ink bg-paper py-section">
@@ -147,8 +91,8 @@ const photoImg =
         </div>
 
         <div class="grid gap-grid md:grid-cols-2">
-          {sportPhotos.map(({ src, widths, alt, title, text, position }) => (
-            <figure class="group grid">
+          {sportPhotos.map(({ src, widths, alt, title, text, position }, index) => (
+            <figure data-develop class="group grid" style={`--i: ${index}`}>
               <div class:list={[photoFrame, "aspect-[4/3]"]}>
                 <Image
                   src={src}
@@ -181,8 +125,8 @@ const photoImg =
             <p class="text-ink-soft">{t("life.socialText2")}</p>
           </div>
 
-          {socialPhotos.map(({ src, alt, position }) => (
-            <figure class="group grid">
+          {socialPhotos.map(({ src, alt, position }, index) => (
+            <figure data-develop class="group grid" style={`--i: ${index + 1}`}>
               <div class:list={[photoFrame, "aspect-[4/5]"]}>
                 <Image
                   src={src}
@@ -206,3 +150,7 @@ const photoImg =
 
   <Footer />
 </Layout>
+
+<script>
+  import "../scripts/develop";
+</script>

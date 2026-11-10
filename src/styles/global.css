@@ -490,77 +490,27 @@
   transition: scale 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Route profile under the heading. */
-.route-base {
-  stroke: var(--grid);
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
+/* Photos "develop" when they first appear: the image is uncovered from the bottom up, like a
+   print coming out, and the caption follows (scripts/develop.ts adds .is-shown, once). */
+.js [data-develop]:not(.is-shown) img {
+  clip-path: inset(100% 0 0 0);
 }
 
-.route-line {
-  fill: none;
-  stroke: var(--cobalt);
-  stroke-width: 2.5;
-  stroke-linejoin: round;
+.js [data-develop]:not(.is-shown) figcaption {
+  opacity: 0;
+  translate: 0 -8px;
 }
 
-.route-start {
-  fill: var(--paper);
-  stroke: var(--cobalt);
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
+.js [data-develop] img {
+  transition:
+    clip-path 1s var(--ease-draw) calc(var(--i, 0) * 140ms),
+    scale 0.7s ease-out;
 }
 
-.route-end,
-.route-runner {
-  fill: var(--redline);
-}
-
-/* The runner sits at the start until its animateMotion begins. */
-.route-runner {
-  transform-box: view-box;
-}
-
-/* Page-load entrance: the heading rises word by word, then the route draws itself. */
-@media (prefers-reduced-motion: no-preference) {
-  .enter-word {
-    animation: enter-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(0.1s + var(--i, 0) * 90ms) both;
-  }
-
-  .route-line {
-    stroke-dasharray: 1;
-    animation: route-draw 1.6s var(--ease-draw) 0.4s both;
-  }
-
-  .route-end {
-    animation: enter-pop 0.4s ease-out 1.9s both;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .route-runner {
-    display: none;
-  }
-}
-
-@keyframes enter-up {
-  from {
-    opacity: 0;
-    translate: 0 0.35em;
-  }
-}
-
-@keyframes route-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-}
-
-@keyframes enter-pop {
-  from {
-    opacity: 0;
-    scale: 0;
-  }
+.js [data-develop] figcaption {
+  transition:
+    opacity 0.4s ease-out calc(0.6s + var(--i, 0) * 140ms),
+    translate 0.4s ease-out calc(0.6s + var(--i, 0) * 140ms);
 }
 
 /* Contact: a dimension-style underline draws under the value on hover/focus. */
