@@ -55,7 +55,7 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- Lets CSS hide [data-reveal] elements only when JS can reveal them again. -->
+    <!-- `js` lets CSS hide content that a script will reveal (schematic, photos, Strava). -->
     <script is:inline>
       document.documentElement.classList.add("js");
       // Theme picked by the visitor (light/dark); without one, the OS setting applies.
@@ -100,23 +100,11 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
 
-    <Font
-      cssVariable="--font-inter"
-      preload={[
-        { weight: 400, subset: "latin" },
-        { weight: 700, subset: "latin" },
-      ]}
-    />
-
     <Font cssVariable="--font-archivo" preload={[{ weight: "400 800", subset: "latin" }]} />
 
     <title>{title}</title>
   </head>
   <body class="bg-paper font-display text-ink antialiased selection:bg-cobalt selection:text-paper">
     <slot />
-
-    <script>
-      import "../scripts/reveal";
-    </script>
   </body>
 </html>

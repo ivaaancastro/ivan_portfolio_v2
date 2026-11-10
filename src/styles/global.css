@@ -9,7 +9,6 @@
  *
  * Light is the default. Dark follows the OS unless the visitor picks one, which sets
  * data-theme on <html> (see the inline script in Layout.astro).
- * Until every section is redesigned, these tokens live next to the old ones below.
  */
 :root {
   --paper: #f2f4f6; /* drawing sheet */
@@ -134,71 +133,13 @@
 }
 
 @theme {
-  /* Colores personalizados */
-  --color-bg: #0e0f12;
-  --color-bg-soft: #15181e;
-  --color-primary: #6cf0c2; /* Verde menta */
-  --color-card: #13151a;
-  --color-muted: #9aa3b2;
+  /* Brand colour kept only for the Strava mark on the Lifestyle page. */
   --color-strava: #fc4c02;
-  --color-linkedin: #0077b5;
-
-  /* Definimos tu fuente */
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-
-  /* Animaciones de entrada (CSS puro, sin JS) */
-  --animate-fade-up: fade-up 0.6s ease-out both;
-  --animate-pop-in: pop-in 0.8s ease-out 0.1s both;
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-  }
-
-  @keyframes pop-in {
-    from {
-      opacity: 0;
-      transform: scale(0.9) rotate(6deg);
-    }
-  }
 }
 
 /* Extra bottom padding for the iPhone home indicator (needs viewport-fit=cover). */
 @utility pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
-}
-
-/*
- * Scroll reveal: elements with [data-reveal] fade in when they enter the viewport.
- * The `js` class is set inline in <head>, so without JS everything stays visible.
- * src/scripts/reveal.ts adds `is-revealed`. Optional delay via style="--reveal-delay: 200ms".
- */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.js [data-reveal="left"] {
-  transform: translateX(-20px);
-}
-
-/* Progress bars grow from the left instead of fading. */
-.js [data-reveal="bar"] {
-  opacity: 1;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.2s ease-out var(--reveal-delay, 0ms);
-}
-
-.js [data-reveal].is-revealed {
-  opacity: 1;
-  transform: none;
 }
 
 /*
@@ -542,9 +483,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .js [data-reveal] {
-    transform: none !important;
   }
 }
