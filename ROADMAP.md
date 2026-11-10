@@ -194,3 +194,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.3 · Páginas de caso de estudio en ES/EN; las tarjetas enlazan a ellas y se retira la modal · [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
 - 2026-11-09 · F2.6 · Transiciones entre páginas con View Transitions nativas (solo CSS). **F2 completada salvo F2.3b** (textos de Iván) · [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
 - 2026-11-09 · — · Estudios actualizados en la biografía y el dato rápido (ES/EN): asignaturas aprobadas y TFG en curso, aprobado por Iván
+- 2026-11-10 · — · Duración en Indra corregida a 1 año (prácticas y contrato), en la biografía y el dato rápido (ES/EN), a petición de Iván
