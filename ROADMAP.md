@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F4 (las PR vuelven a ir contra `main`)
-**Próxima tarea:** F4.1 · Lighthouse ≥ 95 en móvil. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F4.4 · Revisión final de textos y datos personales (con Iván). F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -145,7 +145,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ## F4 · Pulido y medición
 
-- [ ] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas
+- [x] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas. Medido con Lighthouse 12 sobre la build local en 11 rutas ES/EN: rendimiento 98–100, accesibilidad 100, buenas prácticas 96 y SEO 100, sin cambios de código. Excepciones esperadas: SEO de `/404` en 63 por el `noindex` intencionado, y buenas prácticas en 96 solo en local por los 404 de `/_vercel/*`, que en Vercel sí existen — PR_LINK
 - [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [x] **F4.3** Vercel Web Analytics + Speed Insights con los componentes oficiales `@vercel/analytics/astro` y `@vercel/speed-insights/astro` en `Layout.astro`; sin `vercel.json`. Hay que activar ambos en el panel del proyecto en Vercel — [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - [ ] **F4.4** Revisión final de textos y datos personales
@@ -236,3 +236,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F4.2 · axe sin errores en CI: contraste AA en modo claro en /personal (text-ink-soft → text-ink en PersonalPage.astro) · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - 2026-11-10 · F4.3 · Vercel Web Analytics y Speed Insights con los componentes oficiales; se retira el `vercel.json` que rompía la build · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - 2026-11-10 · F4.2 · axe en CI estable: el script recorre la página con movimiento reducido antes de auditar (los pies de foto de Lifestyle se medían a mitad del fundido) y «reducir movimiento» anula también los retardos · [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
+- 2026-11-10 · F4.1 · Lighthouse móvil ≥ 95 en todas las páginas (98–100 / 100 / 96 / 100), sin cambios de código · PR_LINK
