@@ -149,7 +149,10 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
           <div class="flex flex-wrap items-center gap-2 text-caption">
             <span class="text-ink-soft">{t("stack.usedIn")}:</span>
             {used.map((project) => (
-              <a href={project.href} class="border border-cobalt px-2 py-0.5 text-cobalt">
+              <a
+                href={project.href}
+                class="inline-flex min-h-8 items-center border border-cobalt px-2.5 text-cobalt hover:bg-cobalt hover:text-paper"
+              >
                 {project.title}
               </a>
             ))}
