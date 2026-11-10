@@ -81,7 +81,8 @@ async function main() {
 
   // 3. Recorrer rutas con axe
   const browser = await chromium.launch();
-  const context = await browser.newContext();
+  // Sin animaciones: axe debe medir el estado final, no un fundido a medias.
+  const context = await browser.newContext({ reducedMotion: "reduce" });
   const page = await context.newPage();
 
   let totalViolations = 0;
@@ -129,6 +130,17 @@ async function main() {
 
 async function auditRoute(page, url) {
   await page.goto(url, { waitUntil: "networkidle" });
+  // Recorrer la página para que los elementos que se revelan al entrar en pantalla
+  // (fotos de Lifestyle, barras de Strava…) lleguen a su estado visible antes de auditar.
+  await page.evaluate(async () => {
+    const step = globalThis.innerHeight / 2;
+    for (let y = 0; y <= document.documentElement.scrollHeight; y += step) {
+      globalThis.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    globalThis.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(300);
   // Inyectar axe-core y ejecutar auditoría (WCAG 2.1 A + AA).
   await page.addScriptTag({ path: axeCorePath });
   const results = await page.evaluate(() => {
