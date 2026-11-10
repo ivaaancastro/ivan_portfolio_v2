@@ -1,7 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { Activity, Star } from "lucide-react";
-import { icons } from "../utils/icons";
 import { getProjects, projectSlug } from "../utils/content";
 import { getLang, projectPath, useTranslations } from "../i18n/utils";
 
@@ -9,95 +7,95 @@ const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 
 // Content lives in src/content/projects/<lang>/*.mdx; the MDX body is the case study page.
-const projects = (await getProjects(lang)).map((entry) => ({
+const entries = await getProjects(lang);
+const projects = entries.map((entry, index) => ({
   ...entry.data,
   slug: projectSlug(entry),
   href: projectPath(lang, projectSlug(entry)),
-  Icon: icons[entry.data.icon],
+  sheet: t("projects.sheet")
+    .replace("{n}", String(index + 1))
+    .replace("{total}", String(entries.length)),
 }));
 
-const IMAGE_WIDTHS = [400, 700, 1000, 1400];
-const CARD_SIZES = "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw";
-const FEATURED_SIZES = "(min-width: 1024px) 700px, 100vw";
+const [featured, ...rest] = projects;
+const coverStyle = (slug: string) =>
+  `view-transition-name: project-${slug}; view-transition-class: project-cover`;
+
+// Each sheet is one link: the title link covers the whole sheet (after:inset-0).
+const sheetClass =
+  "group relative grid border-frame bg-paper-raised hover:border-cobalt has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-cobalt";
+const titleLinkClass = "outline-none after:absolute after:inset-0 after:content-['']";
 ---
 
-<section id="projects" class="relative bg-black/20 py-24">
-  <div class="mx-auto max-w-[1100px] px-6">
-    <!-- Encabezado de Sección -->
-    <div data-reveal class="mb-16">
-      <h2 class="mb-4 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-        <Activity className="text-primary" aria-hidden="true" /> {t("projects.title")}
-      </h2>
-      <p class="max-w-2xl text-lg text-muted">{t("projects.intro")}</p>
-    </div>
+<section
+  id="projects"
+  class="scroll-mt-16 border-b-[1.5px] border-ink bg-paper py-section font-display text-ink"
+>
+  <div class="mx-auto grid max-w-[1100px] gap-block px-6">
+    <header class="grid gap-head">
+      <h2 class="text-h2 font-extrabold stretch-heading">{t("projects.title")}</h2>
+      <p class="max-w-[60ch] text-lead text-ink-soft">{t("projects.intro")}</p>
+    </header>
 
-    <!-- Grid de Tarjetas -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {projects.map(({ Icon, ...project }) => {
-        return (
-          <article
-            class:list={[
-              "group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(108,240,194,0.1)] has-[:focus-visible]:border-primary has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary",
-              { "md:col-span-2 lg:col-span-2": project.featured },
-            ]}
-          >
-            <!-- Imagen -->
-            <div
-              class:list={[
-                "relative shrink-0 overflow-hidden",
-                project.featured ? "h-64 lg:h-72" : "h-48",
-              ]}
-            >
-              <div class="absolute inset-0 z-10 bg-gradient-to-t from-card via-transparent to-transparent opacity-80" />
-              <Image
-                src={project.cover}
-                widths={IMAGE_WIDTHS}
-                sizes={project.featured ? FEATURED_SIZES : CARD_SIZES}
-                format="webp"
-                alt={project.title}
-                style={`view-transition-name: project-${project.slug}; view-transition-class: project-cover`}
-                class="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div class="absolute top-4 right-4 z-20 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur-md">
-                <Icon className="h-6 w-6" aria-hidden="true" />
-              </div>
+    {featured && (
+      <article class:list={[sheetClass, "md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]"]}>
+        <div class="flex flex-col gap-4 p-6 md:p-8">
+          <span class="text-caption text-redline">{featured.sheet}</span>
+          <h3 class="text-h3 font-extrabold stretch-subheading group-hover:text-cobalt">
+            <a href={featured.href} class={titleLinkClass}>
+              {featured.title}
+            </a>
+          </h3>
+          <p class="text-ink-soft">{featured.shortDesc}</p>
+          <ul class="mt-auto flex flex-wrap gap-2 text-caption">
+            {featured.tags.map((tag) => (
+              <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
+            ))}
+          </ul>
+        </div>
+        <Image
+          src={featured.cover}
+          widths={[400, 700, 1000, 1400]}
+          sizes="(min-width: 1100px) 580px, (min-width: 768px) 55vw, 100vw"
+          format="webp"
+          alt={featured.title}
+          style={coverStyle(featured.slug)}
+          class="order-first aspect-video h-full w-full border-b-[1.5px] border-ink object-cover md:order-none md:border-b-0 md:border-l-[1.5px]"
+        />
+      </article>
+    )}
 
-              {project.featured && (
-                <div class="absolute top-4 left-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black shadow-lg backdrop-blur-sm">
-                  <Star size={12} className="fill-current" aria-hidden="true" />{" "}
-                  {t("projects.featured")}
-                </div>
+    <div class="grid gap-grid sm:grid-cols-2">
+      {rest.map((project) => (
+        <article class:list={[sheetClass, "grid-rows-[auto_1fr]"]}>
+          <Image
+            src={project.cover}
+            widths={[400, 700, 1000]}
+            sizes="(min-width: 1100px) 530px, (min-width: 640px) 50vw, 100vw"
+            format="webp"
+            alt={project.title}
+            style={coverStyle(project.slug)}
+            class="aspect-video w-full border-b-[1.5px] border-ink object-cover"
+          />
+          <div class="flex flex-col gap-3 p-5 md:p-6">
+            <span class="text-caption text-redline">{project.sheet}</span>
+            <h3 class="text-h3 font-bold stretch-subheading group-hover:text-cobalt">
+              <a href={project.href} class={titleLinkClass}>
+                {project.title}
+              </a>
+            </h3>
+            <p class="text-small text-ink-soft">{project.shortDesc}</p>
+            <ul class="mt-auto flex flex-wrap gap-2 text-caption">
+              {project.tags.slice(0, 3).map((tag) => (
+                <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
+              ))}
+              {project.tags.length > 3 && (
+                <li class="px-1 py-0.5 text-ink-soft">+{project.tags.length - 3}</li>
               )}
-            </div>
-
-            <!-- Contenido Resumido -->
-            <div class="flex grow flex-col p-6">
-              <h3 class="mb-2 text-xl font-bold text-white transition-colors group-hover:text-primary">
-                <!-- The link covers the whole card (after:inset-0) so the card is clickable and keyboard accessible. -->
-                <a
-                  href={project.href}
-                  class="outline-none after:absolute after:inset-0 after:z-30 after:content-['']"
-                >
-                  {project.title}
-                </a>
-              </h3>
-              <p class="mb-4 line-clamp-2 text-sm text-gray-400">{project.shortDesc}</p>
-              <div class="mt-auto flex flex-wrap gap-2">
-                {project.tags.slice(0, 3).map((tag) => (
-                  <span class="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                    {tag}
-                  </span>
-                ))}
-                {project.tags.length > 3 && (
-                  <span class="px-2 py-1 text-xs font-medium text-gray-500">
-                    +{project.tags.length - 3}
-                  </span>
-                )}
-              </div>
-            </div>
-          </article>
-        );
-      })}
+            </ul>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>

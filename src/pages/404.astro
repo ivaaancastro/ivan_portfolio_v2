@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { ArrowLeft, Heart } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Lang } from "../i18n/config";
 import { pathFor, useTranslations } from "../i18n/utils";
 
@@ -37,32 +37,39 @@ const es = useTranslations("es");
 
   <Navbar />
 
-  <main class="flex min-h-[80vh] items-center justify-center px-6 pt-32 pb-28">
-    <section class="relative text-center">
-      <div class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]"></div>
-
-      <p class="mb-4 font-mono text-7xl font-bold text-white/10 select-none md:text-9xl">404</p>
+  <main class="border-b-[1.5px] border-ink bg-drafting-grid pt-16 font-display text-ink">
+    <section class="mx-auto grid min-h-[70vh] max-w-[1100px] content-center gap-block px-6 py-section">
+      <!-- The code as a dimensioned figure: the only motion is the dimension line drawing in. -->
+      <div class="grid w-fit gap-3" aria-hidden="true">
+        <p class="text-title leading-none font-extrabold text-cobalt stretch-display">404</p>
+        <p class="relative h-3">
+          <span class="absolute inset-x-0 top-1/2 h-[1.5px] origin-left animate-draw bg-redline"></span>
+          <span class="absolute top-0 left-0 h-3 w-[1.5px] bg-redline"></span>
+          <span class="absolute top-0 right-0 h-3 w-[1.5px] bg-redline"></span>
+        </p>
+      </div>
 
       {texts.map((item) => (
-        <div data-lang={item.lang}>
-          <h1 class="mb-4 text-3xl font-bold text-white md:text-5xl">
-            {item.title}
-            <span class="text-primary">.</span>
-          </h1>
-          <p class="mx-auto mb-10 max-w-md text-lg text-muted">{item.text}</p>
+        <div data-lang={item.lang} class="grid gap-head">
+          <h1 class="text-h2 font-extrabold stretch-heading">{item.title}</h1>
+          <p class="max-w-[46ch] text-lead text-ink-soft">{item.text}</p>
 
-          <div class="flex flex-wrap justify-center gap-4">
+          <div class="mt-6 flex flex-wrap gap-3">
             <a
               href={pathFor(item.lang)}
-              class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-black transition-colors duration-300 hover:bg-primary"
+              class="group inline-flex h-12 items-center gap-2 rounded-control bg-ink px-5 font-semibold text-paper hover:bg-cobalt"
             >
-              <ArrowLeft size={18} aria-hidden="true" /> {item.home}
+              <ArrowLeft
+                className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+              {item.home}
             </a>
             <a
               href={pathFor(item.lang, "personal")}
-              class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 font-medium text-white transition-colors duration-300 hover:bg-white/10"
+              class="inline-flex h-12 items-center rounded-control border-frame bg-paper px-5 font-semibold hover:bg-ink hover:text-paper"
             >
-              <Heart size={18} aria-hidden="true" /> {item.lifestyle}
+              {item.lifestyle}
             </a>
           </div>
         </div>

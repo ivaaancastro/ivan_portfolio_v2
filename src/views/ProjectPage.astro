@@ -1,12 +1,11 @@
 ---
 import { getImage, Image } from "astro:assets";
 import { render, type CollectionEntry } from "astro:content";
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { Github } from "../components/icons/brand";
-import { icons } from "../utils/icons";
 import { getProjects, projectSlug } from "../utils/content";
 import { getLang, pathFor, projectPath, useTranslations } from "../i18n/utils";
 
@@ -20,7 +19,6 @@ const t = useTranslations(lang);
 
 const project = entry.data;
 const slug = projectSlug(entry);
-const Icon = icons[project.icon];
 const { Content } = await render(entry);
 
 // Previous / next project, in the same order as the home grid (wraps around).
@@ -43,106 +41,125 @@ const ogImage = await getImage({
 });
 
 const title = t("projects.metaTitle").replace("{title}", project.title);
+const sheet = t("projects.sheet")
+  .replace("{n}", String(index + 1))
+  .replace("{total}", String(all.length));
+
+// Case-study text from the MDX body, styled for the paper theme.
+const prose =
+  "grid max-w-[68ch] gap-4 text-ink-soft [&_code]:text-small [&_code]:text-cobalt [&_h2]:mt-6 [&_h2]:text-h3 [&_h2]:font-bold [&_h2]:text-ink [&_h2]:stretch-subheading [&_li]:pl-1 [&_li+li]:mt-2 [&_strong]:font-semibold [&_strong]:text-ink [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:marker:text-cobalt";
 ---
 
 <Layout title={title} description={project.shortDesc} image={ogImage.src} imageAlt={project.title}>
   <Navbar />
 
-  <main class="px-6 pt-32 pb-28">
-    <article class="mx-auto max-w-[900px]">
-      <a
-        href={pathFor(lang, "#projects")}
-        class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-primary"
-      >
-        <ArrowLeft size={16} aria-hidden="true" />
-        {t("projects.back")}
-      </a>
+  <main class="pt-16 font-display text-ink">
+    <article>
+      <!-- Sheet header -->
+      <header class="border-b-[1.5px] border-ink bg-drafting-grid">
+        <div class="mx-auto grid max-w-[1100px] gap-block px-6 pt-section pb-block">
+          <div class="grid gap-head">
+            <a
+              href={pathFor(lang, "#projects")}
+              class="group inline-flex min-h-8 w-fit items-center gap-2 text-small font-semibold text-ink-soft hover:text-cobalt"
+            >
+              <ArrowLeft
+                className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+              {t("projects.back")}
+            </a>
+            <p class="mt-6 flex flex-wrap items-center gap-3 text-caption font-semibold">
+              <span class="text-redline">{sheet}</span>
+              {project.featured && (
+                <span class="border border-cobalt px-2 py-0.5 text-cobalt">
+                  {t("projects.featured")}
+                </span>
+              )}
+            </p>
+            <h1 class="text-h1 font-extrabold stretch-display">{project.title}</h1>
+            <p class="max-w-[52ch] text-lead text-ink-soft">{project.shortDesc}</p>
+          </div>
 
-      <!-- Cabecera -->
-      <header class="mb-10 animate-fade-up">
-        <div class="mb-4 flex flex-wrap items-center gap-3">
-          <span class="rounded-full border border-white/10 bg-white/5 p-2 text-primary">
-            <Icon className="h-5 w-5" aria-hidden="true" />
-          </span>
-          {project.featured && (
-            <span class="flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-black">
-              <Star size={12} className="fill-current" aria-hidden="true" />
-              {t("projects.featured")}
-            </span>
-          )}
+          <Image
+            src={project.cover}
+            widths={[400, 700, 1000, 1400, 1800]}
+            sizes="(min-width: 1148px) 1052px, 100vw"
+            format="webp"
+            alt={project.title}
+            loading="eager"
+            fetchpriority="high"
+            style={`view-transition-name: project-${slug}; view-transition-class: project-cover`}
+            class="aspect-video w-full border-frame bg-paper-raised object-cover"
+          />
         </div>
-        <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">{project.title}</h1>
-        <p class="max-w-2xl text-lg text-muted md:text-xl">{project.shortDesc}</p>
       </header>
 
-      <Image
-        src={project.cover}
-        widths={[400, 700, 1000, 1400, 1800]}
-        sizes="(min-width: 948px) 900px, 100vw"
-        format="webp"
-        alt={project.title}
-        loading="eager"
-        fetchpriority="high"
-        style={`view-transition-name: project-${slug}; view-transition-class: project-cover`}
-        class="mb-12 aspect-video w-full rounded-2xl border border-white/10 object-cover"
-      />
-
-      <div class="grid gap-12 md:grid-cols-[1fr_240px]">
-        <!-- Texto del caso de estudio (cuerpo del MDX) -->
-        <div class="space-y-4 text-base leading-relaxed text-gray-300 md:text-lg [&_code]:text-primary [&_h2]:pt-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_li+li]:mt-1 [&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5">
+      <!-- Case study + title block -->
+      <div class="mx-auto grid max-w-[1100px] gap-block px-6 py-section md:grid-cols-[minmax(0,1fr)_280px]">
+        <div class={prose}>
           <Content />
         </div>
 
-        <!-- Ficha: stack y enlaces -->
-        <aside class="space-y-8 md:sticky md:top-28 md:self-start">
-          <section>
-            <h2 class="mb-3 text-sm font-bold tracking-wider text-white uppercase">
-              {t("projects.stack")}
-            </h2>
-            <ul class="flex flex-wrap gap-2">
+        <aside class="grid self-start border-frame bg-paper-raised text-small md:sticky md:top-24">
+          <section class="grid gap-3 border-b border-ink p-4">
+            <h2 class="text-caption text-ink-soft">{t("projects.stack")}</h2>
+            <ul class="flex flex-wrap gap-2 text-caption">
               {project.tags.map((tag) => (
-                <li class="rounded bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                  {tag}
-                </li>
+                <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
               ))}
             </ul>
           </section>
-          <section>
-            <h2 class="mb-3 text-sm font-bold tracking-wider text-white uppercase">
-              {t("projects.links")}
-            </h2>
+          <section class="grid gap-3 p-4">
+            <h2 class="text-caption text-ink-soft">{t("projects.links")}</h2>
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-black transition-colors hover:bg-primary"
+              class="group inline-flex h-11 items-center justify-between gap-2 rounded-control bg-ink px-4 font-semibold text-paper hover:bg-cobalt"
             >
-              <Github size={18} aria-hidden="true" />
-              {t("projects.viewCode")}
+              <span class="inline-flex items-center gap-2">
+                <Github size={16} aria-hidden="true" />
+                {t("projects.viewCode")}
+              </span>
+              <ArrowUpRight
+                className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
             </a>
           </section>
         </aside>
       </div>
 
-      <!-- Navegación entre proyectos -->
+      <!-- Previous / next sheet -->
       {all.length > 1 && (
-        <nav aria-label={t("projects.more")} class="mt-20 border-t border-white/10 pt-10">
-          <ul class="grid gap-4 sm:grid-cols-2">
+        <nav aria-label={t("projects.more")} class="border-t-[1.5px] border-ink bg-paper">
+          <ul class="mx-auto grid max-w-[1100px] gap-grid px-6 py-block sm:grid-cols-2">
             {neighbours.map(({ entry: other, label, dir }) => (
-              <li class={dir === "next" ? "sm:text-right" : ""}>
+              <li>
                 <a
                   href={projectPath(lang, projectSlug(other))}
                   class:list={[
-                    "group flex h-full flex-col gap-1 rounded-2xl border border-white/10 bg-card p-5 transition-colors hover:border-primary/50",
-                    { "sm:items-end": dir === "next" },
+                    "group flex h-full flex-col gap-1 border-frame bg-paper-raised p-5 hover:border-cobalt md:p-6",
+                    { "sm:items-end sm:text-right": dir === "next" },
                   ]}
                 >
-                  <span class="flex items-center gap-1 text-xs font-medium text-muted">
-                    {dir === "prev" && <ArrowLeft size={14} aria-hidden="true" />}
+                  <span class="inline-flex items-center gap-1.5 text-caption font-semibold text-ink-soft">
+                    {dir === "prev" && (
+                      <ArrowLeft
+                        className="size-3.5 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
+                        aria-hidden="true"
+                      />
+                    )}
                     {label}
-                    {dir === "next" && <ArrowRight size={14} aria-hidden="true" />}
+                    {dir === "next" && (
+                      <ArrowRight
+                        className="size-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                        aria-hidden="true"
+                      />
+                    )}
                   </span>
-                  <span class="font-bold text-white transition-colors group-hover:text-primary">
+                  <span class="text-h3 font-bold stretch-subheading group-hover:text-cobalt">
                     {other.data.title}
                   </span>
                 </a>

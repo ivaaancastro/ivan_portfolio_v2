@@ -1,0 +1,168 @@
+---
+import { icons } from "../utils/icons";
+import { getProjects, getStack, localize, projectSlug } from "../utils/content";
+import { getLang, projectPath, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const projects = (await getProjects(lang)).map((entry) => ({
+  key: `p-${projectSlug(entry)}`,
+  title: entry.data.title,
+  tags: entry.data.tags,
+  href: projectPath(lang, projectSlug(entry)),
+}));
+
+// A tool is linked to every project whose tags include one of its `matches`.
+const tools = (await getStack()).map(({ id, data }) => {
+  const used = projects.filter((project) => project.tags.some((tag) => data.matches.includes(tag)));
+  return {
+    key: id,
+    name: localize(data.name, lang),
+    desc: localize(data.desc, lang),
+    Icon: icons[data.icon],
+    projects: used,
+  };
+});
+
+// Schematic geometry (desktop): one SVG in a 1000 x (rows * 100) box; the HTML nodes are placed
+// with the same percentages so the lines meet them at any width.
+const rows = Math.max(tools.length, projects.length);
+const height = rows * 100;
+const rowY = (index: number, count: number) => ((index + 0.5) * height) / count;
+const toolY = new Map(tools.map((tool, i) => [tool.key, rowY(i, tools.length)]));
+const projectY = new Map(projects.map((project, i) => [project.key, rowY(i, projects.length)]));
+const LEFT = 300;
+const RIGHT = 700;
+
+const links = tools.flatMap((tool) =>
+  tool.projects.map((project) => {
+    const y1 = toolY.get(tool.key) ?? 0;
+    const y2 = projectY.get(project.key) ?? 0;
+    return {
+      id: `link-${tool.key}-${project.key}`,
+      keys: `${tool.key} ${project.key}`,
+      d: `M ${LEFT} ${y1} C 500 ${y1}, 500 ${y2}, ${RIGHT} ${y2}`,
+    };
+  }),
+);
+
+const top = (y: number) => `top: ${(y / height) * 100}%`;
+---
+
+<section
+  id="stack"
+  class="scroll-mt-16 overflow-x-clip border-b-[1.5px] border-ink bg-paper py-section font-display text-ink"
+>
+  <div class="mx-auto grid max-w-[1100px] gap-block px-6">
+    <header class="grid gap-head">
+      <h2 class="text-h2 font-extrabold stretch-heading">{t("stack.title")}</h2>
+      <p class="max-w-[60ch] text-lead text-ink-soft">{t("stack.note")}</p>
+    </header>
+
+    <!-- Desktop: tools wired to the projects that use them. Hover or focus a node to trace it. -->
+    <div
+      data-schematic
+      class="schematic relative hidden md:block"
+      style={`aspect-ratio: 1000 / ${height}`}
+    >
+      <svg
+        viewBox={`0 0 1000 ${height}`}
+        class="absolute inset-0 size-full overflow-visible"
+        aria-hidden="true"
+      >
+        {links.map((link, index) => (
+          <path
+            id={link.id}
+            d={link.d}
+            pathLength="1"
+            class="schematic-link"
+            data-keys={link.keys}
+            style={`--i: ${index}`}
+          />
+        ))}
+        {links.map((link, index) => (
+          <circle r="4" class="schematic-pulse" data-keys={link.keys}>
+            <animateMotion
+              dur="2.8s"
+              begin={`-${(index * 0.37).toFixed(2)}s`}
+              repeatCount="indefinite"
+            >
+              <mpath href={`#${link.id}`} />
+            </animateMotion>
+          </circle>
+        ))}
+        {tools.map((tool) => (
+          <circle cx={LEFT} cy={toolY.get(tool.key)} r="5" class="schematic-anchor" />
+        ))}
+        {projects.map((project) => (
+          <circle cx={RIGHT} cy={projectY.get(project.key)} r="5" class="schematic-anchor" />
+        ))}
+      </svg>
+
+      <ul aria-label={t("stack.toolsLabel")}>
+        {tools.map(({ key, name, desc, Icon, projects: used }, index) => (
+          <li
+            data-key={key}
+            class="schematic-node schematic-from-left absolute left-0 flex w-[29%] [transform:translateY(-50%)] items-center gap-3 border-frame bg-paper-raised px-3 py-2"
+            style={`${top(toolY.get(key) ?? 0)}; --i: ${index}`}
+          >
+            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <span class="grid min-w-0">
+              <span class="font-bold">{name}</span>
+              <span class="hidden truncate text-caption text-ink-soft lg:block">{desc}</span>
+            </span>
+            <span class="sr-only">
+              {t("stack.usedIn")}: {used.map((project) => project.title).join(", ")}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <ul aria-label={t("stack.projectsLabel")}>
+        {projects.map(({ key, title, href }, index) => (
+          <li
+            data-key={key}
+            class="schematic-node schematic-from-right absolute right-0 w-[29%] [transform:translateY(-50%)]"
+            style={`${top(projectY.get(key) ?? 0)}; --i: ${index}`}
+          >
+            <a
+              href={href}
+              class="block border-frame bg-paper-raised px-3 py-2.5 font-bold hover:text-cobalt"
+            >
+              {title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Mobile: one card per tool with the projects that use it. -->
+    <ul class="grid gap-4 md:hidden">
+      {tools.map(({ name, desc, Icon, projects: used }) => (
+        <li class="schematic-card grid gap-3 border-frame bg-paper-raised p-4">
+          <div class="flex items-center gap-3">
+            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <span class="font-bold">{name}</span>
+          </div>
+          <p class="text-small text-ink-soft">{desc}</p>
+          <div class="flex flex-wrap items-center gap-2 text-caption">
+            <span class="text-ink-soft">{t("stack.usedIn")}:</span>
+            {used.map((project) => (
+              <a
+                href={project.href}
+                class="inline-flex min-h-8 items-center border border-cobalt px-2.5 text-cobalt hover:bg-cobalt hover:text-paper"
+              >
+                {project.title}
+              </a>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import "../scripts/schematic";
+</script>

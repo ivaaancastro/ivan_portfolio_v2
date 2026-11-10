@@ -9,18 +9,18 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 ## Estado general
 
-| Fase | Objetivo                                                              | Estado       |
-| :--- | :-------------------------------------------------------------------- | :----------- |
-| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho     |
-| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho     |
-| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | 🚧 En curso  |
-| F3   | Rediseño visual                                                       | ⏳ Pendiente |
-| F4   | Pulido y medición                                                     | ⏳ Pendiente |
+| Fase | Objetivo                                                              | Estado                                 |
+| :--- | :-------------------------------------------------------------------- | :------------------------------------- |
+| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho                               |
+| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho                               |
+| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho (salvo F2.3b, textos de Iván) |
+| F3   | Rediseño visual                                                       | ✅ Hecho                               |
+| F4   | Pulido y medición                                                     | ⏳ Pendiente                           |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
-**Fase actual:** F2
-**Próxima tarea:** F3.1 (decisión D3, dirección visual). F2.3b queda abierta hasta que Iván tenga los textos.
+**Fase actual:** F4 (las PR vuelven a ir contra `main`)
+**Próxima tarea:** F4.1 · Lighthouse ≥ 95 en móvil en todas las páginas, ya con el diseño nuevo. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -117,13 +117,31 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ## F3 · Rediseño
 
-- [ ] **F3.1** Recoger referencias y objetivos (decisión D3)
-- [ ] **F3.2** 2–3 propuestas de dirección visual para elegir
-- [ ] **F3.3** Tokens de diseño (color, tipografía, espaciado, radios, movimiento) en `global.css`
-- [ ] **F3.4** Nueva arquitectura de la home (orden y contenido de secciones)
-- [ ] **F3.5** Implementación por secciones (un PR por sección)
-- [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
-- [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
+- [x] **F3.1** Recoger referencias y objetivos (decisión D3). Iván no tenía referencias y prefería ver ejemplos.
+- [x] **F3.2** Tres propuestas (A «Plano técnico», B «Pista», C «Atlántico») en una página de maquetas; Iván elige la **A**.
+- [x] **F3.3** Tokens de diseño (color, tipografía, espaciado, radios, movimiento) en `global.css` — [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
+  - Colores claro/oscuro (`paper`, `ink`, `ink-soft`, `grid`, `cobalt`, `redline`), Archivo con eje de anchura, escala 12–72, cuadrícula de 24 px, hojas sin radio, animación única `draw`.
+  - Tema: sigue al sistema; `data-theme` en `<html>` si el visitante elige (el botón llega con la cabecera).
+  - Los tokens antiguos (`bg`, `primary`, Inter…) se retiran cuando la última sección deje de usarlos.
+- [x] **F3.4** Nueva arquitectura de la home (orden y contenido de secciones), aprobada por Iván:
+  1. **Portada:** nombre en Archivo estrecho, línea de cota con la profesión (única animación), frase actual, botones «Ver proyectos» y «Descargar CV», foto enmarcada como detalle del plano y cajetín con los datos rápidos (autor, lugar, formación, experiencia).
+  2. **Proyectos** (sube al segundo puesto): Nexus Commerce Core en grande y los otros cuatro como hojas; cada uno enlaza a su caso de estudio.
+  3. **Experiencia:** las etapas en Indra acotadas sobre una regla de tiempo a escala, con su descripción debajo. Dos líneas: **formación** (DAM en Centro Plurilingüe Karbo, sep 2020 – jun 2022; Ingeniería Informática en la UDC, desde sep 2022) y **trabajo** (Indra). Fechas del CV; los estudios irán en una colección `education` (es/en). Iván ha terminado las asignaturas y solo le falta el TFG: la línea de la UDC queda abierta hasta hoy («TFG en curso»). Los textos que dicen «cuarto curso» (biografía, dato rápido de la portada) se actualizan solo si Iván aprueba la nueva redacción.
+  4. **Sobre mí y stack:** biografía actual y el stack como «lista de materiales» (tabla).
+  5. **Contacto:** título grande y cajetín con email (acción principal), LinkedIn, GitHub y teléfono. El pie repite el cajetín reducido.
+  - Navegación: cabecera con índice, selector ES/EN y botón de tema; en móvil, menú desplegable en la cabecera y **se retira la barra inferior**.
+  - Lifestyle sigue enlazada solo desde la navegación (sin adelanto en la home).
+- [x] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
+  - [x] Base — [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36): fondo papel y Archivo en todo el sitio; cabecera nueva (índice en el orden de la home, ES/EN, botón de tema claro/oscuro, CV y menú desplegable en móvil con `popover` nativo); pie como cajetín; se retira la barra inferior. Las secciones antiguas se muestran dentro de un `<main class="legacy …">` oscuro hasta que se rediseñen.
+  - [x] Portada — [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37): nombre en Archivo estrecho, línea de cota animada con la profesión, foto (sin marco ni «Detalle A», a petición de Iván), cajetín con los datos rápidos y botones «Ver proyectos» / «Descargar CV». Se retiran el antetítulo «Diseño · Desarrollo · Soporte» y el «Hola, soy».
+  - [x] Proyectos — [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40): sube al segundo puesto; Nexus Commerce Core como hoja grande y el resto como hojas en dos columnas, con «Hoja n de 5», stack y portada. Cada hoja entera es un enlace a su caso de estudio (foco visible con teclado). Orden provisional del resto: Experiencia → Sobre mí → Contacto.
+  - [x] Experiencia y formación — [#41](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/41): línea de tiempo vertical (de lo más reciente a lo más antiguo) con tarjetas alternas, mes de inicio en grande y etiqueta Formación/Trabajo. Animación ligada al scroll en CSS: la línea se dibuja, las tarjetas entran desde su lado y cada punto se enciende al pasar; «En curso» con un punto que late. Sin soporte o con «reducir movimiento», queda estática. Nueva colección `education` (DAM y UDC, ES/EN) y fechas `start`/`end` en `experience`; el periodo en texto se genera con `Intl`. Sustituye a una primera versión con regla horizontal a escala, que a Iván le resultó difícil de leer.
+  - [x] Herramientas — [#42](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/42): esquema conectado (D12) que une cada herramienta con los proyectos que la usan (calculado con `matches` en `stack.json` y las etiquetas de cada proyecto). Al entrar en pantalla (un 20 % visible) se dibuja entero de una vez —cajas desde los lados, líneas una tras otra y después los impulsos—, sin depender de cuánto se baje y al pasar el ratón o el foco por un nodo se iluminan sus conexiones; en móvil, tarjetas con los proyectos de cada herramienta. La biografía («Sobre mí») sale de la home y pasa al principio de la página personal, que el menú enlaza ahora como «Sobre mí» (F3.6 la rediseña). Orden de la home: Portada → Proyectos → Herramientas → Experiencia → Contacto.
+  - [x] Contacto — [#43](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/43): «Hablemos» en grande sobre la cuadrícula y los canales (email, teléfono, LinkedIn, GitHub) como filas de un cajetín, cada una un enlace con una cota que se dibuja bajo el valor al pasar el ratón o el foco; botón para copiar el email (anunciado a lectores de pantalla; en móvil solo icono). Las filas entran una tras otra con el scroll (CSS). La home ya no usa la envoltura `legacy`. Para no repetir enlaces (petición de Iván): en la home el pie no lleva la celda de enlaces (sí en el resto de páginas) y el segundo botón de la portada pasa de «Descargar CV» a «Contactar», porque el CV ya está en la cabecera (y en el menú en móvil).
+- [x] **F3.6** Rediseño de `/personal` (Lifestyle) — [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44): textos reescritos más directos a petición de Iván (deporte con Strava, familia y amigos; sin frases hechas), sin titular grande (la página empieza directamente por «Deporte»; el `h1` «Lifestyle» queda solo para lectores de pantalla); Strava como cajetín cuyos kilómetros cuentan desde cero y cuyas barras crecen al aparecer en pantalla; fotos como láminas con pie que se «revelan» de abajo arriba la primera vez que aparecen (el pie llega después) y hacen zoom al pasar el ratón; sin numeración 01/02 (no es una secuencia). Ideas de animación tomadas de la skill taste (D13: una entrada al cargar, uno o dos momentos por página, nada animado solo por hacer scroll). La biografía vuelve a la home (D14), bajo la cota «Ingeniero Informático»; el menú enlaza la página como «Lifestyle».
+- [x] **F3.7** Revisión responsive completa (375 / 768 / 1280+) — [#46](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/46): auditoría con script en el navegador de todas las páginas (home ES/EN, Lifestyle, casos de estudio, 404) a 320, 375, 768 y 1440 px. Arreglos: scroll horizontal de 24 px en móvil por las filas de Contacto al entrar (se recorta la sección), zonas táctiles de al menos 24 px (proyectos de las tarjetas de herramientas en móvil, enlaces del pie y «Volver a proyectos») y foto de la portada a 220 px entre 768 y 1023 px para que «Castro Roel» no se parta en tres líneas.
+  - [x] Escala y ritmo unificados — [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44): tamaños fluidos (`clamp`) del `lead` al título para que crezcan con la pantalla sin saltos; un tamaño por rol (título solo para el `h1`, `h2` para todas las secciones —también «Hablemos»—, `h3` para títulos de tarjeta, fechas de la línea de tiempo y proyecto destacado); anchura de Archivo por rol (`stretch-display/heading/subheading`); espaciado común entre y dentro de secciones (`py-section`, `gap-block`, `gap-head`) y tarjetas con `p-5 md:p-6`. Párrafos largos en tamaño de texto normal; `lead` solo para entradillas.
+- [x] **F3.8** Páginas de proyecto y 404 con el diseño nuevo, y limpieza final — [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45): cada caso de estudio es una hoja (cabecera sobre la cuadrícula con «Hoja n de 5», título, entradilla y portada enmarcada, que mantiene la transición desde la home), texto del MDX con estilos del plano y cajetín lateral fijo con stack y enlace a GitHub; anterior/siguiente como dos láminas. La 404 muestra «404» como cota acotada en rojo, en los dos idiomas. Limpieza: fuera la envoltura `legacy`, los colores y animaciones antiguos (`bg`, `primary`, `card`, `muted`, `fade-up`, `pop-in`), `reveal.ts` y la fuente Inter (solo queda Archivo).
 
 ## F4 · Pulido y medición
 
@@ -139,15 +157,23 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Tomadas
 
-| ID  | Fecha      | Decisión                                                                                                          | Motivo                                                                                        |
-| :-- | :--------- | :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                                                              | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections |
-| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main`                                           | `master` ya no aportaba nada y estaba desfasada                                               |
-| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                                                             | Garantizar que todo pasa por PR, preview de Vercel y CI                                       |
-| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                                                             | No se usan en la web                                                                          |
-| D1  | 2026-11-09 | Web bilingüe: español (por defecto, sin prefijo) e inglés (`/en`)                                                 | Decidido por Iván                                                                             |
-| D2  | 2026-11-09 | Página de caso de estudio por proyecto                                                                            | Enseña mejor el trabajo que una modal y mejora el SEO                                         |
-| D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23) | Revisados por Iván                                                                            |
+| ID  | Fecha      | Decisión                                                                                                                                                                    | Motivo                                                                                                                                            |
+| :-- | :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| D0  | 2026-11-09 | Mantener Astro (actualizar a v7), no migrar de stack                                                                                                                        | Mejor encaje para un portfolio estático: islas, View Transitions, assets, Content Collections                                                     |
+| D5  | 2026-11-09 | Eliminar la rama `master`; se trabaja con ramas por tarea y PR a `main`                                                                                                     | `master` ya no aportaba nada y estaba desfasada                                                                                                   |
+| D6  | 2026-11-09 | Proteger `main` (PR obligatorio, incluso para admins)                                                                                                                       | Garantizar que todo pasa por PR, preview de Vercel y CI                                                                                           |
+| D7  | 2026-11-09 | Borrar `19C23CDF-…jpeg` e `ivanCvHoriz.pdf` (en F1.5)                                                                                                                       | No se usan en la web                                                                                                                              |
+| D1  | 2026-11-09 | Web bilingüe: español (por defecto, sin prefijo) e inglés (`/en`)                                                                                                           | Decidido por Iván                                                                                                                                 |
+| D2  | 2026-11-09 | Página de caso de estudio por proyecto                                                                                                                                      | Enseña mejor el trabajo que una modal y mejora el SEO                                                                                             |
+| D3  | 2026-11-09 | Dirección visual A, «Plano técnico»: la web como un plano de ingeniería (papel, tinta, cuadrícula, cotas, cajetín), Archivo, claro y oscuro                                 | Elegida por Iván entre tres propuestas; empezar de cero, sin conservar nada del diseño actual                                                     |
+| D10 | 2026-11-09 | El rediseño se integra en la rama `redesign`; cada sección es un PR contra ella y al final un PR `redesign` → `main`                                                        | Que la web publicada no muestre un diseño a medias                                                                                                |
+| D4  | 2026-11-09 | Mantener el teléfono público en Contacto                                                                                                                                    | Decidido por Iván                                                                                                                                 |
+| D11 | 2026-11-09 | Arquitectura de la home de F3.4 (orden Portada → Proyectos → Experiencia → Sobre mí → Contacto; sin barra inferior en móvil; foto en la portada; Lifestyle solo en el menú) | Aprobada por Iván sobre el plano de la home                                                                                                       |
+| D12 | 2026-11-10 | La biografía va a la página personal («Sobre mí» + Lifestyle) y la home muestra las herramientas como un esquema conectado con los proyectos                                | Decidido por Iván: la tabla le parecía aburrida y prefería sacar el «Sobre mí» de la home                                                         |
+| D14 | 2026-11-10 | La biografía vuelve a la home, bajo la cota «Ingeniero Informático» en lugar de la intro «Especialista en…»; `/personal` queda como «Lifestyle»                             | Decidido por Iván: prefiere el resumen en la portada, sin que ocupe mucho (sustituye la parte de D12 sobre la biografía)                          |
+| D8  | 2026-11-10 | Se quita el espacio antes de la coma en la biografía («…en Indra, lo que…») y la edad pasa a 24 años                                                                        | Pedido por Iván                                                                                                                                   |
+| D13 | 2026-11-10 | No instalar `Leonxlnx/taste-skill`; usar sus ideas a mano                                                                                                                   | Instala un hook que ejecuta scripts al final de cada turno y sus reglas chocan con D3 y con el objetivo de rendimiento; Iván eligió no instalarla |
+| D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)                                                           | Revisados por Iván                                                                                                                                |
 
 **Repo fuera de iCloud (2026-11-09):** iCloud Drive generaba miles de copias « 2» (en src, .git y node_modules). La carpeta real es ahora `~/Documents/proyects/ivan_portfolio_v2.nosync`, que iCloud no sincroniza, y `ivan_portfolio_v2` es un enlace simbólico a ella. `.gitignore` ignora `* 2` y `* 2.*`.
 
@@ -155,11 +181,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Pendientes
 
-| ID  | Pregunta                                                                       | Necesaria antes de |
-| :-- | :----------------------------------------------------------------------------- | :----------------- |
-| D3  | Referencias de estilo / dirección visual                                       | F3.2               |
-| D4  | ¿Mantener el teléfono público en la web?                                       | F4.4               |
-| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
+Ninguna.
 
 ## Backlog / ideas
 
@@ -193,5 +215,20 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.5b · Traducción al inglés (borrador revisado por Iván) y publicación de `/en` · [#29](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/29)
 - 2026-11-09 · F2.3 · Páginas de caso de estudio en ES/EN; las tarjetas enlazan a ellas y se retira la modal · [#30](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/30)
 - 2026-11-09 · F2.6 · Transiciones entre páginas con View Transitions nativas (solo CSS). **F2 completada salvo F2.3b** (textos de Iván) · [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
+- 2026-11-09 · F3.1–F3.3 · D3 (dirección «Plano técnico»), rama `redesign` y tokens de diseño · [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
+- 2026-11-09 · F3.4 · Arquitectura de la home aprobada (D11) y D4 decidida (se mantiene el teléfono)
 - 2026-11-09 · — · Estudios actualizados en la biografía y el dato rápido (ES/EN): asignaturas aprobadas y TFG en curso, aprobado por Iván
+- 2026-11-10 · F3.5 · Base del rediseño: cabecera con menú y tema, pie como cajetín, sin barra inferior · [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36)
+- 2026-11-10 · F3.5 · Portada rediseñada (nombre, cota, foto como detalle y cajetín) · [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37)
 - 2026-11-10 · — · Duración en Indra corregida a 1 año (prácticas y contrato), en la biografía y el dato rápido (ES/EN), a petición de Iván
+- 2026-11-10 · F3.5 · Proyectos rediseñados como hojas del plano y movidos al segundo puesto · [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40)
+- 2026-11-10 · F3.5 · Experiencia y formación en una línea de tiempo vertical animada con el scroll; colección `education` · [#41](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/41)
+- 2026-11-10 · F3.5 · Herramientas como esquema conectado con los proyectos; la biografía pasa a la página personal · [#42](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/42)
+- 2026-11-10 · F3.5 · Contacto como cajetín de canales con copiar email; la home queda sin `legacy` · [#43](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/43)
+- 2026-11-10 · F3.6 · Lifestyle con el diseño nuevo y Strava como cajetín; la biografía vuelve a la portada (D14) · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
+- 2026-11-10 · F3.6 · Lifestyle con textos más directos, sin titular grande, contador de Strava y fotos que se revelan · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
+- 2026-11-10 · F3.7 · Escala tipográfica fluida y espaciado común en todas las secciones · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
+- 2026-11-10 · F3.8 · Páginas de proyecto y 404 rediseñadas; sin `legacy`, Inter ni estilos antiguos · [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45)
+- 2026-11-10 · F3.7 · Revisión responsive a 320/375/768/1440 px: sin scroll horizontal y zonas táctiles mínimas · [#46](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/46)
+- 2026-11-10 · D8 · Biografía: 24 años y sin espacio antes de la coma · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
+- 2026-11-10 · F3 · Rediseño «Plano técnico» publicado: `redesign` → `main` · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)

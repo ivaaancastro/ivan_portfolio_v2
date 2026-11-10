@@ -49,16 +49,22 @@ export default defineConfig({
     mdx(),
   ],
 
-  // Self-hosted Inter (downloaded from Fontsource at build time, served from our domain).
+  // Self-hosted fonts (downloaded at build time, served from our domain).
   fonts: [
+    // F3 (D3 «Plano técnico»): Archivo with its width axis, narrow for titles, normal for text.
     {
-      provider: fontProviders.fontsource(),
-      name: "Inter",
-      cssVariable: "--font-inter",
-      weights: [400, 500, 600, 700],
+      provider: fontProviders.google(),
+      name: "Archivo",
+      cssVariable: "--font-archivo",
+      weights: ["400 800"],
       styles: ["normal"],
       subsets: ["latin", "latin-ext"],
-      fallbacks: ["system-ui", "sans-serif"],
+      fallbacks: ["sans-serif"],
+      options: {
+        experimental: {
+          variableAxis: { wdth: [["62", "100"]] },
+        },
+      },
     },
   ],
 });

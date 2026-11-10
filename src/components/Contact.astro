@@ -1,80 +1,100 @@
 ---
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 import { Github, Linkedin } from "./icons/brand";
 import { getLang, useTranslations } from "../i18n/utils";
 
 const t = useTranslations(getLang(Astro.currentLocale));
 
-const cardClass =
-  "group flex flex-col items-center rounded-2xl border border-white/10 bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10";
-const iconClass =
-  "mb-4 rounded-full bg-white/5 p-4 text-primary transition-colors group-hover:bg-primary group-hover:text-black";
+const email = "icastror02@gmail.com";
+
+// One row per channel, drawn like the rows of a title block.
+const channels = [
+  { label: t("contact.email"), value: email, href: `mailto:${email}`, Icon: Mail },
+  { label: t("contact.phone"), value: "+34 684 20 87 68", href: "tel:+34684208768", Icon: Phone },
+  {
+    label: "LinkedIn",
+    value: "in/ivancastroroel",
+    href: "https://www.linkedin.com/in/ivancastroroel",
+    Icon: Linkedin,
+    external: true,
+  },
+  {
+    label: "GitHub",
+    value: "ivaaancastro",
+    href: "https://github.com/ivaaancastro",
+    Icon: Github,
+    external: true,
+  },
+];
 ---
 
-<section id="contact" class="relative overflow-hidden py-24">
-  <!-- Fondo decorativo sutil -->
-  <div class="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]"></div>
+<section
+  id="contact"
+  class="scroll-mt-16 overflow-x-clip border-b-[1.5px] border-ink bg-drafting-grid py-section font-display text-ink"
+>
+  <div class="mx-auto grid max-w-[1100px] gap-block px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+    <header class="grid content-start gap-head">
+      <h2 class="text-h2 font-extrabold stretch-heading">{t("contact.title")}</h2>
+      <p class="max-w-[42ch] text-lead text-ink-soft">{t("contact.intro")}</p>
+      <p class="flex items-center gap-2 text-small text-ink-soft">
+        <MapPin className="size-4 text-redline" aria-hidden="true" />
+        <span class="sr-only">{t("contact.location")}:</span>
+        {t("contact.locationValue")}
+      </p>
+    </header>
 
-  <div class="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
-    <!-- Encabezado -->
-    <div data-reveal class="mb-16">
-      <h2 class="mb-6 text-4xl font-bold text-white md:text-5xl">
-        {t("contact.title")}
-        <span class="text-primary">.</span>
-      </h2>
-      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-400">{t("contact.intro")}</p>
-    </div>
-
-    <!-- Grid de Contacto (Tarjetas) -->
-    <div class="mb-16 grid gap-6 md:grid-cols-3">
-      <a
-        href="mailto:icastror02@gmail.com"
-        data-reveal
-        style="--reveal-delay: 100ms"
-        class={cardClass}
-      >
-        <div class={iconClass}>
-          <Mail size={32} aria-hidden="true" />
-        </div>
-        <h3 class="mb-2 text-xl font-bold text-white">{t("contact.email")}</h3>
-        <p class="text-gray-400 transition-colors group-hover:text-primary">icastror02@gmail.com</p>
-      </a>
-
-      <a href="tel:+34684208768" data-reveal style="--reveal-delay: 200ms" class={cardClass}>
-        <div class={iconClass}>
-          <Phone size={32} aria-hidden="true" />
-        </div>
-        <h3 class="mb-2 text-xl font-bold text-white">{t("contact.phone")}</h3>
-        <p class="text-gray-400 transition-colors group-hover:text-primary">+34 684 20 87 68</p>
-      </a>
-
-      <div data-reveal style="--reveal-delay: 300ms" class:list={[cardClass, "cursor-default"]}>
-        <div class={iconClass}>
-          <MapPin size={32} aria-hidden="true" />
-        </div>
-        <h3 class="mb-2 text-xl font-bold text-white">{t("contact.location")}</h3>
-        <p class="text-gray-400">{t("contact.locationValue")}</p>
-      </div>
-    </div>
-
-    <!-- Botones Redes Sociales Grandes -->
-    <div data-reveal style="--reveal-delay: 400ms" class="flex justify-center gap-6">
-      <a
-        href="https://www.linkedin.com/in/ivancastroroel"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-3 rounded-full border border-linkedin/20 bg-linkedin/10 px-8 py-4 text-lg font-bold text-linkedin transition-all hover:scale-105 hover:bg-linkedin hover:text-white"
-      >
-        <Linkedin size={24} aria-hidden="true" /> LinkedIn
-      </a>
-      <a
-        href="https://github.com/ivaaancastro"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-lg font-bold text-white transition-all hover:scale-105 hover:bg-white hover:text-black"
-      >
-        <Github size={24} aria-hidden="true" /> GitHub
-      </a>
-    </div>
+    <ul class="grid self-start border-frame bg-paper-raised">
+      {channels.map(({ label, value, href, Icon, external }, index) => (
+        <li
+          class:list={[
+            "contact-row group relative flex items-center gap-4 border-ink",
+            index > 0 && "border-t",
+          ]}
+          style={`--i: ${index}`}
+        >
+          <a
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            class="flex min-w-0 flex-1 items-center gap-4 p-4 outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-cobalt md:p-5"
+          >
+            <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
+            <span class="grid min-w-0">
+              <span class="text-caption text-ink-soft">{label}</span>
+              <span class="contact-value relative w-fit max-w-full font-bold [overflow-wrap:anywhere] lg:text-lead group-hover:text-cobalt">
+                {value}
+              </span>
+            </span>
+          </a>
+          {href.startsWith("mailto:") && (
+            <button
+              type="button"
+              data-copy={email}
+              data-copied-label={t("contact.copied")}
+              aria-label={t("contact.copy")}
+              class="group/copy relative z-10 mr-4 inline-flex size-9 shrink-0 items-center justify-center gap-1.5 rounded-control border-frame bg-paper text-caption font-semibold hover:bg-ink hover:text-paper sm:mr-0 sm:w-auto sm:px-2.5"
+            >
+              <Copy className="size-3.5 group-data-done/copy:hidden" aria-hidden="true" />
+              <Check
+                className="hidden size-3.5 text-cobalt group-hover/copy:text-paper group-data-done/copy:block"
+                aria-hidden="true"
+              />
+              <span data-copy-label aria-hidden="true" class="hidden sm:inline">
+                {t("contact.copy")}
+              </span>
+            </button>
+          )}
+          <ArrowUpRight
+            className="mr-4 hidden size-5 shrink-0 text-ink-soft transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cobalt motion-reduce:transition-none sm:block md:mr-5"
+            aria-hidden="true"
+          />
+        </li>
+      ))}
+    </ul>
   </div>
+  <p class="sr-only" aria-live="polite" data-copy-status></p>
 </section>
+
+<script>
+  import "../scripts/copy-email";
+</script>

@@ -2,7 +2,6 @@
 // Layout.astro
 import "../styles/global.css";
 import { Font } from "astro:assets";
-import BottomNav from "../components/BottomNav.astro";
 import { defaultLang, isPublished, ogLocales, publishedLangs, type Lang } from "../i18n/config";
 import { getLang, switchLangPath, useTranslations } from "../i18n/utils";
 
@@ -56,13 +55,21 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- Lets CSS hide [data-reveal] elements only when JS can reveal them again. -->
+    <!-- `js` lets CSS hide content that a script will reveal (schematic, photos, Strava). -->
     <script is:inline>
       document.documentElement.classList.add("js");
+      // Theme picked by the visitor (light/dark); without one, the OS setting applies.
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {
+        // Storage blocked (private mode): fall back to the OS setting.
+      }
     </script>
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0e0f12" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f4f6" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1a2c" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {noindex ? (
       <meta name="robots" content="noindex" />
@@ -93,27 +100,11 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
 
-    <Font
-      cssVariable="--font-inter"
-      preload={[
-        { weight: 400, subset: "latin" },
-        { weight: 700, subset: "latin" },
-      ]}
-    />
+    <Font cssVariable="--font-archivo" preload={[{ weight: "400 800", subset: "latin" }]} />
 
     <title>{title}</title>
   </head>
-  <body class="bg-bg text-gray-100 font-sans antialiased selection:bg-primary selection:text-black">
-    <div class="fixed top-0 left-0 z-[-10] h-full w-full bg-bg">
-      <div class="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(108,240,194,0.15),rgba(255,255,255,0))]"></div>
-    </div>
-
+  <body class="bg-paper font-display text-ink antialiased selection:bg-cobalt selection:text-paper">
     <slot />
-
-    <BottomNav />
-
-    <script>
-      import "../scripts/reveal";
-    </script>
   </body>
 </html>

@@ -9,6 +9,9 @@ import { iconNames } from "./utils/icons";
  */
 const localized = z.object({ es: z.string(), en: z.string().optional() });
 
+/** Month as "YYYY-MM", used to place periods on the timeline. */
+const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
+
 /** One MDX file per project and language: src/content/projects/<lang>/<slug>.mdx */
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: ["**/[^_]*.{md,mdx}", "!**/* 2.*"] }),
@@ -31,22 +34,38 @@ const experience = defineCollection({
   schema: z.object({
     company: z.string(),
     role: localized,
-    period: localized,
+    start: yearMonth,
+    end: yearMonth.optional(),
     desc: localized,
     tags: z.array(z.string()),
     order: z.number().int(),
   }),
 });
 
-/** "Herramientas que domino" in the About section. */
+/** Studies, drawn with the jobs on the experience timeline. No `end` means in progress. */
+const education = defineCollection({
+  loader: file("src/content/education.json"),
+  schema: z.object({
+    title: localized,
+    school: z.string(),
+    start: yearMonth,
+    end: yearMonth.optional(),
+    desc: localized.optional(),
+    order: z.number().int(),
+  }),
+});
+
+/** "Herramientas que domino": the stack schematic on the home page. */
 const stack = defineCollection({
   loader: file("src/content/stack.json"),
   schema: z.object({
     name: localized,
     desc: localized,
     icon: z.enum(iconNames),
+    /** Project tags that count as using this tool (draws the links in the stack schematic). */
+    matches: z.array(z.string()).min(1),
     order: z.number().int(),
   }),
 });
 
-export const collections = { projects, experience, stack };
+export const collections = { projects, experience, education, stack };
