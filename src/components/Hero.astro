@@ -16,10 +16,10 @@ const titleBlock = [
 ---
 
 <section id="home" class="border-b-[1.5px] border-ink bg-drafting-grid pt-16 font-display text-ink">
-  <div class="mx-auto grid max-w-[1100px] gap-grid px-6 pt-16 pb-12 md:pt-24">
-    <div class="grid items-end gap-12 md:grid-cols-[minmax(0,1fr)_280px]">
+  <div class="mx-auto grid max-w-[1100px] gap-grid px-6 pt-section pb-block">
+    <div class="grid items-end gap-block md:grid-cols-[minmax(0,1fr)_280px]">
       <div class="min-w-0">
-        <h1 class="text-title font-extrabold uppercase [font-stretch:66%]">
+        <h1 class="text-title font-extrabold uppercase stretch-display">
           <span class="block">Iván</span>
           <span class="block">Castro Roel</span>
         </h1>
@@ -41,7 +41,14 @@ const titleBlock = [
           <span class="relative bg-paper px-3">{t("hero.role")}</span>
         </p>
 
-        <p class="max-w-[46ch] text-lead text-ink-soft">{t("hero.intro")}</p>
+        <!-- Short bio right under the role (D14). -->
+        <div
+          id="about"
+          class="grid max-w-[60ch] scroll-mt-24 gap-3 text-ink-soft [&_strong]:font-semibold [&_strong]:text-ink"
+        >
+          <p set:html={t("about.bio1")} />
+          <p set:html={t("about.bio2")} />
+        </div>
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a

@@ -12,8 +12,8 @@ const navItems = [
   { name: t("nav.stack"), href: pathFor(lang, "#stack") },
   { name: t("nav.experience"), href: pathFor(lang, "#experience") },
   { name: t("nav.contact"), href: pathFor(lang, "#contact") },
-  // The personal page holds the bio plus sport, family and friends (F3.6 redesigns it).
-  { name: t("nav.aboutMe"), href: pathFor(lang, "personal") },
+  // Personal page: sport, family and friends (the bio lives in the home hero).
+  { name: t("nav.lifestyle"), href: pathFor(lang, "personal") },
 ];
 
 // Language selector: links to this same page in the other language(s).
@@ -36,7 +36,7 @@ const controlClass =
   <div class="mx-auto flex h-16 max-w-[1100px] items-center justify-between gap-4 px-6">
     <a
       href={pathFor(lang)}
-      class="text-lead font-extrabold tracking-tight uppercase [font-stretch:70%]"
+      class="text-lead font-extrabold tracking-tight uppercase stretch-heading"
     >
       Iván Castro Roel
     </a>
@@ -124,7 +124,7 @@ const controlClass =
             <a
               href={item.href}
               data-menu-link
-              class="block py-3 text-h3 font-bold [font-stretch:80%] hover:text-cobalt"
+              class="block py-3 text-h3 font-bold stretch-subheading hover:text-cobalt"
             >
               {item.name}
             </a>
@@ -135,7 +135,7 @@ const controlClass =
             href="/ivanCv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            class="block py-3 text-h3 font-bold [font-stretch:80%] hover:text-cobalt"
+            class="block py-3 text-h3 font-bold stretch-subheading hover:text-cobalt"
           >
             {t("hero.downloadCv")}
           </a>

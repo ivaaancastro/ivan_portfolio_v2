@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { Trophy, Users, Bike, ExternalLink, Activity, Heart } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import StravaStats from "../components/StravaStats.astro";
 import { getStravaStats } from "../utils/strava";
 import { getLang, useTranslations } from "../i18n/utils";
@@ -22,72 +22,67 @@ const t = useTranslations(lang);
 const stats = await getStravaStats();
 const runDistance = stats?.ytd_run_totals.distance ?? 0;
 const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
+
+const sportPhotos = [
+  {
+    src: runningImg,
+    widths: [530, 800, 1060],
+    alt: t("life.runningAlt"),
+    title: t("life.runningTitle"),
+    text: t("life.runningText"),
+    position: "center",
+  },
+  {
+    src: bikeImg,
+    widths: [530, 800, 1024],
+    alt: t("life.cyclingAlt"),
+    title: t("life.cyclingTitle"),
+    text: t("life.cyclingText"),
+    position: "center 60%",
+  },
+];
+
+const socialPhotos = [
+  { src: familyImg, alt: t("life.family"), position: "center" },
+  { src: friendsImg, alt: t("life.friends"), position: "center 30%" },
+];
+
+// Emphasis inside the HTML texts uses the ink colour instead of the soft one.
+const richText = "[&_strong]:font-semibold [&_strong]:text-ink";
+const photoFrame = "overflow-hidden border-frame bg-paper-raised";
+const photoImg =
+  "size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none";
 ---
 
 <Layout title={t("life.title")} description={t("life.description")}>
   <Navbar />
 
-  <main class="legacy bg-bg font-sans text-gray-100 pt-32 pb-28 px-6 overflow-hidden">
-    <div class="max-w-[1100px] mx-auto space-y-24 md:space-y-32">
-      {/* 1. HERO */}
-      <section class="text-center relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-pink-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-        <span class="text-pink-400 font-bold tracking-wide uppercase text-sm mb-4 block">
-          {t("life.kicker")}
-        </span>
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          {t("life.headingA")}{" "}
-          <span class="text-primary drop-shadow-[0_0_15px_rgba(108,240,194,0.3)]">
-            {t("life.headingB")}
-          </span>
-          .
-        </h1>
-        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          {t("life.intro")}
-        </p>
-      </section>
+  <main class="pt-16 font-display text-ink">
+    <!-- No big title: the page goes straight to its content. -->
+    <h1 class="sr-only">{t("life.kicker")}</h1>
 
-      {/* Sobre mí: the bio moved here from the home (F3.5); F3.6 redesigns this page. */}
-      <section id="about" class="mx-auto max-w-3xl">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{t("about.title")}</h2>
-        <div class="space-y-4 text-lg leading-relaxed text-gray-400 [&_strong]:text-white">
-          <p set:html={t("about.bio1")} />
-          <p set:html={t("about.bio2")} />
-        </div>
-      </section>
+    <!-- Sport -->
+    <section class="border-b-[1.5px] border-ink bg-paper py-section">
+      <div class="mx-auto grid max-w-[1100px] gap-block px-6">
+        <h2 class="text-h2 font-extrabold stretch-heading">{t("life.sportTitle")}</h2>
 
-      {/* 2. SECCIÓN 01 — DEPORTE & DISCIPLINA */}
-      <section class="relative">
-        {/* Cabecera numerada */}
-        <div class="flex items-center gap-5 mb-12">
-          <span class="font-mono text-5xl md:text-6xl font-bold text-white/10 leading-none select-none">
-            01
-          </span>
-          <span class="p-2.5 bg-orange-500/10 text-orange-500 rounded-xl border border-orange-500/20">
-            <Activity size={20} />
-          </span>
-          <h2 class="text-3xl md:text-4xl font-bold text-white">{t("life.sportTitle")}</h2>
-        </div>
-
-        {/* Texto + Stats */}
-        <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center mb-12">
-          <div class="max-w-2xl">
+        <div class="grid items-start gap-block md:grid-cols-2">
+          <div class="grid gap-6">
             <p
-              class="text-gray-300 text-base md:text-lg leading-relaxed mb-6"
+              class:list={["max-w-[60ch] text-ink-soft", richText]}
               set:html={t("life.sportText")}
             />
-
             <a
               href="https://www.strava.com/athletes/102757003"
               target="_blank"
               rel="noopener noreferrer"
-              class="group w-fit inline-flex items-center justify-center gap-3 bg-strava/10 text-strava border border-strava/30 px-6 py-3.5 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-strava hover:text-white transition-all shadow-[0_0_20px_rgba(252,76,2,0.1)] hover:shadow-[0_0_30px_rgba(252,76,2,0.4)] hover:-translate-y-1"
+              class="group inline-flex h-12 w-fit items-center gap-2 rounded-control border-frame bg-paper-raised px-5 font-semibold hover:bg-ink hover:text-paper"
             >
-              <Bike size={20} className="group-hover:animate-bounce" />
-              {t("life.followStrava")}{" "}
-              <ExternalLink
-                size={18}
-                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+              <span class="size-2 rounded-full bg-strava" aria-hidden="true"></span>
+              {t("life.followStrava")}
+              <ArrowUpRight
+                className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
               />
             </a>
           </div>
@@ -95,127 +90,67 @@ const rideDistance = stats?.ytd_ride_totals.distance ?? 0;
           <StravaStats runDistance={runDistance} rideDistance={rideDistance} />
         </div>
 
-        {/* Fotos alineadas, sin escalones */}
-        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-          {/* Running */}
-          <div class="relative group rounded-3xl overflow-hidden h-[300px] md:h-[400px] border border-white/10 shadow-xl bg-card">
-            <Image
-              src={runningImg}
-              widths={[530, 800, 1060]}
-              sizes={halfSizes}
-              format="webp"
-              alt={t("life.runningAlt")}
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-60"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-
-            <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
-              <div class="w-12 h-12 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 border border-orange-500/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-                <Trophy size={24} />
+        <div class="grid gap-grid md:grid-cols-2">
+          {sportPhotos.map(({ src, widths, alt, title, text, position }, index) => (
+            <figure data-develop class="group grid" style={`--i: ${index}`}>
+              <div class:list={[photoFrame, "aspect-[4/3]"]}>
+                <Image
+                  src={src}
+                  widths={widths}
+                  sizes={halfSizes}
+                  format="webp"
+                  alt={alt}
+                  style={`object-position: ${position}`}
+                  class={photoImg}
+                />
               </div>
-              <h3 class="text-2xl font-bold text-white mb-1">{t("life.runningTitle")}</h3>
-              <p class="text-gray-300 text-sm md:text-base">{t("life.runningText")}</p>
-            </div>
+              <figcaption class="grid border-x-[1.5px] border-b-[1.5px] border-ink bg-paper-raised px-4 py-3">
+                <span class="font-bold">{title}</span>
+                <span class="text-small text-ink-soft">{text}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Family and friends -->
+    <section class="bg-paper py-section">
+      <div class="mx-auto grid max-w-[1100px] gap-block px-6">
+        <h2 class="text-h2 font-extrabold stretch-heading">{t("life.socialTitle")}</h2>
+
+        <div class="grid gap-grid md:grid-cols-3">
+          <div class="grid content-center gap-3 border-frame bg-paper-raised p-5 text-lead md:p-6">
+            <p>{t("life.socialText1")}</p>
+            <p class="text-ink-soft">{t("life.socialText2")}</p>
           </div>
 
-          {/* Ciclismo */}
-          <div class="relative group rounded-3xl overflow-hidden h-[300px] md:h-[400px] border border-white/10 shadow-xl bg-card">
-            <Image
-              src={bikeImg}
-              widths={[530, 800, 1024]}
-              sizes={halfSizes}
-              format="webp"
-              alt={t("life.cyclingAlt")}
-              style="object-position: center 60%;"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-60"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-
-            <div class="relative z-10 w-full h-full p-8 flex flex-col justify-end">
-              <div class="w-12 h-12 bg-strava/20 rounded-2xl flex items-center justify-center text-strava border border-strava/30 backdrop-blur-md mb-4 shadow-[0_0_15px_rgba(252,76,2,0.2)]">
-                <Bike size={24} />
+          {socialPhotos.map(({ src, alt, position }, index) => (
+            <figure data-develop class="group grid" style={`--i: ${index + 1}`}>
+              <div class:list={[photoFrame, "aspect-[4/5]"]}>
+                <Image
+                  src={src}
+                  widths={[400, 700, 1000]}
+                  sizes={thirdSizes}
+                  format="webp"
+                  alt={alt}
+                  style={`object-position: ${position}`}
+                  class={photoImg}
+                />
               </div>
-              <h3 class="text-2xl font-bold text-white mb-1">{t("life.cyclingTitle")}</h3>
-              <p class="text-gray-300 text-sm md:text-base">{t("life.cyclingText")}</p>
-            </div>
-          </div>
+              <figcaption class="border-x-[1.5px] border-b-[1.5px] border-ink bg-paper-raised px-4 py-3 font-bold">
+                {alt}
+              </figcaption>
+            </figure>
+          ))}
         </div>
-      </section>
-
-      {/* 3. SECCIÓN 02 — SOCIAL & FAMILIA */}
-      <section class="relative">
-        {/* Cabecera numerada */}
-        <div class="flex items-center gap-5 mb-12">
-          <span class="font-mono text-5xl md:text-6xl font-bold text-white/10 leading-none select-none">
-            02
-          </span>
-          <span class="p-2.5 bg-pink-500/10 text-pink-400 rounded-xl border border-pink-500/20">
-            <Users size={20} />
-          </span>
-          <h2 class="text-3xl md:text-4xl font-bold text-white">{t("life.socialTitle")}</h2>
-        </div>
-
-        {/* Texto + Fotos en una sola fila, sin escalones */}
-        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-          {/* Social Battery */}
-          <div class="bg-gradient-to-br from-card to-gray-900 border border-white/10 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden group shadow-lg">
-            <div class="relative z-10 h-full flex flex-col justify-center">
-              <h3 class="text-2xl font-bold text-white mb-5 group-hover:text-pink-400 transition-colors text-balance">
-                {t("life.batteryTitle")}
-              </h3>
-              <p class="text-gray-300 text-base leading-relaxed mb-4 text-balance">
-                {t("life.batteryText1")}
-              </p>
-              <p
-                class="text-gray-400 leading-relaxed text-sm text-balance"
-                set:html={t("life.batteryText2")}
-              />
-            </div>
-            <div class="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mix-blend-overlay"></div>
-          </div>
-
-          {/* Familia */}
-          <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg h-[380px]">
-            <Image
-              src={familyImg}
-              widths={[400, 700, 1000]}
-              sizes={thirdSizes}
-              format="webp"
-              alt={t("life.family")}
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-            <div class="absolute bottom-6 left-6 flex items-center gap-3">
-              <span class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
-                <Heart size={16} className="fill-current" />
-              </span>
-              <span class="font-bold text-white text-lg tracking-wide">{t("life.family")}</span>
-            </div>
-          </div>
-
-          {/* Amigos */}
-          <div class="relative rounded-3xl overflow-hidden border border-white/10 group shadow-lg h-[380px]">
-            <Image
-              src={friendsImg}
-              widths={[400, 700, 1000]}
-              sizes={thirdSizes}
-              format="webp"
-              alt={t("life.friends")}
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              style="object-position: center 30%;"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-            <div class="absolute bottom-6 left-6 flex items-center gap-3">
-              <span class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
-                <Users size={16} />
-              </span>
-              <span class="font-bold text-white text-lg tracking-wide">{t("life.friends")}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
   <Footer />
 </Layout>
+
+<script>
+  import "../scripts/develop";
+</script>
