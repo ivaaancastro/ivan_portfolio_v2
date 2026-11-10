@@ -2,6 +2,8 @@
 // Layout.astro
 import "../styles/global.css";
 import { Font } from "astro:assets";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import { defaultLang, isPublished, ogLocales, publishedLangs, type Lang } from "../i18n/config";
 import { getLang, switchLangPath, useTranslations } from "../i18n/utils";
 
@@ -108,14 +110,9 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
 
     <Font cssVariable="--font-archivo" preload={[{ weight: "400 800", subset: "latin" }]} />
 
-    <!-- Vercel Web Analytics + Speed Insights (solo en producción, donde Vercel los sirve). -->
-    <script
-      is:inline
-      defer
-      data-domain="ivan-portfolio-v2.vercel.app"
-      src="https://api.vercel.com/v1/vercel/analytics/va.js"
-      data-forward-web-vitals="true"
-    ></script>
+    <!-- F4.3: Vercel Web Analytics + Speed Insights (los scripts solo existen en los despliegues de Vercel). -->
+    <Analytics />
+    <SpeedInsights />
 
     <title>{title}</title>
   </head>
