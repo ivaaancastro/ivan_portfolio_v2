@@ -50,12 +50,12 @@ const titleBlock = [
           >
             {t("hero.viewProjects")}
           </a>
+          <!-- The CV lives in the header on every page, so the hero points to Contact instead. -->
           <a
-            href="/ivanCv.pdf"
-            download="Ivan_CV.pdf"
+            href={pathFor(lang, "#contact")}
             class="inline-flex h-12 items-center rounded-control border-frame bg-paper px-5 font-semibold hover:bg-ink hover:text-paper"
           >
-            {t("hero.downloadCv")}
+            {t("hero.contact")}
           </a>
         </div>
       </div>

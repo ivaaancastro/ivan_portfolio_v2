@@ -31,6 +31,7 @@ const es = {
   "hero.intro":
     "Especialista en Ingeniería del Software. Me apasiona crear productos útiles, accesibles y rápidos.",
   "hero.downloadCv": "Descargar CV",
+  "hero.contact": "Contactar",
   "hero.viewProjects": "Ver proyectos",
   "hero.photoAlt": "Foto de Iván",
   "hero.blockAuthor": "Autor",
@@ -85,6 +86,8 @@ const es = {
   "contact.phone": "Teléfono",
   "contact.location": "Ubicación",
   "contact.locationValue": "Arteixo, A Coruña",
+  "contact.copy": "Copiar",
+  "contact.copied": "Email copiado",
 
   // Footer
   "footer.rights": "Casi todos los derechos reservados.",
@@ -165,6 +168,7 @@ const en: Record<UIKey, string> = {
   "hero.intro":
     "Specialized in Software Engineering. I love building products that are useful, accessible and fast.",
   "hero.downloadCv": "Download CV",
+  "hero.contact": "Get in touch",
   "hero.viewProjects": "View projects",
   "hero.photoAlt": "Photo of Iván",
   "hero.blockAuthor": "Author",
@@ -218,6 +222,8 @@ const en: Record<UIKey, string> = {
   "contact.phone": "Phone",
   "contact.location": "Location",
   "contact.locationValue": "Arteixo, A Coruña (Spain)",
+  "contact.copy": "Copy",
+  "contact.copied": "Email copied",
 
   // Footer
   "footer.rights": "Almost all rights reserved.",
