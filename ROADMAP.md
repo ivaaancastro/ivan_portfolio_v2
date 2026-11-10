@@ -207,3 +207,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F2.6 · Transiciones entre páginas con View Transitions nativas (solo CSS). **F2 completada salvo F2.3b** (textos de Iván) · [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
 - 2026-11-09 · F3.1–F3.3 · D3 (dirección «Plano técnico»), rama `redesign` y tokens de diseño · [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
 - 2026-11-09 · F3.4 · Arquitectura de la home aprobada (D11) y D4 decidida (se mantiene el teléfono)
+- 2026-11-09 · — · Estudios actualizados en la biografía y el dato rápido (ES/EN): asignaturas aprobadas y TFG en curso, aprobado por Iván
