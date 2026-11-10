@@ -10,9 +10,9 @@ import type { Lang } from "./config";
 const es = {
   // Meta
   "meta.description":
-    "Portfolio de Iván Castro Roel, ingeniero informático: experiencia, proyectos de software (Java, Spring Boot, React, IA) y contacto.",
+    "Portfolio de Iván Castro Roel, ingeniero informático (TFG en curso): experiencia, proyectos de software (Java, Spring Boot, React, IA) y contacto.",
   "meta.ogImageAlt": "Iván Castro, ingeniero informático",
-  "home.title": "Portfolio de Iván - Ingeniero de Software",
+  "home.title": "Portfolio de Iván - Ingeniero Informático (TFG en curso)",
 
   // Navigation
   "nav.main": "Navegación principal",
@@ -27,7 +27,7 @@ const es = {
   "nav.darkTheme": "Tema oscuro",
 
   // Hero
-  "hero.role": "Ingeniero Informático",
+  "hero.role": "Ingeniero Informático (TFG en curso)",
   "hero.downloadCv": "Descargar CV",
   "hero.contact": "Contactar",
   "hero.viewProjects": "Ver proyectos",
@@ -44,12 +44,12 @@ const es = {
     "Tengo 24 años y soy estudiante de <strong>Ingeniería Informática</strong> en la <strong>UDC</strong>, con todas las asignaturas aprobadas y el TFG en curso. Me considero una persona tranquila, organizada y reflexiva, con buenas habilidades de comunicación y trabajo en equipo.",
   /** HTML */
   "about.bio2":
-    "Antes de la carrera completé un ciclo superior en <strong>DAM</strong> y <strong>trabajé 1 año en Indra</strong>, lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong>Ingeniería del Software</strong> pues me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.",
+    "Antes de la carrera completé un ciclo superior en <strong>DAM</strong> y <strong>trabajé 1 año en Indra</strong>, lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong>Ingeniería del Software</strong> porque me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.",
   "about.factLocation": "Arteixo, A Coruña",
   "about.factStudies": "UDC · TFG en curso",
   "about.factWork": "Indra · 1 año",
-  "stack.title": "Herramientas que domino",
-  "stack.note": "El stack que uso día a día, a fondo, y los proyectos en los que lo he usado.",
+  "stack.title": "Herramientas que uso",
+  "stack.note": "El stack que uso día a día y los proyectos en los que lo he usado.",
   "stack.usedIn": "Lo uso en",
   "stack.toolsLabel": "Herramientas",
   "stack.projectsLabel": "Proyectos",
@@ -62,12 +62,12 @@ const es = {
   "experience.ongoing": "En curso",
 
   // Projects
-  "projects.title": "Proyectos Destacados",
+  "projects.title": "Proyectos destacados",
   "projects.intro":
     "Selección de trabajos donde aplico patrones de arquitectura y buenas prácticas.",
   "projects.featured": "Destacado",
   "projects.sheet": "Hoja {n} de {total}",
-  "projects.viewCode": "Ver Código en GitHub",
+  "projects.viewCode": "Ver código en GitHub",
   "projects.metaTitle": "{title} | Proyecto de Iván Castro",
   "projects.back": "Volver a proyectos",
   "projects.stack": "Stack",
@@ -78,8 +78,7 @@ const es = {
 
   // Contact
   "contact.title": "Hablemos",
-  "contact.intro":
-    "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para ser parte de tus visiones.",
+  "contact.intro": "Si tienes una oferta, un proyecto o simplemente quieres hablar, escríbeme.",
   "contact.email": "Email",
   "contact.phone": "Teléfono",
   "contact.location": "Ubicación",
@@ -88,7 +87,6 @@ const es = {
   "contact.copied": "Email copiado",
 
   // Footer
-  "footer.rights": "Casi todos los derechos reservados.",
   "footer.author": "Autor",
   "footer.links": "Enlaces",
   "footer.revision": "Revisión",
@@ -137,9 +135,9 @@ export type UIKey = keyof typeof es;
 const en: Record<UIKey, string> = {
   // Meta
   "meta.description":
-    "Portfolio of Iván Castro Roel, computer engineer: experience, software projects (Java, Spring Boot, React, AI) and contact.",
+    "Portfolio of Iván Castro Roel, computer engineer (thesis in progress): experience, software projects (Java, Spring Boot, React, AI) and contact.",
   "meta.ogImageAlt": "Iván Castro, computer engineer",
-  "home.title": "Iván's Portfolio - Software Engineer",
+  "home.title": "Iván's Portfolio - Computer Engineer (thesis in progress)",
 
   // Navigation
   "nav.main": "Main navigation",
@@ -154,7 +152,7 @@ const en: Record<UIKey, string> = {
   "nav.darkTheme": "Dark theme",
 
   // Hero
-  "hero.role": "Computer Engineer",
+  "hero.role": "Computer Engineer (thesis in progress)",
   "hero.downloadCv": "Download CV",
   "hero.contact": "Get in touch",
   "hero.viewProjects": "View projects",
@@ -175,8 +173,8 @@ const en: Record<UIKey, string> = {
   "about.factLocation": "Arteixo, A Coruña (Spain)",
   "about.factStudies": "UDC · Final-year project in progress",
   "about.factWork": "Indra · 1 year",
-  "stack.title": "Tools I master",
-  "stack.note": "The stack I use every day, in depth, and the projects where I have used it.",
+  "stack.title": "Tools I use",
+  "stack.note": "The stack I use every day and the projects where I have used it.",
   "stack.usedIn": "Used in",
   "stack.toolsLabel": "Tools",
   "stack.projectsLabel": "Projects",
@@ -204,8 +202,7 @@ const en: Record<UIKey, string> = {
 
   // Contact
   "contact.title": "Let's talk",
-  "contact.intro":
-    "I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.",
+  "contact.intro": "If you have an offer, a project or just want to talk, write to me.",
   "contact.email": "Email",
   "contact.phone": "Phone",
   "contact.location": "Location",
@@ -214,7 +211,6 @@ const en: Record<UIKey, string> = {
   "contact.copied": "Email copied",
 
   // Footer
-  "footer.rights": "Almost all rights reserved.",
   "footer.author": "Author",
   "footer.links": "Links",
   "footer.revision": "Revision",
