@@ -108,6 +108,15 @@ const otherOgLocales = publishedLangs.filter((alt) => alt !== lang).map((alt) =>
 
     <Font cssVariable="--font-archivo" preload={[{ weight: "400 800", subset: "latin" }]} />
 
+    <!-- Vercel Web Analytics + Speed Insights (solo en producción, donde Vercel los sirve). -->
+    <script
+      is:inline
+      defer
+      data-domain="ivan-portfolio-v2.vercel.app"
+      src="https://api.vercel.com/v1/vercel/analytics/va.js"
+      data-forward-web-vitals="true"
+    ></script>
+
     <title>{title}</title>
   </head>
   <body class="bg-paper font-display text-ink antialiased selection:bg-cobalt selection:text-paper">
