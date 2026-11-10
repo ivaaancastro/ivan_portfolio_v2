@@ -85,6 +85,8 @@ const es = {
   "contact.phone": "Teléfono",
   "contact.location": "Ubicación",
   "contact.locationValue": "Arteixo, A Coruña",
+  "contact.copy": "Copiar",
+  "contact.copied": "Email copiado",
 
   // Footer
   "footer.rights": "Casi todos los derechos reservados.",
@@ -218,6 +220,8 @@ const en: Record<UIKey, string> = {
   "contact.phone": "Phone",
   "contact.location": "Location",
   "contact.locationValue": "Arteixo, A Coruña (Spain)",
+  "contact.copy": "Copy",
+  "contact.copied": "Email copied",
 
   // Footer
   "footer.rights": "Almost all rights reserved.",
