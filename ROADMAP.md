@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F4 (las PR vuelven a ir contra `main`)
-**Próxima tarea:** F4.6 · CV en PDF actualizado (a la espera del archivo) y F4.5 · valorar quitar React. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F4.5 · Valorar quitar React. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -149,7 +149,6 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 - [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [x] **F4.3** Vercel Web Analytics + Speed Insights con los componentes oficiales `@vercel/analytics/astro` y `@vercel/speed-insights/astro` en `Layout.astro`; sin `vercel.json`. Hay que activar ambos en el panel del proyecto en Vercel — [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - [x] **F4.4** Revisión final de textos y datos personales (D16) — [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
-- [ ] **F4.6** Actualizar el CV en PDF (`public/ivanCv.pdf`): TFG en curso y proyectos nuevos. Pendiente de que Iván pase el archivo, a poder ser en su formato original
 - [ ] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4)
 
 ---
