@@ -331,6 +331,117 @@
   }
 }
 
+/*
+ * Stack schematic: links between tools and projects. They draw themselves while scrolling,
+ * pulses run along them (SVG animateMotion) and hovering a node traces its connections.
+ */
+.schematic-link {
+  fill: none;
+  stroke: var(--cobalt);
+  stroke-opacity: 0.45;
+  stroke-width: 1.5;
+  transition:
+    stroke-opacity 0.2s,
+    opacity 0.2s;
+}
+
+.schematic-anchor {
+  fill: var(--paper);
+  stroke: var(--cobalt);
+  stroke-width: 1.5;
+}
+
+.schematic-pulse {
+  fill: var(--cobalt);
+  transition: opacity 0.2s;
+}
+
+.schematic-node {
+  transition:
+    opacity 0.2s,
+    border-color 0.2s;
+}
+
+.schematic[data-active] .schematic-link.is-related {
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.schematic[data-active] .schematic-link:not(.is-related),
+.schematic[data-active] .schematic-pulse:not(.is-related),
+.schematic[data-active] .schematic-node:not(.is-related) {
+  opacity: 0.2;
+}
+
+.schematic[data-active] .schematic-node.is-related > *,
+.schematic[data-active] li.schematic-node.is-related {
+  border-color: var(--cobalt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schematic-pulse {
+    display: none;
+  }
+}
+
+/*
+ * Entrance (once, not tied to scroll position): when a fifth of the schematic is on
+ * screen, src/scripts/schematic.ts adds .is-drawn. Nodes slide in, the links draw one after
+ * another and then the pulses appear. Without JS (.js missing) it is shown finished.
+ */
+.js .schematic:not(.is-drawn) .schematic-link {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.js .schematic .schematic-link {
+  stroke-dasharray: 1;
+  transition:
+    stroke-dashoffset 0.9s var(--ease-draw) calc(0.25s + var(--i, 0) * 80ms),
+    stroke-opacity 0.2s,
+    opacity 0.2s;
+}
+
+.js .schematic:not(.is-drawn) .schematic-pulse {
+  opacity: 0;
+}
+
+.js .schematic.is-drawn .schematic-pulse {
+  transition: opacity 0.4s ease-out 1.6s;
+}
+
+.js .schematic:not(.is-drawn) .schematic-from-left {
+  opacity: 0;
+  translate: -32px 0;
+}
+
+.js .schematic:not(.is-drawn) .schematic-from-right {
+  opacity: 0;
+  translate: 32px 0;
+}
+
+.js .schematic .schematic-from-left,
+.js .schematic .schematic-from-right {
+  transition:
+    opacity 0.5s ease-out calc(var(--i, 0) * 60ms),
+    translate 0.5s ease-out calc(var(--i, 0) * 60ms),
+    border-color 0.2s;
+}
+
+/* Mobile cards keep a light scroll-driven entrance. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .schematic-card {
+      animation: timeline-in-left ease-out both;
+    }
+
+    ul > .schematic-card {
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+  }
+}
+
 /* Respect the OS "reduce motion" setting: no movement, transitions and keyframes become instant. */
 @media (prefers-reduced-motion: reduce) {
   html {

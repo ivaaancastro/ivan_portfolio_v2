@@ -9,10 +9,11 @@ const t = useTranslations(lang);
 // Same order as the sections of the home (F3.4).
 const navItems = [
   { name: t("nav.projects"), href: pathFor(lang, "#projects") },
+  { name: t("nav.stack"), href: pathFor(lang, "#stack") },
   { name: t("nav.experience"), href: pathFor(lang, "#experience") },
-  { name: t("nav.about"), href: pathFor(lang, "#about") },
   { name: t("nav.contact"), href: pathFor(lang, "#contact") },
-  { name: t("nav.lifestyle"), href: pathFor(lang, "personal") },
+  // The personal page holds the bio plus sport, family and friends (F3.6 redesigns it).
+  { name: t("nav.aboutMe"), href: pathFor(lang, "personal") },
 ];
 
 // Language selector: links to this same page in the other language(s).
