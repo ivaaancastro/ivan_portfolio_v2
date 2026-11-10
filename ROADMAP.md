@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
-**Próxima tarea:** F3.5 · Contacto (y quitar la envoltura `legacy` de la home); después F3.6, la página «Sobre mí» + Lifestyle. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F3.6 · Rediseño de la página «Sobre mí» + Lifestyle; después F3.8, páginas de proyecto y 404. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -131,14 +131,16 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   5. **Contacto:** título grande y cajetín con email (acción principal), LinkedIn, GitHub y teléfono. El pie repite el cajetín reducido.
   - Navegación: cabecera con índice, selector ES/EN y botón de tema; en móvil, menú desplegable en la cabecera y **se retira la barra inferior**.
   - Lifestyle sigue enlazada solo desde la navegación (sin adelanto en la home).
-- [ ] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
+- [x] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
   - [x] Base — [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36): fondo papel y Archivo en todo el sitio; cabecera nueva (índice en el orden de la home, ES/EN, botón de tema claro/oscuro, CV y menú desplegable en móvil con `popover` nativo); pie como cajetín; se retira la barra inferior. Las secciones antiguas se muestran dentro de un `<main class="legacy …">` oscuro hasta que se rediseñen.
   - [x] Portada — [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37): nombre en Archivo estrecho, línea de cota animada con la profesión, foto (sin marco ni «Detalle A», a petición de Iván), cajetín con los datos rápidos y botones «Ver proyectos» / «Descargar CV». Se retiran el antetítulo «Diseño · Desarrollo · Soporte» y el «Hola, soy».
   - [x] Proyectos — [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40): sube al segundo puesto; Nexus Commerce Core como hoja grande y el resto como hojas en dos columnas, con «Hoja n de 5», stack y portada. Cada hoja entera es un enlace a su caso de estudio (foco visible con teclado). Orden provisional del resto: Experiencia → Sobre mí → Contacto.
   - [x] Experiencia y formación — [#41](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/41): línea de tiempo vertical (de lo más reciente a lo más antiguo) con tarjetas alternas, mes de inicio en grande y etiqueta Formación/Trabajo. Animación ligada al scroll en CSS: la línea se dibuja, las tarjetas entran desde su lado y cada punto se enciende al pasar; «En curso» con un punto que late. Sin soporte o con «reducir movimiento», queda estática. Nueva colección `education` (DAM y UDC, ES/EN) y fechas `start`/`end` en `experience`; el periodo en texto se genera con `Intl`. Sustituye a una primera versión con regla horizontal a escala, que a Iván le resultó difícil de leer.
   - [x] Herramientas — [#42](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/42): esquema conectado (D12) que une cada herramienta con los proyectos que la usan (calculado con `matches` en `stack.json` y las etiquetas de cada proyecto). Al entrar en pantalla (un 20 % visible) se dibuja entero de una vez —cajas desde los lados, líneas una tras otra y después los impulsos—, sin depender de cuánto se baje y al pasar el ratón o el foco por un nodo se iluminan sus conexiones; en móvil, tarjetas con los proyectos de cada herramienta. La biografía («Sobre mí») sale de la home y pasa al principio de la página personal, que el menú enlaza ahora como «Sobre mí» (F3.6 la rediseña). Orden de la home: Portada → Proyectos → Herramientas → Experiencia → Contacto.
+  - [x] Contacto — [#43](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/43): «Hablemos» en grande sobre la cuadrícula y los canales (email, teléfono, LinkedIn, GitHub) como filas de un cajetín, cada una un enlace con una cota que se dibuja bajo el valor al pasar el ratón o el foco; botón para copiar el email (anunciado a lectores de pantalla; en móvil solo icono). Las filas entran una tras otra con el scroll (CSS). La home ya no usa la envoltura `legacy`.
 - [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
 - [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
+- [ ] **F3.8** Rediseño de las páginas de proyecto y la 404 (aún con `legacy`) y limpieza final: tokens antiguos, Inter, `pop-in`/`fade-up` y `reveal.ts` si ya no se usan
 
 ## F4 · Pulido y medición
 
@@ -221,3 +223,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.5 · Proyectos rediseñados como hojas del plano y movidos al segundo puesto · [#40](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/40)
 - 2026-11-10 · F3.5 · Experiencia y formación en una línea de tiempo vertical animada con el scroll; colección `education` · [#41](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/41)
 - 2026-11-10 · F3.5 · Herramientas como esquema conectado con los proyectos; la biografía pasa a la página personal · [#42](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/42)
+- 2026-11-10 · F3.5 · Contacto como cajetín de canales con copiar email; la home queda sin `legacy` · [#43](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/43)
