@@ -171,6 +171,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 | D11 | 2026-11-09 | Arquitectura de la home de F3.4 (orden Portada → Proyectos → Experiencia → Sobre mí → Contacto; sin barra inferior en móvil; foto en la portada; Lifestyle solo en el menú) | Aprobada por Iván sobre el plano de la home                                                                                                       |
 | D12 | 2026-11-10 | La biografía va a la página personal («Sobre mí» + Lifestyle) y la home muestra las herramientas como un esquema conectado con los proyectos                                | Decidido por Iván: la tabla le parecía aburrida y prefería sacar el «Sobre mí» de la home                                                         |
 | D14 | 2026-11-10 | La biografía vuelve a la home, bajo la cota «Ingeniero Informático» en lugar de la intro «Especialista en…»; `/personal` queda como «Lifestyle»                             | Decidido por Iván: prefiere el resumen en la portada, sin que ocupe mucho (sustituye la parte de D12 sobre la biografía)                          |
+| D8  | 2026-11-10 | Se quita el espacio antes de la coma en la biografía («…en Indra, lo que…») y la edad pasa a 24 años                                                                        | Pedido por Iván                                                                                                                                   |
 | D13 | 2026-11-10 | No instalar `Leonxlnx/taste-skill`; usar sus ideas a mano                                                                                                                   | Instala un hook que ejecuta scripts al final de cada turno y sus reglas chocan con D3 y con el objetivo de rendimiento; Iván eligió no instalarla |
 | D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)                                                           | Revisados por Iván                                                                                                                                |
 
@@ -180,9 +181,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ### Pendientes
 
-| ID  | Pregunta                                                                       | Necesaria antes de |
-| :-- | :----------------------------------------------------------------------------- | :----------------- |
-| D8  | ¿Quitar el espacio sobrante antes de la coma en About («…en Indra , lo que…»)? | F4.4               |
+Ninguna.
 
 ## Backlog / ideas
 
@@ -231,4 +230,5 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.7 · Escala tipográfica fluida y espaciado común en todas las secciones · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
 - 2026-11-10 · F3.8 · Páginas de proyecto y 404 rediseñadas; sin `legacy`, Inter ni estilos antiguos · [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45)
 - 2026-11-10 · F3.7 · Revisión responsive a 320/375/768/1440 px: sin scroll horizontal y zonas táctiles mínimas · [#46](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/46)
+- 2026-11-10 · D8 · Biografía: 24 años y sin espacio antes de la coma · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
 - 2026-11-10 · F3 · Rediseño «Plano técnico» publicado: `redesign` → `main` · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)

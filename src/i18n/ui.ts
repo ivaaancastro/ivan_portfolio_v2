@@ -41,10 +41,10 @@ const es = {
   "about.title": "Sobre mí",
   /** HTML */
   "about.bio1":
-    "Tengo 23 años y soy estudiante de <strong>Ingeniería Informática</strong> en la <strong>UDC</strong>, con todas las asignaturas aprobadas y el TFG en curso. Me considero una persona tranquila, organizada y reflexiva, con buenas habilidades de comunicación y trabajo en equipo.",
+    "Tengo 24 años y soy estudiante de <strong>Ingeniería Informática</strong> en la <strong>UDC</strong>, con todas las asignaturas aprobadas y el TFG en curso. Me considero una persona tranquila, organizada y reflexiva, con buenas habilidades de comunicación y trabajo en equipo.",
   /** HTML */
   "about.bio2":
-    "Antes de la carrera completé un ciclo superior en <strong>DAM</strong> y <strong>trabajé 1 año en Indra</strong> , lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong>Ingeniería del Software</strong> pues me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.",
+    "Antes de la carrera completé un ciclo superior en <strong>DAM</strong> y <strong>trabajé 1 año en Indra</strong>, lo que me dio experiencia en proyectos reales. Actualmente me especializo en <strong>Ingeniería del Software</strong> pues me gusta la programación full stack y el trabajo en equipo mediante diferentes metodologías.",
   "about.factLocation": "Arteixo, A Coruña",
   "about.factStudies": "UDC · TFG en curso",
   "about.factWork": "Indra · 1 año",
@@ -168,7 +168,7 @@ const en: Record<UIKey, string> = {
   "about.title": "About me",
   /** HTML */
   "about.bio1":
-    "I'm 23 and a <strong>Computer Engineering</strong> student at the <strong>UDC</strong> (University of A Coruña), with all courses passed and my final-year project in progress. I see myself as a calm, organized and thoughtful person, with good communication and teamwork skills.",
+    "I'm 24 and a <strong>Computer Engineering</strong> student at the <strong>UDC</strong> (University of A Coruña), with all courses passed and my final-year project in progress. I see myself as a calm, organized and thoughtful person, with good communication and teamwork skills.",
   /** HTML */
   "about.bio2":
     "Before university I completed a higher vocational degree in <strong>Multiplatform App Development (DAM)</strong> and <strong>worked for 1 year at Indra</strong>, which gave me experience on real projects. I am currently specializing in <strong>Software Engineering</strong>, because I enjoy full-stack development and working in teams with different methodologies.",
