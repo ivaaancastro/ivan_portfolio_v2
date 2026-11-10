@@ -102,6 +102,14 @@ async function main() {
         for (const n of v.nodes) {
           const html = (n.html ?? "").replace(/\s+/g, " ").slice(0, 220);
           console.log(`     nodo: ${html}`);
+          const target = Array.isArray(n.target) ? n.target[n.target.length - 1] : n.target;
+          const styles = await page.evaluate((sel) => {
+            const el = document.querySelector(sel);
+            if (!el) return null;
+            const cs = getComputedStyle(el);
+            return { color: cs.color, backgroundColor: cs.backgroundColor };
+          }, target);
+          console.log(`     estilos: ${JSON.stringify(styles)}`);
         }
       }
     }
