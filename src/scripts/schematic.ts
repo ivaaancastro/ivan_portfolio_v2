@@ -1,8 +1,24 @@
 /**
- * Stack schematic: hovering or focusing a tool or a project highlights it, its links and the
- * nodes at the other end; everything else fades (CSS in global.css).
+ * Stack schematic. Draws itself once when a fifth of it is on screen (.is-drawn), and
+ * hovering or focusing a tool or a project highlights it, its links and the nodes at the other
+ * end while everything else fades. CSS in global.css.
  */
 document.querySelectorAll<HTMLElement>("[data-schematic]").forEach((root) => {
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          root.classList.add("is-drawn");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(root);
+  } else {
+    root.classList.add("is-drawn");
+  }
+
   const nodes = root.querySelectorAll<HTMLElement>("[data-key]");
   const links = root.querySelectorAll<SVGElement>("[data-keys]");
   const keysOf = (el: Element) => (el.getAttribute("data-keys") ?? "").split(" ");

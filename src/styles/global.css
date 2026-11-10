@@ -384,65 +384,61 @@
   }
 }
 
+/*
+ * Entrance (once, not tied to scroll position): when a fifth of the schematic is on
+ * screen, src/scripts/schematic.ts adds .is-drawn. Nodes slide in, the links draw one after
+ * another and then the pulses appear. Without JS (.js missing) it is shown finished.
+ */
+.js .schematic:not(.is-drawn) .schematic-link {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.js .schematic .schematic-link {
+  stroke-dasharray: 1;
+  transition:
+    stroke-dashoffset 0.9s var(--ease-draw) calc(0.25s + var(--i, 0) * 80ms),
+    stroke-opacity 0.2s,
+    opacity 0.2s;
+}
+
+.js .schematic:not(.is-drawn) .schematic-pulse {
+  opacity: 0;
+}
+
+.js .schematic.is-drawn .schematic-pulse {
+  transition: opacity 0.4s ease-out 1.6s;
+}
+
+.js .schematic:not(.is-drawn) .schematic-from-left {
+  opacity: 0;
+  translate: -32px 0;
+}
+
+.js .schematic:not(.is-drawn) .schematic-from-right {
+  opacity: 0;
+  translate: 32px 0;
+}
+
+.js .schematic .schematic-from-left,
+.js .schematic .schematic-from-right {
+  transition:
+    opacity 0.5s ease-out calc(var(--i, 0) * 60ms),
+    translate 0.5s ease-out calc(var(--i, 0) * 60ms),
+    border-color 0.2s;
+}
+
+/* Mobile cards keep a light scroll-driven entrance. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .schematic {
-      view-timeline-name: --schematic;
-    }
-
-    .schematic-link {
-      stroke-dasharray: 1;
-      animation: schematic-draw linear both;
-    }
-
-    .schematic-from-left,
     .schematic-card {
       animation: timeline-in-left ease-out both;
-    }
-
-    .schematic-from-right {
-      animation: timeline-in-right ease-out both;
-    }
-
-    .schematic-pulse {
-      animation: schematic-pulse-in linear both;
-    }
-
-    /* Separate rules so the build does not fold the timeline into the animation shorthand. */
-    .schematic .schematic-link {
-      animation-timeline: --schematic;
-      animation-range: entry 30% cover 55%;
-    }
-
-    .schematic .schematic-pulse {
-      animation-timeline: --schematic;
-      animation-range: cover 50% cover 58%;
-    }
-
-    .schematic .schematic-node {
-      animation-timeline: --schematic;
-      animation-range: entry 10% cover 35%;
     }
 
     ul > .schematic-card {
       animation-timeline: view();
       animation-range: entry 5% cover 30%;
     }
-  }
-}
-
-@keyframes schematic-pulse-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes schematic-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
   }
 }
 

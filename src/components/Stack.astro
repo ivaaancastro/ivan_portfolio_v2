@@ -71,13 +71,14 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
         class="absolute inset-0 size-full overflow-visible"
         aria-hidden="true"
       >
-        {links.map((link) => (
+        {links.map((link, index) => (
           <path
             id={link.id}
             d={link.d}
             pathLength="1"
             class="schematic-link"
             data-keys={link.keys}
+            style={`--i: ${index}`}
           />
         ))}
         {links.map((link, index) => (
@@ -100,11 +101,11 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
       </svg>
 
       <ul aria-label={t("stack.toolsLabel")}>
-        {tools.map(({ key, name, desc, Icon, projects: used }) => (
+        {tools.map(({ key, name, desc, Icon, projects: used }, index) => (
           <li
             data-key={key}
             class="schematic-node schematic-from-left absolute left-0 flex w-[29%] [transform:translateY(-50%)] items-center gap-3 border-frame bg-paper-raised px-3 py-2"
-            style={top(toolY.get(key) ?? 0)}
+            style={`${top(toolY.get(key) ?? 0)}; --i: ${index}`}
           >
             <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="grid min-w-0">
@@ -119,11 +120,11 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
       </ul>
 
       <ul aria-label={t("stack.projectsLabel")}>
-        {projects.map(({ key, title, href }) => (
+        {projects.map(({ key, title, href }, index) => (
           <li
             data-key={key}
             class="schematic-node schematic-from-right absolute right-0 w-[29%] [transform:translateY(-50%)]"
-            style={top(projectY.get(key) ?? 0)}
+            style={`${top(projectY.get(key) ?? 0)}; --i: ${index}`}
           >
             <a
               href={href}
