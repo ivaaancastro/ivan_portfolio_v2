@@ -96,10 +96,9 @@ const es = {
   "footer.revision": "Revisión",
 
   // Lifestyle page
-  "life.title": "Iván Castro | Lifestyle",
+  "life.title": "Sobre mí | Iván Castro",
   "life.description":
     "Más allá del código: running, ciclismo, familia y amigos. Mis kilómetros del año en Strava.",
-  "life.kicker": "Lifestyle",
   "life.headingA": "Más allá del",
   "life.headingB": "Código",
   "life.intro":
@@ -107,7 +106,7 @@ const es = {
   "life.sportTitle": "Deporte & Disciplina",
   /** HTML */
   "life.sportText":
-    'El equilibrio perfecto entre el esfuerzo continuo y la libertad de explorar. Preparar <strong class="text-white">Medias Maratones</strong>, correr todo tipo de carreras y acumular kilómetros en bici me han enseñado que los grandes objetivos se logran con constancia diaria.',
+    "El equilibrio perfecto entre el esfuerzo continuo y la libertad de explorar. Preparar <strong>Medias Maratones</strong>, correr todo tipo de carreras y acumular kilómetros en bici me han enseñado que los grandes objetivos se logran con constancia diaria.",
   "life.followStrava": "Sígueme en Strava",
   "life.runningAlt": "Corriendo",
   "life.runningTitle": "Running",
@@ -121,7 +120,7 @@ const es = {
     "El deporte me da fuerza, pero mi entorno me da estabilidad. Tengo la inmensa suerte de contar con una familia increíble que me aporta seguridad y valores inquebrantables.",
   /** HTML */
   "life.batteryText2":
-    'A eso se suma un grupo de amigos muy afín a mí, con los que comparto risas, viajes, experiencias y por supuesto, <span class="text-white">¡kilómetros!</span>',
+    "A eso se suma un grupo de amigos muy afín a mí, con los que comparto risas, viajes, experiencias y por supuesto, <strong>¡kilómetros!</strong>",
   "life.family": "Familia",
   "life.friends": "Amigos",
 
@@ -232,10 +231,9 @@ const en: Record<UIKey, string> = {
   "footer.revision": "Revision",
 
   // Lifestyle page
-  "life.title": "Iván Castro | Lifestyle",
+  "life.title": "About me | Iván Castro",
   "life.description":
     "Beyond code: running, cycling, family and friends. My kilometers of the year on Strava.",
-  "life.kicker": "Lifestyle",
   "life.headingA": "Beyond the",
   "life.headingB": "Code",
   "life.intro":
@@ -243,7 +241,7 @@ const en: Record<UIKey, string> = {
   "life.sportTitle": "Sport & Discipline",
   /** HTML */
   "life.sportText":
-    'The perfect balance between steady effort and the freedom to explore. Training for <strong class="text-white">half marathons</strong>, running all kinds of races and racking up kilometers on the bike have taught me that big goals are reached through daily consistency.',
+    "The perfect balance between steady effort and the freedom to explore. Training for <strong>half marathons</strong>, running all kinds of races and racking up kilometers on the bike have taught me that big goals are reached through daily consistency.",
   "life.followStrava": "Follow me on Strava",
   "life.runningAlt": "Running",
   "life.runningTitle": "Running",
@@ -257,7 +255,7 @@ const en: Record<UIKey, string> = {
     "Sport gives me strength, but the people around me give me stability. I'm incredibly lucky to have an amazing family that gives me security and unshakable values.",
   /** HTML */
   "life.batteryText2":
-    'On top of that, I have a group of friends very much like me, with whom I share laughs, trips, experiences and, of course, <span class="text-white">kilometers!</span>',
+    "On top of that, I have a group of friends very much like me, with whom I share laughs, trips, experiences and, of course, <strong>kilometers!</strong>",
   "life.family": "Family",
   "life.friends": "Friends",
 

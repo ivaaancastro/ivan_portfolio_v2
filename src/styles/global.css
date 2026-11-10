@@ -449,6 +449,39 @@
       animation-timeline: view();
       animation-range: entry calc(var(--i, 0) * 8%) cover calc(25% + var(--i, 0) * 5%);
     }
+
+    /* Personal page: sheets rise into place and the Strava bars grow while scrolling. */
+    .sheet-in {
+      animation: sheet-rise ease-out both;
+    }
+
+    main .sheet-in {
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 6%) cover calc(25% + var(--i, 0) * 5%);
+    }
+
+    .strava-bar {
+      animation: bar-grow ease-out both;
+    }
+
+    dd > .strava-bar {
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+  }
+}
+
+@keyframes sheet-rise {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+  }
+}
+
+/* Grows from zero to the bar's own scale (set inline). */
+@keyframes bar-grow {
+  from {
+    scale: 0 1;
   }
 }
 
