@@ -1,53 +1,165 @@
 ---
-import { Briefcase, Calendar } from "lucide-react";
-import { getExperience, localize } from "../utils/content";
+import { getEducation, getExperience, localize } from "../utils/content";
 import { getLang, useTranslations } from "../i18n/utils";
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
-const experience = (await getExperience()).map(({ data }) => ({
-  company: data.company,
-  role: localize(data.role, lang),
-  period: localize(data.period, lang),
-  desc: localize(data.desc, lang),
-  tags: data.tags,
+
+type Kind = "education" | "work";
+interface Stage {
+  kind: Kind;
+  title: string;
+  org: string;
+  start: string;
+  end?: string;
+  desc?: string;
+  tags?: string[];
+}
+
+const stages: Stage[] = [
+  ...(await getEducation()).map(({ data }) => ({
+    kind: "education" as const,
+    title: localize(data.title, lang),
+    org: data.school,
+    start: data.start,
+    end: data.end,
+    desc: data.desc && localize(data.desc, lang),
+  })),
+  ...(await getExperience()).map(({ data }) => ({
+    kind: "work" as const,
+    title: localize(data.role, lang),
+    org: data.company,
+    start: data.start,
+    end: data.end,
+    desc: localize(data.desc, lang),
+    tags: data.tags,
+  })),
+].sort((a, b) => a.start.localeCompare(b.start));
+
+// Timeline scale: months from the first start to the month of the build (ongoing stages).
+const month = (yearMonth: string) => {
+  const [year, m] = yearMonth.split("-").map(Number);
+  return year * 12 + (m - 1);
+};
+const now = new Date();
+const domainStart = Math.min(...stages.map((stage) => month(stage.start)));
+const domainEnd = now.getFullYear() * 12 + now.getMonth();
+const at = (m: number) => ((m - domainStart) / (domainEnd - domainStart)) * 100;
+
+const firstYear = Math.floor(domainStart / 12) + 1;
+const years = Array.from({ length: now.getFullYear() - firstYear + 1 }, (_, i) => firstYear + i);
+
+const monthFormat = new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-US", {
+  month: "short",
+  year: "numeric",
+});
+const formatMonth = (yearMonth: string) => {
+  const [year, m] = yearMonth.split("-").map(Number);
+  return monthFormat.format(new Date(year, m - 1, 1));
+};
+
+const items = stages.map((stage, index) => ({
+  ...stage,
+  ref: index + 1,
+  period: `${formatMonth(stage.start)} – ${stage.end ? formatMonth(stage.end) : t("experience.present")}`,
+  left: at(month(stage.start)),
+  width: at(stage.end ? month(stage.end) : domainEnd) - at(month(stage.start)),
 }));
+
+const tracks: { kind: Kind; label: string }[] = [
+  { kind: "education", label: t("experience.education") },
+  { kind: "work", label: t("experience.work") },
+];
+
+const refBadge =
+  "size-6 shrink-0 place-items-center rounded-full border-[1.5px] border-redline bg-paper text-caption font-bold text-redline tabular-nums";
 ---
 
-<section id="experience" class="relative py-24">
-  <div class="mx-auto max-w-[1100px] px-6">
-    <h2 data-reveal class="mb-16 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-      <Briefcase className="h-8 w-8 text-primary" aria-hidden="true" />
-      {t("experience.title")}
-    </h2>
+<section
+  id="experience"
+  class="scroll-mt-16 border-b-[1.5px] border-ink bg-paper py-20 font-display text-ink"
+>
+  <div class="mx-auto grid max-w-[1100px] gap-12 px-6">
+    <h2 class="text-h2 font-extrabold [font-stretch:75%]">{t("experience.title")}</h2>
 
-    <div class="relative ml-3 space-y-12 border-l-2 border-white/10 md:ml-6">
-      {experience.map((item, index) => (
-        <div
-          data-reveal="left"
-          style={`--reveal-delay: ${index * 200}ms`}
-          class="relative pl-8 md:pl-12"
-        >
-          <!-- Punto de la línea de tiempo -->
-          <span class="absolute top-2 -left-[9px] h-4 w-4 rounded-full bg-primary shadow-[0_0_10px_rgba(108,240,194,0.5)]" />
-
-          <div class="mb-2 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h3 class="text-xl font-bold text-white">{item.role}</h3>
-            <span class="mt-1 flex items-center gap-1 text-sm font-medium text-primary sm:mt-0">
-              <Calendar className="h-4 w-4" aria-hidden="true" /> {item.period}
-            </span>
+    <!-- Time ruler, to scale. The list below carries the same information for screen readers. -->
+    <div aria-hidden="true" class="grid gap-4">
+      {tracks.map(({ kind, label }) => (
+        <div class="grid gap-1">
+          <span class="text-caption text-ink-soft">{label}</span>
+          <div class="relative h-8">
+            {items
+              .filter((item) => item.kind === kind)
+              .map((item) => (
+                <div
+                  class:list={[
+                    "absolute inset-y-0 border-[1.5px]",
+                    kind === "work" ? "border-cobalt bg-cobalt/10" : "border-ink bg-ink/5",
+                    { "border-r-0": !item.end },
+                  ]}
+                  style={`left: ${item.left}%; width: ${item.width}%`}
+                >
+                  <span
+                    class:list={[
+                      refBadge,
+                      "absolute top-1/2 left-1 hidden -translate-y-1/2 md:inline-grid",
+                    ]}
+                  >
+                    {item.ref}
+                  </span>
+                </div>
+              ))}
           </div>
+        </div>
+      ))}
 
-          <h4 class="mb-4 text-lg font-medium text-gray-400">{item.company}</h4>
-          <p class="mb-4 max-w-2xl leading-relaxed text-gray-300">{item.desc}</p>
+      <!-- Axis with a tick and label at the start of each year. -->
+      <div class="relative mt-1 h-6 border-t-[1.5px] border-ink text-caption text-ink-soft tabular-nums">
+        {years.map((year) => (
+          <span
+            class="absolute top-0 -translate-x-1/2 pt-1 before:absolute before:-top-1.5 before:left-1/2 before:h-1.5 before:w-[1.5px] before:bg-ink before:content-['']"
+            style={`left: ${at(year * 12)}%`}
+          >
+            {year}
+          </span>
+        ))}
+      </div>
+    </div>
 
-          <div class="flex flex-wrap gap-2">
-            {item.tags.map((tag) => (
-              <span class="rounded-full border border-white/5 bg-white/5 px-3 py-1 text-xs text-muted">
-                {tag}
-              </span>
-            ))}
-          </div>
+    <div class="grid gap-12 md:grid-cols-2">
+      {tracks.map(({ kind, label }) => (
+        <div class="grid content-start gap-6">
+          <h3 class="border-b-[1.5px] border-ink pb-2 text-h3 font-bold [font-stretch:85%]">
+            {label}
+          </h3>
+          <ol class="grid gap-8">
+            {items
+              .filter((item) => item.kind === kind)
+              .reverse()
+              .map((item) => (
+                <li class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1">
+                  <span class:list={[refBadge, "inline-grid"]}>{item.ref}</span>
+                  <div class="grid gap-1">
+                    <h4 class="text-lead leading-tight font-bold">{item.title}</h4>
+                    <p class="text-small text-ink-soft">
+                      {item.org}
+                      <span class="mx-2 text-grid" aria-hidden="true">
+                        |
+                      </span>
+                      <span class="tabular-nums">{item.period}</span>
+                    </p>
+                    {item.desc && <p class="mt-1 max-w-[60ch]">{item.desc}</p>}
+                    {item.tags && (
+                      <ul class="mt-2 flex flex-wrap gap-2 text-caption">
+                        {item.tags.map((tag) => (
+                          <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </li>
+              ))}
+          </ol>
         </div>
       ))}
     </div>

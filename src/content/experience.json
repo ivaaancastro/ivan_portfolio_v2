@@ -6,10 +6,8 @@
       "es": "Técnico de Software",
       "en": "Software Technician"
     },
-    "period": {
-      "es": "Jun 2022 - Mar 2023",
-      "en": "Jun 2022 - Mar 2023"
-    },
+    "start": "2022-06",
+    "end": "2023-03",
     "desc": {
       "es": "Soporte en Bases de Datos y SLOs. Administración de entornos Linux y desarrollo de scripts de automatización.",
       "en": "Database and SLO support. Linux environment administration and development of automation scripts."
@@ -24,10 +22,8 @@
       "es": "Estudiante en Prácticas",
       "en": "Intern"
     },
-    "period": {
-      "es": "Mar 2022 - Jun 2022",
-      "en": "Mar 2022 - Jun 2022"
-    },
+    "start": "2022-03",
+    "end": "2022-06",
     "desc": {
       "es": "Formación intensiva en desarrollo Java y tecnologías web. Participación en metodologías ágiles y trabajo en equipo.",
       "en": "Intensive training in Java development and web technologies. Took part in agile methodologies and teamwork."

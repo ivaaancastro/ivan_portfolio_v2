@@ -1,0 +1,27 @@
+[
+  {
+    "id": "udc-computer-engineering",
+    "title": {
+      "es": "Grado en Ingeniería Informática",
+      "en": "Degree in Computer Engineering"
+    },
+    "school": "Universidade da Coruña (UDC)",
+    "start": "2022-09",
+    "desc": {
+      "es": "Todas las asignaturas aprobadas y el TFG en curso.",
+      "en": "All courses passed and final-year project in progress."
+    },
+    "order": 1
+  },
+  {
+    "id": "dam",
+    "title": {
+      "es": "Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
+      "en": "Higher Vocational Degree in Multiplatform App Development (DAM)"
+    },
+    "school": "Centro Plurilingüe Karbo",
+    "start": "2020-09",
+    "end": "2022-06",
+    "order": 2
+  }
+]
