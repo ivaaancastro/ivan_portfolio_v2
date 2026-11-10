@@ -14,13 +14,13 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 | F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho                               |
 | F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho                               |
 | F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho (salvo F2.3b, textos de Iván) |
-| F3   | Rediseño visual                                                       | 🚧 En curso                            |
+| F3   | Rediseño visual                                                       | ✅ Hecho                               |
 | F4   | Pulido y medición                                                     | ⏳ Pendiente                           |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
-**Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
-**Próxima tarea:** PR de `redesign` a `main` para publicar el rediseño (F3); después F4 (Lighthouse y pulido). F2.3b sigue abierta hasta que Iván tenga los textos.
+**Fase actual:** F4 (las PR vuelven a ir contra `main`)
+**Próxima tarea:** F4.1 · Lighthouse ≥ 95 en móvil en todas las páginas, ya con el diseño nuevo. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -231,3 +231,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.7 · Escala tipográfica fluida y espaciado común en todas las secciones · [#44](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/44)
 - 2026-11-10 · F3.8 · Páginas de proyecto y 404 rediseñadas; sin `legacy`, Inter ni estilos antiguos · [#45](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/45)
 - 2026-11-10 · F3.7 · Revisión responsive a 320/375/768/1440 px: sin scroll horizontal y zonas táctiles mínimas · [#46](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/46)
+- 2026-11-10 · F3 · Rediseño «Plano técnico» publicado: `redesign` → `main` · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
