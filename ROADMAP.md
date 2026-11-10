@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F4 (las PR vuelven a ir contra `main`)
-**Próxima tarea:** F4.1 · Lighthouse ≥ 95 en móvil en todas las páginas, ya con el diseño nuevo. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F4.3 · Vercel Web Analytics + Speed Insights. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -146,7 +146,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 ## F4 · Pulido y medición
 
 - [ ] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas
-- [ ] **F4.2** axe sin errores en CI
+- [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [ ] **F4.3** Vercel Web Analytics + Speed Insights
 - [ ] **F4.4** Revisión final de textos y datos personales
 - [ ] **F4.5** Valorar quitar React del todo (`@lucide/astro` en lugar de `lucide-react`) si ninguna isla lo necesita. Ahora mismo React solo se usa para renderizar iconos en el servidor (surgido en F2.4)
@@ -174,6 +174,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 | D8  | 2026-11-10 | Se quita el espacio antes de la coma en la biografía («…en Indra, lo que…») y la edad pasa a 24 años                                                                        | Pedido por Iván                                                                                                                                   |
 | D13 | 2026-11-10 | No instalar `Leonxlnx/taste-skill`; usar sus ideas a mano                                                                                                                   | Instala un hook que ejecuta scripts al final de cada turno y sus reglas chocan con D3 y con el objetivo de rendimiento; Iván eligió no instalarla |
 | D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)                                                           | Revisados por Iván                                                                                                                                |
+| D15 | 2026-11-10 | Fix de contraste en /personal: `text-ink-soft` → `text-ink` en modo claro (PersonalPage.astro) para pasar axe en CI (Linux headless usa light mode)                         | CI reportaba 1 violación color-contrast (2 nodos) no reproducible localmente; fijado para asegurar contraste AA en modo claro                     |
 
 **Repo fuera de iCloud (2026-11-09):** iCloud Drive generaba miles de copias « 2» (en src, .git y node_modules). La carpeta real es ahora `~/Documents/proyects/ivan_portfolio_v2.nosync`, que iCloud no sincroniza, y `ivan_portfolio_v2` es un enlace simbólico a ella. `.gitignore` ignora `* 2` y `* 2.*`.
 
@@ -232,3 +233,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F3.7 · Revisión responsive a 320/375/768/1440 px: sin scroll horizontal y zonas táctiles mínimas · [#46](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/46)
 - 2026-11-10 · D8 · Biografía: 24 años y sin espacio antes de la coma · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
 - 2026-11-10 · F3 · Rediseño «Plano técnico» publicado: `redesign` → `main` · [#47](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/47)
+- 2026-11-10 · F4.2 · axe sin errores en CI: contraste AA en modo claro en /personal (text-ink-soft → text-ink en PersonalPage.astro) · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)

@@ -33,11 +33,11 @@ const sports = [
     <span class="font-semibold">
       {t("strava.summary")} {currentYear}
     </span>
-    <span class="text-ink-soft">Strava</span>
+    <span class="text-ink">Strava</span>
   </div>
 
   <div class="grid gap-1 border-b border-ink p-4">
-    <span class="text-caption text-ink-soft">
+    <span class="text-caption text-ink">
       {t("strava.total")} · {t("strava.runRide")}
     </span>
     <p class="flex items-baseline gap-2">
@@ -48,7 +48,7 @@ const sports = [
       >
         {fmt(totalKms)}
       </span>
-      <span class="text-lead text-ink-soft">km</span>
+      <span class="text-lead text-ink">km</span>
     </p>
   </div>
 
@@ -60,12 +60,12 @@ const sports = [
           index === 0 && "border-b border-ink sm:border-r sm:border-b-0",
         ]}
       >
-        <dt class="text-caption text-ink-soft">{label}</dt>
+        <dt class="text-caption text-ink">{label}</dt>
         <dd class="text-h3 font-bold tabular-nums">
           <span data-count={kms || undefined} data-locale={numberLocale}>
             {fmt(kms)}
           </span>
-          <span class="ml-1 text-small font-normal text-ink-soft">km</span>
+          <span class="ml-1 text-small font-normal text-ink">km</span>
         </dd>
         <dd class="h-1.5 bg-grid" aria-hidden="true">
           <div

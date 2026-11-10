@@ -34,7 +34,7 @@ const titleLinkClass = "outline-none after:absolute after:inset-0 after:content-
   <div class="mx-auto grid max-w-[1100px] gap-block px-6">
     <header class="grid gap-head">
       <h2 class="text-h2 font-extrabold stretch-heading">{t("projects.title")}</h2>
-      <p class="max-w-[60ch] text-lead text-ink-soft">{t("projects.intro")}</p>
+      <p class="max-w-[60ch] text-lead text-ink">{t("projects.intro")}</p>
     </header>
 
     {featured && (
@@ -46,7 +46,7 @@ const titleLinkClass = "outline-none after:absolute after:inset-0 after:content-
               {featured.title}
             </a>
           </h3>
-          <p class="text-ink-soft">{featured.shortDesc}</p>
+          <p class="text-ink">{featured.shortDesc}</p>
           <ul class="mt-auto flex flex-wrap gap-2 text-caption">
             {featured.tags.map((tag) => (
               <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
@@ -84,13 +84,13 @@ const titleLinkClass = "outline-none after:absolute after:inset-0 after:content-
                 {project.title}
               </a>
             </h3>
-            <p class="text-small text-ink-soft">{project.shortDesc}</p>
+            <p class="text-small text-ink">{project.shortDesc}</p>
             <ul class="mt-auto flex flex-wrap gap-2 text-caption">
               {project.tags.slice(0, 3).map((tag) => (
                 <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
               ))}
               {project.tags.length > 3 && (
-                <li class="px-1 py-0.5 text-ink-soft">+{project.tags.length - 3}</li>
+                <li class="px-1 py-0.5 text-ink">+{project.tags.length - 3}</li>
               )}
             </ul>
           </div>

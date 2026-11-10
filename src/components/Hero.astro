@@ -44,7 +44,7 @@ const titleBlock = [
         <!-- Short bio right under the role (D14). -->
         <div
           id="about"
-          class="grid max-w-[60ch] scroll-mt-24 gap-3 text-ink-soft [&_strong]:font-semibold [&_strong]:text-ink"
+          class="grid max-w-[60ch] scroll-mt-24 gap-3 text-ink [&_strong]:font-semibold [&_strong]:text-ink"
         >
           <p set:html={t("about.bio1")} />
           <p set:html={t("about.bio2")} />
@@ -95,7 +95,7 @@ const titleBlock = [
             index === 1 && "lg:border-r",
           ]}
         >
-          <dt class="text-caption text-ink-soft">{label}</dt>
+          <dt class="text-caption text-ink">{label}</dt>
           <dd class="font-semibold">{value}</dd>
         </div>
       ))}
