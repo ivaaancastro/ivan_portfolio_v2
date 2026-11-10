@@ -47,7 +47,7 @@ const sheet = t("projects.sheet")
 
 // Case-study text from the MDX body, styled for the paper theme.
 const prose =
-  "grid max-w-[68ch] gap-4 text-ink-soft [&_code]:text-small [&_code]:text-cobalt [&_h2]:mt-6 [&_h2]:text-h3 [&_h2]:font-bold [&_h2]:text-ink [&_h2]:stretch-subheading [&_li]:pl-1 [&_li+li]:mt-2 [&_strong]:font-semibold [&_strong]:text-ink [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:marker:text-cobalt";
+  "grid max-w-[68ch] gap-4 text-ink [&_code]:text-small [&_code]:text-cobalt [&_h2]:mt-6 [&_h2]:text-h3 [&_h2]:font-bold [&_h2]:text-ink [&_h2]:stretch-subheading [&_li]:pl-1 [&_li+li]:mt-2 [&_strong]:font-semibold [&_strong]:text-ink [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:marker:text-cobalt";
 ---
 
 <Layout title={title} description={project.shortDesc} image={ogImage.src} imageAlt={project.title}>
@@ -61,7 +61,7 @@ const prose =
           <div class="grid gap-head">
             <a
               href={pathFor(lang, "#projects")}
-              class="group inline-flex min-h-8 w-fit items-center gap-2 text-small font-semibold text-ink-soft hover:text-cobalt"
+              class="group inline-flex min-h-8 w-fit items-center gap-2 text-small font-semibold text-ink hover:text-cobalt"
             >
               <ArrowLeft
                 className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"
@@ -78,7 +78,7 @@ const prose =
               )}
             </p>
             <h1 class="text-h1 font-extrabold stretch-display">{project.title}</h1>
-            <p class="max-w-[52ch] text-lead text-ink-soft">{project.shortDesc}</p>
+            <p class="max-w-[52ch] text-lead text-ink">{project.shortDesc}</p>
           </div>
 
           <Image
@@ -103,7 +103,7 @@ const prose =
 
         <aside class="grid self-start border-frame bg-paper-raised text-small md:sticky md:top-24">
           <section class="grid gap-3 border-b border-ink p-4">
-            <h2 class="text-caption text-ink-soft">{t("projects.stack")}</h2>
+            <h2 class="text-caption text-ink">{t("projects.stack")}</h2>
             <ul class="flex flex-wrap gap-2 text-caption">
               {project.tags.map((tag) => (
                 <li class="border border-cobalt px-2 py-0.5 text-cobalt">{tag}</li>
@@ -111,7 +111,7 @@ const prose =
             </ul>
           </section>
           <section class="grid gap-3 p-4">
-            <h2 class="text-caption text-ink-soft">{t("projects.links")}</h2>
+            <h2 class="text-caption text-ink">{t("projects.links")}</h2>
             <a
               href={project.link}
               target="_blank"
@@ -144,7 +144,7 @@ const prose =
                     { "sm:items-end sm:text-right": dir === "next" },
                   ]}
                 >
-                  <span class="inline-flex items-center gap-1.5 text-caption font-semibold text-ink-soft">
+                  <span class="inline-flex items-center gap-1.5 text-caption font-semibold text-ink">
                     {dir === "prev" && (
                       <ArrowLeft
                         className="size-3.5 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none"

@@ -90,7 +90,7 @@ const items = stages.map((stage, index) => ({
           <p
             aria-hidden="true"
             class:list={[
-              "timeline-year text-h3 leading-none font-extrabold text-ink-soft tabular-nums stretch-heading md:row-start-1",
+              "timeline-year text-h3 leading-none font-extrabold text-ink tabular-nums stretch-heading md:row-start-1",
               item.side === "left"
                 ? "md:col-start-2 md:justify-self-start"
                 : "md:col-start-1 md:justify-self-end",
@@ -119,14 +119,14 @@ const items = stages.map((stage, index) => ({
                 {item.kindLabel}
               </span>
               {item.ongoing && (
-                <span class="inline-flex items-center gap-1.5 text-ink-soft">
+                <span class="inline-flex items-center gap-1.5 text-ink">
                   <span class="timeline-pulse size-2 rounded-full bg-cobalt"></span>
                   {t("experience.ongoing")}
                 </span>
               )}
             </div>
             <h3 class="text-h3 font-bold stretch-subheading">{item.title}</h3>
-            <p class="text-small text-ink-soft">
+            <p class="text-small text-ink">
               {item.org}
               <span class="mx-2 text-grid" aria-hidden="true">
                 |

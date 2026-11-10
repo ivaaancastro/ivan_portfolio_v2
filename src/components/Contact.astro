@@ -35,8 +35,8 @@ const channels = [
   <div class="mx-auto grid max-w-[1100px] gap-block px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
     <header class="grid content-start gap-head">
       <h2 class="text-h2 font-extrabold stretch-heading">{t("contact.title")}</h2>
-      <p class="max-w-[42ch] text-lead text-ink-soft">{t("contact.intro")}</p>
-      <p class="flex items-center gap-2 text-small text-ink-soft">
+      <p class="max-w-[42ch] text-lead text-ink">{t("contact.intro")}</p>
+      <p class="flex items-center gap-2 text-small text-ink">
         <MapPin className="size-4 text-redline" aria-hidden="true" />
         <span class="sr-only">{t("contact.location")}:</span>
         {t("contact.locationValue")}
@@ -60,7 +60,7 @@ const channels = [
           >
             <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="grid min-w-0">
-              <span class="text-caption text-ink-soft">{label}</span>
+              <span class="text-caption text-ink">{label}</span>
               <span class="contact-value relative w-fit max-w-full font-bold [overflow-wrap:anywhere] lg:text-lead group-hover:text-cobalt">
                 {value}
               </span>
@@ -85,7 +85,7 @@ const channels = [
             </button>
           )}
           <ArrowUpRight
-            className="mr-4 hidden size-5 shrink-0 text-ink-soft transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cobalt motion-reduce:transition-none sm:block md:mr-5"
+            className="mr-4 hidden size-5 shrink-0 text-ink transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cobalt motion-reduce:transition-none sm:block md:mr-5"
             aria-hidden="true"
           />
         </li>

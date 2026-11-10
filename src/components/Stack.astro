@@ -57,7 +57,7 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
   <div class="mx-auto grid max-w-[1100px] gap-block px-6">
     <header class="grid gap-head">
       <h2 class="text-h2 font-extrabold stretch-heading">{t("stack.title")}</h2>
-      <p class="max-w-[60ch] text-lead text-ink-soft">{t("stack.note")}</p>
+      <p class="max-w-[60ch] text-lead text-ink">{t("stack.note")}</p>
     </header>
 
     <!-- Desktop: tools wired to the projects that use them. Hover or focus a node to trace it. -->
@@ -110,7 +110,7 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
             <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="grid min-w-0">
               <span class="font-bold">{name}</span>
-              <span class="hidden truncate text-caption text-ink-soft lg:block">{desc}</span>
+              <span class="hidden truncate text-caption text-ink lg:block">{desc}</span>
             </span>
             <span class="sr-only">
               {t("stack.usedIn")}: {used.map((project) => project.title).join(", ")}
@@ -145,9 +145,9 @@ const top = (y: number) => `top: ${(y / height) * 100}%`;
             <Icon className="size-5 shrink-0 text-cobalt" aria-hidden="true" />
             <span class="font-bold">{name}</span>
           </div>
-          <p class="text-small text-ink-soft">{desc}</p>
+          <p class="text-small text-ink">{desc}</p>
           <div class="flex flex-wrap items-center gap-2 text-caption">
-            <span class="text-ink-soft">{t("stack.usedIn")}:</span>
+            <span class="text-ink">{t("stack.usedIn")}:</span>
             {used.map((project) => (
               <a
                 href={project.href}
