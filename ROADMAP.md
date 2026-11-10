@@ -9,18 +9,18 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 
 ## Estado general
 
-| Fase | Objetivo                                                              | Estado                                 |
-| :--- | :-------------------------------------------------------------------- | :------------------------------------- |
-| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho                               |
-| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho                               |
-| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho (salvo F2.3b, textos de Iván) |
-| F3   | Rediseño visual                                                       | ✅ Hecho                               |
-| F4   | Pulido y medición                                                     | ✅ Hecho                               |
+| Fase | Objetivo                                                              | Estado   |
+| :--- | :-------------------------------------------------------------------- | :------- |
+| F0   | Preparación: tooling, CI, flujo de ramas                              | ✅ Hecho |
+| F1   | Saneamiento: seguridad, rendimiento, a11y, SEO (sin cambios visuales) | ✅ Hecho |
+| F2   | Reestructura: contenido tipado, páginas de proyecto, i18n             | ✅ Hecho |
+| F3   | Rediseño visual                                                       | ✅ Hecho |
+| F4   | Pulido y medición                                                     | ✅ Hecho |
 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F4 (las PR vuelven a ir contra `main`)
-**Próxima tarea:** F4 completada. Quedan F2.3b (textos de Iván) y comprobar Lighthouse en producción cuando Vercel vuelva a desplegar.
+**Próxima tarea:** todas las fases completadas. Ideas nuevas, al backlog.
 
 ---
 
@@ -109,7 +109,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   - Estructura: cabecera, portada, cuerpo del MDX, ficha (stack y repo) y navegación anterior/siguiente. Imagen OG por proyecto (portada a 1200×630).
   - La tarjeta enlaza a la página. **Se elimina la modal**; si en F3 se quiere una vista rápida, se recupera del historial.
   - Segmentos de ruta traducidos (`routeSegments`): el selector de idioma, hreflang y sitemap enlazan `proyectos` ↔ `projects`.
-- [ ] **F2.3b** Ampliar los textos de cada caso de estudio: contexto, problema, solución, decisiones técnicas, capturas y demo si la hay. Contenido de partida: el texto actual y el README de cada repo. **Lo escribe o revisa Iván**, en los dos idiomas.
+- [x] **F2.3b** Ampliar los textos de cada caso de estudio: contexto, problema, solución, decisiones técnicas, capturas y demo si la hay. Contenido de partida: el texto actual y el README de cada repo. **Lo escribe o revisa Iván**, en los dos idiomas. Cerrada: Iván da por buenos los textos actuales (D17).
 - [x] **F2.6** View Transitions entre páginas (respetando `prefers-reduced-motion`) — [#31](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/31)
   - View Transitions nativas entre documentos (`@view-transition`), solo CSS: 0 KB de JS. No se usa `<ClientRouter />` de Astro, porque añade JS y obliga a reejecutar los scripts en cada navegación.
   - La portada del proyecto se transforma de la tarjeta a la página; la cabecera y la barra inferior quedan fijas.
@@ -145,7 +145,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 
 ## F4 · Pulido y medición
 
-- [x] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas. Medido con Lighthouse 12 sobre la build local en 11 rutas ES/EN: rendimiento 98–100, accesibilidad 100, buenas prácticas 96 y SEO 100, sin cambios de código. Excepciones esperadas: SEO de `/404` en 63 por el `noindex` intencionado, y buenas prácticas en 96 solo en local por los 404 de `/_vercel/*`, que en Vercel sí existen — [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51)
+- [x] **F4.1** Lighthouse ≥ 95 en las 4 categorías (móvil) en todas las páginas. Medido con Lighthouse 12 sobre la build local en 11 rutas ES/EN: rendimiento 98–100, accesibilidad 100, buenas prácticas 96 y SEO 100, sin cambios de código. Excepciones esperadas: SEO de `/404` en 63 por el `noindex` intencionado, y buenas prácticas en 96 solo en local por los 404 de `/_vercel/*`, que en Vercel sí existen — [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51). En producción (2026-11-10, 7 rutas): rendimiento 98–100 y 100 en accesibilidad, buenas prácticas y SEO
 - [x] **F4.2** axe sin errores en CI · [#48](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/48)
 - [x] **F4.3** Vercel Web Analytics + Speed Insights con los componentes oficiales `@vercel/analytics/astro` y `@vercel/speed-insights/astro` en `Layout.astro`; sin `vercel.json`. Hay que activar ambos en el panel del proyecto en Vercel — [#50](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/50)
 - [x] **F4.4** Revisión final de textos y datos personales (D16) — [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
@@ -174,6 +174,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
 | D8  | 2026-11-10 | Se quita el espacio antes de la coma en la biografía («…en Indra, lo que…») y la edad pasa a 24 años                                                                                                                                                                                  | Pedido por Iván                                                                                                                                   |
 | D13 | 2026-11-10 | No instalar `Leonxlnx/taste-skill`; usar sus ideas a mano                                                                                                                                                                                                                             | Instala un hook que ejecuta scripts al final de cada turno y sus reglas chocan con D3 y con el objetivo de rendimiento; Iván eligió no instalarla |
 | D16 | 2026-11-10 | Rol «Ingeniero Informático (TFG en curso)» / «Computer Engineer (thesis in progress)»; nuevo texto de Contacto; «Herramientas que uso»; mayúsculas a la española; se quita «Casi todos los derechos reservados»; datos de FicFit, Gestor de Cursos y Nexus corregidos según sus repos | Decidido por Iván en la revisión de F4.4                                                                                                          |
+| D17 | 2026-11-10 | Cerrar F2.3b sin ampliar los casos de estudio                                                                                                                                                                                                                                         | Iván da por buenos los textos actuales                                                                                                            |
 | D9  | 2026-11-09 | Aprobados los textos de SEO y de la imagen OG de [#23](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/23)                                                                                                                                                                     | Revisados por Iván                                                                                                                                |
 | D15 | 2026-11-10 | Fix de contraste en /personal: `text-ink-soft` → `text-ink` en modo claro (PersonalPage.astro) para pasar axe en CI (Linux headless usa light mode)                                                                                                                                   | CI reportaba 1 violación color-contrast (2 nodos) no reproducible localmente; fijado para asegurar contraste AA en modo claro                     |
 
@@ -240,3 +241,5 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-10 · F4.1 · Lighthouse móvil ≥ 95 en todas las páginas (98–100 / 100 / 96 / 100), sin cambios de código · [#51](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/51)
 - 2026-11-10 · F4.4 · Revisión de textos ES/EN (D16): rol con TFG en curso, contacto, mayúsculas, pie y datos de proyectos comprobados en sus repos · [#52](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/52)
 - 2026-11-10 · F4.5 · Sin React: iconos con `@lucide/astro`, 7 dependencias menos y jsx-a11y sobre los `.astro` · [#53](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/53)
+- 2026-11-10 · F4.1 · Lighthouse móvil en producción: 98–100 / 100 / 100 / 100 en 7 rutas ES/EN
+- 2026-11-10 · F2.3b · Cerrada: los textos actuales de los casos de estudio se quedan (D17)
