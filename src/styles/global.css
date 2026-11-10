@@ -75,7 +75,7 @@
   --text-h2--line-height: 1.1;
   --text-h1: 3rem;
   --text-h1--line-height: 1;
-  --text-title: clamp(3.75rem, 11vw, 9rem);
+  --text-title: clamp(3.75rem, 9.5vw, 7.75rem);
   --text-title--line-height: 0.86;
 
   /* The drafting grid is the spacing unit: p-grid, gap-grid, mt-grid… */
