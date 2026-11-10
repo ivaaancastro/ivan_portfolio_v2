@@ -16,11 +16,11 @@ const es = {
 
   // Navigation
   "nav.main": "Navegación principal",
-  "nav.about": "Sobre mí",
+  "nav.stack": "Herramientas",
   "nav.experience": "Experiencia",
   "nav.projects": "Proyectos",
   "nav.contact": "Contacto",
-  "nav.lifestyle": "Lifestyle",
+  "nav.aboutMe": "Sobre mí",
   "nav.cv": "CV",
   "nav.menu": "Menú",
   "nav.closeMenu": "Cerrar menú",
@@ -49,11 +49,11 @@ const es = {
   "about.factLocation": "Arteixo, A Coruña",
   "about.factStudies": "UDC · TFG en curso",
   "about.factWork": "Indra · 1 año",
-  "about.stackTitle": "Herramientas que domino",
-  "about.stackNote": "El stack que uso día a día, a fondo.",
-  "about.stackRef": "Ref.",
-  "about.stackTool": "Herramienta",
-  "about.stackUse": "Uso",
+  "stack.title": "Herramientas que domino",
+  "stack.note": "El stack que uso día a día, a fondo, y los proyectos en los que lo he usado.",
+  "stack.usedIn": "Lo uso en",
+  "stack.toolsLabel": "Herramientas",
+  "stack.projectsLabel": "Proyectos",
 
   // Experience
   "experience.title": "Experiencia y formación",
@@ -150,11 +150,11 @@ const en: Record<UIKey, string> = {
 
   // Navigation
   "nav.main": "Main navigation",
-  "nav.about": "About",
+  "nav.stack": "Tools",
   "nav.experience": "Experience",
   "nav.projects": "Projects",
   "nav.contact": "Contact",
-  "nav.lifestyle": "Lifestyle",
+  "nav.aboutMe": "About me",
   "nav.cv": "CV",
   "nav.menu": "Menu",
   "nav.closeMenu": "Close menu",
@@ -183,11 +183,11 @@ const en: Record<UIKey, string> = {
   "about.factLocation": "Arteixo, A Coruña (Spain)",
   "about.factStudies": "UDC · Final-year project in progress",
   "about.factWork": "Indra · 1 year",
-  "about.stackTitle": "Tools I master",
-  "about.stackNote": "The stack I use every day, in depth.",
-  "about.stackRef": "Ref.",
-  "about.stackTool": "Tool",
-  "about.stackUse": "Use",
+  "stack.title": "Tools I master",
+  "stack.note": "The stack I use every day, in depth, and the projects where I have used it.",
+  "stack.usedIn": "Used in",
+  "stack.toolsLabel": "Tools",
+  "stack.projectsLabel": "Projects",
 
   // Experience
   "experience.title": "Experience and education",

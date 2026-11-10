@@ -55,13 +55,15 @@ const education = defineCollection({
   }),
 });
 
-/** "Herramientas que domino" in the About section. */
+/** "Herramientas que domino": the stack schematic on the home page. */
 const stack = defineCollection({
   loader: file("src/content/stack.json"),
   schema: z.object({
     name: localized,
     desc: localized,
     icon: z.enum(iconNames),
+    /** Project tags that count as using this tool (draws the links in the stack schematic). */
+    matches: z.array(z.string()).min(1),
     order: z.number().int(),
   }),
 });

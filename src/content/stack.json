@@ -10,6 +10,7 @@
       "en": "Backend and REST APIs with Spring Boot"
     },
     "icon": "coffee",
+    "matches": ["Java", "Spring Boot", "Maven"],
     "order": 1
   },
   {
@@ -23,6 +24,7 @@
       "en": "Frontend with React, Next.js and Astro"
     },
     "icon": "atom",
+    "matches": ["React", "Next.js"],
     "order": 2
   },
   {
@@ -36,6 +38,7 @@
       "en": "OpenAI, Spring AI and semantic search"
     },
     "icon": "bot",
+    "matches": ["Spring AI", "OpenAI API", "pgvector"],
     "order": 3
   },
   {
@@ -49,6 +52,7 @@
       "en": "Relational design, migrations and pgvector"
     },
     "icon": "database",
+    "matches": ["PostgreSQL", "pgvector", "Supabase"],
     "order": 4
   },
   {
@@ -62,6 +66,7 @@
       "en": "Version control, CI and containers"
     },
     "icon": "container",
+    "matches": ["Git", "Docker", "Kubernetes"],
     "order": 5
   }
 ]

@@ -331,6 +331,121 @@
   }
 }
 
+/*
+ * Stack schematic: links between tools and projects. They draw themselves while scrolling,
+ * pulses run along them (SVG animateMotion) and hovering a node traces its connections.
+ */
+.schematic-link {
+  fill: none;
+  stroke: var(--cobalt);
+  stroke-opacity: 0.45;
+  stroke-width: 1.5;
+  transition:
+    stroke-opacity 0.2s,
+    opacity 0.2s;
+}
+
+.schematic-anchor {
+  fill: var(--paper);
+  stroke: var(--cobalt);
+  stroke-width: 1.5;
+}
+
+.schematic-pulse {
+  fill: var(--cobalt);
+  transition: opacity 0.2s;
+}
+
+.schematic-node {
+  transition:
+    opacity 0.2s,
+    border-color 0.2s;
+}
+
+.schematic[data-active] .schematic-link.is-related {
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+.schematic[data-active] .schematic-link:not(.is-related),
+.schematic[data-active] .schematic-pulse:not(.is-related),
+.schematic[data-active] .schematic-node:not(.is-related) {
+  opacity: 0.2;
+}
+
+.schematic[data-active] .schematic-node.is-related > *,
+.schematic[data-active] li.schematic-node.is-related {
+  border-color: var(--cobalt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schematic-pulse {
+    display: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .schematic {
+      view-timeline-name: --schematic;
+    }
+
+    .schematic-link {
+      stroke-dasharray: 1;
+      animation: schematic-draw linear both;
+    }
+
+    .schematic-from-left,
+    .schematic-card {
+      animation: timeline-in-left ease-out both;
+    }
+
+    .schematic-from-right {
+      animation: timeline-in-right ease-out both;
+    }
+
+    .schematic-pulse {
+      animation: schematic-pulse-in linear both;
+    }
+
+    /* Separate rules so the build does not fold the timeline into the animation shorthand. */
+    .schematic .schematic-link {
+      animation-timeline: --schematic;
+      animation-range: entry 30% cover 55%;
+    }
+
+    .schematic .schematic-pulse {
+      animation-timeline: --schematic;
+      animation-range: cover 50% cover 58%;
+    }
+
+    .schematic .schematic-node {
+      animation-timeline: --schematic;
+      animation-range: entry 10% cover 35%;
+    }
+
+    ul > .schematic-card {
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+  }
+}
+
+@keyframes schematic-pulse-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes schematic-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 /* Respect the OS "reduce motion" setting: no movement, transitions and keyframes become instant. */
 @media (prefers-reduced-motion: reduce) {
   html {
