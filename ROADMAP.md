@@ -133,7 +133,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   - Lifestyle sigue enlazada solo desde la navegación (sin adelanto en la home).
 - [ ] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
   - [x] Base — [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36): fondo papel y Archivo en todo el sitio; cabecera nueva (índice en el orden de la home, ES/EN, botón de tema claro/oscuro, CV y menú desplegable en móvil con `popover` nativo); pie como cajetín; se retira la barra inferior. Las secciones antiguas se muestran dentro de un `<main class="legacy …">` oscuro hasta que se rediseñen.
-  - [x] Portada — [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37): nombre en Archivo estrecho, línea de cota animada con la profesión, foto enmarcada como «Detalle A», cajetín con los datos rápidos y botones «Ver proyectos» / «Descargar CV». Se retiran el antetítulo «Diseño · Desarrollo · Soporte» y el «Hola, soy».
+  - [x] Portada — [#37](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/37): nombre en Archivo estrecho, línea de cota animada con la profesión, foto (sin marco ni «Detalle A», a petición de Iván), cajetín con los datos rápidos y botones «Ver proyectos» / «Descargar CV». Se retiran el antetítulo «Diseño · Desarrollo · Soporte» y el «Hola, soy».
 - [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
 - [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
 

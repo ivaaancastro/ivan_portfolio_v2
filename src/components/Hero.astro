@@ -60,31 +60,21 @@ const titleBlock = [
         </div>
       </div>
 
-      <!-- Photo framed as a detail view of the drawing, with its callout. -->
-      <figure class="relative mx-auto w-full max-w-[280px] md:mx-0">
-        <div class="border-frame bg-paper-raised p-2">
-          <Image
-            src={photo}
-            widths={[280, 420, 560]}
-            width={560}
-            height={700}
-            fit="cover"
-            sizes="280px"
-            format="webp"
-            loading="eager"
-            fetchpriority="high"
-            alt={t("hero.photoAlt")}
-            class="aspect-[4/5] w-full object-cover"
-          />
-        </div>
-        <span
-          aria-hidden="true"
-          class="absolute -top-3 -right-3 grid size-8 place-items-center rounded-full border-[1.5px] border-redline bg-paper text-small font-bold text-redline"
-        >
-          A
-        </span>
-        <figcaption class="mt-2 text-caption text-ink-soft">{t("hero.photoCaption")}</figcaption>
-      </figure>
+      <div class="mx-auto w-full max-w-[280px] md:mx-0">
+        <Image
+          src={photo}
+          widths={[280, 420, 560]}
+          width={560}
+          height={700}
+          fit="cover"
+          sizes="280px"
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+          alt={t("hero.photoAlt")}
+          class="aspect-[4/5] w-full border-[1.5px] border-ink object-cover"
+        />
+      </div>
     </div>
 
     <dl class="grid border-frame bg-paper-raised text-small sm:grid-cols-2 lg:grid-cols-4">
