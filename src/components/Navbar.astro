@@ -1,16 +1,18 @@
 ---
-import { Heart } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { isPublished, languages, switchLabels, type Lang } from "../i18n/config";
 import { getLang, pathFor, switchLangPath, useTranslations } from "../i18n/utils";
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 
+// Same order as the sections of the home (F3.4).
 const navItems = [
-  { name: t("nav.about"), href: pathFor(lang, "#about") },
-  { name: t("nav.experience"), href: pathFor(lang, "#experience") },
   { name: t("nav.projects"), href: pathFor(lang, "#projects") },
+  { name: t("nav.experience"), href: pathFor(lang, "#experience") },
+  { name: t("nav.about"), href: pathFor(lang, "#about") },
   { name: t("nav.contact"), href: pathFor(lang, "#contact") },
+  { name: t("nav.lifestyle"), href: pathFor(lang, "personal") },
 ];
 
 // Language selector: links to this same page in the other language(s).
@@ -19,44 +21,38 @@ const otherLangs = (Object.keys(languages) as Lang[]).filter(
   (other) => other !== lang && (isPublished(other) || !isPublished(lang)),
 );
 const pathname = Astro.url.pathname;
+
+const linkClass =
+  "underline-offset-4 decoration-cobalt decoration-[1.5px] hover:underline hover:text-cobalt";
+const controlClass =
+  "inline-flex h-9 min-w-9 items-center justify-center rounded-control border-frame px-2 text-small font-semibold hover:bg-ink hover:text-paper";
 ---
 
 <header
   style="view-transition-name: site-header"
-  class="fixed top-0 z-50 w-full border-b border-white/10 bg-bg/50 backdrop-blur-md transition-all duration-300"
+  class="fixed top-0 z-50 w-full border-b-[1.5px] border-ink bg-paper font-display text-ink"
 >
-  <div class="mx-auto flex h-20 max-w-[1100px] items-center justify-between px-6">
+  <div class="mx-auto flex h-16 max-w-[1100px] items-center justify-between gap-4 px-6">
     <a
       href={pathFor(lang)}
-      class="text-xl font-bold tracking-tight transition-colors hover:text-primary"
+      class="text-lead font-extrabold tracking-tight uppercase [font-stretch:70%]"
     >
-      Iván<span class="text-primary">.</span>
+      Iván Castro Roel
     </a>
 
-    <nav aria-label={t("nav.main")} class="hidden items-center gap-8 md:flex">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class="text-sm font-medium text-gray-300 transition-colors hover:text-primary"
-        >
-          {item.name}
-        </a>
-      ))}
-
-      <!-- Separador vertical -->
-      <div class="mx-2 h-4 w-[1px] bg-white/20"></div>
-
-      <!-- Enlace a la zona personal -->
-      <a
-        href={pathFor(lang, "personal")}
-        class="group flex items-center gap-2 text-sm font-medium text-gray-300 transition-colors hover:text-pink-400"
-      >
-        <Heart size={16} className="transition-colors group-hover:fill-pink-400" />
-        {t("nav.lifestyle")}
-      </a>
+    <nav aria-label={t("nav.main")} class="hidden lg:block">
+      <ul class="flex items-center gap-6 text-small font-medium">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class={linkClass}>
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       {otherLangs.map((other) => (
         <a
           href={switchLangPath(pathname, other)}
@@ -64,19 +60,91 @@ const pathname = Astro.url.pathname;
           lang={other}
           aria-label={switchLabels[other]}
           title={switchLabels[other]}
-          class="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-300 uppercase transition-colors hover:border-primary hover:text-primary"
+          class:list={[controlClass, "uppercase"]}
         >
           {other}
         </a>
       ))}
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label={t("nav.darkTheme")}
+        title={t("nav.darkTheme")}
+        class={controlClass}
+      >
+        <Moon size={16} className="theme-icon-moon" aria-hidden="true" />
+        <Sun size={16} className="theme-icon-sun" aria-hidden="true" />
+      </button>
+
       <a
         href="/ivanCv.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-black shadow-lg shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-emerald-400 md:inline-flex"
+        class="hidden h-9 items-center rounded-control bg-ink px-3 text-small font-semibold text-paper hover:bg-cobalt sm:inline-flex"
       >
         {t("nav.cv")}
       </a>
+
+      <!-- Mobile menu: native popover (Esc and clicking outside close it). -->
+      <button
+        type="button"
+        popovertarget="site-menu"
+        aria-label={t("nav.menu")}
+        class:list={[controlClass, "lg:hidden"]}
+      >
+        <Menu size={18} aria-hidden="true" />
+      </button>
     </div>
   </div>
+
+  <div
+    id="site-menu"
+    popover
+    class="site-menu m-0 w-full max-w-none border-b-[1.5px] border-ink bg-paper p-0 font-display text-ink"
+  >
+    <div class="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-4">
+      <span class="text-small text-ink-soft">{t("nav.menu")}</span>
+      <button
+        type="button"
+        popovertarget="site-menu"
+        popovertargetaction="hide"
+        aria-label={t("nav.closeMenu")}
+        class={controlClass}
+      >
+        <X size={18} aria-hidden="true" />
+      </button>
+    </div>
+    <nav aria-label={t("nav.main")} class="mx-auto max-w-[1100px] px-6 pb-6">
+      <ul class="border-t border-ink">
+        {navItems.map((item) => (
+          <li class="border-b border-ink">
+            <a
+              href={item.href}
+              data-menu-link
+              class="block py-3 text-h3 font-bold [font-stretch:80%] hover:text-cobalt"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+        <li class="border-b border-ink">
+          <a
+            href="/ivanCv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block py-3 text-h3 font-bold [font-stretch:80%] hover:text-cobalt"
+          >
+            {t("hero.downloadCv")}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<script>
+  import "../scripts/theme";
+  import "../scripts/site-menu";
+</script>

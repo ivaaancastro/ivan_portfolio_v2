@@ -20,7 +20,7 @@ Documento vivo para seguir la mejora y el rediseño del portfolio. Se actualiza 
 Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indicar motivo)
 
 **Fase actual:** F3 (las PR del rediseño van contra la rama `redesign`; ver D10)
-**Próxima tarea:** F3.5, empezando por la base (layout, cabecera con menú y tema, pie) y después la portada. F2.3b sigue abierta hasta que Iván tenga los textos.
+**Próxima tarea:** F3.5 · Portada. F2.3b sigue abierta hasta que Iván tenga los textos.
 
 ---
 
@@ -132,6 +132,7 @@ Leyenda: ⏳ Pendiente · 🚧 En curso · ✅ Hecho · ⏸️ Bloqueado (indica
   - Navegación: cabecera con índice, selector ES/EN y botón de tema; en móvil, menú desplegable en la cabecera y **se retira la barra inferior**.
   - Lifestyle sigue enlazada solo desde la navegación (sin adelanto en la home).
 - [ ] **F3.5** Implementación por secciones (un PR por sección contra `redesign`): base (layout, cabecera, pie) → portada → proyectos → experiencia → sobre mí → contacto
+  - [x] Base — [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36): fondo papel y Archivo en todo el sitio; cabecera nueva (índice en el orden de la home, ES/EN, botón de tema claro/oscuro, CV y menú desplegable en móvil con `popover` nativo); pie como cajetín; se retira la barra inferior. Las secciones antiguas se muestran dentro de un `<main class="legacy …">` oscuro hasta que se rediseñen.
 - [ ] **F3.6** Rediseño de `/personal` (Lifestyle)
 - [ ] **F3.7** Revisión responsive completa (375 / 768 / 1280+)
 
@@ -208,3 +209,4 @@ Formato: `AAAA-MM-DD · ID · resumen · PR`
 - 2026-11-09 · F3.1–F3.3 · D3 (dirección «Plano técnico»), rama `redesign` y tokens de diseño · [#32](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/32)
 - 2026-11-09 · F3.4 · Arquitectura de la home aprobada (D11) y D4 decidida (se mantiene el teléfono)
 - 2026-11-09 · — · Estudios actualizados en la biografía y el dato rápido (ES/EN): asignaturas aprobadas y TFG en curso, aprobado por Iván
+- 2026-11-10 · F3.5 · Base del rediseño: cabecera con menú y tema, pie como cajetín, sin barra inferior · [#36](https://github.com/ivaaancastro/ivan_portfolio_v2/pull/36)

@@ -22,11 +22,9 @@ const es = {
   "nav.contact": "Contacto",
   "nav.lifestyle": "Lifestyle",
   "nav.cv": "CV",
-  "bottom.home": "Inicio",
-  "bottom.about": "Mí",
-  "bottom.experience": "Exp",
-  "bottom.projects": "Proy",
-  "bottom.life": "Life",
+  "nav.menu": "Menú",
+  "nav.closeMenu": "Cerrar menú",
+  "nav.darkTheme": "Tema oscuro",
 
   // Hero
   "hero.kicker": "Diseño · Desarrollo · Soporte",
@@ -81,6 +79,9 @@ const es = {
 
   // Footer
   "footer.rights": "Casi todos los derechos reservados.",
+  "footer.author": "Autor",
+  "footer.links": "Enlaces",
+  "footer.revision": "Revisión",
 
   // Lifestyle page
   "life.title": "Iván Castro | Lifestyle",
@@ -146,11 +147,9 @@ const en: Record<UIKey, string> = {
   "nav.contact": "Contact",
   "nav.lifestyle": "Lifestyle",
   "nav.cv": "CV",
-  "bottom.home": "Home",
-  "bottom.about": "Me",
-  "bottom.experience": "Exp",
-  "bottom.projects": "Work",
-  "bottom.life": "Life",
+  "nav.menu": "Menu",
+  "nav.closeMenu": "Close menu",
+  "nav.darkTheme": "Dark theme",
 
   // Hero
   "hero.kicker": "Design · Development · Support",
@@ -204,6 +203,9 @@ const en: Record<UIKey, string> = {
 
   // Footer
   "footer.rights": "Almost all rights reserved.",
+  "footer.author": "Author",
+  "footer.links": "Links",
+  "footer.revision": "Revision",
 
   // Lifestyle page
   "life.title": "Iván Castro | Lifestyle",

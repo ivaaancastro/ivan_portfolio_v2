@@ -190,8 +190,7 @@
 }
 
 /* Header and bottom bar stay in place instead of cross-fading with the page. */
-::view-transition-group(site-header),
-::view-transition-group(bottom-nav) {
+::view-transition-group(site-header) {
   animation: none;
 }
 
@@ -205,6 +204,35 @@
 ::view-transition-new(.project-cover) {
   height: 100%;
   object-fit: cover;
+}
+
+/* Theme toggle: show the moon in light theme and the sun in dark theme. */
+.theme-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+}
+
+/* Mobile menu (popover) drops down below the fixed header. */
+.site-menu {
+  inset: 4rem 0 auto;
+  height: auto;
 }
 
 /* Respect the OS "reduce motion" setting: no movement, transitions and keyframes become instant. */
